@@ -1,5 +1,5 @@
 #Niwa (Card game based on Jetpack Compose)
-![BackOfPlayingCard Niwa](https://github.com/Hitoli/Mizu/assets/97933783/802f884d-20ea-4224-9c63-0a1e6c19e142)
+![BackOfPlayingCard Niwa](https://github.com/Hitoli/Mizu/assets/97933783/9363bb9e-b59c-4135-b9dd-1c0176e1de42)
 
 
 ## Overview
@@ -8,7 +8,7 @@ Welcome to Niwa, an open-source game app developed using Jetpack Compose and Kot
 ### Niwa Gameplay
 In Niwa, players embark on a thrilling journey where they collect plant cards from the wild. The key to success lies in nurturing these cards to upgrade their levels and unlock powerful skills. Engage in strategic battles against other players to test your skills and earn valuable resources as rewards.
 
-###Key Features
+##Key Features
 - Card Collection: Explore the wild and collect diverse plant cards with unique abilities.
 - Nurturing: Upgrade your plant cards by nurturing them, enhancing their levels and skills.
 - Battles: Challenge other players in exciting battles to win resources.
@@ -19,10 +19,11 @@ In Niwa, players embark on a thrilling journey where they collect plant cards fr
 
 ## Plan from Design to release
 
-Phase 1| Phase 2| Release Phase| Phase 3| Improvements
-- Work on UI screens|- Write game logic | - Release on Playstore| - Add Authentication| - Improve overtime
-- Make all of them stateless |- Develop Architecture | - Test with Users| - Add Backend Server with Appwrite|  - Improve overtime
-- Solve Linting errors |- Add Database| - Solve Bugs| - Make improvements in gameplay| - Improve overtime
+Phase 1 | Phase 2| Release Phase | Phase 3 | Improvements |
+| ------ |-------- | -------------- | --------- | -------------- |
+- Work on UI screens |- Write game logic | - Release on Playstore | - Add Authentication | - Improve overtime |
+- Make all of them stateless |- Develop Architecture | - Test with Users | - Add Backend Server with Appwrite |  - Improve overtime |
+- Solve Linting errors |- Add Database | - Solve Bugs | - Make improvements in gameplay | - Improve overtime |
 
 ## UI Screens Design
 
