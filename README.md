@@ -3,7 +3,7 @@ Niwa (Card game based on Jetpack Compose)
 
 <img src="https://github.com/Hitoli/Mizu/assets/97933783/9363bb9e-b59c-4135-b9dd-1c0176e1de42" alt="drawing" width="100"/>
 
-Welcome to Niwa, an open-source game app developed using Jetpack Compose and Kotlin. Niwa is an exciting card-based game that draws inspiration from popular titles like Clash Royale and Pokemon. Currently, in its Beta phase, Niwa invites developers with knowledge in Kotlin, Jetpack Compose, or Android Development to contribute and help shape the game's evolution.
+Welcome to Niwa, an open-source game app developed using Jetpack Compose and Kotlin. Niwa is an exciting card-based game inspired by popular titles like Clash Royale and Pokemon. In its Beta phase, Niwa invites developers with knowledge in Kotlin, Jetpack Compose, or Android Development to contribute and help shape the game's evolution.
 
 ### Niwa Gameplay
 In Niwa, players embark on a thrilling journey where they collect plant cards from the wild. The key to success lies in nurturing these cards to upgrade their levels and unlock powerful skills. Engage in strategic battles against other players to test your skills and earn valuable resources as rewards.
@@ -53,7 +53,31 @@ Key Features:
 4. Run the app 
 
 ## Contributing
+We encourage you to participate in this open-source project. We love Pull Requests, Issue Reports, Feature Requests or any positive contribution.
+
+### Submitting an Issue
+If you find a bug in the source code or a mistake in the documentation, you can help us by submitting an issue to our repository. Before you submit your issue, search open and closed issues, as it's possible that your question was already answered, or a ticket for the issue already exists.
+
+### Pull Requests
+- All pull requests must be associated with a specific Issue. If an issue doesn't exist, please first create it.
+- Before you submit your pull request, search the repository for an open or closed Pull Request that relates to your submission. We don't want to duplicate efforts.
+- Please don't do pull requests to solve any grammatical error or English-related errors. If you spot any please reach out through Twitter.
+- PR should be named properly.
+- Naming Rules:
+- Repository managers and owners will review your code and merge it into the codebase. Please wait patiently.
 
 ## Join the Community
+You can find me on Twitter, Linkedin and Youtube
+
+- [Youtube](https://www.youtube.com/channel/UCmMDXnbLjBUqXTItc8ODw-g)
+- [Twitter](https://twitter.com/Hitesh__kohli)
+- [Linkedin](https://www.linkedin.com/in/hitesh-kohli/)
 
 ## Want to learn?
+You can ask me questions or book mock interviews or resume review sessions here:
+
+- [Mock Interview or Resume Review](https://topmate.io/hitesh_kohli)
+  
+You can learn more about Android Development with the help of our newsletter:
+
+- [Developer's Commute](https://developercommute.beehiiv.com/subscribe)
