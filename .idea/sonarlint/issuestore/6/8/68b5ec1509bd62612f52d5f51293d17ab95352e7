@@ -1,0 +1,14 @@
+
+Lkotlin:S11725"(Remove these unused function parameters.(‡ï„«ûÿÿÿÿ8ŒåßÙÒ1
+Ckotlin:S125“"Remove this commented out code.(™½Åºüÿÿÿÿ8Ä¹ïÙÒ1
+qkotlin:S117="SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(üùÎÒ8‘åßÙÒ1
+Pkotlin:S1481£"+Remove this unused "height" local variable.(ïÄ°¢ùÿÿÿÿ8Ø¹ïÙÒ1
+Ukotlin:S1481?"1Remove this unused "screenHeight" local variable.(´¾ëšúÿÿÿÿ8˜åßÙÒ1
+>kotlin:S1128"Remove this unused import.(ˆöŸ¤ûÿÿÿÿ8›åßÙÒ1
+>kotlin:S1128"Remove this unused import.(Õ„´°ùÿÿÿÿ8›åßÙÒ1
+>kotlin:S1128"Remove this unused import.(½ùÒ»ÿÿÿÿÿ8›åßÙÒ1
+>kotlin:S1128"Remove this unused import.(Š…é’ÿÿÿÿÿ8›åßÙÒ1
+>kotlin:S1128"Remove this unused import.(§ÉÒ´ûÿÿÿÿ8ü±óÙÒ1
+>kotlin:S1128"Remove this unused import.(ÉÁ¸şÿÿÿÿ8›åßÙÒ1
+9kotlin:S1128#"Remove this unused import.(¤û“…8µÄğÙÒ1
+>kotlin:S1128$"Remove this unused import.(À†ŠÔùÿÿÿÿ8µÄğÙÒ1
