@@ -1,8 +1,8 @@
-##Niwa (Card game based on Jetpack Compose)
-
-<img src="https://github.com/Hitoli/Mizu/assets/97933783/9363bb9e-b59c-4135-b9dd-1c0176e1de42" alt="drawing" width="200"/>
-
 ## Overview
+Niwa (Card game based on Jetpack Compose)
+
+<img src="https://github.com/Hitoli/Mizu/assets/97933783/9363bb9e-b59c-4135-b9dd-1c0176e1de42" alt="drawing" width="100"/>
+
 Welcome to Niwa, an open-source game app developed using Jetpack Compose and Kotlin. Niwa is an exciting card-based game that draws inspiration from popular titles like Clash Royale and Pokemon. Currently, in its Beta phase, Niwa invites developers with knowledge in Kotlin, Jetpack Compose, or Android Development to contribute and help shape the game's evolution.
 
 ### Niwa Gameplay
