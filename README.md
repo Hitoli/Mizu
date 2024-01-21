@@ -17,6 +17,7 @@ Key Features:
 
 ### Demonstration Video:
 
+
 ## Plan from Design to release
 
 | Phase 1                    | Phase 2              | Release Phase        | Phase 3                          | Improvements     |
@@ -38,6 +39,15 @@ Key Features:
 #### Authentication Sequence - Coming Soon...
 
 ## Installation
+1. Install the latest Android Studio
+   [Android Studio Download](https://developer.android.com/studio?gclid=Cj0KCQiAnrOtBhDIARIsAFsSe50SEECDEAw6TZRd9BK3WoYT8CYaGmkIXqG8e5b_NJjHBEnU--SvYtIaAs6KEALw_wcB&gclsrc=aw.ds&authuser=1)
+   
+2. All the Dependencies needed are already present in the app
+
+3. Clone the repository or Install the project as a zip file
+   git clone https://github.com/Hitoli/petplantproject.git
+
+4. Run the app 
 
 ## Contributing
 
