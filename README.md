@@ -15,11 +15,10 @@ Welcome to Mizu, an open-source water-tracking app developed using Jetpack Compo
 - **BMI:** Settings to Track your BMI
   
 ### Design Video:
-[![Mizu UI Design 1](https://github.com/Hitoli/Mizu/assets/97933783/e84d7f48-5b56-4ff2-93f3-2b3562ce7103)](https://youtu.be/0poi03PEPaE?si=Om-VxXDuzS1ff_1U)
-[![Mizu UI Design 2](https://github.com/Hitoli/Mizu/assets/97933783/e471a375-72fe-4514-b98b-01c978b7c4e3)](https://youtu.be/ULgIOb-nN9Q?si=edXVL7wL28vdFWg1)
+[![Mizu UI Design 1]<img src="https://github.com/Hitoli/Mizu/assets/97933783/c3c21919-949a-49a6-a754-ba9fea17df8e" alt="drawing" width="100"/>)](https://youtu.be/0poi03PEPaE?si=Om-VxXDuzS1ff_1U)
+[![Mizu UI Design 2]<img src="https://github.com/Hitoli/Mizu/assets/97933783/03a9e195-e019-49c8-8f10-27eeeec4baea" alt="drawing" width="100"/>](https://youtu.be/ULgIOb-nN9Q?si=edXVL7wL28vdFWg1)
 
 ### Development Videos: 
-
 
 ## Plan from Design to release
 
