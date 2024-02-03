@@ -13,8 +13,13 @@ Welcome to Mizu, an open-source water-tracking app developed using Jetpack Compo
 - **Dark Mode Support:** Seamlessly switch between light and dark modes for comfortable usage.
 - **Rewards:** Animation Reward for drinking water
 - **BMI:** Settings to Track your BMI
-### Demonstration Video:
-https://twitter.com/i/status/1749094557550088265
+  
+### Design Video:
+
+https://youtu.be/0poi03PEPaE?si=DDgCUbAZtaFGW0Of
+https://youtu.be/ULgIOb-nN9Q?si=FexaXRylptyplB_Q
+
+### Development Videos: 
 
 
 ## Plan from Design to release
