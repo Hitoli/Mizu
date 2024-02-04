@@ -13,3 +13,9 @@ d
 4app/src/main/java/com/example/mizu/ui/theme/Color.kt,6\0\60bb6aec79f49bbb13932cf52c816b906af13683
 c
 3app/src/main/java/com/example/mizu/ui/theme/Type.kt,9\a\9a74287fcf15900cefd200ef0c07f955e8162da2
+y
+Iapp/src/main/java/com/example/mizu/presentation/homescreen/home_screen.kt,f\2\f21ae96fef32ecc8e06dbeb6ba8311f8596e415a
+
+Oapp/src/main/java/com/example/mizu/presentation/onboarding/onboarding_screen.kt,6\7\67340d6ad4c0451c796fdb747813f99fe9d09b2c
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e

@@ -22,4 +22,8 @@ val circleWaterIndicatorColor=Color(0xFF756AB6)
 
 val buttonTextColor =Color(0xFFFFE5E5)
 
-val blackShadeButtonColor=Color(0xFF29302C)
+val blackShadeColor=Color(0xFF29302C)
+
+val textFieldColor=Color(0xFFFFE5E5)
+
+

@@ -52,8 +52,8 @@ val fontFamily = FontFamily(
     Font(
         googleFont = fontName,
         fontProvider = provider,
-        weight = FontWeight.Bold,
-        style = FontStyle.Italic
+        weight = FontWeight.Normal,
+        style = FontStyle.Normal
     )
 )
 val fontFamilyLight = FontFamily(
