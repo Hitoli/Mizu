@@ -5,8 +5,6 @@ F
 app/proguard-rules.pro,9\e\9e08934d811afe28fbc77aaa3c0d747b94348db9
 D
 app/build.gradle.kts,d\2\d2a4383452aad84a18429a5844d31330a012a9e6
-n
->app/src/main/java/com/example/mizu/presentation/home_screen.kt,6\8\68b5ec1509bd62612f52d5f51293d17ab95352e7
 r
 Bapp/src/main/java/com/example/mizu/presentation/calendar_screen.kt,b\6\b6bdb4af657f20df74a9d8afa7e168ccdb103d47
 d
@@ -19,3 +17,7 @@ Iapp/src/main/java/com/example/mizu/presentation/homescreen/home_screen.kt,f\2\
 Oapp/src/main/java/com/example/mizu/presentation/onboarding/onboarding_screen.kt,6\7\67340d6ad4c0451c796fdb747813f99fe9d09b2c
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+†
+Vapp/src/main/java/com/example/mizu/presentation/onboarding/onboarding_weight_screen.kt,d\2\d205ae8f3d85b132cd56d51ccdc8fd07ff04cafe
+†
+Vapp/src/main/java/com/example/mizu/presentation/onboarding/onboarding_height_screen.kt,4\f\4f6639ef1a10c19f09763c8cb978dda9864928de
