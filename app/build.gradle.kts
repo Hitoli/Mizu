@@ -67,22 +67,18 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-
+    //Google Fonts
     implementation("androidx.compose.ui:ui-text-google-fonts:1.5.4")
-
-
+    //Lottie Animation
+    implementation("com.airbnb.android:lottie-compose:6.0.1")
     //icons
     implementation ("androidx.compose.material:material-icons-extended:1.5.4")
-
     //splash screen
     implementation ("androidx.core:core-splashscreen:1.0.1")
-
     // Navigation Compose
     implementation("androidx.navigation:navigation-compose:2.7.5")
-
     //koin
     implementation ("io.insert-koin:koin-androidx-compose:3.5.3")
-
     //Room Library
     implementation ("androidx.room:room-runtime:2.6.1")
     ksp ("androidx.room:room-compiler:2.6.1")
