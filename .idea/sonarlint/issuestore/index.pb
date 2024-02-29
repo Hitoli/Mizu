@@ -39,3 +39,5 @@ _app/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_
 _app/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_height_screen.kt,b\d\bd634fc73e675b4c70f4a79d3b4203bc68da69a0
 ê
 `app/src/main/java/com/example/mizu/features/onboarding/presentation/Onboarding_loading_screen.kt,e\2\e22577f404bd38187095f191f8295b4a10628483
+ú
+lapp/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_water_intake_result_screen.kt,f\6\f60e81fbdfe324c48e0b63cafe4497b20d035c13
