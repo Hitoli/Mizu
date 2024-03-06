@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.mizu"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -82,6 +82,8 @@ dependencies {
     //Room Library
     implementation ("androidx.room:room-runtime:2.6.1")
     ksp ("androidx.room:room-compiler:2.6.1")
+
+    implementation ("co.yml:ycharts:2.1.0")
 
 
 }
