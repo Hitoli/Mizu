@@ -3,7 +3,4 @@ Rkotlin:S11725"3Remove this unused function parameter "onUserName".(Ê¼É’8¹ŒÍ
 wkotlin:S117ÿ"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ë…Œ¸øÿÿÿÿ8½ŒÍ‚Ş1
 8kotlin:S1128"Remove this unused import.(†ùÎ&8ÆŒÍ‚Ş1
 9kotlin:S1128"Remove this unused import.(Íıİô8ÆŒÍ‚Ş1
->kotlin:S1128*"Remove this unused import.(™Ç³ûÿÿÿÿ8«§Š¦á1
->kotlin:S1128+"Remove this unused import.(ÆÖÿÿÿÿÿ8«§Š¦á1
-9kotlin:S1128/"Remove this unused import.(‚¿€ü8«§Š¦á1
 qkotlin:S37762"RRefactor this method to reduce its Cognitive Complexity from 63 to the 15 allowed.(™±›×8ÈŒÍ‚Ş1

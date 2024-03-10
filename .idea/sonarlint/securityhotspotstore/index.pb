@@ -41,3 +41,7 @@ _app/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_
 `app/src/main/java/com/example/mizu/features/onboarding/presentation/Onboarding_loading_screen.kt,e\2\e22577f404bd38187095f191f8295b4a10628483
 œ
 lapp/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_water_intake_result_screen.kt,f\6\f60e81fbdfe324c48e0b63cafe4497b20d035c13
+a
+1app/src/main/java/com/example/mizu/utils/Todos.kt,a\9\a9f2a5167730527ba827afc80f72ea6f16ed5a2c
+
+Oapp/src/main/java/com/example/mizu/presentation_app/navmap/bottom_bar_screen.kt,e\f\efcc49506b8be4169513098415ae5f308481ad94

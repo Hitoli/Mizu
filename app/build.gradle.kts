@@ -76,7 +76,7 @@ dependencies {
     //splash screen
     implementation ("androidx.core:core-splashscreen:1.0.1")
     // Navigation Compose
-    implementation("androidx.navigation:navigation-compose:2.7.5")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     //koin
     implementation ("io.insert-koin:koin-androidx-compose:3.5.3")
     //Room Library
