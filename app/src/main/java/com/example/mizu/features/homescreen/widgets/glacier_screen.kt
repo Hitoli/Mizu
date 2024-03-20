@@ -44,9 +44,7 @@ import com.example.mizu.ui.theme.waterColor
 fun GlacierScreen(
     modifier: Modifier = Modifier,
     onWaterTrackingResourceAmount: Int,
-    getWaterTrackingResourceAmount: (Int) -> Unit,
     onTotalWaterTrackingResourceAmount: Int,
-    getAddWater: () -> Unit,
     screenWidth: Dp,
     screenHeight: Dp
 ) {
@@ -78,13 +76,8 @@ fun GlacierScreen(
                 )
             )
             Glacier(
-                modifier = Modifier.fillMaxSize(),
                 screenHeight = screenHeight,
                 screenWidth =screenWidth,
-                onWaterTrackingResourceAmount = onWaterTrackingResourceAmount,
-                getWaterTrackingResourceAmount = {},
-                onTotalWaterTrackingResourceAmount = onTotalWaterTrackingResourceAmount,
-                getAddWater = {},
                 waterPercentageFilled = waterPercentageFilled
             )
 
@@ -110,10 +103,7 @@ fun GlacierScreen(
 
 @Composable
 fun Glacier(
-    screenWidth: Dp, screenHeight: Dp, onWaterTrackingResourceAmount: Int,
-    getWaterTrackingResourceAmount: (Int) -> Unit,
-    onTotalWaterTrackingResourceAmount: Int,
-    getAddWater: () -> Unit, modifier: Modifier = Modifier, waterPercentageFilled: State<Float>
+    screenWidth: Dp, screenHeight: Dp, waterPercentageFilled: State<Float>
 ) {
     Canvas(modifier = Modifier
         .width(
@@ -245,9 +235,9 @@ fun PreviewGlacierScreen() {
     val screenWidth = LocalConfig.screenWidthDp.dp
     val screenHeight = LocalConfig.screenHeightDp.dp
     GlacierScreen(
-        onWaterTrackingResourceAmount = 200,
-        getWaterTrackingResourceAmount = {},
+        onWaterTrackingResourceAmount = 499,
+
         onTotalWaterTrackingResourceAmount = 1200,
-        getAddWater = {}, modifier = Modifier, screenWidth = screenWidth.value.dp, screenHeight = 450.dp
+       modifier = Modifier, screenWidth = screenWidth.value.dp, screenHeight = 450.dp
     )
 }

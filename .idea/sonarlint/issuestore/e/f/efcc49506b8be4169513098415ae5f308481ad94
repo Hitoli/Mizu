@@ -1,12 +1,17 @@
 
-Lkotlin:S1172>"(Remove these unused function parameters.(¦Ôèƒüÿÿÿÿ8ÚÏÅÃâ1
-Ukotlin:S1172W"6Remove this unused function parameter "navController".(ï²ï8ÛÏÅÃâ1
-Vkotlin:S1135L"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8áÏÅÃâ1
-Vkotlin:S1135P"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8áÏÅÃâ1
-Kkotlin:S14818",Remove this unused "padding" local variable.(³ÃÙ8ãÏÅÃâ1
->kotlin:S1128"Remove this unused import.(ˆöŸ¤ûÿÿÿÿ8í»±Ãâ1
+Lkotlin:S1172m"(Remove these unused function parameters.(¦Ôèƒüÿÿÿÿ8ñÉñÄâ1
+]kotlin:S1172œ"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8òÉñÄâ1
+Qkotlin:S1135^"2Complete the task associated to this TODO comment.(¼Ùº8úÉñÄâ1
+Vkotlin:S1135}"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8úÉñÄâ1
+Wkotlin:S1135„"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8úÉñÄâ1
+>kotlin:S1128"Remove this unused import.(ˆöŸ¤ûÿÿÿÿ8±ËñÄâ1
 9kotlin:S1128
-"Remove this unused import.(•† ‚8²í¬Ãâ1
-9kotlin:S1128"Remove this unused import.(ñˆĞë8ªàÃâ1
->kotlin:S1128"Remove this unused import.(ñïŞûÿÿÿÿ8åÏÅÃâ1
-9kotlin:S1128"Remove this unused import.(Íıİô8åÏÅÃâ1
+"Remove this unused import.(•† ‚8±ËñÄâ1
+9kotlin:S1128"Remove this unused import.(ñˆĞë8±ËñÄâ1
+>kotlin:S1128"Remove this unused import.(³úÙëşÿÿÿÿ8±ËñÄâ1
+>kotlin:S1128"Remove this unused import.(¨Ò›ºşÿÿÿÿ8±ËñÄâ1
+9kotlin:S1128"Remove this unused import.(‘è÷×8±ËñÄâ1
+>kotlin:S1128 "Remove this unused import.(ñïŞûÿÿÿÿ8±ËñÄâ1
+9kotlin:S1128#"Remove this unused import.(Íıİô8±ËñÄâ1
+>kotlin:S11283"Remove this unused import.(°‚ËØıÿÿÿÿ8±ËñÄâ1
+zkotlin:S1192E"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(»òŸÌ8²ËñÄâ1

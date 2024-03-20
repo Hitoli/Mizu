@@ -1,18 +1,23 @@
 
-Rkotlin:S1172?".Remove this unused function parameter "onPad".(‡ï„«ûÿÿÿÿ8ß²ÒÞ1
-qkotlin:S117I"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(üùÎÒ8é²ÒÞ1
-jkotlin:S107>"GThis function has 9 parameters, which is greater than the 7 authorized.(›¼¾“üÿÿÿÿ8ï²ÒÞ1
-Rkotlin:S1135Ž"2Complete the task associated to this TODO comment.(¼Ùžº8õ²ÒÞ1
-Rkotlin:S1135Ö"2Complete the task associated to this TODO comment.(È—ž“8õ²ÒÞ1
-^kotlin:S1481L":Remove this unused "waterPercentageFilled" local variable.(ÕþŽºþÿÿÿÿ8ù²ÒÞ1
->kotlin:S1128"Remove this unused import.(Á¤ÞÆøÿÿÿÿ8þ²ÒÞ1
-9kotlin:S1128"Remove this unused import.(¤½Ñâ8þ²ÒÞ1
->kotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8þ²ÒÞ1
-9kotlin:S1128!"Remove this unused import.(ÍýÝô8þ²ÒÞ1
->kotlin:S1128""Remove this unused import.(À¶žÌúÿÿÿÿ8þ²ÒÞ1
->kotlin:S1128#"Remove this unused import.(ÇÀ×Ýýÿÿÿÿ8þ²ÒÞ1
->kotlin:S1128$"Remove this unused import.(Ä‡§­ýÿÿÿÿ8þ²ÒÞ1
->kotlin:S1128)"Remove this unused import.(§­ Ôúÿÿÿÿ8ÿ²ÒÞ1
->kotlin:S11286"Remove this unused import.(ÆÖžÿÿÿÿÿ8Ú§Š¦á1
-9kotlin:S11287"Remove this unused import.(øÊÕÀ8Ú§Š¦á1
->kotlin:S1128;"Remove this unused import.(Íó¬òüÿÿÿÿ8Ú§Š¦á1
+Bkotlin:S125x"Remove this commented out code.(„ÒÕØüÿÿÿÿ8•Éñçå1
+Ckotlin:S125Ö"Remove this commented out code.(ÉœÖ‡øÿÿÿÿ8öð©èå1
+rkotlin:S117æ"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ÞÊ¹Çûÿÿÿÿ8›³þæå1
+qkotlin:S117V"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(üùÎÒ8›³þæå1
+qkotlin:S117X"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(áæž“8›³þæå1
+jkotlin:S107K"GThis function has 9 parameters, which is greater than the 7 authorized.(›¼¾“üÿÿÿÿ8ž³þæå1
+Wkotlin:S1135Ø"2Complete the task associated to this TODO comment.(³³óÅøÿÿÿÿ8¡³þæå1
+Rkotlin:S1135ˆ"2Complete the task associated to this TODO comment.(È—ž“8¡³þæå1
+Skotlin:S1481Z"/Remove this unused "sheetState" local variable.(ŸçÜèøÿÿÿÿ8ñ©èå1
+Pkotlin:S1481X"1Remove this unused "StreakImages" local variable.(áæž“8ñ©èå1
+9kotlin:S1128"Remove this unused import.(Ð©«ã8äó“èå1
+>kotlin:S1128"Remove this unused import.(²Ù™³þÿÿÿÿ8äó“èå1
+>kotlin:S1128"Remove this unused import.(Á¤ÞÆøÿÿÿÿ8¥³þæå1
+9kotlin:S1128"Remove this unused import.(¤½Ñâ8¥³þæå1
+>kotlin:S1128"Remove this unused import.(é¢êáüÿÿÿÿ8…ñ©èå1
+>kotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8¥³þæå1
+9kotlin:S1128"Remove this unused import.(¨±È¤8…ñ©èå1
+9kotlin:S1128+"Remove this unused import.(ÍýÝô8¥³þæå1
+>kotlin:S1128,"Remove this unused import.(À¶žÌúÿÿÿÿ8¥³þæå1
+>kotlin:S1128-"Remove this unused import.(ÇÀ×Ýýÿÿÿÿ8¥³þæå1
+>kotlin:S1128."Remove this unused import.(Ä‡§­ýÿÿÿÿ8¥³þæå1
+>kotlin:S11284"Remove this unused import.(§­ Ôúÿÿÿÿ8¥³þæå1

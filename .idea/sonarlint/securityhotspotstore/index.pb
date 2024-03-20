@@ -45,3 +45,5 @@ a
 1app/src/main/java/com/example/mizu/utils/Todos.kt,a\9\a9f2a5167730527ba827afc80f72ea6f16ed5a2c
 
 Oapp/src/main/java/com/example/mizu/presentation_app/navmap/bottom_bar_screen.kt,e\f\efcc49506b8be4169513098415ae5f308481ad94
+n
+>app/src/main/java/com/example/mizu/utils/bottom_nav_screens.kt,7\a\7a5e30f873a4e02f4cc4a465a3bbbb76f68a153c
