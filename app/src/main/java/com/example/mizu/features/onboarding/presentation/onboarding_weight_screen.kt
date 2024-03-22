@@ -113,11 +113,17 @@ fun OnBoardingWeightScreen(
                             textAlign = TextAlign.Center,
                         ), modifier = Modifier.fillMaxWidth()
                     )
-                    TextField(value = onWeightChange.toString(), onValueChange ={
+
+                    TextField(value = onWeightChange.toString(), onValueChange = {
                         getWeightChange(it.toInt())
-                    },modifier= Modifier
+                    }, modifier = Modifier
                         .fillMaxWidth()
-                        .height(60.dp), colors = TextFieldDefaults.textFieldColors(backgroundColor1), shape = RoundedCornerShape(16.dp), placeholder = {
+                        .height(60.dp), colors = TextFieldDefaults.colors(
+                        focusedTextColor = backgroundColor1,
+                        focusedContainerColor = backgroundColor1,
+                        unfocusedContainerColor = backgroundColor1,
+                        disabledContainerColor = backgroundColor1,
+                    ), shape = RoundedCornerShape(16.dp), placeholder = {
                         Text(
                             text = "Weight...",
                             style = TextStyle(
@@ -147,6 +153,7 @@ fun OnBoardingWeightScreen(
                     Button(
                         onClick = {
                             getNavigate()
+
                             focusManager.clearFocus()
                         },
                         modifier = Modifier
@@ -191,7 +198,7 @@ fun PreviewOnBoardingWeightScreen() {
             weightValue = it
         }
     }, onWeightChange = weightValue, onUserName = "Hitesh", getNavigate = {
-
+                                                                          println("Naavigationg")
     }, modifier = Modifier
         .fillMaxSize()
         .background(

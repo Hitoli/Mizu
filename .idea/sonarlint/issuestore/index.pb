@@ -47,3 +47,13 @@ a
 Oapp/src/main/java/com/example/mizu/presentation_app/navmap/bottom_bar_screen.kt,e\f\efcc49506b8be4169513098415ae5f308481ad94
 n
 >app/src/main/java/com/example/mizu/utils/bottom_nav_screens.kt,7\a\7a5e30f873a4e02f4cc4a465a3bbbb76f68a153c
+ƒ
+Sapp/src/main/java/com/example/mizu/presentation_app/navmap/onboarding_nav_screen.kt,5\b\5b28898af25649e19dbc66ef2a602ca1b2266bb0
+r
+Bapp/src/main/java/com/example/mizu/utils/onboarding_nav_screens.kt,b\3\b3fe6d139cd3d50d704f6b2e6b22d58790142895
+x
+Happ/src/main/java/com/example/mizu/presentation_app/navmap/nav_screen.kt,1\8\18b1ee14715b2b6bcbbc32caa0faf9ad904f10f3
+g
+7app/src/main/java/com/example/mizu/utils/nav_screens.kt,c\b\cbed677ba488213f654d4bfb45804f7922c35711
+d
+4app/src/main/java/com/example/mizu/ui/theme/Theme.kt,0\9\096a292b820304dad700acd91b20be687c781f26

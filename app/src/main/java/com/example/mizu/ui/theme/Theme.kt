@@ -1,6 +1,7 @@
 package com.example.mizu.ui.theme
 
 import android.app.Activity
+import android.graphics.Color
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -16,15 +17,22 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = backgroundColor1,
+    secondary = waterColor,
+    tertiary = minorColor,
+    background = backgroundColor1,
+    onSurface = backgroundColor1,
+    onBackground = backgroundColor1
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = backgroundColor1,
+    secondary = waterColor,
+    tertiary = minorColor,
+    background = backgroundColor1,
+    onSurface = backgroundColor1,
+
+    onBackground = backgroundColor1
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -32,7 +40,7 @@ private val LightColorScheme = lightColorScheme(
     onPrimary = Color.White,
     onSecondary = Color.White,
     onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
+  Col  onBackground = or(0xFF1C1B1F),
     onSurface = Color(0xFF1C1B1F),
     */
 )
@@ -57,7 +65,7 @@ fun MizuTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = Color.TRANSPARENT
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }

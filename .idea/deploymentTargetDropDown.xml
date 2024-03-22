@@ -3,22 +3,12 @@
   <component name="deploymentTargetDropDown">
     <value>
       <entry key="PreviewHomeScreen">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="a6bf78ca" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-03-20T17:44:16.255618Z" />
-        </State>
+        <State />
       </entry>
       <entry key="PreviewOnBoardingScreen">
+        <State />
+      </entry>
+      <entry key="PreviewOnBoardingWeightScreen">
         <State />
       </entry>
       <entry key="PreviewRewardScreen">

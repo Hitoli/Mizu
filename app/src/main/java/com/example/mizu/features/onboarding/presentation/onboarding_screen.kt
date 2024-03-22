@@ -89,12 +89,16 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                                 textAlign = TextAlign.Center,
                             ),modifier=Modifier.fillMaxWidth()
                         )
-                        TextField(value = onValue.toString(), onValueChange ={
+                        TextField(value = onValue.toString(), onValueChange = {
                             getValue(it)
-                        },modifier= Modifier
+                        }, modifier = Modifier
                             .fillMaxWidth()
-                            .height(60.dp), colors = TextFieldDefaults.textFieldColors(
-                            backgroundColor1), shape = RoundedCornerShape(16.dp), placeholder = {
+                            .height(60.dp), colors = TextFieldDefaults.colors(
+                            focusedTextColor = backgroundColor1,
+                            focusedContainerColor = backgroundColor1,
+                            unfocusedContainerColor = backgroundColor1,
+                            disabledContainerColor = backgroundColor1,
+                        ), shape = RoundedCornerShape(16.dp), placeholder = {
                             Text(
                                 text = "Name...",
                                 style = TextStyle(

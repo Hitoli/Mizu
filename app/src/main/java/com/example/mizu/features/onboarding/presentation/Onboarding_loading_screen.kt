@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,17 +38,34 @@ import com.example.mizu.ui.theme.buttonTextColor
 import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.minorColor
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun OnboardingLoadingScreen(modifier: Modifier = Modifier, getNavigate: () -> Unit) {
     val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.calculation))
 
+
+    val coroutineScope = rememberCoroutineScope()
+
+
+
+
+
+    LaunchedEffect(composition?.duration==1000f){
+
+        getNavigate()
+    }
     Box(modifier = modifier) {
         Column(
-            modifier = Modifier.fillMaxWidth().height(300.dp).align(Alignment.Center),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp)
+                .align(Alignment.Center),
             verticalArrangement = Arrangement.SpaceAround,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             LottieAnimation(
                 composition = composition,
                 iterations = LottieConstants.IterateForever,
