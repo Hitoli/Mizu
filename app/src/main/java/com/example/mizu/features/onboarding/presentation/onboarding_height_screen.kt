@@ -25,6 +25,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -38,6 +39,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -51,13 +53,14 @@ import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.minorColor
 import com.example.mizu.ui.theme.textFieldColor
+import com.example.mizu.ui.theme.waterColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OnBoardingHeightScreen(
     modifier: Modifier = Modifier,
-    getWeightChange: (Int?) -> Unit,
-    onWeightChange: Int?,
+    getHeightChange: (String?) -> Unit,
+    onHeightChange: String,
     onUserName: String,
     getNavigate: () -> Unit
 ) {
@@ -65,7 +68,7 @@ fun OnBoardingHeightScreen(
 
     Box(modifier = modifier) {
         Text(
-            text = "Hi, Hitesh \uD83D\uDC4B",
+            text = "Hi, ${onUserName} \uD83D\uDC4B",
             modifier=Modifier.padding(top = 50.dp, start = 24.dp),
             style = TextStyle(
                 fontSize = 24.sp,
@@ -115,16 +118,21 @@ fun OnBoardingHeightScreen(
                         ), modifier = Modifier.fillMaxWidth()
                     )
 
-                    TextField(value = onWeightChange.toString(), onValueChange = {
-                        getWeightChange(it.toInt())
+                    TextField(value = onHeightChange, onValueChange = {
+                        getHeightChange(it)
                     }, modifier = Modifier
                         .fillMaxWidth()
                         .height(60.dp), colors = TextFieldDefaults.colors(
-                        focusedTextColor = backgroundColor1,
+                        focusedTextColor = minorColor,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent,
                         focusedContainerColor = backgroundColor1,
-                        unfocusedContainerColor = backgroundColor1,
-                        disabledContainerColor = backgroundColor1,
-                    ), shape = RoundedCornerShape(16.dp), placeholder = {
+                        unfocusedContainerColor = backgroundColor1.copy(alpha = 0.8f),
+                        disabledContainerColor = waterColor,
+                        focusedIndicatorColor = Color.Transparent,
+                        focusedLabelColor = waterColor,
+                    ), maxLines = 1,
+                        shape = RoundedCornerShape(16.dp), placeholder = {
                         Text(
                             text = "Height...",
                             style = TextStyle(
@@ -148,6 +156,7 @@ fun OnBoardingHeightScreen(
                             focusManager.clearFocus()
                         }
                     ), keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Done
                     )
                     )
@@ -191,13 +200,13 @@ fun OnBoardingHeightScreen(
 @Composable
 fun PreviewOnBoardingHeightScreen() {
     var heightValue by remember {
-        mutableIntStateOf(0)
+        mutableStateOf("")
     }
-    OnBoardingHeightScreen(getWeightChange = {
+    OnBoardingHeightScreen(getHeightChange = {
         if (it != null) {
             heightValue = it
         }
-    }, onWeightChange = heightValue, onUserName = "Hitesh", getNavigate = {
+    }, onHeightChange = heightValue, onUserName = "Hitesh", getNavigate = {
 
     }, modifier = Modifier
         .fillMaxSize()

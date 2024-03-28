@@ -56,7 +56,7 @@ fun OnBoardingActiveScreen(
 
     Box(modifier = modifier) {
         Text(
-            text = "Hi, Hitesh \uD83D\uDC4B",
+            text = "Hi, ${onUserName} \uD83D\uDC4B",
             modifier=Modifier.padding(top = 50.dp, start = 24.dp),
             style = TextStyle(
                 fontSize = 24.sp,
@@ -70,7 +70,7 @@ fun OnBoardingActiveScreen(
 
         Column(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 

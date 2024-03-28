@@ -32,6 +32,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.vectorResource
@@ -53,9 +54,8 @@ import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.fontName
 import com.example.mizu.ui.theme.minorColor
 import com.example.mizu.ui.theme.textFieldColor
+import com.example.mizu.ui.theme.waterColor
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class,
-)
 @Composable
 fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:String,getNavigate:()->Unit,modifier:Modifier=Modifier) {
 
@@ -80,7 +80,7 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                             contentDescription = "NameLogo"
                         )
                         Text(
-                            text = "What is your name?",
+                            text = onQuestionValue,
                             style = TextStyle(
                                 fontSize = 24.sp,
                                 fontFamily = fontFamilyLight,
@@ -94,15 +94,19 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                         }, modifier = Modifier
                             .fillMaxWidth()
                             .height(60.dp), colors = TextFieldDefaults.colors(
-                            focusedTextColor = backgroundColor1,
+                            focusedTextColor = minorColor,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            disabledIndicatorColor = Color.Transparent,
                             focusedContainerColor = backgroundColor1,
-                            unfocusedContainerColor = backgroundColor1,
-                            disabledContainerColor = backgroundColor1,
-                        ), shape = RoundedCornerShape(16.dp), placeholder = {
+                            unfocusedContainerColor = backgroundColor1.copy(alpha = 0.8f),
+                            disabledContainerColor = waterColor,
+                                focusedIndicatorColor = Color.Transparent,
+                                focusedLabelColor = waterColor,
+                        ),maxLines = 1, shape = RoundedCornerShape(8.dp), placeholder = {
                             Text(
                                 text = "Name...",
                                 style = TextStyle(
-                                    fontSize = 20.sp,
+                                    fontSize = 15.sp,
                                     fontFamily = fontFamilyLight,
                                     fontWeight = FontWeight(400),
                                     color = minorColor,

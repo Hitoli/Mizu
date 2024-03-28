@@ -79,6 +79,7 @@ dependencies {
     // Navigation Compose
     implementation("androidx.navigation:navigation-compose:2.7.7")
     //koin
+    implementation("io.insert-koin:koin-android:3.5.4-RC1")
     implementation ("io.insert-koin:koin-androidx-compose:3.5.3")
     //Room Library
     implementation ("androidx.room:room-runtime:2.6.1")

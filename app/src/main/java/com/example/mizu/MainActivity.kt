@@ -16,10 +16,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.mizu.features.onboarding.view_model.OnboardingViewModel
 import com.example.mizu.presentation_app.navmap.NavScreen
 import com.example.mizu.ui.theme.MizuTheme
+import org.koin.android.ext.android.get
+import org.koin.androidx.compose.koinViewModel
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -32,7 +38,8 @@ class MainActivity : ComponentActivity() {
                         .safeDrawingPadding(),
                     color = Color.Transparent
                 ) {
-                    NavScreen()
+                     val onBoardingViewmodel = getViewModel<OnboardingViewModel>()
+                    NavScreen(onBoardingViewmodel)
                 }
             }
         }

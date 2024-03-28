@@ -57,3 +57,9 @@ g
 7app/src/main/java/com/example/mizu/utils/nav_screens.kt,c\b\cbed677ba488213f654d4bfb45804f7922c35711
 d
 4app/src/main/java/com/example/mizu/ui/theme/Theme.kt,0\9\096a292b820304dad700acd91b20be687c781f26
+‰
+Yapp/src/main/java/com/example/mizu/features/onboarding/view_model/onboarding_viewmodel.kt,4\4\44947f3c10b143811ed5cb4fa586ac96b6befad9
+[
++app/src/main/java/com/example/mizu/di/DI.kt,d\0\d024bf64ab02160e0cc76867f1d73875df1e15ca
+^
+.app/src/main/java/com/example/mizu/base_app.kt,6\d\6df1a07328d50e93a9447f922493666ad7c7b379
