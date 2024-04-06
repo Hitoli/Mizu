@@ -32,7 +32,11 @@ fun NavScreen(OnboardingViewModel:OnboardingViewModel = koinViewModel()) {
        }
         composable(route=NavScreens.OnboardingNavHostingScreen.route){
             OnboardingNavHostingScreen(getNavigate = {
-                navController.navigate(NavScreens.BottomNavHostingScreen.route)
+                navController.navigate(NavScreens.BottomNavHostingScreen.route){
+                    popUpTo(NavScreens.OnboardingNavHostingScreen.route){
+                        inclusive =true
+                    }
+                }
             }, onboardingViewModel = OnboardingViewModel)
         }
     }

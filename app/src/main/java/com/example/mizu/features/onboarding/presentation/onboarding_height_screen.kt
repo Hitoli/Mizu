@@ -62,7 +62,7 @@ fun OnBoardingHeightScreen(
     getHeightChange: (String?) -> Unit,
     onHeightChange: String,
     onUserName: String,
-    getNavigate: () -> Unit
+    getNavigate: () -> Unit,checkText:String,check:Boolean
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -131,12 +131,12 @@ fun OnBoardingHeightScreen(
                         disabledContainerColor = waterColor,
                         focusedIndicatorColor = Color.Transparent,
                         focusedLabelColor = waterColor,
-                    ), maxLines = 1,
+                    ), isError = check, maxLines = 1,
                         shape = RoundedCornerShape(16.dp), placeholder = {
                         Text(
                             text = "Height...",
                             style = TextStyle(
-                                fontSize = 20.sp,
+                                fontSize = 15.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(400),
                                 color = minorColor,
@@ -152,17 +152,38 @@ fun OnBoardingHeightScreen(
                         textAlign = TextAlign.Start,
                     ), keyboardActions = KeyboardActions(
                         onDone = {
-                            getNavigate()
+                            if(!check){
+                                getNavigate()
+                            }
+
                             focusManager.clearFocus()
                         }
                     ), keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Done
                     )
+
                     )
+                    Spacer(modifier = Modifier.height(10.dp))
+                    if(check){
+                        Text(
+                            text =checkText,
+                            style = TextStyle(
+                                fontSize = 10.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(400),
+                                color = Color.Red.copy(alpha = 0.8f),
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+
                     Button(
                         onClick = {
-                            getNavigate()
+                            if(!check){
+                                getNavigate()
+                            }
                             focusManager.clearFocus()
                         },
                         modifier = Modifier
@@ -216,6 +237,6 @@ fun PreviewOnBoardingHeightScreen() {
                 end = Offset(0f, Float.POSITIVE_INFINITY),
                 colors = listOf(backgroundColor1, backgroundColor2)
             )
-        )
+        ), check = true, checkText = "Height can not be empty or words"
     )
 }

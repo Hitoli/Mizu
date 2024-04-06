@@ -51,7 +51,9 @@ fun OnBoardingActiveScreen(
     modifier: Modifier = Modifier, getActiveOutcome: (Int?) -> Unit,
     onActiveOutcome: Int?,
     onUserName: String,
-    getNavigate: () -> Unit
+    getNavigate: () -> Unit,
+    check:Boolean,
+    checkText:String
 ) {
 
     Box(modifier = modifier) {
@@ -213,11 +215,28 @@ fun OnBoardingActiveScreen(
                         Spacer(modifier = Modifier.height(10.dp))
                     }
 
+                    Spacer(modifier = Modifier.height(10.dp))
+                    if(check){
+                        Text(
+                            text =checkText,
+                            style = TextStyle(
+                                fontSize = 10.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(400),
+                                color = Color.Red.copy(alpha = 0.8f),
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+
 
 
                     Button(
                         onClick = {
-                            getNavigate()
+                            if(!check){
+                                getNavigate()
+                            }
                         },
                         modifier = Modifier
                             .width(212.dp)
@@ -267,5 +286,5 @@ fun PreviewOnBoardingActiveScreen() {
         ActiveOutcome = it!!
     },onActiveOutcome = ActiveOutcome, onUserName = "Hitesh", getNavigate = {
 
-    })
+    },check = true, checkText = "Please enter your activity level")
 }

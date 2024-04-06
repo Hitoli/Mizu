@@ -63,7 +63,7 @@ fun OnBoardingWeightScreen(
     getWeightChange: (String?) -> Unit,
     onWeightChange: String,
     onUserName: String,
-    getNavigate: () -> Unit
+    getNavigate: () -> Unit,check:Boolean,checkText:String
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -131,12 +131,13 @@ fun OnBoardingWeightScreen(
                         disabledContainerColor = waterColor,
                         focusedIndicatorColor = Color.Transparent,
                         focusedLabelColor = waterColor,
-                    ),maxLines = 1,
+                    ), isError = check,
+                        maxLines = 1,
                         shape = RoundedCornerShape(16.dp), placeholder = {
                         Text(
                             text = "Weight...",
                             style = TextStyle(
-                                fontSize = 20.sp,
+                                fontSize = 15.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(400),
                                 color = minorColor,
@@ -152,17 +153,39 @@ fun OnBoardingWeightScreen(
                         textAlign = TextAlign.Start,
                     ), keyboardActions = KeyboardActions(
                         onDone = {
-                            getNavigate()
+                            if(!check){
+                                getNavigate()
+
+                            }
                             focusManager.clearFocus()
                         }
                     ), keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Done
                     )
+
                     )
+                    Spacer(modifier = Modifier.height(10.dp))
+                    if(check){
+                        Text(
+                            text =checkText,
+                            style = TextStyle(
+                                fontSize = 10.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(400),
+                                color = Color.Red.copy(alpha = 0.8f),
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+
                     Button(
                         onClick = {
-                            getNavigate()
+                            if(!check){
+                                getNavigate()
+
+                            }
 
                             focusManager.clearFocus()
                         },
@@ -217,6 +240,6 @@ fun PreviewOnBoardingWeightScreen() {
                 end = Offset(0f, Float.POSITIVE_INFINITY),
                 colors = listOf(backgroundColor1, backgroundColor2)
             )
-        )
+        ), checkText = "Field can not be empty or contain words", check = true
     )
 }

@@ -94,7 +94,7 @@ fun OnBoardingWaterIntakeResultScreen(getNavigate:()->Unit,onWaterIntake:String,
                         ), modifier = Modifier.fillMaxWidth()
                     )
                     Text(
-                        text = onWaterIntake,
+                        text = "${onWaterIntake} L",
                         style = TextStyle(
                             fontSize = 24.sp,
                             fontFamily = fontFamilyLight,

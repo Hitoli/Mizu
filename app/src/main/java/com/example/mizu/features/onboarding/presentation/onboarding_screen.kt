@@ -44,6 +44,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.text.isDigitsOnly
 import com.example.mizu.R
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
@@ -57,7 +58,7 @@ import com.example.mizu.ui.theme.textFieldColor
 import com.example.mizu.ui.theme.waterColor
 
 @Composable
-fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:String,getNavigate:()->Unit,modifier:Modifier=Modifier) {
+fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:String,getNavigate:()->Unit,modifier:Modifier=Modifier, check:Boolean, checkText:String) {
 
     Box(modifier) {
 
@@ -69,7 +70,7 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                         shape = RoundedCornerShape(10.dp)
                     )
                     .fillMaxWidth(0.9f)
-                    .height(280.dp)
+                    .height(290.dp)
                     .padding(16.dp) ){
                     Column(modifier= Modifier
                         .fillMaxWidth()
@@ -90,7 +91,7 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                             ),modifier=Modifier.fillMaxWidth()
                         )
                         TextField(value = onValue.toString(), onValueChange = {
-                            getValue(it)
+                                getValue(it)
                         }, modifier = Modifier
                             .fillMaxWidth()
                             .height(60.dp), colors = TextFieldDefaults.colors(
@@ -120,21 +121,43 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                             fontWeight = FontWeight(200),
                             color = minorColor,
                             textAlign = TextAlign.Start,
-                        ), keyboardActions = KeyboardActions(
+                        ), isError = check, keyboardActions = KeyboardActions(
                             onDone = {
-                                getNavigate()
+                               if(!check){
+                                   getNavigate()
+                               }
                                 focusManager.clearFocus()
                             }
                         ), keyboardOptions = KeyboardOptions(
                             imeAction = ImeAction.Done
                         )
                         )
+                        Spacer(modifier = Modifier.height(10.dp))
+                        if(check){
+                            Text(
+                                text =checkText,
+                                style = TextStyle(
+                                    fontSize = 10.sp,
+                                    fontFamily = fontFamilyLight,
+                                    fontWeight = FontWeight(400),
+                                    color = Color.Red.copy(alpha = 0.8f),
+                                    textAlign = TextAlign.Center,
+                                )
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(10.dp))
+
+
                     }
                 }
                 Spacer(modifier = Modifier.size(10.dp))
                 Button(
-                    onClick = { getNavigate()
+                    onClick = {
+                        if(!check){
+                            getNavigate()
+                        }
                         focusManager.clearFocus()
+
                     },
                     modifier = Modifier
                         .width(180.dp)
@@ -173,7 +196,7 @@ fun PreviewOnBoardingScreen() {
     }
     OnBoardingScreen(getValue ={
                                name = it!!
-    } , onValue =name , onQuestionValue ="", getNavigate = {}, modifier = Modifier
+    } , onValue =name , onQuestionValue ="What is your name?", getNavigate = {}, modifier = Modifier
         .fillMaxSize()
         .background(
             Brush.linearGradient(
@@ -181,5 +204,5 @@ fun PreviewOnBoardingScreen() {
                 end = Offset(0f, Float.POSITIVE_INFINITY),
                 colors = listOf(backgroundColor1, backgroundColor2)
             )
-        ))
+        ),check = true, checkText = "Name field can not be empty or contain number / Special characters")
 }
