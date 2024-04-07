@@ -123,9 +123,8 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                             textAlign = TextAlign.Start,
                         ), isError = check, keyboardActions = KeyboardActions(
                             onDone = {
-                               if(!check){
                                    getNavigate()
-                               }
+
                                 focusManager.clearFocus()
                             }
                         ), keyboardOptions = KeyboardOptions(
@@ -153,9 +152,9 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                 Spacer(modifier = Modifier.size(10.dp))
                 Button(
                     onClick = {
-                        if(!check){
+
                             getNavigate()
-                        }
+
                         focusManager.clearFocus()
 
                     },

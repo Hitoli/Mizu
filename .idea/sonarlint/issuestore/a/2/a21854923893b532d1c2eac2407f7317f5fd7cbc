@@ -1,13 +1,26 @@
 
-Ckotlin:S125â"Remove this commented out code.(™½Åºüÿÿÿÿ8ÓŒÒçå1
-rkotlin:S117ê"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(üùÎÒ8ÙŒÒçå1
-Okotlin:S1481r"+Remove this unused "height" local variable.(ïÄ°¢ùÿÿÿÿ8æŒÒçå1
-Vkotlin:S1481ì"1Remove this unused "screenHeight" local variable.(´¾ëšúÿÿÿÿ8æŒÒçå1
->kotlin:S1128"Remove this unused import.(•Éì‰üÿÿÿÿ8éŒÒçå1
+Tkotlin:S1172I"5Remove this unused function parameter "screenHeight".(©Š™8ŞÀú¾ë1
+Ukotlin:S1172"5Remove this unused function parameter "screenHeight".(©Š™8ßÀú¾ë1
+Hkotlin:S1172Ø"(Remove these unused function parameters.(©Š™8àÀú¾ë1
+Ckotlin:S125‰"Remove this commented out code.(™½Åºüÿÿÿÿ8äÀú¾ë1
+Ckotlin:S125Ğ"Remove this commented out code.(™½Åºüÿÿÿÿ8äÀú¾ë1
+Ckotlin:S125Ã"Remove this commented out code.(™½Åºüÿÿÿÿ8åÀú¾ë1
+rkotlin:S117Ë"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(üùÎÒ8èÀú¾ë1
+Vkotlin:S1481Í"1Remove this unused "screenHeight" local variable.(´¾ëšúÿÿÿÿ8óÀú¾ë1
+>kotlin:S1128"Remove this unused import.(•Éì‰üÿÿÿÿ8÷Àú¾ë1
+>kotlin:S1128"Remove this unused import.(µ¢«Ïúÿÿÿÿ8÷Àú¾ë1
+>kotlin:S1128	"Remove this unused import.(û¢ËÓùÿÿÿÿ8÷Àú¾ë1
 9kotlin:S1128
-"Remove this unused import.(¤½Ñâ8êŒÒçå1
->kotlin:S1128"Remove this unused import.(İß¶Âıÿÿÿÿ8êŒÒçå1
->kotlin:S1128"Remove this unused import.(½ùÒ»ÿÿÿÿÿ8êŒÒçå1
->kotlin:S1128"Remove this unused import.(èµ°úÿÿÿÿ8êŒÒçå1
->kotlin:S1128"Remove this unused import.(¼É¶Àşÿÿÿÿ8êŒÒçå1
->kotlin:S1128 "Remove this unused import.(§­ Ôúÿÿÿÿ8êŒÒçå1
+"Remove this unused import.(ß¶İñ8÷Àú¾ë1
+>kotlin:S1128"Remove this unused import.(½ùÒ»ÿÿÿÿÿ8÷Àú¾ë1
+>kotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8÷Àú¾ë1
+>kotlin:S1128"Remove this unused import.(½…Ò¦ıÿÿÿÿ8øÀú¾ë1
+>kotlin:S1128"Remove this unused import.(ÏõÁŞşÿÿÿÿ8øÀú¾ë1
+>kotlin:S1128"Remove this unused import.(èµ°úÿÿÿÿ8øÀú¾ë1
+>kotlin:S1128"Remove this unused import.(¼É¶Àşÿÿÿÿ8øÀú¾ë1
+>kotlin:S1128"Remove this unused import.(³Ù°¼şÿÿÿÿ8øÀú¾ë1
+>kotlin:S1128 "Remove this unused import.(Â­¢Âùÿÿÿÿ8øÀú¾ë1
+9kotlin:S1128!"Remove this unused import.(ôÄ¼ü8øÀú¾ë1
+>kotlin:S1128""Remove this unused import.(§­ Ôúÿÿÿÿ8øÀú¾ë1
+>kotlin:S1128&"Remove this unused import.(çŠÀ§úÿÿÿÿ8øÀú¾ë1
+>kotlin:S1128'"Remove this unused import.(Â»’øüÿÿÿÿ8øÀú¾ë1

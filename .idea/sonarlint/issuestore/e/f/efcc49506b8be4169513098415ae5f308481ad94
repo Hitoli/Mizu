@@ -1,17 +1,22 @@
 
-Lkotlin:S1172m"(Remove these unused function parameters.(¦Ôèƒüÿÿÿÿ8ñÉñÄâ1
-]kotlin:S1172œ"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8òÉñÄâ1
-Qkotlin:S1135^"2Complete the task associated to this TODO comment.(¼Ùº8úÉñÄâ1
-Vkotlin:S1135}"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8úÉñÄâ1
-Wkotlin:S1135„"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8úÉñÄâ1
->kotlin:S1128"Remove this unused import.(ˆöŸ¤ûÿÿÿÿ8±ËñÄâ1
-9kotlin:S1128
-"Remove this unused import.(•† ‚8±ËñÄâ1
-9kotlin:S1128"Remove this unused import.(ñˆĞë8±ËñÄâ1
->kotlin:S1128"Remove this unused import.(³úÙëşÿÿÿÿ8±ËñÄâ1
->kotlin:S1128"Remove this unused import.(¨Ò›ºşÿÿÿÿ8±ËñÄâ1
-9kotlin:S1128"Remove this unused import.(‘è÷×8±ËñÄâ1
->kotlin:S1128 "Remove this unused import.(ñïŞûÿÿÿÿ8±ËñÄâ1
-9kotlin:S1128#"Remove this unused import.(Íıİô8±ËñÄâ1
->kotlin:S11283"Remove this unused import.(°‚ËØıÿÿÿÿ8±ËñÄâ1
-zkotlin:S1192E"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(»òŸÌ8²ËñÄâ1
+Mkotlin:S1172š"(Remove these unused function parameters.(¦Ôèƒüÿÿÿÿ8ñËôÁë1
+]kotlin:S1172Ü"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8ñËôÁë1
+fkotlin:S107R"HThis function has 13 parameters, which is greater than the 7 authorized.(ôØ±Ú8ıËôÁë1
+Wkotlin:S1135¯"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8ÌôÁë1
+Wkotlin:S1135¶"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8ÌôÁë1
+>kotlin:S1128"Remove this unused import.(ˆöŸ¤ûÿÿÿÿ8‡ÌôÁë1
+>kotlin:S1128"Remove this unused import.(–Ÿ˜Ùûÿÿÿÿ8‡ÌôÁë1
+9kotlin:S1128"Remove this unused import.(¤¯†8‡ÌôÁë1
+9kotlin:S1128"Remove this unused import.(° Á‹8‡ÌôÁë1
+>kotlin:S1128"Remove this unused import.(£ØØùÿÿÿÿ8‡ÌôÁë1
+9kotlin:S1128"Remove this unused import.(•† ‚8‡ÌôÁë1
+9kotlin:S1128"Remove this unused import.(„ºö8‡ÌôÁë1
+9kotlin:S1128"Remove this unused import.(êåê±8‡ÌôÁë1
+>kotlin:S1128"Remove this unused import.(¢Ê†½üÿÿÿÿ8‡ÌôÁë1
+9kotlin:S1128"Remove this unused import.(ñˆĞë8‡ÌôÁë1
+>kotlin:S1128 "Remove this unused import.(³úÙëşÿÿÿÿ8‡ÌôÁë1
+>kotlin:S1128""Remove this unused import.(¨Ò›ºşÿÿÿÿ8ˆÌôÁë1
+9kotlin:S1128("Remove this unused import.(‘è÷×8ˆÌôÁë1
+>kotlin:S11281"Remove this unused import.(ñïŞûÿÿÿÿ8ˆÌôÁë1
+>kotlin:S1128D"Remove this unused import.(°‚ËØıÿÿÿÿ8ˆÌôÁë1
+zkotlin:S1192b"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(»òŸÌ8ŠÌôÁë1

@@ -39,15 +39,22 @@ fun OnboardingNavHostingScreen(
                 getValue = {
                         if (it != null) {
                             onboardingViewModel.checkFields(it)
-                            onboardingViewModel.onBoardingNameScreen(it)
+                                onboardingViewModel.onBoardingNameScreen(it)
+
+
                         }
                 },
                 onValue = onboardingViewModel.onNameValue,
                 onQuestionValue = "What is your name?",
-                getNavigate = { navController.navigate(OnboardingNavScreens.WeightIntakeScreen.route){
-                    popUpTo(OnboardingNavScreens.NameScreen.route){
-                        inclusive =true
+                getNavigate = {
+                    onboardingViewModel.checkFields(onboardingViewModel.onNameValue)
+                    if(!onboardingViewModel.check){
+                        navController.navigate(OnboardingNavScreens.WeightIntakeScreen.route){
+                            popUpTo(OnboardingNavScreens.NameScreen.route){
+                                inclusive =true
+                            }
                     }
+
                 } }, check = onboardingViewModel.check, checkText = "Name field can not be empty or contain number / Special characters")
         }
         composable(route = OnboardingNavScreens.LoadingScreen.route) {

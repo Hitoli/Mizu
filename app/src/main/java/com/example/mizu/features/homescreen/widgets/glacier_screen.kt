@@ -7,7 +7,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -54,62 +56,168 @@ fun GlacierScreen(
         label = "water",
         animationSpec = tween(durationMillis = 1000)
     )
-    Box(modifier = modifier) {
-        Column(
-            modifier = Modifier
-                .size(width = screenWidth.value.dp, height = screenHeight.value.dp),
-            verticalArrangement = Arrangement.SpaceEvenly,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "2500ml",
-                modifier = Modifier.offset(
-                    x = screenWidth.value * 0.18.dp,
-                    y = screenWidth.value * 0.08.dp,
-                ),
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontFamily = fontFamily,
-                    fontWeight = FontWeight(700),
-                    color = Color(0xFF29302C),
-                    textAlign = TextAlign.Start,
-                )
-            )
+    Box(modifier = modifier.size(screenWidth,screenHeight)) {
             Glacier(
                 screenHeight = screenHeight,
                 screenWidth =screenWidth,
                 waterPercentageFilled = waterPercentageFilled
             )
 
-            Text(
-                text = "0ml",
-                modifier = Modifier.offset(
-                    x = screenWidth.value * 0.09.dp,
-                    y = -screenWidth.value * 0.09.dp,
-                ),
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontFamily = fontFamily,
-                    fontWeight = FontWeight(700),
-                    color = Color(0xFF29302C),
-                    textAlign = TextAlign.Start,
-                )
-            )
-        }
 
 
     }
 }
 
 @Composable
-fun Glacier(
+fun Indicator(
     screenWidth: Dp, screenHeight: Dp, waterPercentageFilled: State<Float>
 ) {
     Canvas(modifier = Modifier
         .width(
             screenWidth.value.dp
         )
-        .height(screenHeight.value.dp)) {
+        .fillMaxHeight()) {
+        val width = size.width - 100f;
+        val height = size.height;
+        val waterWavesYPosition = (1 - waterPercentageFilled.value) * width
+        var waterPath = Path().apply {
+            moveTo(
+                x = width / 6,
+                y = 0f
+            )
+            lineTo(
+                x = width*1f,
+                y =  0f
+            )
+            cubicTo(x1 =width*1f, y1 = 0f, x2 = width*1f, y2 = height/2, x3 = width*0.88f, y3 = height)
+            lineTo(
+                x =width*0.80f,
+                y = height
+            )
+
+            lineTo(
+                x = width / 4,
+                y =height
+            )
+            cubicTo(x1 =width / 4, y1 = height, x2 = width/7, y2 = height/2, x3 = width / 6, y3 = 0f)
+
+
+            close()
+        }
+        drawPath(waterPath, Color.Black, style = Stroke(width = 0.8f))
+        clipPath(
+            waterPath
+        ) {
+            drawRect(
+                color = Color(0XFFEFEFEF), size = size
+            )
+            var waterFillPath = Path().apply {
+                moveTo(
+                    x = 0f,
+                    y = waterWavesYPosition
+                )
+                lineTo(
+                    x = size.width,
+                    y = waterWavesYPosition
+                )
+                lineTo(
+                    x = size.width,
+                    y = size.height
+                )
+                lineTo(
+                    x = 0f,
+                    y = size.height
+                )
+                close()
+
+            }
+            drawPath(waterFillPath, waterColor)
+
+        }
+//            drawPath(waterPath, Color.Black, style = Stroke(width=1f))
+//            drawPath(waterPath, waterColor)
+    }
+}
+
+@Composable
+fun Glass(
+    screenWidth: Dp, screenHeight: Dp, waterPercentageFilled: State<Float>
+) {
+    Canvas(modifier = Modifier
+        .width(
+            screenWidth.value.dp
+        )
+        .fillMaxHeight()) {
+        val width = size.width - 100f;
+        val height = size.height;
+        val waterWavesYPosition = (1 - waterPercentageFilled.value) * width
+        var waterPath = Path().apply {
+            moveTo(
+                x = width / 6,
+                y = 0f
+            )
+            lineTo(
+                x = width*1f,
+                y =  0f
+            )
+            cubicTo(x1 =width*1f, y1 = 0f, x2 = width*1f, y2 = height/2, x3 = width*0.88f, y3 = height)
+            lineTo(
+                x =width*0.80f,
+                y = height
+            )
+
+            lineTo(
+                x = width / 4,
+                y =height
+            )
+            cubicTo(x1 =width / 4, y1 = height, x2 = width/7, y2 = height/2, x3 = width / 6, y3 = 0f)
+
+
+            close()
+        }
+        drawPath(waterPath, Color.Black, style = Stroke(width = 0.8f))
+        clipPath(
+            waterPath
+        ) {
+            drawRect(
+                color = Color(0XFFEFEFEF), size = size
+            )
+            var waterFillPath = Path().apply {
+                moveTo(
+                    x = 0f,
+                    y = waterWavesYPosition
+                )
+                lineTo(
+                    x = size.width,
+                    y = waterWavesYPosition
+                )
+                lineTo(
+                    x = size.width,
+                    y = size.height
+                )
+                lineTo(
+                    x = 0f,
+                    y = size.height
+                )
+                close()
+
+            }
+            drawPath(waterFillPath, waterColor)
+
+        }
+//            drawPath(waterPath, Color.Black, style = Stroke(width=1f))
+//            drawPath(waterPath, waterColor)
+    }
+}
+
+
+@Composable
+fun Glacier(
+    screenWidth: Dp, screenHeight: Dp, waterPercentageFilled: State<Float>
+) {
+    Canvas(modifier = Modifier
+        .fillMaxSize()
+        .aspectRatio(0.8f)) {
         val width = size.width - 100f;
         val height = size.height;
         val waterWavesYPosition = (1 - waterPercentageFilled.value) * width
@@ -119,78 +227,67 @@ fun Glacier(
                 y = 0f
             )
             lineTo(
-                x = width / 2 + 25f,
-                y = 50f
+                x = width*0.56f,
+                y = height*0.08f
             )
             lineTo(
-                x = width / 2 + 150f,
-                y = 100f
+                x = width*0.69f,
+                y =height*0.13f
             )
             lineTo(
-                x = width / 2 + 250f,
-                y = 230f
+                x = width*0.77f,
+                y = height*0.21f
             )
             lineTo(
-                x = width / 2 + 320f,
-                y = 250f
+                x = width*0.84f,
+                y = height*0.20f
             )
 
             lineTo(
-                x = width / 2 + 400f,
-                y = 310f
+                x = width*0.90f,
+                y = height*0.24f
             )
             lineTo(
-                x = width / 2 + 400f,
-                y = 430f
+                x = width*0.93f,
+                y =  height*0.34f
             )
             lineTo(
-                x = width / 2 + 300f,
-                y = 800f
+                x =  width*0.82f,
+                y = height*0.64f
             )
             lineTo(
-                x = width / 2 + 240f,
-                y = 850f
+                x = width*0.76f,
+                y = height*0.69f
             )
             lineTo(
-                x = width / 2 + 180f,
-                y = 1000f
+                x =  width*0.74f,
+                y =  height*0.85f
             )
             lineTo(
-                x = width / 2 + 100f,
-                y = 1090f
+                x = width*0.55f,
+                y =height
             )
             lineTo(
-                x = width / 2 - 100f,
-                y = 1000f
+                x = width*0.20f,
+                y = height*0.70f
             )
             lineTo(
-                x = width / 2 - 300f,
-                y = 500f
+                x = width*0.08f,
+                y =height*0.30f
             )
             lineTo(
-                x = width / 2 - 300f,
-                y = 400f
+                x = width*0.21f,
+                y = height*0.17f
             )
             lineTo(
-                x = width / 2 - 200f,
-                y = 200f
+                x = width*0.32f,
+                y =height*0.12f
             )
             lineTo(
-                x = width / 2 - 150f,
-                y = 180f
+                x =width*0.33f,
+                y = height*0.08f
             )
-            lineTo(
-                x = width / 2 - 120f,
-                y = 100f
-            )
-            lineTo(
-                x = width / 2 - 100f,
-                y = 50f
-            )
-            lineTo(
-                x = width / 2 - 20f,
-                y = 30f
-            )
+
             close()
         }
         drawPath(waterPath, Color.Black, style = Stroke(width = 0.8f))
@@ -235,9 +332,9 @@ fun PreviewGlacierScreen() {
     val screenWidth = LocalConfig.screenWidthDp.dp
     val screenHeight = LocalConfig.screenHeightDp.dp
     GlacierScreen(
-        onWaterTrackingResourceAmount = 499,
+        onWaterTrackingResourceAmount = 0,
 
         onTotalWaterTrackingResourceAmount = 1200,
-       modifier = Modifier, screenWidth = screenWidth.value.dp, screenHeight = 450.dp
+       modifier = Modifier, screenWidth = screenWidth.value.dp, screenHeight = 600.dp
     )
 }

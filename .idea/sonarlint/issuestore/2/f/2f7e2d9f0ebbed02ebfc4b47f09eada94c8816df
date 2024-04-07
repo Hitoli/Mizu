@@ -1,23 +1,27 @@
 
-Bkotlin:S125x"Remove this commented out code.(„ÒÕØüÿÿÿÿ8•Éñçå1
-Ckotlin:S125Ö"Remove this commented out code.(ÉœÖ‡øÿÿÿÿ8öğ©èå1
-rkotlin:S117æ"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ŞÊ¹Çûÿÿÿÿ8›³şæå1
-qkotlin:S117V"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(üùÎÒ8›³şæå1
-qkotlin:S117X"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(áæ“8›³şæå1
-jkotlin:S107K"GThis function has 9 parameters, which is greater than the 7 authorized.(›¼¾“üÿÿÿÿ8³şæå1
-Wkotlin:S1135Ø"2Complete the task associated to this TODO comment.(³³óÅøÿÿÿÿ8¡³şæå1
-Rkotlin:S1135ˆ"2Complete the task associated to this TODO comment.(È—“8¡³şæå1
-Skotlin:S1481Z"/Remove this unused "sheetState" local variable.(ŸçÜèøÿÿÿÿ8ñ©èå1
-Pkotlin:S1481X"1Remove this unused "StreakImages" local variable.(áæ“8ñ©èå1
-9kotlin:S1128"Remove this unused import.(Ğ©«ã8äó“èå1
->kotlin:S1128"Remove this unused import.(²Ù™³şÿÿÿÿ8äó“èå1
->kotlin:S1128"Remove this unused import.(Á¤ŞÆøÿÿÿÿ8¥³şæå1
-9kotlin:S1128"Remove this unused import.(¤½Ñâ8¥³şæå1
->kotlin:S1128"Remove this unused import.(é¢êáüÿÿÿÿ8…ñ©èå1
->kotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8¥³şæå1
-9kotlin:S1128"Remove this unused import.(¨±È¤8…ñ©èå1
-9kotlin:S1128+"Remove this unused import.(Íıİô8¥³şæå1
->kotlin:S1128,"Remove this unused import.(À¶Ìúÿÿÿÿ8¥³şæå1
->kotlin:S1128-"Remove this unused import.(ÇÀ×İıÿÿÿÿ8¥³şæå1
->kotlin:S1128."Remove this unused import.(Ä‡§­ıÿÿÿÿ8¥³şæå1
->kotlin:S11284"Remove this unused import.(§­ Ôúÿÿÿÿ8¥³şæå1
+rkotlin:S117ı"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ŞÊ¹Çûÿÿÿÿ8à’ıÂë1
+qkotlin:S117g"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(üùÎÒ8”şìÂë1
+qkotlin:S117i"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(áæ“8”şìÂë1
+kkotlin:S107X"HThis function has 14 parameters, which is greater than the 7 authorized.(›¼¾“üÿÿÿÿ8›şìÂë1
+Rkotlin:S1135Ÿ"2Complete the task associated to this TODO comment.(È—“8ë’ıÂë1
+Okotlin:S1481¸"/Remove this unused "mutablePad" local variable.(º¶£‹8î’ıÂë1
+9kotlin:S1128"Remove this unused import.(Ğ©«ã8¦şìÂë1
+>kotlin:S1128"Remove this unused import.(²Ù™³şÿÿÿÿ8§şìÂë1
+>kotlin:S1128"Remove this unused import.(Á¤ŞÆøÿÿÿÿ8§şìÂë1
+>kotlin:S1128	"Remove this unused import.(–Ÿ˜Ùûÿÿÿÿ8§şìÂë1
+9kotlin:S1128
+"Remove this unused import.(¤¯†8§şìÂë1
+9kotlin:S1128"Remove this unused import.(¤½Ñâ8§şìÂë1
+>kotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8§şìÂë1
+9kotlin:S1128"Remove this unused import.(êåê±8§şìÂë1
+9kotlin:S11282"Remove this unused import.(Íıİô8§şìÂë1
+>kotlin:S11283"Remove this unused import.(À¶Ìúÿÿÿÿ8§şìÂë1
+>kotlin:S11284"Remove this unused import.(ÇÀ×İıÿÿÿÿ8§şìÂë1
+>kotlin:S11285"Remove this unused import.(Ä‡§­ıÿÿÿÿ8§şìÂë1
+>kotlin:S11286"Remove this unused import.(ñ—¼¢ÿÿÿÿÿ8§şìÂë1
+9kotlin:S11287"Remove this unused import.(‡ğø8§şìÂë1
+9kotlin:S11288"Remove this unused import.(Ã’ÇÁ8§şìÂë1
+9kotlin:S1128:"Remove this unused import.(ÀÏ­–8§şìÂë1
+>kotlin:S1128A"Remove this unused import.(Õş÷©úÿÿÿÿ8§şìÂë1
+>kotlin:S1128T"Remove this unused import.(€“ïìùÿÿÿÿ8§şìÂë1
+fkotlin:S1192ö"GDefine a constant instead of duplicating this literal "250 ml" 8 times.(©ÄÚ@8©şìÂë1

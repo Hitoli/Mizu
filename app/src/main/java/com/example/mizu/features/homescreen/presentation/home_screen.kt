@@ -6,6 +6,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,8 +23,11 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -31,6 +36,8 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -44,13 +51,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollSource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.times
@@ -69,27 +81,45 @@ import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.minorColor
 import com.example.mizu.ui.theme.waterColor
+import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     onPad: PaddingValues,
     onWaterTrackingResourceAmount: Int,
+    onWaterMeterResourceAmount:Int,
     getWaterTrackingResourceAmount: (Int) -> Unit,
     onTotalWaterTrackingResourceAmount: Int,
     getAddWater: () -> Unit,
     onUserName: String,
     modifier: Modifier = Modifier,
     getReward: (Boolean?) -> Unit,
-    onReward: Boolean?
+    onReward: Boolean?,
+    getBottomBar:(Boolean)->Unit,
+    onStreak:String,
+    getStreak:()->Unit,onProgress:String
 ) {
     val LocalConfig = LocalConfiguration.current
     val screenWidth = LocalConfig.screenWidthDp.dp
-    val StreakImages=listOf(R.drawable.day1,R.drawable.day2,R.drawable.day3,R.drawable.day4);
+    val StreakImages = listOf(R.drawable.day1, R.drawable.day2, R.drawable.day3, R.drawable.day4);
     val screenHeight = LocalConfig.screenHeightDp.dp
-    val sheetState = rememberModalBottomSheetState();
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true);
+    val lazyListState = rememberLazyListState()
+    val showBottombar by remember{
+        derivedStateOf{
+            lazyListState.firstVisibleItemIndex>0
+        }
+    }
+    var showStreakCollector by remember{
+        mutableStateOf(false)
+    }
 
-    Box(modifier = modifier.padding(top = onPad.calculateTopPadding())) {
+    LaunchedEffect(showBottombar){
+        getBottomBar(showBottombar)
+        Log.d("SCroll","Scrolled FUnctoin executed")
+    }
+
 
         if (onReward!!) {
             DialogRewardScreen(getReward = {
@@ -97,16 +127,28 @@ fun HomeScreen(
             })
         }
 
-            Column(
-                modifier = Modifier.align(Alignment.Center),
-                verticalArrangement = Arrangement.SpaceEvenly,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
 
+    Box(modifier = modifier
+        .padding(
+            top = onPad.calculateTopPadding()
+        )) {
+        LazyColumn(
+            modifier = Modifier
+                .align(Alignment.Center)
+                .fillMaxSize()
+                .height(screenHeight) ,
+            state = lazyListState,
+            verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            item {
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 16.dp, end = 16.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.Top
+
                 ) {
                     Column(
                         modifier = Modifier,
@@ -115,18 +157,15 @@ fun HomeScreen(
                     ) {
 
                         WaterProgressScreen(
-                            onWaterTrackingResourceAmount = 200,
-                            getWaterTrackingResourceAmount = {
-//                                                             getWaterTrackingResourceAmount(it);
-                            },
-                            onTotalWaterTrackingResourceAmount = 1200,
-                            getAddWater = {},
+                            onWaterTrackingResourceAmount = onWaterTrackingResourceAmount,
+                            onWaterMeterResourceAmount = onWaterMeterResourceAmount,
+                            onTotalWaterTrackingResourceAmount = onTotalWaterTrackingResourceAmount,
                             modifier = Modifier.align(Alignment.Start)
                         )
                         Spacer(modifier = Modifier.height(10.dp))
 
                         Text(
-                            text = "You are half way through keep it going.",
+                            text = onProgress,
                             modifier = Modifier.width(220.dp),
                             style = TextStyle(
                                 fontSize = 16.sp,
@@ -139,18 +178,29 @@ fun HomeScreen(
 
 
                     }
-                    StreakScreen(Streak = "6\uD83D\uDD25", username = onUserName, getStreak = {
+                    StreakScreen(Streak = onStreak, username = onUserName, getStreak = {
 
+                        showStreakCollector = true
+
+                        /*getStreak()*/
                     })
 
                 }
-               GlacierScreen(
-                   onWaterTrackingResourceAmount = onWaterTrackingResourceAmount,
-                   onTotalWaterTrackingResourceAmount =onTotalWaterTrackingResourceAmount ,
-                   screenWidth = screenWidth.value.dp,
-                   screenHeight =450.dp
-               )
-                Spacer(modifier = Modifier.height(16.dp))
+            }
+            item {
+                Spacer(modifier = Modifier.height(20.dp))
+
+                GlacierScreen(
+                    onWaterTrackingResourceAmount = onWaterTrackingResourceAmount,
+                    onTotalWaterTrackingResourceAmount = onTotalWaterTrackingResourceAmount,
+                    screenWidth = screenWidth.value.dp,
+                    screenHeight = screenHeight.value * 0.6.dp
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(20.dp))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -160,7 +210,6 @@ fun HomeScreen(
                     Button(
                         onClick = {
                             getAddWater()
-                            getReward(true)
                         },
                         modifier = Modifier
                             .width(screenWidth.value * 0.35.dp)
@@ -169,23 +218,23 @@ fun HomeScreen(
                         shape = RoundedCornerShape(10.dp)
                     ) {
                         Text(
-                            text = "Share",
+                            text = "Add",
                             style = TextStyle(
-                                fontSize = 18.sp,
+                                fontSize = 20.sp,
                                 fontFamily = fontFamilyLight,
-                                fontWeight = FontWeight(400),
+                                fontWeight = FontWeight(700),
                                 color = backgroundColor1,
 
                                 textAlign = TextAlign.Center,
                             )
                         )
                     }
-                    Spacer(modifier = Modifier.width(10.dp))
+                    Spacer(modifier = Modifier.width(16.dp))
                     Button(
                         onClick = {
                             getWaterTrackingResourceAmount(250)
-//                            getReward(true)
-                            Log.e("USED Button click","user water button");
+
+                            Log.e("USED Button click", "user water button");
                         },
                         modifier = Modifier
                             .width(screenWidth.value * 0.35.dp)
@@ -196,9 +245,9 @@ fun HomeScreen(
                         Text(
                             text = "250 ml",
                             style = TextStyle(
-                                fontSize = 18.sp,
+                                fontSize = 20.sp,
                                 fontFamily = fontFamilyLight,
-                                fontWeight = FontWeight(400),
+                                fontWeight = FontWeight(700),
                                 color = backgroundColor1,
 
                                 textAlign = TextAlign.Center,
@@ -206,33 +255,135 @@ fun HomeScreen(
                         )
                     }
                 }
-
-
-
             }
 
-//        ModalBottomSheet(
-//            sheetState = sheetState,
-//            onDismissRequest = { /*TODO*/ }) {
-//            StreakSheet(Streak = StreakImages, modifier = Modifier
-//                .fillMaxWidth()
-//                .fillMaxHeight(0.55f)
-//                .padding(10.dp))
-//        }
+            item {
+                Text(
+                    text = "250 ml",
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(700),
+                        color = backgroundColor1,
 
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
+
+            item {
+                Text(
+                    text = "250 ml",
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(700),
+                        color = backgroundColor1,
+
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
+            item {
+                Text(
+                    text = "250 ml",
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(700),
+                        color = backgroundColor1,
+
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
+            item {
+                Text(
+                    text = "250 ml",
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(700),
+                        color = backgroundColor1,
+
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
+            item {
+                Text(
+                    text = "250 ml",
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(700),
+                        color = backgroundColor1,
+
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
+            item {
+                Text(
+                    text = "250 ml",
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(700),
+                        color = backgroundColor1,
+
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
+            item {
+                Text(
+                    text = "250 ml",
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(700),
+                        color = backgroundColor1,
+
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
+            Log.d("Scroll Index", showBottombar.toString())
+
+
+
+
+        }
 
     }
+
+
+if(showStreakCollector){
+    ModalBottomSheet(
+        sheetState = sheetState,
+        onDismissRequest = {showStreakCollector = !showStreakCollector}) {
+        StreakSheet(Streak = StreakImages, modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(0.55f)
+            .padding(10.dp).background(backgroundColor1.copy(alpha = 0.5f)))
+    }
+}
+
+
+
+
 
 
 }
 
 @Composable
-fun StreakSheet(Streak:List<Int>,modifier: Modifier=Modifier) {
-    Box(modifier = modifier){
+fun StreakSheet(Streak: List<Int>, modifier: Modifier = Modifier) {
+    Box(modifier = modifier) {
         Column {
             Text(
                 text = "Perk Collector",
-                modifier= Modifier
+                modifier = Modifier
                     .fillMaxWidth(),
                 style = TextStyle(
                     fontSize = 24.sp,
@@ -242,18 +393,18 @@ fun StreakSheet(Streak:List<Int>,modifier: Modifier=Modifier) {
                     textAlign = TextAlign.Center,
                 )
             )
-            LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 150.dp), content ={
-                items(Streak.size){
+            LazyVerticalGrid(columns = GridCells.Adaptive(minSize = 150.dp), content = {
+                items(Streak.size) {
                     Image(
                         painter = painterResource(id = Streak[it]),
                         contentDescription = "Streaks",
                         modifier = Modifier
-                            .size(140.dp)
+                            .size(160.dp)
                             .padding(10.dp)
                     )
 
                 }
-            } )
+            })
         }
 
     }
@@ -279,27 +430,28 @@ fun DialogRewardScreen(getReward: (Boolean) -> Unit) {
 
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview(showBackground = true, showSystemUi = true, device = Devices.PIXEL_2_XL)
 @Composable
 fun PreviewHomeScreen() {
 
     var rewardScreenShow by remember {
         mutableStateOf(false)
     }
-    var mutablePad by remember{
+    var mutablePad by remember {
         mutableStateOf(PaddingValues())
     }
-    var usedWaterAmount by remember{
-        mutableIntStateOf(0)
+    var usedWaterAmount by remember {
+        mutableIntStateOf(400)
     }
-    var totalWaterAmount by remember{
+    var totalWaterAmount by remember {
         mutableStateOf(2400)
     }
+
     HomeScreen(
-        onPad = mutablePad,
+        onPad = PaddingValues(40.dp),
         onWaterTrackingResourceAmount = usedWaterAmount,
         getWaterTrackingResourceAmount = {
-                                         usedWaterAmount+=250
+            usedWaterAmount += 250
         },
         onTotalWaterTrackingResourceAmount = totalWaterAmount,
         getAddWater = {},
@@ -316,6 +468,6 @@ fun PreviewHomeScreen() {
             if (it != null) {
                 rewardScreenShow = it
             }
-        }
+        }, getBottomBar = {}, onWaterMeterResourceAmount = 10, onStreak = "6\uD83D\uDD25", onProgress = "You are half way through keep it going", getStreak = {}
     )
 }

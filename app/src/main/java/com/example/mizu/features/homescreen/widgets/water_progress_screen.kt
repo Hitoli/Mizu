@@ -33,9 +33,8 @@ import com.example.mizu.ui.theme.waterColor
 @Composable
 fun WaterProgressScreen(modifier: Modifier = Modifier,
                         onWaterTrackingResourceAmount: Int,
-                        getWaterTrackingResourceAmount: (Int) -> Unit,
-                        onTotalWaterTrackingResourceAmount: Int,
-                        getAddWater: () -> Unit,) {
+                        onWaterMeterResourceAmount: Int,
+                        onTotalWaterTrackingResourceAmount: Int) {
 
     val LocalConfig = LocalConfiguration.current
     val screenWidth = LocalConfig.screenWidthDp.dp
@@ -50,12 +49,14 @@ fun WaterProgressScreen(modifier: Modifier = Modifier,
         Canvas(
             modifier = Modifier
                 .width(screenWidth.value * 0.5.dp)
-                .height(screenHeight.value*0.05.dp)
-                .clip(RoundedCornerShape(40.dp)).border(width = 0.5.dp, color = minorColor, shape = RoundedCornerShape(40.dp)).align(Alignment.TopStart)
+                .height(screenHeight.value * 0.05.dp)
+                .clip(RoundedCornerShape(40.dp))
+                .border(width = 0.5.dp, color = minorColor, shape = RoundedCornerShape(40.dp))
+                .align(Alignment.TopStart)
         ) {
             val width = size.width
             val height = size.height
-            val waterWavesYPosition = (1 - waterPercentageFilled.value) * width
+            val waterWavesYPosition = (waterPercentageFilled.value) * width
             val waterPath = Path().apply {
                 moveTo(
                     x = 0f,
@@ -81,8 +82,11 @@ fun WaterProgressScreen(modifier: Modifier = Modifier,
 
         }
         Text(
-            text = "50%",
-            modifier = Modifier.width(60.dp).align(Alignment.CenterStart).padding(start = 10.dp),
+            text = "${onWaterMeterResourceAmount}%",
+            modifier = Modifier
+                .width(60.dp)
+                .align(Alignment.CenterStart)
+                .padding(start = 10.dp),
             style = TextStyle(
                 fontSize = 18.sp,
                 fontFamily = fontFamily,
@@ -99,8 +103,8 @@ fun WaterProgressScreen(modifier: Modifier = Modifier,
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun PreviewWaterProgressScreen() {
-    WaterProgressScreen(onWaterTrackingResourceAmount = 200,
-        getWaterTrackingResourceAmount = {},
+    WaterProgressScreen(onWaterTrackingResourceAmount = 800,
+        onWaterMeterResourceAmount = 800*100/1200,
         onTotalWaterTrackingResourceAmount = 1200,
-        getAddWater = {}, modifier = Modifier)
+        modifier = Modifier)
 }
