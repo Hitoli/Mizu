@@ -48,7 +48,7 @@ class OnboardingViewModel(): ViewModel(){
     fun checkDigitFields(value:String){
 
         checkDigit = value.isNullOrBlank()
-        Log.d("check Onboarding",checkDigit.toString())
+        Log.d("checkDigit Onboarding",checkDigit.toString())
     }
     fun onBoardingNameScreen(getNameValue:String){
         onNameValue = getNameValue.capitalizeFirst().filter { it.isLetter() }

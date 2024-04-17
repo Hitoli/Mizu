@@ -4,6 +4,6 @@ import com.example.mizu.R
 import java.util.Vector
 
 sealed class BottomNavScreens(val route:String, val icon:Int, ) {
-    object HomeScreen:BottomNavScreens(route = "HomeScreen", icon = R.drawable.homemizu)
-    object CalendarScreen:BottomNavScreens(route = "CalendarScreen", icon = R.drawable.calendarmizu)
+    object HomeScreen:BottomNavScreens(route = "Home", icon = R.drawable.homemizu)
+    object CalendarScreen:BottomNavScreens(route = "Track", icon = R.drawable.calendarmizu)
 }

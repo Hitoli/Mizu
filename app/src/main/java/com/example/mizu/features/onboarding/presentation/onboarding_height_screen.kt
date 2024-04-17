@@ -119,7 +119,9 @@ fun OnBoardingHeightScreen(
                     )
 
                     TextField(value = onHeightChange, onValueChange = {
-                        getHeightChange(it)
+                        if(it.length<4){
+                            getHeightChange(it)
+                        }
                     }, modifier = Modifier
                         .fillMaxWidth()
                         .height(60.dp), colors = TextFieldDefaults.colors(
@@ -134,7 +136,7 @@ fun OnBoardingHeightScreen(
                     ), isError = check, maxLines = 1,
                         shape = RoundedCornerShape(16.dp), placeholder = {
                         Text(
-                            text = "Height...",
+                            text = "Height... Enter in Cm",
                             style = TextStyle(
                                 fontSize = 15.sp,
                                 fontFamily = fontFamilyLight,

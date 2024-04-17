@@ -29,10 +29,14 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -108,7 +112,7 @@ fun HomeScreen(
     val lazyListState = rememberLazyListState()
     val showBottombar by remember{
         derivedStateOf{
-            lazyListState.firstVisibleItemIndex>0
+            lazyListState.isScrollInProgress
         }
     }
     var showStreakCollector by remember{
@@ -188,74 +192,76 @@ fun HomeScreen(
                 }
             }
             item {
-                Spacer(modifier = Modifier.height(20.dp))
 
                 GlacierScreen(
                     onWaterTrackingResourceAmount = onWaterTrackingResourceAmount,
                     onTotalWaterTrackingResourceAmount = onTotalWaterTrackingResourceAmount,
-                    screenWidth = screenWidth.value.dp,
+                    screenWidth = screenWidth.value*0.8.dp,
                     screenHeight = screenHeight.value * 0.6.dp
                 )
-                Spacer(modifier = Modifier.height(20.dp))
+
+            }
+            item{
+
             }
 
-            item {
-                Spacer(modifier = Modifier.height(20.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Button(
-                        onClick = {
-                            getAddWater()
-                        },
-                        modifier = Modifier
-                            .width(screenWidth.value * 0.35.dp)
-                            .height(screenHeight.value * 0.06.dp),
-                        colors = ButtonDefaults.buttonColors(blackShadeColor),
-                        shape = RoundedCornerShape(10.dp)
-                    ) {
-                        Text(
-                            text = "Add",
-                            style = TextStyle(
-                                fontSize = 20.sp,
-                                fontFamily = fontFamilyLight,
-                                fontWeight = FontWeight(700),
-                                color = backgroundColor1,
-
-                                textAlign = TextAlign.Center,
-                            )
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Button(
-                        onClick = {
-                            getWaterTrackingResourceAmount(250)
-
-                            Log.e("USED Button click", "user water button");
-                        },
-                        modifier = Modifier
-                            .width(screenWidth.value * 0.35.dp)
-                            .height(screenHeight.value * 0.06.dp),
-                        colors = ButtonDefaults.buttonColors(blackShadeColor),
-                        shape = RoundedCornerShape(10.dp)
-                    ) {
-                        Text(
-                            text = "250 ml",
-                            style = TextStyle(
-                                fontSize = 20.sp,
-                                fontFamily = fontFamilyLight,
-                                fontWeight = FontWeight(700),
-                                color = backgroundColor1,
-
-                                textAlign = TextAlign.Center,
-                            )
-                        )
-                    }
-                }
-            }
+//            item {
+//                Spacer(modifier = Modifier.height(20.dp))
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth(),
+//                    verticalAlignment = Alignment.CenterVertically,
+//                    horizontalArrangement = Arrangement.Center
+//                ) {
+//                    Button(
+//                        onClick = {
+//                            getAddWater()
+//                        },
+//                        modifier = Modifier
+//                            .width(screenWidth.value * 0.35.dp)
+//                            .height(screenHeight.value * 0.06.dp),
+//                        colors = ButtonDefaults.buttonColors(minorColor),
+//                        shape = RoundedCornerShape(10.dp)
+//                    ) {
+//                        Text(
+//                            text = "Add",
+//                            style = TextStyle(
+//                                fontSize = 20.sp,
+//                                fontFamily = fontFamilyLight,
+//                                fontWeight = FontWeight(700),
+//                                color = backgroundColor1,
+//
+//                                textAlign = TextAlign.Center,
+//                            )
+//                        )
+//                    }
+//                    Spacer(modifier = Modifier.width(16.dp))
+//                    Button(
+//                        onClick = {
+//                            getWaterTrackingResourceAmount(250)
+//
+//                            Log.e("USED Button click", "user water button");
+//                        },
+//                        modifier = Modifier
+//                            .width(screenWidth.value * 0.35.dp)
+//                            .height(screenHeight.value * 0.06.dp),
+//                        colors = ButtonDefaults.buttonColors(minorColor),
+//                        shape = RoundedCornerShape(10.dp)
+//                    ) {
+//                        Text(
+//                            text = "250 ml",
+//                            style = TextStyle(
+//                                fontSize = 20.sp,
+//                                fontFamily = fontFamilyLight,
+//                                fontWeight = FontWeight(700),
+//                                color = backgroundColor1,
+//
+//                                textAlign = TextAlign.Center,
+//                            )
+//                        )
+//                    }
+//                }
+//            }
 
             item {
                 Text(
@@ -361,12 +367,13 @@ fun HomeScreen(
 
 if(showStreakCollector){
     ModalBottomSheet(
+        containerColor = backgroundColor1.copy(alpha = 0.5f),
         sheetState = sheetState,
         onDismissRequest = {showStreakCollector = !showStreakCollector}) {
         StreakSheet(Streak = StreakImages, modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight(0.55f)
-            .padding(10.dp).background(backgroundColor1.copy(alpha = 0.5f)))
+            .padding(10.dp))
     }
 }
 

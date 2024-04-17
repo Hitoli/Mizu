@@ -16,6 +16,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -40,6 +47,8 @@ import androidx.compose.ui.unit.times
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
+import com.example.mizu.ui.theme.fontFamilyLight
+import com.example.mizu.ui.theme.minorColor
 import com.example.mizu.ui.theme.waterColor
 
 @Composable
@@ -57,11 +66,16 @@ fun GlacierScreen(
         animationSpec = tween(durationMillis = 1000)
     )
     Box(modifier = modifier.size(screenWidth,screenHeight)) {
+
             Glacier(
                 screenHeight = screenHeight,
                 screenWidth =screenWidth,
-                waterPercentageFilled = waterPercentageFilled
+                waterPercentageFilled = waterPercentageFilled, modifier = Modifier
+                    .aspectRatio(0.8f)
+                    .align(Alignment.TopCenter)
+
             )
+
 
 
 
@@ -213,12 +227,11 @@ fun Glass(
 
 @Composable
 fun Glacier(
-    screenWidth: Dp, screenHeight: Dp, waterPercentageFilled: State<Float>
+    screenWidth: Dp, screenHeight: Dp, waterPercentageFilled: State<Float>,modifier:Modifier=Modifier
 ) {
-    Canvas(modifier = Modifier
-        .fillMaxSize()
-        .aspectRatio(0.8f)) {
-        val width = size.width - 100f;
+
+    Canvas(modifier =modifier.offset(x=30.dp)) {
+        val width = size.width-150f;
         val height = size.height;
         val waterWavesYPosition = (1 - waterPercentageFilled.value) * width
         var waterPath = Path().apply {

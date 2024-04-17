@@ -41,10 +41,10 @@ import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.minorColor
 
 @Composable
-fun OnBoardingWaterIntakeResultScreen(getNavigate:()->Unit,onWaterIntake:String,modifier:Modifier=Modifier) {
+fun OnBoardingWaterIntakeResultScreen(getNavigate:()->Unit,onWaterIntake:String,modifier:Modifier=Modifier, onName:String) {
     Box(modifier = modifier) {
         Text(
-            text = "Hi, Hitesh \uD83D\uDC4B",
+            text = "${onName} \uD83D\uDC4B",
             modifier= Modifier.padding(top = 50.dp, start = 24.dp),
             style = TextStyle(
                 fontSize = 24.sp,
@@ -152,5 +152,5 @@ fun PreivewOnBoardingWaterIntakeResultScreen() {
                 end = Offset(0f, Float.POSITIVE_INFINITY),
                 colors = listOf(backgroundColor1, backgroundColor2)
             )
-        ))
+        ), onName = "Hi, Hitesh")
 }

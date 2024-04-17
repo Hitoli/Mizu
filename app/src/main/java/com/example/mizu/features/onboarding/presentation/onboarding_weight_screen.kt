@@ -119,7 +119,9 @@ fun OnBoardingWeightScreen(
                     )
 
                     TextField(value = onWeightChange, onValueChange = {
-                        getWeightChange(it)
+                        if(it.length<4){
+                            getWeightChange(it)
+                        }
                     }, modifier = Modifier
                         .fillMaxWidth()
                         .height(60.dp), colors = TextFieldDefaults.colors(
@@ -135,7 +137,7 @@ fun OnBoardingWeightScreen(
                         maxLines = 1,
                         shape = RoundedCornerShape(16.dp), placeholder = {
                         Text(
-                            text = "Weight...",
+                            text = "Weight... Enter in Kgs",
                             style = TextStyle(
                                 fontSize = 15.sp,
                                 fontFamily = fontFamilyLight,
@@ -153,10 +155,10 @@ fun OnBoardingWeightScreen(
                         textAlign = TextAlign.Start,
                     ), keyboardActions = KeyboardActions(
                         onDone = {
-                            if(!check){
+
                                 getNavigate()
 
-                            }
+
                             focusManager.clearFocus()
                         }
                     ), keyboardOptions = KeyboardOptions(
@@ -182,10 +184,8 @@ fun OnBoardingWeightScreen(
 
                     Button(
                         onClick = {
-                            if(!check){
                                 getNavigate()
 
-                            }
 
                             focusManager.clearFocus()
                         },

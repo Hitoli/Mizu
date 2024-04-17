@@ -223,7 +223,7 @@ fun OnBoardingActiveScreen(
                                 fontSize = 10.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(400),
-                                color = Color.Red.copy(alpha = 0.8f),
+                                color = backgroundColor1,
                                 textAlign = TextAlign.Center,
                             )
                         )

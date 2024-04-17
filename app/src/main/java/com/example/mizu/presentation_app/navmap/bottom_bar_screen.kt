@@ -2,8 +2,12 @@ package com.example.mizu.presentation_app.navmap
 
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.slideIn
+import androidx.compose.animation.slideOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,19 +30,24 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -77,6 +86,7 @@ import com.example.mizu.ui.theme.minorColor
 import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.utils.BottomNavScreens
 import com.example.mizu.utils.Todos
+import kotlinx.coroutines.delay
 
 @Composable
 fun BottomBarHostingScreen(
@@ -89,9 +99,11 @@ fun BottomBarHostingScreen(
     onUserName: String,
     getReward: (Boolean?) -> Unit,
     onReward: Boolean?,
-    onWaterMeterResourceAmount:Int,
-    onStreak:String,
-    getStreak:()->Unit,onProgress:String
+    onWaterMeterResourceAmount: Int,
+    onStreak: String,
+    getStreak: () -> Unit, onProgress: String,
+    onTime:String,
+    getGreeting:()->Unit
 
 ) {
     var todosList: MutableList<Todos> = mutableListOf<Todos>(
@@ -101,7 +113,18 @@ fun BottomBarHostingScreen(
 
 
     )
-    var showBottomBar by remember{
+    var onTitleChage by remember{
+        mutableStateOf(false)
+    }
+    LaunchedEffect(Unit){
+        getGreeting()
+        delay(3000)
+        onTitleChage = true
+        delay(3000)
+        onTitleChage = false
+
+    }
+    var showBottomBar by remember {
         mutableStateOf(false)
     }
     val navItems = listOf<BottomNavScreens>(
@@ -111,15 +134,45 @@ fun BottomBarHostingScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-            TopBarLayout(onTime = "GoodMorning", getNotificationClick = {}, getPorfileClick = {})
+            TopBarLayout(onTime = onTime, getNotificationClick = {}, getPorfileClick = {}, onUserName = onUserName, onTitleChange = onTitleChage)
         },
-         bottomBar = {
-             Log.d("SCROLL",showBottomBar.toString());
-             AnimatedVisibility(visible = showBottomBar, enter = fadeIn(), exit = fadeOut()) {
-                 BottomBarLayout(navController, navScreens = navItems)
-             }
+        bottomBar = {
+            Log.d("SCROLL", showBottomBar.toString());
+            AnimatedVisibility(visible = !showBottomBar, enter = fadeIn(), exit = fadeOut()) {
+                BottomBarLayout(navController, navScreens = navItems)
+            }
 
-        }
+        }, floatingActionButton = {
+            AnimatedVisibility(visible = !showBottomBar, enter = fadeIn(), exit = fadeOut()) {
+                ExtendedFloatingActionButton(
+                    onClick = {
+                        getWaterTrackingResourceAmount(250)
+                    },
+                    containerColor = minorColor,
+                    contentColor = backgroundColor2, modifier = Modifier
+                ) {
+                    Box(
+                        Modifier
+                    ) {
+                        Text(
+                            text = "Add",
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .padding(20.dp),
+                            style = TextStyle(
+                                fontSize = 18.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(400),
+                                color = backgroundColor1,
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                    }
+                }
+            }
+
+
+        }, floatingActionButtonPosition = FabPosition.End
     ) {
         val padding = it
         NavHost(
@@ -139,7 +192,10 @@ fun BottomBarHostingScreen(
                     getBottomBar = {
                         showBottomBar = it
                     },
-                    onWaterMeterResourceAmount =onWaterMeterResourceAmount, onProgress =onProgress , onStreak =onStreak , getStreak = getStreak
+                    onWaterMeterResourceAmount = onWaterMeterResourceAmount,
+                    onProgress = onProgress,
+                    onStreak = onStreak,
+                    getStreak = getStreak
                 )
             }
             composable(route = BottomNavScreens.CalendarScreen.route) {
@@ -151,26 +207,49 @@ fun BottomBarHostingScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBarLayout(onTime: String, getNotificationClick: () -> Unit, getPorfileClick: () -> Unit) {
+fun TopBarLayout(onTime: String, getNotificationClick: () -> Unit, getPorfileClick: () -> Unit,onTitleChange:Boolean,onUserName: String) {
 
     TopAppBar(
         title = {
-            Text(
-                text = "Good Morning \uD83D\uDC4B",
-                modifier = Modifier
-                    .fillMaxWidth(),
-                style = TextStyle(
-                    fontSize = 26.sp,
-                    fontFamily = fontFamilyLight,
-                    fontWeight = FontWeight(200),
-                    color = minorColor,
-                    textAlign = TextAlign.Start,
+            AnimatedVisibility(visible=!onTitleChange
+            , enter = fadeIn(), exit = fadeOut()
+            ) {
+                Text(
+                    text = "${onTime} \uD83D\uDC4B",
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    style = TextStyle(
+                        fontSize = 26.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(200),
+                        color = minorColor,
+                        textAlign = TextAlign.Start,
+                    )
                 )
-            )
+            }
+            AnimatedVisibility(visible=onTitleChange
+                , enter = fadeIn(), exit = fadeOut()
+            ) {
+                Text(
+                    text = "${onUserName} \uD83D\uDC4B",
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    style = TextStyle(
+                        fontSize = 26.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(200),
+                        color = minorColor,
+                        textAlign = TextAlign.Start,
+                    )
+                )
+            }
+
         },
         actions = {
             Row(
-                modifier=Modifier, horizontalArrangement = Arrangement.Start, verticalAlignment = Alignment.Top
+                modifier = Modifier,
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.Top
             ) {
                 IconButton(onClick = { /*TODO*/ }) {
                     Icon(
@@ -194,7 +273,7 @@ fun TopBarLayout(onTime: String, getNotificationClick: () -> Unit, getPorfileCli
             navigationIconContentColor = Color.Transparent,
             titleContentColor = Color.Transparent,
             actionIconContentColor = Color.Transparent
-        ),modifier= Modifier
+        ), modifier = Modifier
             .padding(top = 8.dp, bottom = 0.dp, start = 8.dp, end = 16.dp)
             .clip(shape = RoundedCornerShape(8.dp))
     )
@@ -207,7 +286,7 @@ fun BottomBarLayout(navController: NavHostController, navScreens: List<BottomNav
     BottomAppBar(
         modifier = Modifier
             .height(100.dp)
-            .padding(16.dp)
+            .padding(top = 0.dp, start = 16.dp, end = 16.dp, bottom = 16.dp)
             .clip(
                 shape = RoundedCornerShape(
                     20.dp
@@ -230,11 +309,34 @@ fun BottomBarLayout(navController: NavHostController, navScreens: List<BottomNav
                         }
                     },
                     icon = {
-                        Icon(
-                            imageVector = ImageVector.vectorResource(bottomData.icon),
-                            contentDescription = bottomData.route,
-                            tint = backgroundColor1
-                        )
+                        Row(modifier = Modifier.padding(10.dp)) {
+                            Icon(
+                                imageVector = ImageVector.vectorResource(bottomData.icon),
+                                contentDescription = bottomData.route,
+                                tint = if(currentRoute==bottomData.route) minorColor else backgroundColor1
+                            )
+                            Spacer(modifier = Modifier.width(16.dp))
+                            AnimatedVisibility(
+                                visible = bottomData.route == currentRoute,
+                                enter = expandHorizontally(),
+                                exit = shrinkHorizontally()
+                            ) {
+                                Text(
+                                    text = bottomData.route,
+                                    modifier = Modifier,
+                                    style = TextStyle(
+                                        fontSize = 16.sp,
+                                        fontFamily = fontFamilyLight,
+                                        fontWeight = FontWeight(200),
+                                        color = minorColor,
+                                        textAlign = TextAlign.Start,
+                                    )
+                                )
+                            }
+
+
+                        }
+
                     },
                     alwaysShowLabel = false,
                     colors = NavigationBarItemDefaults.colors(
@@ -269,6 +371,6 @@ fun PreviewBottomBarHostingScreen() {
         getReward = {},
         getWaterTrackingResourceAmount = {},
         onWaterMeterResourceAmount = 20,
-        onStreak = "", onProgress = "", getStreak = {}
+        onStreak = "6", onProgress = "You are half way through keep it going", getStreak = {}, onTime = "Goodmorning", getGreeting = {}
     )
 }

@@ -1,27 +1,35 @@
 
-rkotlin:S117ı"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ŞÊ¹Çûÿÿÿÿ8à’ıÂë1
-qkotlin:S117g"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(üùÎÒ8”şìÂë1
-qkotlin:S117i"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(áæ“8”şìÂë1
-kkotlin:S107X"HThis function has 14 parameters, which is greater than the 7 authorized.(›¼¾“üÿÿÿÿ8›şìÂë1
-Rkotlin:S1135Ÿ"2Complete the task associated to this TODO comment.(È—“8ë’ıÂë1
-Okotlin:S1481¸"/Remove this unused "mutablePad" local variable.(º¶£‹8î’ıÂë1
-9kotlin:S1128"Remove this unused import.(Ğ©«ã8¦şìÂë1
->kotlin:S1128"Remove this unused import.(²Ù™³şÿÿÿÿ8§şìÂë1
->kotlin:S1128"Remove this unused import.(Á¤ŞÆøÿÿÿÿ8§şìÂë1
->kotlin:S1128	"Remove this unused import.(–Ÿ˜Ùûÿÿÿÿ8§şìÂë1
+Lkotlin:S1172`"(Remove these unused function parameters.(ÚÁ…àøÿÿÿÿ8Õ¼´Öí1
+Ckotlin:S125Ğ"Remove this commented out code.(­ô§Áøÿÿÿÿ8Û¼´Öí1
+rkotlin:S117„"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ŞÊ¹Çûÿÿÿÿ8à¼´Öí1
+qkotlin:S117k"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(üùÎÒ8à¼´Öí1
+qkotlin:S117m"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(áæ“8à¼´Öí1
+kkotlin:S107\"HThis function has 14 parameters, which is greater than the 7 authorized.(›¼¾“üÿÿÿÿ8ç¼´Öí1
+Rkotlin:S1135¦"2Complete the task associated to this TODO comment.(È—“8í¼´Öí1
+Okotlin:S1481¿"/Remove this unused "mutablePad" local variable.(º¶£‹8ï¼´Öí1
+9kotlin:S1128"Remove this unused import.(Ğ©«ã8ó¼´Öí1
+>kotlin:S1128"Remove this unused import.(²Ù™³şÿÿÿÿ8ó¼´Öí1
+>kotlin:S1128"Remove this unused import.(Á¤ŞÆøÿÿÿÿ8ó¼´Öí1
+>kotlin:S1128	"Remove this unused import.(–Ÿ˜Ùûÿÿÿÿ8ó¼´Öí1
 9kotlin:S1128
-"Remove this unused import.(¤¯†8§şìÂë1
-9kotlin:S1128"Remove this unused import.(¤½Ñâ8§şìÂë1
->kotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8§şìÂë1
-9kotlin:S1128"Remove this unused import.(êåê±8§şìÂë1
-9kotlin:S11282"Remove this unused import.(Íıİô8§şìÂë1
->kotlin:S11283"Remove this unused import.(À¶Ìúÿÿÿÿ8§şìÂë1
->kotlin:S11284"Remove this unused import.(ÇÀ×İıÿÿÿÿ8§şìÂë1
->kotlin:S11285"Remove this unused import.(Ä‡§­ıÿÿÿÿ8§şìÂë1
->kotlin:S11286"Remove this unused import.(ñ—¼¢ÿÿÿÿÿ8§şìÂë1
-9kotlin:S11287"Remove this unused import.(‡ğø8§şìÂë1
-9kotlin:S11288"Remove this unused import.(Ã’ÇÁ8§şìÂë1
-9kotlin:S1128:"Remove this unused import.(ÀÏ­–8§şìÂë1
->kotlin:S1128A"Remove this unused import.(Õş÷©úÿÿÿÿ8§şìÂë1
->kotlin:S1128T"Remove this unused import.(€“ïìùÿÿÿÿ8§şìÂë1
-fkotlin:S1192ö"GDefine a constant instead of duplicating this literal "250 ml" 8 times.(©ÄÚ@8©şìÂë1
+"Remove this unused import.(¤¯†8ó¼´Öí1
+9kotlin:S1128"Remove this unused import.(¤½Ñâ8ó¼´Öí1
+>kotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8ó¼´Öí1
+9kotlin:S1128"Remove this unused import.(êåê±8ó¼´Öí1
+8kotlin:S1128 "Remove this unused import.(Ëî>8ô¼´Öí1
+>kotlin:S1128!"Remove this unused import.(˜Ú«¹ÿÿÿÿÿ8ô¼´Öí1
+9kotlin:S1128""Remove this unused import.(¦ï½å8ô¼´Öí1
+9kotlin:S1128#"Remove this unused import.(Şå²8ô¼´Öí1
+9kotlin:S1128%"Remove this unused import.(Äåì¾8ô¼´Öí1
+>kotlin:S1128'"Remove this unused import.(¤–‡›ıÿÿÿÿ8ô¼´Öí1
+9kotlin:S11286"Remove this unused import.(Íıİô8ô¼´Öí1
+>kotlin:S11287"Remove this unused import.(À¶Ìúÿÿÿÿ8ô¼´Öí1
+>kotlin:S11288"Remove this unused import.(ÇÀ×İıÿÿÿÿ8ô¼´Öí1
+>kotlin:S11289"Remove this unused import.(Ä‡§­ıÿÿÿÿ8ô¼´Öí1
+>kotlin:S1128:"Remove this unused import.(ñ—¼¢ÿÿÿÿÿ8ô¼´Öí1
+9kotlin:S1128;"Remove this unused import.(‡ğø8ô¼´Öí1
+9kotlin:S1128<"Remove this unused import.(Ã’ÇÁ8ô¼´Öí1
+9kotlin:S1128>"Remove this unused import.(ÀÏ­–8ô¼´Öí1
+>kotlin:S1128E"Remove this unused import.(Õş÷©úÿÿÿÿ8ô¼´Öí1
+>kotlin:S1128X"Remove this unused import.(€“ïìùÿÿÿÿ8õ¼´Öí1
+fkotlin:S1192Œ"GDefine a constant instead of duplicating this literal "250 ml" 7 times.(©ÄÚ@8ö¼´Öí1

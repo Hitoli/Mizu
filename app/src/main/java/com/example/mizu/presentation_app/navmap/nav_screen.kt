@@ -33,6 +33,7 @@ fun NavScreen(
                 onReward = homeViewModel.rewardDialog,
                 getWaterTrackingResourceAmount = {
                     homeViewModel.fillWaterUpdate(it)
+
                 },
                 getReward = {
                     if (it!=null){
@@ -41,7 +42,9 @@ fun NavScreen(
                 },
                 getAddWater = {
 
-                }, onWaterMeterResourceAmount =homeViewModel.waterPercent, onProgress = homeViewModel.onProgress, onStreak = "6", getStreak = {})
+                }, onWaterMeterResourceAmount =homeViewModel.waterPercent, onProgress = homeViewModel.onProgress, onStreak = "6", getStreak = {}, onTime = homeViewModel.onTime, getGreeting = {
+                    homeViewModel.getGreeting();
+                })
         }
         composable(route = NavScreens.OnboardingNavHostingScreen.route) {
             OnboardingNavHostingScreen(getNavigate = {
