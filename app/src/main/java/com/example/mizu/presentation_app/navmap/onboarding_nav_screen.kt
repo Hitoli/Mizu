@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
@@ -21,6 +22,7 @@ import com.example.mizu.features.onboarding.presentation.OnboardingLoadingScreen
 import com.example.mizu.features.onboarding.view_model.OnboardingViewModel
 import com.example.mizu.utils.BottomNavScreens
 import com.example.mizu.utils.OnboardingNavScreens
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -29,7 +31,7 @@ fun OnboardingNavHostingScreen(
     getNavigate: () -> Unit,
     onboardingViewModel: OnboardingViewModel = koinViewModel()
 ) {
-
+    val coroutineScope = rememberCoroutineScope()
     NavHost(
         navController = navController,
         startDestination = OnboardingNavScreens.NameScreen.route
@@ -47,6 +49,7 @@ fun OnboardingNavHostingScreen(
                 onValue = onboardingViewModel.onNameValue,
                 onQuestionValue = "What is your name?",
                 getNavigate = {
+
                     onboardingViewModel.checkFields(onboardingViewModel.onNameValue)
                     if (!onboardingViewModel.check) {
                         navController.navigate(OnboardingNavScreens.WeightIntakeScreen.route) {
@@ -87,9 +90,8 @@ fun OnboardingNavHostingScreen(
         }
         composable(route = OnboardingNavScreens.WaterIntakeResultScreen.route) {
             OnBoardingWaterIntakeResultScreen(getNavigate = {
-
                 getNavigate()
-            }, onWaterIntake = (onboardingViewModel.TWI / 1000).toString(), onName = onboardingViewModel.onNameValue)
+            }, onWaterIntake = (onboardingViewModel.TWI).toString(), onName = onboardingViewModel.onNameValue)
         }
         composable(route = OnboardingNavScreens.WeightIntakeScreen.route) {
             OnBoardingWeightScreen(

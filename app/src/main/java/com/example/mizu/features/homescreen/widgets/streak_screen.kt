@@ -45,7 +45,8 @@ fun StreakScreen(modifier: Modifier=Modifier,Streak:String,username:String,getSt
                 .border(width = 0.5.dp, color = minorColor, shape = RoundedCornerShape(40.dp))
                 .align(
                     Alignment.TopStart
-                ).clickable {
+                )
+                .clickable {
                     getStreak()
                 }
         ) {
@@ -79,7 +80,7 @@ fun StreakScreen(modifier: Modifier=Modifier,Streak:String,username:String,getSt
         Text(
             text = username,
             modifier = Modifier
-                .width(screenWidth.value*0.25.dp)
+                .width(screenWidth.value * 0.25.dp)
                 .align(Alignment.Center),
             style = TextStyle(
                 fontSize = 18.sp,
@@ -92,33 +93,35 @@ fun StreakScreen(modifier: Modifier=Modifier,Streak:String,username:String,getSt
 
         Box(modifier = Modifier.align(Alignment.CenterEnd)){
             Text(
-                text = Streak,
+                text = "${Streak} \uD83D\uDD25",
                 modifier = Modifier
                     .width(60.dp)
                     .align(Alignment.Center),
                 style = TextStyle(
-                    fontSize = 12.sp,
+                    fontSize = 18.sp,
                     fontFamily = fontFamily,
                     fontWeight = FontWeight(500),
                     color = minorColor,
                     textAlign = TextAlign.Center,
                 )
             )
-            Canvas(
-                modifier = Modifier.size(screenHeight.value * 0.05.dp).align(Alignment.Center),
-                onDraw = {
-
-                    val strokeWidth = .5f
-                    drawCircle(
-                        color = minorColor,
-                        radius = screenHeight.value * 0.05f,
-                        style = Stroke(
-                            width = strokeWidth
-                        )
-                    )
-
-                }
-            )
+//            Canvas(
+//                modifier = Modifier
+//                    .size(screenHeight.value * 0.05.dp)
+//                    .align(Alignment.Center),
+//                onDraw = {
+//
+//                    val strokeWidth = .5f
+//                    drawCircle(
+//                        color = minorColor,
+//                        radius = screenHeight.value * 0.05f,
+//                        style = Stroke(
+//                            width = strokeWidth
+//                        )
+//                    )
+//
+//                }
+//            )
         }
     }
 

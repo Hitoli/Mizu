@@ -65,14 +65,16 @@ class HomeViewModel():ViewModel() {
 
         }
 
-
-
         when(waterPercent){
             in 0..30 -> onProgress = "Keep Going, You are doing Great"
             in 30..50 -> onProgress = "You are half way through, keep it up"
             in 80..95 -> onProgress = "You are almost there, keep it going "
             in 95.. 100 -> onProgress = "Amazing, you have achieved your goal"
         }
+    }
+
+    fun waterStreak(){
+
     }
 
 

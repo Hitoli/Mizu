@@ -367,7 +367,7 @@ fun HomeScreen(
 
 if(showStreakCollector){
     ModalBottomSheet(
-        containerColor = backgroundColor1.copy(alpha = 0.5f),
+        containerColor = backgroundColor1,
         sheetState = sheetState,
         onDismissRequest = {showStreakCollector = !showStreakCollector}) {
         StreakSheet(Streak = StreakImages, modifier = Modifier
@@ -475,6 +475,6 @@ fun PreviewHomeScreen() {
             if (it != null) {
                 rewardScreenShow = it
             }
-        }, getBottomBar = {}, onWaterMeterResourceAmount = 10, onStreak = "6\uD83D\uDD25", onProgress = "You are half way through keep it going", getStreak = {}
+        }, getBottomBar = {}, onWaterMeterResourceAmount = 10, onStreak = "6", onProgress = "You are half way through keep it going", getStreak = {}
     )
 }

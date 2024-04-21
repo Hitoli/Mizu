@@ -2,6 +2,7 @@ package com.example.mizu.presentation_app.navmap
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -18,6 +19,7 @@ fun NavScreen(
     OnboardingViewModel: OnboardingViewModel = koinViewModel(),
     homeViewModel: HomeViewModel = koinViewModel()
 ) {
+
 
     var navController = rememberNavController()
 
@@ -42,7 +44,7 @@ fun NavScreen(
                 },
                 getAddWater = {
 
-                }, onWaterMeterResourceAmount =homeViewModel.waterPercent, onProgress = homeViewModel.onProgress, onStreak = "6", getStreak = {}, onTime = homeViewModel.onTime, getGreeting = {
+                }, onWaterMeterResourceAmount =homeViewModel.waterPercent, onProgress = homeViewModel.onProgress, onStreak =OnboardingViewModel._streak.streak.toString(), getStreak = {}, onTime = homeViewModel.onTime, getGreeting = {
                     homeViewModel.getGreeting();
                 })
         }

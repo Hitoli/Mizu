@@ -1,2 +1,6 @@
 
-9kotlin:S1128"Remove this unused import.(ÀÄŽ8¥Âûè1
+=kotlin:S125B"Remove this commented out code.(‡Ð¯Å8•¿ó„ð1
+Ykotlin:S1144"9Remove this unused private "calculateStreakScore" method.(Ÿ”÷»8˜¿ó„ð1
+ckotlin:S1144†">Remove this unused private "calculateStreakMonthScore" method.(ºÉØŠþÿÿÿÿ8˜¿ó„ð1
+Skotlin:S1144‘"3Remove this unused private "getStreakScore" method.(™ÓáÉ8™¿ó„ð1
+Xkotlin:S1144˜"3Remove this unused private "getMonthStreak" method.(Ù®¨ùûÿÿÿÿ8™¿ó„ð1

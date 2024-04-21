@@ -1,8 +1,15 @@
 
->kotlin:S1128"Remove this unused import.(‹‚ü†ıÿÿÿÿ8ÁÀ…èî1
-9kotlin:S1128"Remove this unused import.(ÀÄ8ÁÀ…èî1
-8kotlin:S1128"Remove this unused import.(†™¹$8ÁÀ…èî1
-9kotlin:S1128"Remove this unused import.(²ßêº8ÁÀ…èî1
-9kotlin:S1128	"Remove this unused import.(³¹¦–8ÁÀ…èî1
->kotlin:S1128"Remove this unused import.(—÷õ¸ıÿÿÿÿ8ÁÀ…èî1
-qkotlin:S3776"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(øŞ´8ÃÀ…èî1
+|kotlin:S6619*"7Remove this useless non-null check, it always succeeds.(°¯´8áÛ°„ğ1J$e1b3b3ae-ef09-453b-bc24-bd0ad0d99e2a
+|kotlin:S6619K"7Remove this useless non-null check, it always succeeds.(°¯´8áÛ°„ğ1J$21f2c5c1-3864-4049-bbb6-b241c13ad629
+|kotlin:S6619c"7Remove this useless non-null check, it always succeeds.(°¯´8áÛ°„ğ1J$84fdf373-41ab-4215-9de3-61a6d5a0ed02
+|kotlin:S6619"7Remove this useless non-null check, it always succeeds.(°¯´8âÛ°„ğ1J$de9b7fe6-4f5a-4be8-8fa5-cad256a5cdf0
+Wkotlin:S1481""3Remove this unused "coroutineScope" local variable.(•±Éàüÿÿÿÿ8’·Ñ„ğ1
+dkotlin:S1128"Remove this unused import.(‹‚ü†ıÿÿÿÿ8êÛ°„ğ1J$413263bd-c45d-480e-b81c-a90737884f48
+_kotlin:S1128"Remove this unused import.(ÀÄ8ìÛ°„ğ1J$e25ef42a-6ebc-47ab-9da4-9e8c648514ed
+^kotlin:S1128"Remove this unused import.(†™¹$8ìÛ°„ğ1J$4b4d6543-57bd-4413-91df-d2d46e61d544
+_kotlin:S1128	"Remove this unused import.(²ßêº8ìÛ°„ğ1J$0d07c590-ce0e-432f-a8cb-b011bb87dd68
+_kotlin:S1128
+"Remove this unused import.(³¹¦–8ìÛ°„ğ1J$a5db581b-67c1-4f40-bdbb-2b5d30f47b66
+dkotlin:S1128"Remove this unused import.(—÷õ¸ıÿÿÿÿ8ìÛ°„ğ1J$d032d91e-0b3e-4851-82c5-868489bf27de
+>kotlin:S1128"Remove this unused import.(£ñ¹¸ûÿÿÿÿ8”·Ñ„ğ1
+—kotlin:S3776"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(øŞ´8ïÛ°„ğ1J$858140af-1642-4f28-8eeb-31b4c05cbeb0

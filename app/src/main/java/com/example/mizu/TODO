@@ -1,7 +1,2 @@
- -> Viewmodels
- -> Make composables stateless in nature
- -> Make everything working
- -> Integrate Realm database into it
- -> Customize and optimize layouts
- -> Try to redesign the homescreen
- -> Release the app
+-> Add Data Store
+-> Make Home screen Dynamic and Usable
