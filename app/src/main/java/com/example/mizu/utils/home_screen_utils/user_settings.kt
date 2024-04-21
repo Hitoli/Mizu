@@ -7,5 +7,6 @@ data class UserSettings(
     var userName:String="",
     var userHeight:Int=0,
     var userWeight:Int=0,
-    var userWaterIntake:Int=0
+    var userWaterIntake:Int=0,
+    var registrationCompleted:Boolean =false
 )

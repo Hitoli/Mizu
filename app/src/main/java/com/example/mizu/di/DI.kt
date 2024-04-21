@@ -12,7 +12,7 @@ val DIModule = module {
         OnboardingRepository(get())
     }
     viewModel { OnboardingViewModel(get()) }
-    viewModel{HomeViewModel()}
+    viewModel{HomeViewModel(get())}
 
 
 

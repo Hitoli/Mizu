@@ -9,6 +9,8 @@ import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mizu.model.OnboardingRepository
+import com.example.mizu.utils.NavScreens
+import com.example.mizu.utils.OnboardingNavScreens
 import com.example.mizu.utils.home_screen_utils.StreakClass
 import com.example.mizu.utils.Utils.Companion.capitalizeFirst
 import com.example.mizu.utils.home_screen_utils.StreakMonthClass
@@ -19,6 +21,8 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
 
     var onNameValue by mutableStateOf("")
         private set
+    var onBoardingScreensRoutes by mutableStateOf(NavScreens.SplashNavHostingScreen.route)
+        private set
     var onWeightValue by mutableStateOf("")
         private  set
     var onHeightValue by mutableStateOf("")
@@ -27,29 +31,17 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
         private set
     var check by mutableStateOf(false)
         private set
-    var _streak by mutableStateOf(StreakClass())
-        private set
-    var _userSettings by mutableStateOf(UserSettings())
-        private set
-    var _streakMonth by mutableStateOf(StreakMonthClass())
+    var onboardingCompleted by mutableStateOf(false)
         private set
 
-    var streakScore by mutableIntStateOf(0)
+    var _userSettings by mutableStateOf(UserSettings())
         private set
-    var streakDay by mutableStateOf("")
-        private set
-    var streakBroken by mutableIntStateOf(0)
-        private set
+
+
     var checkDigit by mutableStateOf(false)
         private set
 
-    var streakMonthDay by mutableIntStateOf(0)
-        private set
-    var streakMonth by mutableIntStateOf(0)
-        private set
 
-    var streakYear by mutableIntStateOf(0)
-        private set
 
     var BSA by mutableStateOf(0)
         private set
@@ -71,12 +63,15 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
     }
 
     }
+
+
     fun checkFields(value:String){
         check = value.isBlank()
         check= value.isDigitsOnly()
         Log.d("check Onboarding",check.toString())
 
     }
+
     fun checkDigitFields(value:String){
         checkDigit = value.isNullOrBlank()
         Log.d("checkDigit Onboarding",checkDigit.toString())
@@ -118,47 +113,43 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
             TWI  =2700.0
         }
         TWI/=1000
-
-        viewModelScope.launch{
-            updateUserSettings()
-        }
-
         Log.d("TWI Onboarding",TWI.toString())
     }
 
-     private suspend fun calculateStreakScore(){
-         onboardingRepo.updateStreak(streak = streakScore, streakDay =streakDay, streakBroken = streakBroken )
-         println("streakScore Onboarding calculateStreakScore ")
 
-    }
-    private suspend fun calculateStreakMonthScore(){
-        onboardingRepo.updateStreakMonth(streakYear =streakYear , streakMonth = streakMonth, streakDay = streakMonthDay)
-        println("streakScore Onboarding calculateStreakMonthScore ")
 
-    }
-    private suspend fun updateUserSettings(){
-        onboardingRepo.updateUserSettingsStore(userWeight = onWeightValue.toInt(), userWaterIntake =TWI.toInt() , userName =onNameValue , userHeight = onHeightValue.toInt())
+
+    fun updateUserSettings(){
+        onboardingCompleted = true
+        viewModelScope.launch {
+            onboardingRepo.updateUserSettingsStore(userWeight = onWeightValue.toInt(), userWaterIntake =TWI.toInt() , userName =onNameValue , userHeight = onHeightValue.toInt(), onBoardingCompleted =true )
+
+        }
         println("streakScore Onboarding UpdateUserSettings ")
 
     }
 
-    private suspend fun getStreakScore() {
-        onboardingRepo.getStreak().collect {
-            _streak = it
-            println("streakScore Onboarding getStreakScore ${it}")
-        }
 
-    }
-    private suspend fun getMonthStreak() {
-        onboardingRepo.getStreakMonth().collect {
-            _streakMonth = it
-            println("streakScore Onboarding getMonthStreak ${it}")
-        }
-
-    }
     private suspend fun getUserSettings() {
         onboardingRepo.getUserSettingsStore().collect {
             _userSettings = it
+            onNameValue = it.userName
+            if(it.userWeight!=0 &&it.userHeight!=0 ){
+                onWeightValue = it.userWeight.toString()
+                onHeightValue = it.userHeight.toString()
+            }else{
+                onWeightValue =""
+                onHeightValue=""
+            }
+
+            TWI = it.userWaterIntake.toDouble()
+
+            if(!_userSettings.registrationCompleted){
+                onBoardingScreensRoutes = NavScreens.OnboardingNavHostingScreen.route
+            }else{
+                onBoardingScreensRoutes = NavScreens.BottomNavHostingScreen.route
+
+            }
             println("streakScore Onboarding getUserSettings ${it}")
         }
 

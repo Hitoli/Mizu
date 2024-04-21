@@ -113,6 +113,9 @@ fun BottomBarHostingScreen(
 
 
     )
+    var onHome by remember{
+        mutableStateOf(true)
+    }
     var onTitleChage by remember{
         mutableStateOf(false)
     }
@@ -122,6 +125,13 @@ fun BottomBarHostingScreen(
         onTitleChage = true
         delay(3000)
         onTitleChage = false
+
+       if( navController.currentDestination?.route=="Home"){
+           onHome = true
+       }else{
+           onHome =false
+
+       }
 
     }
     var showBottomBar by remember {
@@ -143,6 +153,7 @@ fun BottomBarHostingScreen(
             }
 
         }, floatingActionButton = {
+            println("navcontroller ${navController.currentDestination?.route}")
             AnimatedVisibility(visible = !showBottomBar, enter = fadeIn(), exit = fadeOut()) {
                 ExtendedFloatingActionButton(
                     onClick = {
@@ -199,7 +210,15 @@ fun BottomBarHostingScreen(
                 )
             }
             composable(route = BottomNavScreens.CalendarScreen.route) {
-                CalendarScreen(onMonth = "Feb", listOfTodos = todosList)
+                CalendarScreen(onMonth = "Feb", listOfTodos = todosList, modifier =  Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.linearGradient(
+                            start = Offset(Float.POSITIVE_INFINITY, 0f),
+                            end = Offset(0f, Float.POSITIVE_INFINITY),
+                            colors = listOf(backgroundColor1, backgroundColor2)
+                        )
+                    ), onPad =padding )
             }
         }
     }

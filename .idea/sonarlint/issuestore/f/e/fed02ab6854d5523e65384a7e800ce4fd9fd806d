@@ -1,7 +1,5 @@
 
-dkotlin:S1128"Remove this unused import.(»æø—ùÿÿÿÿ8Áåïáï1J$0e1d765c-5451-41a2-8808-c850af4b1135
-_kotlin:S1128"Remove this unused import.(ÀÄ8Áåïáï1J$a8c899e8-b542-4165-ad29-d71defa59a1d
-_kotlin:S1128"Remove this unused import.(ˆè–³8Âåïáï1J$f601c464-a758-4029-9535-43cb0f719c2d
-dkotlin:S1128"Remove this unused import.(îóãÓşÿÿÿÿ8Âåïáï1J$e5c8267a-474a-4fa0-8649-d93ff8c467cd
-Ÿkotlin:S1186L"ZAdd a nested comment explaining why this function is empty or complete the implementation.(÷™Ç8Äåïáï1J$2025bab0-5a84-4a42-9d19-131f0c01b130
-vkotlin:S6518)",Replace function call with indexed accessor.(˜ÀÑµüÿÿÿÿ8Ååïáï1J$5cb694fb-e822-4fe7-a74d-1856768f7644
+vkotlin:S6518J",Replace function call with indexed accessor.(˜ÀÑµüÿÿÿÿ8†ã“ğ1J$60b09685-c8e7-4639-b069-f662388180d7
+vkotlin:S6518W",Replace function call with indexed accessor.(Ğƒ‰üÿÿÿÿ8†ã“ğ1J$bbeabc19-3520-421e-b618-0fef3ad92d19
+vkotlin:S6518X",Replace function call with indexed accessor.(·¹ıÔûÿÿÿÿ8†ã“ğ1J$e9cfb000-7b07-4909-8338-705a92609afa
+qkotlin:S6518Y",Replace function call with indexed accessor.(÷±ÛÆ8†ã“ğ1J$71d576a7-892a-44f0-83f0-ad97dbdeba88

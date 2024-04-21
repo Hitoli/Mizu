@@ -84,12 +84,12 @@ fun OnboardingNavHostingScreen(
                     if (onboardingViewModel.onActiveValue != Int.MIN_VALUE) {
                         onboardingViewModel.calculateWaterIntake()
                     }
-//                getNavigate()
                     navController.navigate(OnboardingNavScreens.LoadingScreen.route)
                 })
         }
         composable(route = OnboardingNavScreens.WaterIntakeResultScreen.route) {
             OnBoardingWaterIntakeResultScreen(getNavigate = {
+                onboardingViewModel.updateUserSettings()
                 getNavigate()
             }, onWaterIntake = (onboardingViewModel.TWI).toString(), onName = onboardingViewModel.onNameValue)
         }

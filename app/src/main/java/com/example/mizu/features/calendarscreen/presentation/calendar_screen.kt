@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -56,9 +57,10 @@ import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.utils.Todos
 
 @Composable
-fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos: List<Todos>) {
+fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos: List<Todos>,onPad:PaddingValues) {
 
-    Box(modifier = modifier) {
+    Box(modifier = modifier.padding(
+        top = onPad.calculateTopPadding()/8)) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.align(
             Alignment.Center)) {
             Text(
@@ -270,6 +272,6 @@ fun PreviewCalendarScreen() {
                     end = Offset(0f, Float.POSITIVE_INFINITY),
                     colors = listOf(backgroundColor1, backgroundColor2)
                 )
-            ), onMonth = "Feb", todosList
+            ), onMonth = "Feb", todosList, onPad = PaddingValues(40.dp)
     )
 }

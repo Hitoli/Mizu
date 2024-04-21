@@ -27,12 +27,13 @@ class OnboardingRepository(context: Context) {
     )
 
     var streakScore:DataStore<StreakClass> = context.streakStore
-     suspend fun updateStreak(streak:Int,streakBroken:Int,streakDay:String){
+     suspend fun updateStreak(streak:Int,streakBroken:Int,streakDay:String,waterTime:String){
         streakScore.updateData {
             it.copy(
                 streak =streak,
                 streakBroken = streakBroken,
-                streakDay = streakDay
+                streakDay = streakDay,
+                waterTime = waterTime
             )
         }
          println("streakScore Onboarding updateStreak ${streak}")
@@ -58,13 +59,14 @@ class OnboardingRepository(context: Context) {
     fun getStreakMonth():Flow<StreakMonthClass> = streakMonthScore.data
 
     var userSettingsStore:DataStore<UserSettings> = context.userSettingsStore
-    suspend fun updateUserSettingsStore(userHeight:Int,userWaterIntake:Int,userName:String,userWeight:Int){
+    suspend fun updateUserSettingsStore(userHeight:Int,userWaterIntake:Int,userName:String,userWeight:Int,onBoardingCompleted:Boolean){
         userSettingsStore.updateData {
            it.copy(
                userHeight = userHeight,
                userName = userName,
                userWaterIntake = userWaterIntake,
-               userWeight = userWeight
+               userWeight = userWeight,
+               registrationCompleted = onBoardingCompleted
            )
         }
         println("streakScore Onboarding updateUserSettingsStore ${userWaterIntake}")

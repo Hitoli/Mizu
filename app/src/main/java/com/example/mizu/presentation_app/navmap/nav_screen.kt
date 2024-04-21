@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mizu.features.homescreen.presentation.HomeScreen
 import com.example.mizu.features.homescreen.view_model.HomeViewModel
 import com.example.mizu.features.onboarding.view_model.OnboardingViewModel
+import com.example.mizu.features.splash_screen.SplashScreen
 import com.example.mizu.utils.NavScreens
 import org.koin.androidx.compose.koinViewModel
 
@@ -23,9 +24,10 @@ fun NavScreen(
 
     var navController = rememberNavController()
 
+
     NavHost(
         navController = navController,
-        startDestination = NavScreens.OnboardingNavHostingScreen.route
+        startDestination = OnboardingViewModel.onBoardingScreensRoutes
     ) {
         composable(route = NavScreens.BottomNavHostingScreen.route) {
             BottomBarHostingScreen(
@@ -44,7 +46,7 @@ fun NavScreen(
                 },
                 getAddWater = {
 
-                }, onWaterMeterResourceAmount =homeViewModel.waterPercent, onProgress = homeViewModel.onProgress, onStreak =OnboardingViewModel._streak.streak.toString(), getStreak = {}, onTime = homeViewModel.onTime, getGreeting = {
+                }, onWaterMeterResourceAmount =homeViewModel.waterPercent, onProgress = homeViewModel.onProgress, onStreak =homeViewModel._streak.streak.toString(), getStreak = {}, onTime = homeViewModel.onTime, getGreeting = {
                     homeViewModel.getGreeting();
                 })
         }
@@ -56,6 +58,9 @@ fun NavScreen(
                     }
                 }
             }, onboardingViewModel = OnboardingViewModel)
+        }
+        composable(route=NavScreens.SplashNavHostingScreen.route){
+            SplashScreen()
         }
     }
 
