@@ -10,8 +10,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.mizu.model.OnboardingRepository
 import com.example.mizu.utils.home_screen_utils.StreakClass
 import com.example.mizu.utils.home_screen_utils.StreakMonthClass
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 import java.util.Calendar
 
@@ -80,6 +84,20 @@ class HomeViewModel(private val onboardingRepo:OnboardingRepository):ViewModel()
             else -> "Good Night"
         }
     }
+    private fun observeTime() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val timeFlow = createTimeFlow()
+
+            timeFlow.collect { currentTime ->
+                // Check if the minute of the current time matches a specific water time (e.g., 30 minutes)
+                if(currentTime.minute != waterTime){
+                    canAddWater = true
+                }else{
+                    canAddWater = false
+                }
+            }
+        }
+    }
     fun fillWaterUpdate(waterUpdate:Int){
 
         val calendar = Calendar.getInstance()
@@ -89,9 +107,10 @@ class HomeViewModel(private val onboardingRepo:OnboardingRepository):ViewModel()
         val timeOfYear = calendar.get(Calendar.YEAR)
         val date: LocalDate = LocalDate.of(timeOfYear, timeOfMonth + 1, timeOfDay)
 
+
         Log.e("WATER PERCENT" ,waterPercent.toString());
         if (waterPercent<=100 && canAddWater){
-            waterTime = currentTime.hour
+            waterTime = currentTime.minute
 
             usedWaterAmount += waterUpdate
             if(usedWaterAmount*100/totalWaterAmount<=100){
@@ -106,12 +125,7 @@ class HomeViewModel(private val onboardingRepo:OnboardingRepository):ViewModel()
                 streakDay = date.toString()
             }
 
-            if(currentTime.hour-2 == waterTime){
 
-                canAddWater = true
-            }else{
-                canAddWater = false
-            }
             viewModelScope.launch {
                 calculateStreakScore()
                 calculateStreakMonthScore()
@@ -120,12 +134,14 @@ class HomeViewModel(private val onboardingRepo:OnboardingRepository):ViewModel()
             println("streakScore Onboarding waterTime ${waterTime}")
             println("streakScore Onboarding currentTime hour ${currentTime.hour}")
             println("streakScore Onboarding streakDay ${streakDay}")
-
-
-
-
-
         }
+        if(currentTime.minute != waterTime){
+            canAddWater = true
+        }else{
+            canAddWater = false
+        }
+
+
 
         waterStreak()
 
@@ -170,6 +186,14 @@ class HomeViewModel(private val onboardingRepo:OnboardingRepository):ViewModel()
         }
     }
 
+    private fun createTimeFlow() = flow {
+        while (true) {
+            val currentTime = LocalDateTime.now()
+            emit(currentTime)
+            delay(1000) // Emit the current time every second
+        Log.e("Water Time",currentTime.hour.toString())
+        }
+    }
 
 
 }

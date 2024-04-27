@@ -1,5 +1,7 @@
 
-vkotlin:S6518J",Replace function call with indexed accessor.(˜ÀÑµüÿÿÿÿ8†ã“ğ1J$60b09685-c8e7-4639-b069-f662388180d7
-vkotlin:S6518W",Replace function call with indexed accessor.(Ğƒ‰üÿÿÿÿ8†ã“ğ1J$bbeabc19-3520-421e-b618-0fef3ad92d19
-vkotlin:S6518X",Replace function call with indexed accessor.(·¹ıÔûÿÿÿÿ8†ã“ğ1J$e9cfb000-7b07-4909-8338-705a92609afa
-qkotlin:S6518Y",Replace function call with indexed accessor.(÷±ÛÆ8†ã“ğ1J$71d576a7-892a-44f0-83f0-ad97dbdeba88
+fkotlin:S6310X"Avoid hardcoded dispatchers.(Óé‹øÿÿÿÿ8ã¢Í‰ñ1J$00470482-f840-4769-8bea-06f542e79db0
+ukotlin:S1144W"0Remove this unused private "observeTime" method.(µµáê8ç¢Í‰ñ1J$2d822fe1-2699-44e8-b8ba-262f8299748d
+vkotlin:S6518N",Replace function call with indexed accessor.(˜ÀÑµüÿÿÿÿ8ş¢Í‰ñ1J$2121190c-0696-407a-a1bd-429322992d59
+vkotlin:S6518i",Replace function call with indexed accessor.(Ğƒ‰üÿÿÿÿ8ÿ¢Í‰ñ1J$44a9f8a7-1c03-455d-bb81-13f61c3ebc36
+vkotlin:S6518j",Replace function call with indexed accessor.(·¹ıÔûÿÿÿÿ8ÿ¢Í‰ñ1J$6ab3f65c-d9fa-4b2d-919d-2d31d0f96279
+qkotlin:S6518k",Replace function call with indexed accessor.(÷±ÛÆ8ÿ¢Í‰ñ1J$9d301109-378f-4f2c-b542-b7279cc4cbf9

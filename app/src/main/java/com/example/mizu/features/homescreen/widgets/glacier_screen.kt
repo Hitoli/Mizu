@@ -8,12 +8,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,7 +36,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -44,6 +48,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.times
+import com.example.mizu.R
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
@@ -65,16 +70,42 @@ fun GlacierScreen(
         label = "water",
         animationSpec = tween(durationMillis = 1000)
     )
-    Box(modifier = modifier.size(screenWidth,screenHeight)) {
+    Column(modifier = modifier.size(screenWidth,screenHeight), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+        Row(modifier= Modifier
+            .fillMaxWidth()
+            .padding(start = 10.dp, end = 10.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
+            Icon(
+                imageVector = ImageVector.vectorResource(R.drawable.water_svg),
+                contentDescription = "weekly summary",
+                tint = minorColor
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = "Target : 2500 ml",
+                modifier = Modifier,
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    fontFamily = fontFamilyLight,
+                    fontWeight = FontWeight(400),
+                    color = minorColor,
+
+                    textAlign = TextAlign.Center,
+                )
+            )
+
+        }
+        Spacer(modifier = Modifier.height(12.dp))
 
             Glacier(
                 screenHeight = screenHeight,
                 screenWidth =screenWidth,
                 waterPercentageFilled = waterPercentageFilled, modifier = Modifier
                     .aspectRatio(0.8f)
-                    .align(Alignment.TopCenter)
+
 
             )
+
+
 
 
 

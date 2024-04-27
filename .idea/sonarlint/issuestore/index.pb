@@ -79,3 +79,7 @@ Japp/src/main/java/com/example/mizu/utils/home_screen_utils/streak_class.kt,c\c
 Kapp/src/main/java/com/example/mizu/utils/home_screen_utils/user_settings.kt,1\4\141a4078c6faadbc320902fb700b4f94bc6142fd
 x
 Happ/src/main/java/com/example/mizu/utils/onboarding_utils/nav_screens.kt,7\1\71a4b9c37f172ccd0c0db5b02da6f331822eb84d
+}
+Mapp/src/main/java/com/example/mizu/features/homescreen/widgets/week_screen.kt,d\5\d5dc479e39ebcc128200d41bc1576a29cc63074b
+
+Oapp/src/main/java/com/example/mizu/features/homescreen/widgets/intake_screen.kt,a\3\a3342d2362e29cc65056f696882abb045b216909

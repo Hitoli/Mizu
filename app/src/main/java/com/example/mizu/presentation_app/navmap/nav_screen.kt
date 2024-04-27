@@ -48,7 +48,8 @@ fun NavScreen(
 
                 }, onWaterMeterResourceAmount =homeViewModel.waterPercent, onProgress = homeViewModel.onProgress, onStreak =homeViewModel._streak.streak.toString(), getStreak = {}, onTime = homeViewModel.onTime, getGreeting = {
                     homeViewModel.getGreeting();
-                })
+                }, items = listOf(50,100,200,300,400,500)
+            )
         }
         composable(route = NavScreens.OnboardingNavHostingScreen.route) {
             OnboardingNavHostingScreen(getNavigate = {

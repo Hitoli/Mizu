@@ -2,7 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="PreviewBottomBarHostingScreen">
+      <entry key="PreviewHomeScreen">
         <State />
       </entry>
       <entry key="PreviewOnBoardingScreen">
@@ -12,6 +12,9 @@
         <State />
       </entry>
       <entry key="PreviewWaterProgressScreen">
+        <State />
+      </entry>
+      <entry key="PreviewWeekScreen">
         <State />
       </entry>
       <entry key="app">

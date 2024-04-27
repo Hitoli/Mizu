@@ -49,18 +49,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipPath
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -73,9 +76,11 @@ import androidx.compose.ui.unit.times
 import androidx.compose.ui.window.Dialog
 import com.example.mizu.R
 import com.example.mizu.features.homescreen.widgets.GlacierScreen
+import com.example.mizu.features.homescreen.widgets.IntakeProgressScreen
 import com.example.mizu.features.homescreen.widgets.RewardScreen
 import com.example.mizu.features.homescreen.widgets.StreakScreen
 import com.example.mizu.features.homescreen.widgets.WaterProgressScreen
+import com.example.mizu.features.homescreen.widgets.WeekScreen
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.blackShadeColor
@@ -112,11 +117,14 @@ fun HomeScreen(
     val lazyListState = rememberLazyListState()
     val showBottombar by remember{
         derivedStateOf{
-            lazyListState.isScrollInProgress
+            lazyListState.firstVisibleItemIndex !=0
         }
     }
     var showStreakCollector by remember{
         mutableStateOf(false)
+    }
+    var bottombarSpacer by remember {
+        mutableStateOf(onPad.calculateBottomPadding())
     }
 
     LaunchedEffect(showBottombar){
@@ -182,8 +190,7 @@ fun HomeScreen(
 
 
                     }
-                    StreakScreen(Streak = onStreak, username = onUserName, getStreak = {
-
+                    StreakScreen(Streak = onStreak, username = "Streak", getStreak = {
                         showStreakCollector = true
 
                         /*getStreak()*/
@@ -200,162 +207,118 @@ fun HomeScreen(
                     screenHeight = screenHeight.value * 0.6.dp
                 )
 
+
+            }
+
+            item{
+                Spacer(modifier = Modifier.size(bottombarSpacer))
+                Row(modifier= Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp, end = 10.dp),verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(R.drawable.calendarmizu),
+                        contentDescription = "weekly summary",
+                        tint = minorColor
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "Your Weekly Summary",
+                        modifier = Modifier
+                            ,
+                        style = TextStyle(
+                            fontSize = 24.sp,
+                            fontFamily = fontFamilyLight,
+                            fontWeight = FontWeight(400),
+                            color = minorColor,
+
+                            textAlign = TextAlign.Start,
+                        )
+                    )
+
+                }
+                Spacer(modifier = Modifier.size(8.dp))
+                WeekScreen(modifier = Modifier
+                    .padding(top = 16.dp, bottom = 16.dp, start = 10.dp, end = 10.dp)
+                    .fillMaxWidth()
+                    .height(100.dp)
+                    .clip(
+                        shape = RoundedCornerShape(
+                            20.dp
+                        )
+                    )
+                    .background(color = minorColor, shape = RoundedCornerShape(20.dp)),weekStreak = listOf("M","Tu","W","Th","F","S","Su"))
+
+
             }
             item{
-
-            }
-
-//            item {
-//                Spacer(modifier = Modifier.height(20.dp))
-//                Row(
-//                    modifier = Modifier
-//                        .fillMaxWidth(),
-//                    verticalAlignment = Alignment.CenterVertically,
-//                    horizontalArrangement = Arrangement.Center
-//                ) {
-//                    Button(
-//                        onClick = {
-//                            getAddWater()
-//                        },
-//                        modifier = Modifier
-//                            .width(screenWidth.value * 0.35.dp)
-//                            .height(screenHeight.value * 0.06.dp),
-//                        colors = ButtonDefaults.buttonColors(minorColor),
-//                        shape = RoundedCornerShape(10.dp)
-//                    ) {
-//                        Text(
-//                            text = "Add",
-//                            style = TextStyle(
-//                                fontSize = 20.sp,
-//                                fontFamily = fontFamilyLight,
-//                                fontWeight = FontWeight(700),
-//                                color = backgroundColor1,
-//
-//                                textAlign = TextAlign.Center,
-//                            )
-//                        )
-//                    }
-//                    Spacer(modifier = Modifier.width(16.dp))
-//                    Button(
-//                        onClick = {
-//                            getWaterTrackingResourceAmount(250)
-//
-//                            Log.e("USED Button click", "user water button");
-//                        },
-//                        modifier = Modifier
-//                            .width(screenWidth.value * 0.35.dp)
-//                            .height(screenHeight.value * 0.06.dp),
-//                        colors = ButtonDefaults.buttonColors(minorColor),
-//                        shape = RoundedCornerShape(10.dp)
-//                    ) {
-//                        Text(
-//                            text = "250 ml",
-//                            style = TextStyle(
-//                                fontSize = 20.sp,
-//                                fontFamily = fontFamilyLight,
-//                                fontWeight = FontWeight(700),
-//                                color = backgroundColor1,
-//
-//                                textAlign = TextAlign.Center,
-//                            )
-//                        )
-//                    }
-//                }
-//            }
-
-            item {
-                Text(
-                    text = "250 ml",
-                    style = TextStyle(
-                        fontSize = 20.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(700),
-                        color = backgroundColor1,
-
-                        textAlign = TextAlign.Center,
+                Row(modifier= Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp, end = 10.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(R.drawable.water_svg),
+                        contentDescription = "weekly summary",
+                        tint = minorColor
                     )
-                )
-            }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "Your Water Summary",
+                        modifier = Modifier,
+                        style = TextStyle(
+                            fontSize = 24.sp,
+                            fontFamily = fontFamilyLight,
+                            fontWeight = FontWeight(400),
+                            color = minorColor,
 
-            item {
-                Text(
-                    text = "250 ml",
-                    style = TextStyle(
-                        fontSize = 20.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(700),
-                        color = backgroundColor1,
-
-                        textAlign = TextAlign.Center,
+                            textAlign = TextAlign.Start,
+                        )
                     )
-                )
-            }
-            item {
-                Text(
-                    text = "250 ml",
-                    style = TextStyle(
-                        fontSize = 20.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(700),
-                        color = backgroundColor1,
 
-                        textAlign = TextAlign.Center,
+                }
+                Spacer(modifier = Modifier.size(16.dp))
+                Row(modifier=Modifier.padding(start = 10.dp, end = 10.dp), horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.Top) {
+                    IntakeProgressScreen(
+                        modifier = Modifier
+                            .weight(0.5f)
+                            .background(
+                                waterColor, shape = RoundedCornerShape(16.dp)
+                            ), onAvgWaterIntake = "Avg. Water Intake", onAvgWaterPercent = "1600"
                     )
-                )
-            }
-            item {
-                Text(
-                    text = "250 ml",
-                    style = TextStyle(
-                        fontSize = 20.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(700),
-                        color = backgroundColor1,
+                    Spacer(modifier = Modifier.size(8.dp))
 
-                        textAlign = TextAlign.Center,
-                    )
-                )
-            }
-            item {
-                Text(
-                    text = "250 ml",
-                    style = TextStyle(
-                        fontSize = 20.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(700),
-                        color = backgroundColor1,
+                    IntakeProgressScreen(
+                        modifier = Modifier
+                            .weight(0.5f)
 
-                        textAlign = TextAlign.Center,
+                            .background(
+                                waterColor, shape = RoundedCornerShape(16.dp)
+                            ), onAvgWaterIntake = "Completion", onAvgWaterPercent = "70%"
                     )
-                )
+                }
             }
-            item {
-                Text(
-                    text = "250 ml",
-                    style = TextStyle(
-                        fontSize = 20.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(700),
-                        color = backgroundColor1,
+            item{
+                Spacer(modifier = Modifier.size(8.dp))
+                Row(modifier=Modifier.padding(start = 10.dp, end = 10.dp), horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.Top) {
+                    IntakeProgressScreen(
+                        modifier = Modifier
+                            .weight(0.5f)
+                            .background(
+                                waterColor, shape = RoundedCornerShape(16.dp)
+                            ), onAvgWaterIntake = "BMI", onAvgWaterPercent = "25"
+                    )
+                    Spacer(modifier = Modifier.size(8.dp))
 
-                        textAlign = TextAlign.Center,
-                    )
-                )
-            }
-            item {
-                Text(
-                    text = "250 ml",
-                    style = TextStyle(
-                        fontSize = 20.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(700),
-                        color = backgroundColor1,
+                    IntakeProgressScreen(
+                        modifier = Modifier
+                            .weight(0.5f)
 
-                        textAlign = TextAlign.Center,
+                            .background(
+                                waterColor, shape = RoundedCornerShape(16.dp)
+                            ), onAvgWaterIntake = "Weight", onAvgWaterPercent = "75"
                     )
-                )
+                }
+                Spacer(modifier = Modifier.size(16.dp))
             }
-            Log.d("Scroll Index", showBottombar.toString())
+
 
 
 
