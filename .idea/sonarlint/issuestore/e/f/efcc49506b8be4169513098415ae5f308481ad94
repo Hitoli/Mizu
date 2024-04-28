@@ -1,29 +1,33 @@
 
-nkotlin:S1172±"(Remove these unused function parameters.(´œôß8óû´ƒò1J$58878d70-6f24-4d93-8e9b-d019d398ad8b
-ƒkotlin:S1172‘"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8ôû´ƒò1J$720fe2fd-47bf-4cdd-bcff-58a526bb746f
-dkotlin:S125Æ"Remove this commented out code.(ÂÖ‚Ğ8ùû´ƒò1J$cfdd2ddd-62f7-49f0-985b-f41096ef1aa8
-Œkotlin:S107e"HThis function has 17 parameters, which is greater than the 7 authorized.(ôØ±Ú8„ü´ƒò1J$88494efe-545e-4ddc-a030-e0c9c19b125b
-}kotlin:S1135á"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8Šü´ƒò1J$8be10a26-2454-4d2a-a3bf-24bbf9876c71
-}kotlin:S1135è"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8šü´ƒò1J$d4d39d04-46a6-420e-b761-1122e327f852
-ukotlin:S1481€"*Remove this unused "onAdd" local variable.(¬¯À¦şÿÿÿÿ8ü´ƒò1J$fb903e92-6577-47e2-a111-3db330bb86bf
-dkotlin:S1128	"Remove this unused import.(¨íıôüÿÿÿÿ8¢ü´ƒò1J$1ac7a6e8-df44-4de7-b5e5-0d8be13114a7
+nkotlin:S1172À"(Remove these unused function parameters.(´œôß8ªµ¹™ò1J$fd2d407d-6219-43b7-8ed0-4ad9357265ad
+ƒkotlin:S1172 "8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8«µ¹™ò1J$c6946c05-cb7d-4fb8-9d63-d2f2b7708c54
+ikotlin:S125«"Remove this commented out code.(à†çúÿÿÿÿ8²µ¹™ò1J$3916f61c-c4ab-4003-9bf3-d24e02a572d9
+dkotlin:S125‚"Remove this commented out code.(ıà¼8³µ¹™ò1J$9c59a401-8bae-4a98-a287-8b255d6e6a75
+Œkotlin:S107n"HThis function has 17 parameters, which is greater than the 7 authorized.(ôØ±Ú8¾µ¹™ò1J$5a40647a-fee9-427b-bb42-d9b77fd2575a
+xkotlin:S1135¤"2Complete the task associated to this TODO comment.(º©¦Â8Ãµ¹™ò1J$7762d07d-4d5c-4015-8bab-41c27770b9b4
+}kotlin:S1135ğ"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8Ãµ¹™ò1J$8fe13fba-0a6d-4187-b9e1-04d9773f9c57
+}kotlin:S1135÷"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8ƒß×™ò1J$253994e3-2ff4-4512-b3b0-5b02da4a72dc
+dkotlin:S1128	"Remove this unused import.(¨íıôüÿÿÿÿ8Êµ¹™ò1J$4a2d8ccc-10dd-48cd-9974-931de75489da
 _kotlin:S1128
-"Remove this unused import.(Íÿ¦ñ8¢ü´ƒò1J$efb23df1-94c6-4972-9a58-a2efce140b56
-dkotlin:S1128"Remove this unused import.(ˆöŸ¤ûÿÿÿÿ8¢ü´ƒò1J$1367b15c-d8b8-435d-a93d-a5b62dc2d9f6
-dkotlin:S1128"Remove this unused import.(–Ÿ˜Ùûÿÿÿÿ8¢ü´ƒò1J$9ff1e1ff-328a-49cc-a132-9a06e9f1e82d
-_kotlin:S1128"Remove this unused import.(¤¯†8¢ü´ƒò1J$2c6b5acc-a67d-40c3-ad59-d505d03648c9
-_kotlin:S1128"Remove this unused import.(•† ‚8¢ü´ƒò1J$c5a24cff-5709-4d1a-b3f2-64873a136985
-dkotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8¢ü´ƒò1J$7981a1b1-1994-477b-a7b2-bc18049d2a4f
-_kotlin:S1128 "Remove this unused import.(êåê±8¢ü´ƒò1J$a4840a73-bb73-425e-b120-21c62262f7ac
-dkotlin:S1128""Remove this unused import.(¢Ê†½üÿÿÿÿ8¢ü´ƒò1J$05923c75-3fc1-4a13-8f4d-adc3189e8656
-_kotlin:S1128$"Remove this unused import.(ñˆĞë8¢ü´ƒò1J$a4e031e8-6e08-45a5-8f36-0dc2a8fdd02b
-_kotlin:S1128)"Remove this unused import.(Ñ“º8¢ü´ƒò1J$79a9a625-65fd-425a-9e72-8b124fdd9687
-_kotlin:S1128,"Remove this unused import.(„öÄá8¢ü´ƒò1J$c90747f3-3acf-4001-885a-7ecc771a917c
-dkotlin:S1128."Remove this unused import.(³úÙëşÿÿÿÿ8¢ü´ƒò1J$855e12c8-1594-46ce-8009-8d2d796865c9
-dkotlin:S11280"Remove this unused import.(¨Ò›ºşÿÿÿÿ8¢ü´ƒò1J$1f3b67bb-8304-4a81-9c73-507004931489
-dkotlin:S11283"Remove this unused import.(¤–‡›ıÿÿÿÿ8¢ü´ƒò1J$ff9ecc3d-ce73-4a39-ad0b-fe4a2991bd2b
-_kotlin:S11287"Remove this unused import.(‘è÷×8¢ü´ƒò1J$50da9e9a-0a33-4d5b-836a-d6c3c1146f78
-dkotlin:S1128B"Remove this unused import.(ñïŞûÿÿÿÿ8¢ü´ƒò1J$f2f65e67-4067-49cb-90e8-bd99943d9a40
-dkotlin:S1128G"Remove this unused import.(®‘¿–ûÿÿÿÿ8¢ü´ƒò1J$d7a690ab-7d9d-4056-a1a4-6dee9d7d5789
-dkotlin:S1128V"Remove this unused import.(°‚ËØıÿÿÿÿ8¢ü´ƒò1J$d122848b-e16f-4c3f-9b90-2e47018ee1de
- kotlin:S1192z"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(»òŸÌ8¤ü´ƒò1J$3c62bfa6-e238-4939-995e-de27e708e752
+"Remove this unused import.(Íÿ¦ñ8Êµ¹™ò1J$be374d41-0ee0-46b9-8bf2-78195e88f3c1
+dkotlin:S1128"Remove this unused import.(ˆöŸ¤ûÿÿÿÿ8Êµ¹™ò1J$8f9895db-202b-407d-b6cf-9a6d089d2832
+dkotlin:S1128"Remove this unused import.(–Ÿ˜Ùûÿÿÿÿ8Êµ¹™ò1J$8f1c0b48-07bd-4592-96a1-fca088aee8f6
+_kotlin:S1128"Remove this unused import.(¤¯†8Ëµ¹™ò1J$6240d460-726f-4f7a-b926-2eab9f267845
+_kotlin:S1128"Remove this unused import.(•† ‚8Ëµ¹™ò1J$fb58eae8-a00e-4821-92dd-9facd2979834
+dkotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8Ëµ¹™ò1J$fcae6754-6c07-461f-a29c-2941f0d75f65
+dkotlin:S1128""Remove this unused import.(®•±âùÿÿÿÿ8Ëµ¹™ò1J$cb7e5679-ea0d-4db9-886e-71533455e123
+_kotlin:S1128$"Remove this unused import.(êåê±8Ëµ¹™ò1J$27fe63f4-1e7a-426e-9a94-3d1d0cf102d1
+dkotlin:S1128&"Remove this unused import.(¢Ê†½üÿÿÿÿ8Ëµ¹™ò1J$520815e4-0b59-447b-b49a-1f30b6f3b625
+_kotlin:S1128("Remove this unused import.(ñˆĞë8Ëµ¹™ò1J$a0d9693d-5e22-42a8-b89b-c542a37f236d
+_kotlin:S1128."Remove this unused import.(Ñ“º8Ëµ¹™ò1J$8bbb8d86-2dd0-43f3-bfb9-4d91ced0f7ba
+_kotlin:S11281"Remove this unused import.(„öÄá8Ëµ¹™ò1J$f4ba889a-acf2-4525-8b27-c3f96127452e
+dkotlin:S11284"Remove this unused import.(³úÙëşÿÿÿÿ8Ëµ¹™ò1J$ad426f44-33c9-47d6-97eb-97b60d57ba5f
+dkotlin:S11286"Remove this unused import.(¨Ò›ºşÿÿÿÿ8Ëµ¹™ò1J$10fa52d4-6813-4fde-a2e8-96892f2780fe
+dkotlin:S11289"Remove this unused import.(¤–‡›ıÿÿÿÿ8Ëµ¹™ò1J$e28236f4-e138-4c51-b725-8c523de14c97
+_kotlin:S1128="Remove this unused import.(‘è÷×8Ëµ¹™ò1J$e2d6d4e7-4805-44e1-a9e5-0409d90c7923
+dkotlin:S1128F"Remove this unused import.(—ÒÛÿûÿÿÿÿ8Ëµ¹™ò1J$4c55fc27-959a-4452-9f5a-63c7b871a0a7
+dkotlin:S1128J"Remove this unused import.(ñïŞûÿÿÿÿ8Ëµ¹™ò1J$5c139d88-973d-4ece-8373-e1db9822311b
+dkotlin:S1128O"Remove this unused import.(®‘¿–ûÿÿÿÿ8Ëµ¹™ò1J$5d472735-6c2c-416e-acdd-007d5b6cc364
+dkotlin:S1128^"Remove this unused import.(°‚ËØıÿÿÿÿ8Ëµ¹™ò1J$cbe0aaf5-8dc5-4e78-bb84-fb74094c38aa
+¡kotlin:S1192ƒ"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(»òŸÌ8Íµ¹™ò1J$6e95d02b-2f18-4077-a18c-63e744b46bbe
+—kotlin:S3776Í"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(ø„©b8Ôµ¹™ò1J$87cffe14-2af6-42a5-9442-6e2dbd45e439

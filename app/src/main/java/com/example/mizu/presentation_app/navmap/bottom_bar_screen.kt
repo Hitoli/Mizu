@@ -17,8 +17,10 @@ import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,6 +29,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
@@ -34,6 +38,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FabPosition
@@ -42,6 +47,7 @@ import androidx.compose.material3.FloatingActionButtonElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeFloatingActionButton
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
@@ -53,6 +59,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.contentColorFor
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -60,6 +67,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -97,6 +105,7 @@ import com.example.mizu.utils.BottomNavScreens
 import com.example.mizu.utils.Todos
 import kotlinx.coroutines.delay
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomBarHostingScreen(
     modifier: Modifier = Modifier,
@@ -113,7 +122,7 @@ fun BottomBarHostingScreen(
     getStreak: () -> Unit, onProgress: String,
     onTime: String,
     getGreeting: () -> Unit,
-    isEndless: Boolean = false,
+    isEndless: Boolean = true,
     items: List<Int>,
 
 
@@ -125,7 +134,10 @@ fun BottomBarHostingScreen(
 
 
     )
-    var onAdd by remember{
+    var onAdd by remember {
+        mutableStateOf(false)
+    }
+    var onWaterAddSheet by remember {
         mutableStateOf(false)
     }
     var onHome by remember {
@@ -134,6 +146,19 @@ fun BottomBarHostingScreen(
     var onTitleChage by remember {
         mutableStateOf(false)
     }
+    var selected by remember {
+        mutableIntStateOf(0)
+    }
+    var showBottomBar by remember {
+        mutableStateOf(false)
+    }
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true);
+    val navItems = listOf<BottomNavScreens>(
+        BottomNavScreens.HomeScreen,
+        BottomNavScreens.CalendarScreen
+    )
+    val listState = rememberLazyListState()
+
     LaunchedEffect(Unit) {
         getGreeting()
         delay(3000)
@@ -141,20 +166,29 @@ fun BottomBarHostingScreen(
         delay(3000)
         onTitleChage = false
 
+
     }
-    var selected by remember{
-        mutableIntStateOf(0)
-    }
-    var showBottomBar by remember {
-        mutableStateOf(false)
-    }
-    val navItems = listOf<BottomNavScreens>(
-        BottomNavScreens.HomeScreen,
-        BottomNavScreens.CalendarScreen
-    )
-    val listState = rememberLazyListState(
-        if (isEndless) Int.MAX_VALUE / 2 else 0
-    )
+//    LaunchedEffect(key1 = listState) {
+//        snapshotFlow{
+//            listState.firstVisibleItemIndex
+//        }.collect{
+//            if (it>items.size-1){
+//                println("Selected Index => Greater than Item list")
+//                selected = (it%(items.size-1))
+//            }else{
+//                println("Selected Index => Smaller than Item list")
+//                selected = it+1
+//                if(selected==6){
+//                    selected =0
+//                }
+//
+//            }
+//            println("Selected Index => ${selected}")
+//
+//        }
+//
+//
+//    }
 
 
     Scaffold(
@@ -184,7 +218,9 @@ fun BottomBarHostingScreen(
                 exit = fadeOut()
             ) {
                 ExtendedFloatingActionButton(
-                    onClick = {},
+                    onClick = {
+                        onWaterAddSheet = !onWaterAddSheet
+                    },
                     containerColor = Color.Transparent,
                     elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(
                         defaultElevation = 0.dp,
@@ -195,58 +231,32 @@ fun BottomBarHostingScreen(
                     contentColor = Color.White,
                     modifier = Modifier.background(Color.Transparent),
                 ) {
-//                    AnimatedVisibility(visible = !onAdd, enter = fadeIn(), exit = fadeOut()) {
-//                        Box(modifier = Modifier
-//                            .background(color = minorColor, shape = RoundedCornerShape(16.dp))
-//                            .size(width = 100.dp, height = 60.dp)){
-//                            Text(
-//                                text = "Add", modifier = Modifier
-//                                    .align(
-//                                        Alignment.Center
-//                                    )
-//                                    .clickable {
-//                                        onAdd = !onAdd
-//                                    }
-//                            )
-//                        }
-//                    }
+                    AnimatedVisibility(visible = !onAdd, enter = fadeIn(), exit = fadeOut()) {
+                        Box(
+                            modifier = Modifier
+                                .background(color = minorColor, shape = RoundedCornerShape(16.dp))
+                                .size(width = 100.dp, height = 60.dp)
+                        ) {
+                            Text(
+                                text = "Add", modifier = Modifier
+                                    .align(
+                                        Alignment.Center
+                                    ),
+                                style = TextStyle(
+                                    fontSize = 18.sp,
+                                    fontFamily = fontFamilyLight,
+                                    fontWeight = FontWeight(400),
+                                    color = backgroundColor1,
+                                    textAlign = TextAlign.Center,
+                                )
+
+                            )
+                        }
+                    }
 
 
 //                    AnimatedVisibility(visible = onAdd, enter = fadeIn(), exit = fadeOut()) {
-                        LazyRow(
-                            state = listState,
-                            modifier = Modifier.background(Color.Transparent)
-                        ) {
-                            items(
-                                count = if (isEndless) Int.MAX_VALUE else items.size,
-                                itemContent = {
-                                    val index = it % items.size
-                                    Box(
-                                        modifier = Modifier
-                                            .size(60.dp)
-                                            .background(
-                                                if (selected == index) minorColor else minorColor.copy(
-                                                    alpha = 0.5f
-                                                ), shape = RoundedCornerShape(50.dp)
-                                            )
-                                            .padding(16.dp)
-                                    ) {
-                                        Text(
-                                            text = items[index].toString(), modifier = Modifier
-                                                .align(
-                                                    Alignment.Center
-                                                )
-                                                .clickable {
-                                                    getWaterTrackingResourceAmount(items[index])
-                                                    println("Target Water ${items[index]}")
-                                                    selected = index
-                                                }
-                                        )
-                                    }
-                                    Spacer(modifier = Modifier.width(100.dp))
-                                }
-                            )
-                        }
+//
 //                    }
 
 
@@ -255,7 +265,7 @@ fun BottomBarHostingScreen(
 
 
         },
-        floatingActionButtonPosition = FabPosition.Center,
+        floatingActionButtonPosition = FabPosition.End,
     ) {
         val padding = it
         NavHost(
@@ -294,6 +304,139 @@ fun BottomBarHostingScreen(
                         ), onPad = padding
                 )
             }
+        }
+    }
+    if (onWaterAddSheet) {
+        ModalBottomSheet(
+            containerColor = backgroundColor1,
+            sheetState = sheetState,
+            onDismissRequest = { onWaterAddSheet = !onWaterAddSheet }, modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.65f)
+                .padding(10.dp)
+        ) {
+            WaterCarouselSheet(
+                modifier = Modifier,
+                listState,
+                isEndless,
+                items,
+                selected,
+                getWaterTrackingResourceAmount,
+                getSelected = {
+                    selected = it
+                })
+        }
+    }
+}
+
+@Composable
+fun WaterCarouselSheet(
+    modifier: Modifier = Modifier,
+    listState: LazyListState,
+    isEndless: Boolean,
+    items: List<Int>,
+    selected: Int,
+    getWaterTrackingResourceAmount: (Int) -> Unit,
+    getSelected: (Int) -> Unit
+) {
+    Box(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.align(Alignment.Center)) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(backgroundColor2, shape = RoundedCornerShape(16.dp))
+                    .height(100.dp),
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Text(
+                    text = "Add Water: ", modifier = Modifier.weight(0.5f),
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(400),
+                        color = minorColor,
+                        textAlign = TextAlign.Center,
+                    )
+
+                )
+                Text(
+                    text = items[selected].toString(), modifier = Modifier.weight(0.5f),
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(400),
+                        color = minorColor,
+                        textAlign = TextAlign.Center,
+                    )
+
+                )
+            }
+            LazyColumn(
+                state = listState,
+                modifier = Modifier
+                    .background(Color.Transparent)
+                    .fillMaxWidth()
+                    .height(200.dp)
+
+            ) {
+                items(
+                    count = if (isEndless) Int.MAX_VALUE else items.size,
+                    itemContent = {
+                        val index = it % items.size
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp)
+                        ) {
+                            Text(
+                                text = items[index].toString(), modifier = Modifier
+                                    .align(
+                                        Alignment.Center
+                                    )
+                                    .clickable {
+                                        getSelected(index)
+                                        getWaterTrackingResourceAmount(items[index])
+
+                                        println("Target Water ${items[index]}")
+                                    },
+                                style = TextStyle(
+                                    fontSize = if (index == selected) 40.sp else 30.sp,
+                                    fontFamily = fontFamilyLight,
+                                    fontWeight = if (index == selected) FontWeight(500) else FontWeight(
+                                        400
+                                    ),
+                                    color = if (index == selected) minorColor else minorColor.copy(
+                                        alpha = 0.6f
+                                    ),
+                                    textAlign = TextAlign.Center,
+                                )
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(50.dp))
+                    }
+                )
+            }
+            Button(onClick = { /*TODO*/ }, modifier = Modifier
+                .background(
+                    waterColor,
+                    RoundedCornerShape(16.dp)
+                )
+                .fillMaxWidth()
+                .height(100.dp)) {
+                Text(
+                    text = "Done", modifier = Modifier,
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(400),
+                        color = backgroundColor1,
+                        textAlign = TextAlign.Center,
+                    )
+
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
         }
     }
 }
