@@ -20,10 +20,7 @@ fun NavScreen(
     OnboardingViewModel: OnboardingViewModel = koinViewModel(),
     homeViewModel: HomeViewModel = koinViewModel()
 ) {
-
-
     var navController = rememberNavController()
-
 
     NavHost(
         navController = navController,

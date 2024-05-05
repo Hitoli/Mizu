@@ -39,6 +39,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FabPosition
@@ -147,7 +148,7 @@ fun BottomBarHostingScreen(
         mutableStateOf(false)
     }
     var selected by remember {
-        mutableIntStateOf(0)
+        mutableIntStateOf(-1)
     }
     var showBottomBar by remember {
         mutableStateOf(false)
@@ -324,7 +325,11 @@ fun BottomBarHostingScreen(
                 getWaterTrackingResourceAmount,
                 getSelected = {
                     selected = it
+                },
+                getWaterAddSheet = {
+                    onWaterAddSheet = it
                 })
+
         }
     }
 }
@@ -337,7 +342,8 @@ fun WaterCarouselSheet(
     items: List<Int>,
     selected: Int,
     getWaterTrackingResourceAmount: (Int) -> Unit,
-    getSelected: (Int) -> Unit
+    getSelected: (Int) -> Unit,
+    getWaterAddSheet:(Boolean)->Unit
 ) {
     Box(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.align(Alignment.Center)) {
@@ -361,7 +367,7 @@ fun WaterCarouselSheet(
 
                 )
                 Text(
-                    text = items[selected].toString(), modifier = Modifier.weight(0.5f),
+                    text = if(selected!=-1)items[selected].toString() else "", modifier = Modifier.weight(0.5f),
                     style = TextStyle(
                         fontSize = 24.sp,
                         fontFamily = fontFamilyLight,
@@ -377,7 +383,7 @@ fun WaterCarouselSheet(
                 modifier = Modifier
                     .background(Color.Transparent)
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .height(250.dp)
 
             ) {
                 items(
@@ -396,8 +402,6 @@ fun WaterCarouselSheet(
                                     )
                                     .clickable {
                                         getSelected(index)
-                                        getWaterTrackingResourceAmount(items[index])
-
                                         println("Target Water ${items[index]}")
                                     },
                                 style = TextStyle(
@@ -413,24 +417,33 @@ fun WaterCarouselSheet(
                                 )
                             )
                         }
-                        Spacer(modifier = Modifier.height(50.dp))
+                        Spacer(modifier = Modifier.height(20.dp))
                     }
                 )
             }
-            Button(onClick = { /*TODO*/ }, modifier = Modifier
-                .background(
-                    waterColor,
-                    RoundedCornerShape(16.dp)
+            Spacer(modifier = Modifier.height(10.dp))
+            Button(
+                onClick = { getWaterTrackingResourceAmount(items[selected])
+                          getWaterAddSheet(false)
+                    println("Selected => ${items[selected]}")
+                         getSelected(-1)
+                          }
+                , modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp).padding(start=14.dp,end=14.dp), shape = RoundedCornerShape(16.dp), colors = ButtonColors(
+                    containerColor = waterColor,
+                    contentColor = minorColor,
+                    disabledContainerColor = waterColor,
+                    disabledContentColor = minorColor
                 )
-                .fillMaxWidth()
-                .height(100.dp)) {
+            ) {
                 Text(
                     text = "Done", modifier = Modifier,
                     style = TextStyle(
                         fontSize = 24.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(400),
-                        color = backgroundColor1,
+                        color = minorColor,
                         textAlign = TextAlign.Center,
                     )
 

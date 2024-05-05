@@ -83,3 +83,5 @@ Happ/src/main/java/com/example/mizu/utils/onboarding_utils/nav_screens.kt,7\1\7
 Mapp/src/main/java/com/example/mizu/features/homescreen/widgets/week_screen.kt,d\5\d5dc479e39ebcc128200d41bc1576a29cc63074b
 
 Oapp/src/main/java/com/example/mizu/features/homescreen/widgets/intake_screen.kt,a\3\a3342d2362e29cc65056f696882abb045b216909
+z
+Japp/src/main/java/com/example/mizu/utils/home_screen_utils/water_amount.kt,e\6\e6ba9a12b6907ac5af0610712bc71ff491818eed
