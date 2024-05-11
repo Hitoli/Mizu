@@ -1,8 +1,13 @@
 
-~kotlin:S1172p"4Use "_" instead of this unused lambda parameter "i".(ÎüŞ¥şÿÿÿÿ8ùƒ¨ğ1J$7e90c47b-48cf-49a2-bf31-d62e8ebe6e1a
-^kotlin:S1128"Remove this unused import.(†ùÎ&8‘„¨ğ1J$013f8c81-8f61-4313-9c6b-c2709cd9833a
-_kotlin:S1128"Remove this unused import.(™òæÜ8‘„¨ğ1J$a57ce389-5a36-490a-af46-b4e6ea25cf32
-_kotlin:S1128 "Remove this unused import.(Íıİô8‘„¨ğ1J$d4fb8ae2-f2c1-4022-8ca0-6e3b758f6929
-^kotlin:S1128*"Remove this unused import.(²ö’f8‘„¨ğ1J$e5b8d429-55d6-427e-8667-4aa823cb2d31
-_kotlin:S11280"Remove this unused import.(àÚ«ï8’„¨ğ1J$35ca7abc-60fb-487e-85cd-ebca9fc7d723
-¡kotlin:S1192„"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(»òŸÌ8“„¨ğ1J$0b0bae33-07c7-4f75-a1f1-0eeeb9b70c1b
+™kotlin:S6558z"URemove this it parameter declaration or give this lambda parameter a meaningful name.(Ïçé}8Ã•¡¸ö1J$b29d53a6-9730-4df3-bc96-06e2c2d89db2
+dkotlin:S1128"Remove this unused import.(ÊÒÅ­ùÿÿÿÿ8Ï•¡¸ö1J$3e4a26ba-9904-431a-9108-5cb8a147f10c
+_kotlin:S1128"Remove this unused import.(Œ¯ñ¯8Ï•¡¸ö1J$90479b0c-d44a-4e14-8788-cb2d75343c19
+_kotlin:S1128"Remove this unused import.(ñƒœ¦8Ï•¡¸ö1J$375fc8d5-9376-4aed-8e57-2d7d41345658
+^kotlin:S1128,"Remove this unused import.(²ö’f8Ï•¡¸ö1J$cc1f4c7b-72dd-4068-b5b1-a62b2f750077
+_kotlin:S11282"Remove this unused import.(àÚ«ï8Ï•¡¸ö1J$1e3aaf05-bc77-43c5-84a4-9c2922e1f21c
+_kotlin:S1128="Remove this unused import.(“µ…”8Ï•¡¸ö1J$1d73807f-71af-4f33-ac1a-b9e1b1b972cf
+¦kotlin:S1192¢"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(ØÒ¿şÿÿÿÿ8Ğ•¡¸ö1J$c4cb6d9d-d78f-4edc-a407-52cd953c5629
+ikotlin:S6524@"Make this collection immutable.(¨–„øÿÿÿÿ8Ô•¡¸ö1J$c821d14f-058a-4591-ab2a-a75bd7fcbd69
+rkotlin:S6518³",Replace function call with indexed accessor.(Ü°ÆÁ8Ú•¡¸ö1J$36f5f42a-83cf-4dcc-bdd0-7d4113fbb166
+rkotlin:S6518³",Replace function call with indexed accessor.(Ü°ÆÁ8Ú•¡¸ö1J$8fdeba43-7f3a-49b6-a2b1-117e916abe95
+pkotlin:S6518z",Replace function call with indexed accessor.(Ïçé}8Ú•¡¸ö1J$37714f11-6eb5-472e-9ce6-38f55264138f

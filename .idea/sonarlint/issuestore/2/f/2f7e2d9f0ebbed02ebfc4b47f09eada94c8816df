@@ -1,32 +1,35 @@
 
-rkotlin:S1172e"(Remove these unused function parameters.(ÚÁ…àøÿÿÿÿ8¦¾³ıñ1J$25c67ee4-348f-4029-aed5-3b7e9ae8652d
-˜kotlin:S117ß"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ŞÊ¹Çûÿÿÿÿ8±¾³ıñ1J$2e8b67dc-f9da-4767-9c49-884c0ee62840
-—kotlin:S117p"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(üùÎÒ8±¾³ıñ1J$6493bf36-01b7-4bbd-8950-cc062bcb9817
-—kotlin:S117r"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(áæ“8±¾³ıñ1J$2c4477e7-8f2b-45e3-bf79-77a1810f702d
-‘kotlin:S107a"HThis function has 14 parameters, which is greater than the 7 authorized.(›¼¾“üÿÿÿÿ8¹¾³ıñ1J$0d8a6d28-1d08-411f-a28f-164377c33e8f
-xkotlin:S1135"2Complete the task associated to this TODO comment.(È—“8¾¾³ıñ1J$d3acff1a-45ae-4c57-bf06-a1d102f28fab
-ukotlin:S1481š"/Remove this unused "mutablePad" local variable.(º¶£‹8Â¾³ıñ1J$429a4bd2-20f1-454a-8d87-966824a0cbd3
-_kotlin:S1128"Remove this unused import.(Ğ©«ã8É¾³ıñ1J$79bcc16d-b65d-4d83-940e-6812c316c0c6
-dkotlin:S1128"Remove this unused import.(²Ù™³şÿÿÿÿ8É¾³ıñ1J$0dadc58b-f1bc-4ddf-8817-174d8268912e
-dkotlin:S1128"Remove this unused import.(Á¤ŞÆøÿÿÿÿ8É¾³ıñ1J$dc837e47-0b8d-449f-ab94-a516e4b3d4e4
-dkotlin:S1128	"Remove this unused import.(–Ÿ˜Ùûÿÿÿÿ8É¾³ıñ1J$4b297145-28d0-4768-b975-ee04b1f1f982
+˜kotlin:S117ñ"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(ŞÊ¹Çûÿÿÿÿ8©·¶Äô1J$46ba3fc7-8a36-44c2-88b8-62aebf4d23a2
+—kotlin:S117n"SRename this local variable to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(üùÎÒ8©·¶Äô1J$9c9892db-8535-4d84-be81-41772e95cdce
+‘kotlin:S107a"HThis function has 11 parameters, which is greater than the 7 authorized.(›¼¾“üÿÿÿÿ8­·¶Äô1J$f670f81c-760e-47dd-85ff-3dc5073d7927
+xkotlin:S1135“"2Complete the task associated to this TODO comment.(È—“8°·¶Äô1J$56e1ad82-dcbd-4dc3-b257-590fb9c0e8c4
+ykotlin:S1481{"4Remove this unused "bottombarSpacer" local variable.(’Ñ¼¤8±·¶Äô1J$7fecb4db-aba0-4c25-8891-be2cc5b7f707
+ukotlin:S1481¬"/Remove this unused "mutablePad" local variable.(º¶£‹8±·¶Äô1J$d67b514a-5826-42e1-a98f-7efd75037c0a
+_kotlin:S1128"Remove this unused import.(Ğ©«ã8³·¶Äô1J$8bc43db3-b0ea-4d8d-b632-37a25d40f1bd
+dkotlin:S1128"Remove this unused import.(²Ù™³şÿÿÿÿ8´·¶Äô1J$3ee35407-57e2-4501-91b3-96a726aff0a4
+dkotlin:S1128"Remove this unused import.(Á¤ŞÆøÿÿÿÿ8´·¶Äô1J$787e1dd4-a737-4a4e-8600-b65b79fcb8b1
+dkotlin:S1128	"Remove this unused import.(–Ÿ˜Ùûÿÿÿÿ8´·¶Äô1J$df18f36c-9eb3-4196-b784-47b1842fee6d
 _kotlin:S1128
-"Remove this unused import.(¤¯†8É¾³ıñ1J$b520848c-33ea-4628-a31b-8d37fe3c36d7
-_kotlin:S1128"Remove this unused import.(¤½Ñâ8É¾³ıñ1J$3f36bcc9-a992-44b4-8be2-4ec37ebe2c48
-dkotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8É¾³ıñ1J$4e07a398-87ab-4016-aa8d-258bbfe4fc21
-_kotlin:S1128"Remove this unused import.(êåê±8É¾³ıñ1J$25b3ad37-126e-460b-8367-2ebd3589789f
-^kotlin:S1128 "Remove this unused import.(Ëî>8É¾³ıñ1J$59a7ec63-5807-4cd1-90b1-767e9cf9b9b3
-dkotlin:S1128!"Remove this unused import.(˜Ú«¹ÿÿÿÿÿ8É¾³ıñ1J$55a01b0d-6672-43b9-9a56-4d576e67301e
-_kotlin:S1128""Remove this unused import.(¦ï½å8É¾³ıñ1J$53987865-b4d5-40f5-a33b-bb423a3c693b
-_kotlin:S1128#"Remove this unused import.(Şå²8É¾³ıñ1J$305dbc63-19aa-4747-9faa-7c4586fa6b2f
-dkotlin:S1128'"Remove this unused import.(¤–‡›ıÿÿÿÿ8É¾³ıñ1J$38f7787f-3383-42b8-bd09-2f046bc9bda9
-_kotlin:S11287"Remove this unused import.(Íıİô8É¾³ıñ1J$9d4e04de-fdd4-4525-88f5-867c6b71c212
-dkotlin:S11288"Remove this unused import.(À¶Ìúÿÿÿÿ8É¾³ıñ1J$8a04c496-3f65-42fd-970c-e291af37d80c
-dkotlin:S11289"Remove this unused import.(ÇÀ×İıÿÿÿÿ8É¾³ıñ1J$a6d082d5-57cc-488c-a93a-5532971bf171
-dkotlin:S1128:"Remove this unused import.(Ä‡§­ıÿÿÿÿ8É¾³ıñ1J$1629702b-1cd2-4a24-9a75-3c4935b9f04d
-dkotlin:S1128<"Remove this unused import.(ñ—¼¢ÿÿÿÿÿ8É¾³ıñ1J$0329463a-174d-4dc0-91c0-482726b9099a
-_kotlin:S1128="Remove this unused import.(‡ğø8É¾³ıñ1J$9bbccdac-315c-4da4-a98d-b92c586f5e4a
-_kotlin:S1128>"Remove this unused import.(Ã’ÇÁ8É¾³ıñ1J$5cfc0cc2-3489-4e65-b7f3-964657e6e225
-_kotlin:S1128@"Remove this unused import.(ÀÏ­–8É¾³ıñ1J$588fdf67-d24e-45cb-a061-64c33bd41991
-dkotlin:S1128H"Remove this unused import.(Õş÷©úÿÿÿÿ8É¾³ıñ1J$1c33967a-1f00-4fea-b76f-2407b70fbc40
-dkotlin:S1128]"Remove this unused import.(€“ïìùÿÿÿÿ8É¾³ıñ1J$40e33127-d452-4f57-833e-0c8df19c534c
+"Remove this unused import.(¤¯†8´·¶Äô1J$43ab33fc-11f0-43e4-80b8-84fe40867dec
+_kotlin:S1128"Remove this unused import.(¤½Ñâ8´·¶Äô1J$c3520f78-1a3e-4ab4-9dfe-f5316146d3e4
+dkotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8´·¶Äô1J$02a80a36-5f56-42d8-9ab5-fba9b663624b
+_kotlin:S1128"Remove this unused import.(êåê±8´·¶Äô1J$fed04672-a28c-4118-ab9a-2c3e834035fc
+^kotlin:S1128 "Remove this unused import.(Ëî>8´·¶Äô1J$df49b629-7e96-437f-be70-1b26c2a49733
+dkotlin:S1128!"Remove this unused import.(˜Ú«¹ÿÿÿÿÿ8´·¶Äô1J$baa32979-e690-4e0b-b08f-4562c9c29bc9
+_kotlin:S1128""Remove this unused import.(¦ï½å8´·¶Äô1J$46454f3b-5023-4d14-83f8-e2ba4d2582ce
+_kotlin:S1128#"Remove this unused import.(Şå²8´·¶Äô1J$fd14175e-a158-48c9-a733-90b27903c01a
+_kotlin:S1128%"Remove this unused import.(Äåì¾8´·¶Äô1J$7741d05e-ed18-4a06-81d1-b96049706b75
+dkotlin:S1128'"Remove this unused import.(¤–‡›ıÿÿÿÿ8´·¶Äô1J$7a68684b-bb8d-42cf-91c9-db9db82030d8
+dkotlin:S11284"Remove this unused import.(ÉÁ¸şÿÿÿÿ8´·¶Äô1J$818c03b3-ca00-405d-89b0-5c808a16fd14
+_kotlin:S11287"Remove this unused import.(Íıİô8´·¶Äô1J$d8b2abf9-d213-45d8-8e56-428111bcad92
+dkotlin:S11288"Remove this unused import.(À¶Ìúÿÿÿÿ8´·¶Äô1J$f1347f5e-5ff5-4bde-afac-512835cd9c5a
+dkotlin:S11289"Remove this unused import.(ÇÀ×İıÿÿÿÿ8´·¶Äô1J$3372f16e-0c8b-4b9e-a09b-e11a3b38232f
+dkotlin:S1128:"Remove this unused import.(Ä‡§­ıÿÿÿÿ8´·¶Äô1J$f6045869-8d51-4b76-974b-4ed6ac6466e0
+dkotlin:S1128;"Remove this unused import.(È¶Èøÿÿÿÿ8´·¶Äô1J$03d8dd82-0322-4e26-a6ec-0a1388675bcb
+dkotlin:S1128<"Remove this unused import.(ñ—¼¢ÿÿÿÿÿ8´·¶Äô1J$2c648f1e-5575-460a-93c2-2462dd669551
+_kotlin:S1128="Remove this unused import.(‡ğø8´·¶Äô1J$2fbcd3fd-6a2e-4072-84d3-2e38625e34fc
+_kotlin:S1128>"Remove this unused import.(Ã’ÇÁ8´·¶Äô1J$f6976c67-9734-4469-bbd0-1db90d2ea376
+_kotlin:S1128@"Remove this unused import.(ÀÏ­–8´·¶Äô1J$15b22a40-ceac-4661-8418-983cf403f94a
+dkotlin:S1128B"Remove this unused import.(•Ë¥ªûÿÿÿÿ8´·¶Äô1J$24039563-27fa-4cf3-bb97-85ec6c21409b
+dkotlin:S1128H"Remove this unused import.(Õş÷©úÿÿÿÿ8´·¶Äô1J$8812f41d-8070-47a5-a016-7e22d48fd778
+dkotlin:S1128]"Remove this unused import.(€“ïìùÿÿÿÿ8´·¶Äô1J$5a8c3dcd-33b9-41ad-a0a9-062dbb82e118

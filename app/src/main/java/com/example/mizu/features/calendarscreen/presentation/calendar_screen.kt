@@ -1,5 +1,6 @@
 package com.example.mizu.features.calendarscreen.presentation
 
+import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.items
@@ -55,9 +57,12 @@ import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.minorColor
 import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.utils.Todos
+import com.example.mizu.utils.calendar_utils.WaterGoals
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos: List<Todos>,onPad:PaddingValues) {
+fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:List<WaterGoals>,onPad:PaddingValues,caledarList:MutableList<List<Color>>,getSelected: (Int) -> Unit) {
+
 
     Box(modifier = modifier.padding(
         top = onPad.calculateTopPadding()/8)) {
@@ -108,19 +113,36 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos: L
                     Spacer(modifier = Modifier.height(10.dp))
 
 
-                    LazyHorizontalGrid(modifier = Modifier, rows = GridCells.Fixed(6), content = {
-                        items(35) { i ->
-                            Box(
-                                modifier = Modifier
-                                    .background(waterColor, shape = RoundedCornerShape(6.dp))
-                                    .height(45.dp)
-                                    .width(45.dp)
-                                    .border(
-                                        width = 1.dp,
-                                        color = minorColor,
-                                        shape = RoundedCornerShape(6.dp)
-                                    )
-                            )
+                    LazyColumn(modifier = Modifier,userScrollEnabled = false, content = {
+                        items(caledarList.size) { row ->
+                            Spacer(modifier = Modifier.size(4.dp))
+
+
+                            LazyRow(modifier=Modifier, userScrollEnabled = false) {
+                                items(caledarList.get(row)){it->
+
+                                        Box(
+                                            modifier = Modifier
+                                                .background(
+                                                    it,
+                                                    shape = RoundedCornerShape(6.dp)
+                                                )
+                                                .height(30.dp)
+                                                .width(30.dp)
+                                                .border(
+                                                    width = 1.dp,
+                                                    color = if(it!= waterColor)Color.White else minorColor,
+                                                    shape = RoundedCornerShape(6.dp)
+                                                )
+                                        )
+
+
+
+
+                                    Spacer(modifier = Modifier.size(4.dp))
+                                }
+                            }
+
                         }
                     })
 
@@ -149,12 +171,14 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos: L
                         shape = RoundedCornerShape(10.dp)
                     )
                     .fillMaxWidth(0.9f)
-                    .fillMaxHeight(0.40f)
+                    .fillMaxHeight(0.45f)
                     .padding(16.dp)
             ) {
                 LazyColumn(content = {
-                   items(listOfTodos){
-                       TodoTextsLayout(text = it.text, onSelected =it.onSelected, getSelected =it.getSelected)
+                   items(listOfTodos.size){
+                       TodoTextsLayout(text = listOfTodos.get(it).goal, onSelected =listOfTodos.get(it).onSelected,getSelected={index->
+                           getSelected(index)
+                       }, index =it)
                    }
                 })
 
@@ -168,26 +192,31 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos: L
 }
 
 @Composable
-fun TodoTextsLayout(text:String, onSelected:Boolean, getSelected:(Boolean)->Unit) {
+fun TodoTextsLayout(text:String, onSelected:Boolean, getSelected:(Int)->Unit,index:Int) {
     Row(horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
         RadioButton(selected = onSelected, onClick = {
-                                                     getSelected(!onSelected)
+                                                     getSelected(index)
         }, colors = RadioButtonDefaults.colors(
-            selectedColor = backgroundColor1, unselectedColor = backgroundColor1))
+            selectedColor = waterColor, unselectedColor = backgroundColor1))
         Box(modifier=Modifier) {
-            Canvas(
-                modifier = Modifier.fillMaxSize().align(Alignment.Center)
-            ) {
-                val canvasWidth = size.width
-                val canvasHeight = size.height
-                println(text.length)
-                drawLine(
-                    start = Offset(x = 0.dp.toPx(), y = canvasHeight / 2),
-                    end = Offset(x = canvasWidth, y = canvasHeight / 2),
-                    color = backgroundColor1,
-                    strokeWidth = 1.dp.toPx() // instead of 5.dp.toPx() , you can also pass 5f
-                )
+            if(onSelected){
+                Canvas(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .align(Alignment.Center)
+                ) {
+                    val canvasWidth = size.width
+                    val canvasHeight = size.height
+                    println(text.length)
+                    drawLine(
+                        start = Offset(x = 0.dp.toPx(), y = canvasHeight / 2),
+                        end = Offset(x = canvasWidth, y = canvasHeight / 2),
+                        color = backgroundColor1,
+                        strokeWidth = 1.dp.toPx() // instead of 5.dp.toPx() , you can also pass 5f
+                    )
+                }
             }
+
             Text(
                 text = text,
                 modifier = Modifier
@@ -256,10 +285,11 @@ fun GraphScreen() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewCalendarScreen() {
-    var todosList:MutableList<Todos> = mutableListOf<Todos>(
-        Todos(text = "Keep a bottle by your desk", onSelected = false, getSelected = {}),
-        Todos(text = "Keep a bottle by your desk", onSelected = false, getSelected = {}),
-        Todos(text = "Keep a bottle by your desk", onSelected = true, getSelected = {})
+    var todosList:MutableList<WaterGoals> = mutableListOf<WaterGoals>(
+
+        WaterGoals(goal = "Keep a bottle by your desk",onSelected = false),
+        WaterGoals(goal = "Keep a bottle by your desk",onSelected = false),
+        WaterGoals(goal = "Keep a bottle by your desk",onSelected = false)
 
 
     )
@@ -272,6 +302,8 @@ fun PreviewCalendarScreen() {
                     end = Offset(0f, Float.POSITIVE_INFINITY),
                     colors = listOf(backgroundColor1, backgroundColor2)
                 )
-            ), onMonth = "Feb", todosList, onPad = PaddingValues(40.dp)
-    )
+            ), onMonth = "Feb", todosList, onPad = PaddingValues(40.dp), caledarList = mutableListOf(
+            listOf(Color.Black)
+        )
+    , getSelected = {})
 }

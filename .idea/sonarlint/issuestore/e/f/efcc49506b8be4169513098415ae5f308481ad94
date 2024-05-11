@@ -1,34 +1,35 @@
 
-nkotlin:S1172Í"(Remove these unused function parameters.(´œôß8ÆŠ“¥ò1J$9245ae0b-5200-4ed8-8351-fb033bad0abc
-ƒkotlin:S1172­"8Use "_" instead of this unused lambda parameter "index".(Æªêçþÿÿÿÿ8ÇŠ“¥ò1J$cc5a39cd-037c-4b08-bbbb-0d47d64f0adc
-ikotlin:S125¬"Remove this commented out code.(à†çúÿÿÿÿ8ÍŠ“¥ò1J$2564b0d1-192f-460b-940e-48a5f780eaf0
-dkotlin:S125ƒ"Remove this commented out code.(ýžà¼8ÎŠ“¥ò1J$35a34b59-358f-42cc-b4f0-46e63a3d7706
-Œkotlin:S107o"HThis function has 17 parameters, which is greater than the 7 authorized.(ôØ±Ú8ÛŠ“¥ò1J$f31a60df-e29d-4086-8943-79f7dd3d475a
-‹kotlin:S107Ò"GThis function has 8 parameters, which is greater than the 7 authorized.(ø„©b8ÛŠ“¥ò1J$378e4c6d-1f99-477d-ad93-4781f121daa9
-}kotlin:S1135ý"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8áŠ“¥ò1J$d0d83477-8cca-4e64-9d76-bbc66da356fa
-}kotlin:S1135„"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8áŠ“¥ò1J$bd6e64ab-b71d-4c44-ae2c-026605c6f074
-dkotlin:S1128	"Remove this unused import.(¨íýôüÿÿÿÿ8êŠ“¥ò1J$5590b090-8203-472a-b610-a886f629127a
-_kotlin:S1128
-"Remove this unused import.(Íÿ¦ñ8êŠ“¥ò1J$934bed99-8e9b-440d-a0b5-f7e7412aa1bc
-dkotlin:S1128"Remove this unused import.(ˆöŸ¤ûÿÿÿÿ8êŠ“¥ò1J$8cb30e17-7a9c-46b2-966a-f83fbe8e9b6c
-dkotlin:S1128"Remove this unused import.(–Ÿ˜Ùûÿÿÿÿ8êŠ“¥ò1J$5b4f8661-1363-4ff8-9550-6bcc7cc21f09
-_kotlin:S1128"Remove this unused import.(¤¯†Ž8êŠ“¥ò1J$484e756e-9720-495b-bc2e-99490cd9c5bb
-_kotlin:S1128"Remove this unused import.(•† ‚8êŠ“¥ò1J$728a7f29-3273-4161-89a1-de9fd9bdb681
-dkotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8êŠ“¥ò1J$68d32160-6981-4aeb-98d5-abe3d60c3cf6
-dkotlin:S1128""Remove this unused import.(®•±âùÿÿÿÿ8êŠ“¥ò1J$4703f2a1-7e14-4fb8-9c16-fb88994eb569
-_kotlin:S1128$"Remove this unused import.(êåê±8êŠ“¥ò1J$3419fb27-da67-4473-97a8-427345817b06
-dkotlin:S1128&"Remove this unused import.(¢Ê†½üÿÿÿÿ8êŠ“¥ò1J$4b724805-6c9d-434f-9edb-aa571b97b976
-_kotlin:S1128("Remove this unused import.(ñˆÐë8êŠ“¥ò1J$a8efbf39-c038-4234-bcc0-b8d67f5a52e7
-_kotlin:S1128/"Remove this unused import.(Ñ“º8êŠ“¥ò1J$ccce57c6-063a-4d21-bec2-c13590b5c09d
-_kotlin:S11282"Remove this unused import.(„öÄá8êŠ“¥ò1J$4766d994-bb8d-4d89-9a01-f6e0f22f5c71
-dkotlin:S11285"Remove this unused import.(³úÙëþÿÿÿÿ8êŠ“¥ò1J$546a77dd-b2be-4ee1-9c4b-fb4e185a0a5c
-dkotlin:S11287"Remove this unused import.(¨Ò›ºþÿÿÿÿ8êŠ“¥ò1J$33c81398-4eec-4fee-b965-012d169157c1
-dkotlin:S1128:"Remove this unused import.(¤–‡›ýÿÿÿÿ8êŠ“¥ò1J$69e92df5-58a7-43b6-979c-47bf2adbd39e
-_kotlin:S1128>"Remove this unused import.(‘è÷×8êŠ“¥ò1J$07cf077f-bba8-429d-be76-a58e99c49380
-dkotlin:S1128G"Remove this unused import.(—ÒÛÿûÿÿÿÿ8êŠ“¥ò1J$2b19a49a-2cba-49eb-862f-e1424a4cec5e
-dkotlin:S1128K"Remove this unused import.(ñïÞûÿÿÿÿ8êŠ“¥ò1J$5784dcc9-5379-447b-a394-c33ea34362c6
-dkotlin:S1128P"Remove this unused import.(®‘¿–ûÿÿÿÿ8êŠ“¥ò1J$1191768d-6200-486a-993c-1f7e61a8bcd9
-dkotlin:S1128_"Remove this unused import.(°‚ËØýÿÿÿÿ8êŠ“¥ò1J$64f4370f-2b68-48eb-b63e-e6bdf149acdf
-9kotlin:S1128c"Remove this unused import.(¹—óè8ƒßŒ·ô1
-¡kotlin:S1192„"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(»òŸÌ8ìŠ“¥ò1J$61d544f2-553d-48f9-a54a-e8552d3ada38
-—kotlin:S3776Ò"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ø„©b8ðŠ“¥ò1J$783f23a9-5541-4907-a563-e2e439277d1f
+Gkotlin:S1172y"(Remove these unused function parameters.(ƒŒ°8Ü½‹¹ö1
+Hkotlin:S1172Ï"(Remove these unused function parameters.(´œôß8Þ½‹¹ö1
+]kotlin:S1172¯"8Use "_" instead of this unused lambda parameter "index".(Æªêçþÿÿÿÿ8Þ½‹¹ö1
+Ckotlin:S125¯"Remove this commented out code.(à†çúÿÿÿÿ8ä½‹¹ö1
+>kotlin:S125†"Remove this commented out code.(ýžà¼8ä½‹¹ö1
+fkotlin:S107r"HThis function has 23 parameters, which is greater than the 7 authorized.(ôØ±Ú8ð½‹¹ö1
+ekotlin:S107Ô"GThis function has 8 parameters, which is greater than the 7 authorized.(ø„©b8ð½‹¹ö1
+Wkotlin:S1135ÿ"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8õ½‹¹ö1
+Wkotlin:S1135†"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8õ½‹¹ö1
+>kotlin:S1128	"Remove this unused import.(¨íýôüÿÿÿÿ8ý½‹¹ö1
+9kotlin:S1128
+"Remove this unused import.(Íÿ¦ñ8ý½‹¹ö1
+>kotlin:S1128"Remove this unused import.(ˆöŸ¤ûÿÿÿÿ8ý½‹¹ö1
+>kotlin:S1128"Remove this unused import.(–Ÿ˜Ùûÿÿÿÿ8ý½‹¹ö1
+9kotlin:S1128"Remove this unused import.(¤¯†Ž8ý½‹¹ö1
+9kotlin:S1128"Remove this unused import.(•† ‚8ý½‹¹ö1
+>kotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8ý½‹¹ö1
+>kotlin:S1128""Remove this unused import.(®•±âùÿÿÿÿ8ý½‹¹ö1
+9kotlin:S1128$"Remove this unused import.(êåê±8ý½‹¹ö1
+>kotlin:S1128&"Remove this unused import.(¢Ê†½üÿÿÿÿ8ý½‹¹ö1
+9kotlin:S1128("Remove this unused import.(ñˆÐë8ý½‹¹ö1
+9kotlin:S1128/"Remove this unused import.(Ñ“º8ý½‹¹ö1
+9kotlin:S11282"Remove this unused import.(„öÄá8ý½‹¹ö1
+>kotlin:S11285"Remove this unused import.(³úÙëþÿÿÿÿ8ý½‹¹ö1
+>kotlin:S11287"Remove this unused import.(¨Ò›ºþÿÿÿÿ8ý½‹¹ö1
+>kotlin:S1128:"Remove this unused import.(¤–‡›ýÿÿÿÿ8ý½‹¹ö1
+9kotlin:S1128>"Remove this unused import.(‘è÷×8ý½‹¹ö1
+>kotlin:S1128B"Remove this unused import.(ˆ²ÞÎûÿÿÿÿ8ý½‹¹ö1
+>kotlin:S1128H"Remove this unused import.(—ÒÛÿûÿÿÿÿ8ý½‹¹ö1
+>kotlin:S1128L"Remove this unused import.(ñïÞûÿÿÿÿ8ý½‹¹ö1
+>kotlin:S1128Q"Remove this unused import.(®‘¿–ûÿÿÿÿ8þ½‹¹ö1
+>kotlin:S1128`"Remove this unused import.(°‚ËØýÿÿÿÿ8þ½‹¹ö1
+>kotlin:S1128n"Remove this unused import.(Þ°‚³üÿÿÿÿ8þ½‹¹ö1
+qkotlin:S3776Ô"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ø„©b8‚¾‹¹ö1

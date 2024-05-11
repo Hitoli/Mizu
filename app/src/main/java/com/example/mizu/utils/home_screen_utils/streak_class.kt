@@ -7,7 +7,8 @@ data class StreakClass(
     var streak:Int=0,
     val streakDay:String="Sunday",
     val streakBroken:Int=0,
-    val waterTime:String=""
+    val waterTime:String="",
+    val perks:List<Int> = listOf(0)
 )
 
 @Serializable

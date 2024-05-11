@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mizu.R
 import com.example.mizu.model.OnboardingRepository
 import com.example.mizu.utils.home_screen_utils.StreakClass
 import com.example.mizu.utils.home_screen_utils.StreakMonthClass
@@ -34,7 +35,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
     var streakYear by mutableIntStateOf(0)
         private set
 
-    var totalWaterAmount by mutableIntStateOf(2400)
+    var totalWaterAmount by mutableIntStateOf(0)
         private set
 
     var rewardDialog by mutableStateOf(false)
@@ -53,7 +54,8 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
         private set
     var _waterAmount by mutableStateOf(WaterAmount())
         private set
-
+    var perks = mutableListOf<Int>()
+        private set
     var streakScore by mutableIntStateOf(0)
         private set
     var streakDay by mutableStateOf("")
@@ -70,12 +72,12 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
     }
 
     init {
-        waterStreak()
-//        viewModelScope.launch {
-//            getWaterAmount()
-//
-//
-//        }
+
+        viewModelScope.launch {
+            getWaterAmount()
+        }
+
+        println("streakScore Onboarding totalWaterAmount ${totalWaterAmount}")
         viewModelScope.launch {
             getStreakScore()
 
@@ -83,8 +85,12 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
         viewModelScope.launch {
             getMonthStreak()
         }
+        waterStreak()
 
 
+    }
+    fun updateTotalWaterAmount(totalWater:Int){
+        totalWaterAmount = totalWater
     }
 
     fun getGreeting() {
@@ -96,6 +102,23 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
             in 12..16 -> "Good Afternoon"
             in 17..20 -> "Good Evening"
             else -> "Good Night"
+        }
+    }
+
+    fun updatePerks(){
+        when {
+            streakScore>=1 -> {
+                perks.add(R.drawable.day1)
+            }
+            streakScore>=7 -> {
+                perks.add(R.drawable.day3)
+            }
+            streakScore>=14 -> {
+                perks.add(R.drawable.day4)
+            }
+            streakScore>=30 -> {
+                perks.add(R.drawable.day2)
+            }
         }
     }
 
@@ -146,7 +169,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
                 }
                 streakDay = date.toString()
             }
-
+            updatePerks()
 
             viewModelScope.launch {
                 calculateStreakScore()
@@ -180,7 +203,8 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
             streak = streakScore,
             streakDay = streakDay.toString(),
             streakBroken = streakBroken,
-            waterTime = waterTime.toString()
+            waterTime = waterTime.toString(),
+            perks =perks
         )
         println("streakScore Onboarding calculateStreakScore ")
 
@@ -202,6 +226,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
             usedWaterAmount = it.onUsedWater
             totalWaterAmount = it.onTotalWater
 
+
             if (it.onUsedWater > 0) {
                 if (it.onUsedWater * 100 / it.onTotalWater <= 100) {
                     waterPercent = it.onUsedWater * 100 / it.onTotalWater
@@ -210,17 +235,19 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
                     waterPercent = 100
                 }
 
-            }else{
-                viewModelScope.launch {
-                    calculateWaterAmount()
-                }
             }
+            println("streakScore Onboarding waterPercent ${waterPercent}")
 
+//            else{
+//                viewModelScope.launch {
+//                    calculateWaterAmount()
+//                }
+//            }
 
-
-
-            println("streakScore Onboarding getWaterAmount ${it}")
         }
+
+        println("streakScore Onboarding getWaterAmount ${totalWaterAmount}")
+        println("streakScore Onboarding usedWaterAmount ${usedWaterAmount}")
 
 
     }
@@ -232,6 +259,10 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
                 waterTime = it.waterTime.toInt()
             }
             streakDay = it.streakDay
+            if(perks.isNotEmpty()){
+                perks.addAll(it.perks)
+
+            }
 
             println("streakScore Onboarding getStreakScore ${it}")
         }

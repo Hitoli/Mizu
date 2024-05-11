@@ -33,16 +33,17 @@ class OnboardingRepository(context: Context) {
     )
 
     var streakScore:DataStore<StreakClass> = context.streakStore
-     suspend fun updateStreak(streak:Int,streakBroken:Int,streakDay:String,waterTime:String){
+     suspend fun updateStreak(streak:Int,streakBroken:Int,streakDay:String,waterTime:String,perks: List<Int>){
         streakScore.updateData {
             it.copy(
                 streak =streak,
                 streakBroken = streakBroken,
                 streakDay = streakDay,
-                waterTime = waterTime
+                waterTime = waterTime,
+                perks = perks
             )
         }
-         println("streakScore Onboarding updateStreak ${streak}")
+         println("streakScore Onboarding updateStreak ${perks}")
 
 
      }

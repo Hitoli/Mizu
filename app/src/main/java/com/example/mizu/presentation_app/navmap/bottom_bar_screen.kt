@@ -63,6 +63,7 @@ import androidx.compose.material3.contentColorFor
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -104,7 +105,9 @@ import com.example.mizu.ui.theme.minorColor
 import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.utils.BottomNavScreens
 import com.example.mizu.utils.Todos
+import com.example.mizu.utils.calendar_utils.WaterGoals
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -114,6 +117,7 @@ fun BottomBarHostingScreen(
     onWaterTrackingResourceAmount: Int,
     getWaterTrackingResourceAmount: (Int) -> Unit,
     onTotalWaterTrackingResourceAmount: Int,
+    getUpdateTotalWaterTrackingAmount:(Int)->Unit,
     getAddWater: () -> Unit,
     onUserName: String,
     getReward: (Boolean?) -> Unit,
@@ -125,16 +129,12 @@ fun BottomBarHostingScreen(
     getGreeting: () -> Unit,
     isEndless: Boolean = true,
     items: List<Int>,
-
-
+    streakImages:List<Int>,
+    onMonth:String,
+    calendarList:MutableList<List<Color>>,
+    onWaterGoals:List<WaterGoals>,
+    getSelected: (Int) -> Unit
     ) {
-    var todosList: MutableList<Todos> = mutableListOf<Todos>(
-        Todos(text = "Keep a bottle by your desk", onSelected = false, getSelected = {}),
-        Todos(text = "Keep a bottle by your desk", onSelected = false, getSelected = {}),
-        Todos(text = "Keep a bottle by your desk", onSelected = true, getSelected = {})
-
-
-    )
     var onAdd by remember {
         mutableStateOf(false)
     }
@@ -161,11 +161,14 @@ fun BottomBarHostingScreen(
     val listState = rememberLazyListState()
 
     LaunchedEffect(Unit) {
+        Log.d("onTotalWaterTrackingResourceAmount Onboarding",onTotalWaterTrackingResourceAmount.toString())
+        getUpdateTotalWaterTrackingAmount(onTotalWaterTrackingResourceAmount)
         getGreeting()
         delay(3000)
         onTitleChage = true
         delay(3000)
         onTitleChage = false
+
 
 
     }
@@ -277,10 +280,7 @@ fun BottomBarHostingScreen(
                 HomeScreen(
                     onPad = padding,
                     onWaterTrackingResourceAmount = onWaterTrackingResourceAmount,
-                    getWaterTrackingResourceAmount = getWaterTrackingResourceAmount,
                     onTotalWaterTrackingResourceAmount = onTotalWaterTrackingResourceAmount,
-                    getAddWater = getAddWater,
-                    onUserName = onUserName,
                     getReward = getReward,
                     onReward = onReward,
                     getBottomBar = {
@@ -289,12 +289,12 @@ fun BottomBarHostingScreen(
                     onWaterMeterResourceAmount = onWaterMeterResourceAmount,
                     onProgress = onProgress,
                     onStreak = onStreak,
-                    getStreak = getStreak
+                    streakImages = streakImages
                 )
             }
             composable(route = BottomNavScreens.CalendarScreen.route) {
                 CalendarScreen(
-                    onMonth = "Feb", listOfTodos = todosList, modifier = Modifier
+                    onMonth = onMonth, listOfTodos = onWaterGoals, modifier = Modifier
                         .fillMaxSize()
                         .background(
                             Brush.linearGradient(
@@ -302,7 +302,9 @@ fun BottomBarHostingScreen(
                                 end = Offset(0f, Float.POSITIVE_INFINITY),
                                 colors = listOf(backgroundColor1, backgroundColor2)
                             )
-                        ), onPad = padding
+                        ), onPad = padding, caledarList = calendarList, getSelected = {
+                            getSelected(it)
+                    }
                 )
             }
         }
@@ -641,6 +643,9 @@ fun PreviewBottomBarHostingScreen() {
         getStreak = {},
         onTime = "Goodmorning",
         getGreeting = {},
-        items = listOf(50, 100, 200, 300, 400, 500)
+        items = listOf(50, 100, 200, 300, 400, 500),
+        getUpdateTotalWaterTrackingAmount = {}, streakImages = listOf(R.drawable.day2,R.drawable.day1), onMonth = "", onWaterGoals = listOf() , calendarList = mutableListOf(
+            listOf(Color.Black)
+        ), getSelected = {}
     )
 }

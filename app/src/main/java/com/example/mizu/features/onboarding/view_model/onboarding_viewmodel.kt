@@ -25,6 +25,8 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
         private set
     var onWeightValue by mutableStateOf("")
         private  set
+    var onWaterAmount by mutableIntStateOf(0)
+        private set
     var onHeightValue by mutableStateOf("")
         private  set
     var onActiveValue by mutableIntStateOf(Int.MIN_VALUE)
@@ -71,6 +73,9 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
         Log.d("check Onboarding",check.toString())
 
     }
+    fun updateOnboardingWaterAmount(value:Int){
+        onWaterAmount = value
+    }
 
     fun checkDigitFields(value:String){
         checkDigit = value.isNullOrBlank()
@@ -112,6 +117,9 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
         }else if(TWI<2){
             TWI  =2700.0
         }
+
+        onWaterAmount =TWI.toInt()
+        Log.d("onWaterAmount Onboarding",onWaterAmount.toString())
         TWI/=1000
         Log.d("TWI Onboarding",TWI.toString())
     }

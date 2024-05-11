@@ -38,8 +38,8 @@ class MainActivity : ComponentActivity() {
                         .safeDrawingPadding(),
                     color = Color.Transparent
                 ) {
-                     val onBoardingViewmodel = getViewModel<OnboardingViewModel>()
-                    NavScreen(onBoardingViewmodel)
+//                     val onBoardingViewmodel = getViewModel<OnboardingViewModel>()
+                    NavScreen()
                 }
             }
         }

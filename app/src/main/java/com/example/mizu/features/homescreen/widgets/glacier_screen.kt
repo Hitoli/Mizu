@@ -81,7 +81,7 @@ fun GlacierScreen(
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "Target : 2500 ml",
+                text = "Target : ${onTotalWaterTrackingResourceAmount} ml",
                 modifier = Modifier,
                 style = TextStyle(
                     fontSize = 20.sp,

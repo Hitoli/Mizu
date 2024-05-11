@@ -98,20 +98,17 @@ fun HomeScreen(
     onPad: PaddingValues,
     onWaterTrackingResourceAmount: Int,
     onWaterMeterResourceAmount:Int,
-    getWaterTrackingResourceAmount: (Int) -> Unit,
     onTotalWaterTrackingResourceAmount: Int,
-    getAddWater: () -> Unit,
-    onUserName: String,
     modifier: Modifier = Modifier,
     getReward: (Boolean?) -> Unit,
     onReward: Boolean?,
     getBottomBar:(Boolean)->Unit,
     onStreak:String,
-    getStreak:()->Unit,onProgress:String
+    onProgress:String,
+    streakImages:List<Int>
 ) {
     val LocalConfig = LocalConfiguration.current
     val screenWidth = LocalConfig.screenWidthDp.dp
-    val StreakImages = listOf(R.drawable.day1, R.drawable.day2, R.drawable.day3, R.drawable.day4);
     val screenHeight = LocalConfig.screenHeightDp.dp
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true);
     val lazyListState = rememberLazyListState()
@@ -142,7 +139,7 @@ fun HomeScreen(
 
     Box(modifier = modifier
         .padding(
-            top = onPad.calculateTopPadding()
+            top = onPad.calculateTopPadding(), bottom = onPad.calculateBottomPadding()
         )) {
         LazyColumn(
             modifier = Modifier
@@ -150,7 +147,7 @@ fun HomeScreen(
                 .fillMaxSize()
                 .height(screenHeight) ,
             state = lazyListState,
-            verticalArrangement = Arrangement.SpaceEvenly,
+            verticalArrangement = Arrangement.spacedBy(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -210,114 +207,7 @@ fun HomeScreen(
 
             }
 
-            item{
-                Spacer(modifier = Modifier.size(bottombarSpacer))
-                Row(modifier= Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp),verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(R.drawable.calendarmizu),
-                        contentDescription = "weekly summary",
-                        tint = minorColor
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = "Your Weekly Summary",
-                        modifier = Modifier
-                            ,
-                        style = TextStyle(
-                            fontSize = 24.sp,
-                            fontFamily = fontFamilyLight,
-                            fontWeight = FontWeight(400),
-                            color = minorColor,
 
-                            textAlign = TextAlign.Start,
-                        )
-                    )
-
-                }
-                Spacer(modifier = Modifier.size(8.dp))
-                WeekScreen(modifier = Modifier
-                    .padding(top = 16.dp, bottom = 16.dp, start = 10.dp, end = 10.dp)
-                    .fillMaxWidth()
-                    .height(100.dp)
-                    .clip(
-                        shape = RoundedCornerShape(
-                            20.dp
-                        )
-                    )
-                    .background(color = minorColor, shape = RoundedCornerShape(20.dp)),weekStreak = listOf("M","Tu","W","Th","F","S","Su"))
-
-
-            }
-            item{
-                Row(modifier= Modifier
-                    .fillMaxWidth()
-                    .padding(start = 10.dp, end = 10.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(R.drawable.water_svg),
-                        contentDescription = "weekly summary",
-                        tint = minorColor
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = "Your Water Summary",
-                        modifier = Modifier,
-                        style = TextStyle(
-                            fontSize = 24.sp,
-                            fontFamily = fontFamilyLight,
-                            fontWeight = FontWeight(400),
-                            color = minorColor,
-
-                            textAlign = TextAlign.Start,
-                        )
-                    )
-
-                }
-                Spacer(modifier = Modifier.size(16.dp))
-                Row(modifier=Modifier.padding(start = 10.dp, end = 10.dp), horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.Top) {
-                    IntakeProgressScreen(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .background(
-                                waterColor, shape = RoundedCornerShape(16.dp)
-                            ), onAvgWaterIntake = "Avg. Water Intake", onAvgWaterPercent = "1600"
-                    )
-                    Spacer(modifier = Modifier.size(8.dp))
-
-                    IntakeProgressScreen(
-                        modifier = Modifier
-                            .weight(0.5f)
-
-                            .background(
-                                waterColor, shape = RoundedCornerShape(16.dp)
-                            ), onAvgWaterIntake = "Completion", onAvgWaterPercent = "70%"
-                    )
-                }
-            }
-            item{
-                Spacer(modifier = Modifier.size(8.dp))
-                Row(modifier=Modifier.padding(start = 10.dp, end = 10.dp), horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.Top) {
-                    IntakeProgressScreen(
-                        modifier = Modifier
-                            .weight(0.5f)
-                            .background(
-                                waterColor, shape = RoundedCornerShape(16.dp)
-                            ), onAvgWaterIntake = "BMI", onAvgWaterPercent = "25"
-                    )
-                    Spacer(modifier = Modifier.size(8.dp))
-
-                    IntakeProgressScreen(
-                        modifier = Modifier
-                            .weight(0.5f)
-
-                            .background(
-                                waterColor, shape = RoundedCornerShape(16.dp)
-                            ), onAvgWaterIntake = "Weight", onAvgWaterPercent = "75"
-                    )
-                }
-                Spacer(modifier = Modifier.size(16.dp))
-            }
 
 
 
@@ -333,7 +223,7 @@ if(showStreakCollector){
         containerColor = backgroundColor1,
         sheetState = sheetState,
         onDismissRequest = {showStreakCollector = !showStreakCollector}) {
-        StreakSheet(Streak = StreakImages, modifier = Modifier
+        StreakSheet(Streak = streakImages, modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight(0.55f)
             .padding(10.dp))
@@ -420,12 +310,7 @@ fun PreviewHomeScreen() {
     HomeScreen(
         onPad = PaddingValues(40.dp),
         onWaterTrackingResourceAmount = usedWaterAmount,
-        getWaterTrackingResourceAmount = {
-            usedWaterAmount += 250
-        },
         onTotalWaterTrackingResourceAmount = totalWaterAmount,
-        getAddWater = {},
-        onUserName = "Hitesh",
         modifier = Modifier
             .fillMaxSize()
             .background(
@@ -438,6 +323,6 @@ fun PreviewHomeScreen() {
             if (it != null) {
                 rewardScreenShow = it
             }
-        }, getBottomBar = {}, onWaterMeterResourceAmount = 10, onStreak = "6", onProgress = "You are half way through keep it going", getStreak = {}
+        }, getBottomBar = {}, onWaterMeterResourceAmount = 10, onStreak = "6", onProgress = "You are half way through keep it going", streakImages = listOf(R.drawable.day1,R.drawable.day2)
     )
 }
