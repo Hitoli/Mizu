@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.systemBars
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -18,11 +19,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mizu.features.onboarding.view_model.OnboardingViewModel
+import com.example.mizu.model.alarm_schedular.AlarmScheduler
 import com.example.mizu.presentation_app.navmap.NavScreen
 import com.example.mizu.ui.theme.MizuTheme
+import com.example.mizu.utils.water_reminder.WaterReminder
 import org.koin.android.ext.android.get
 import org.koin.androidx.compose.koinViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import java.time.LocalDateTime
 
 class MainActivity : ComponentActivity() {
 
@@ -38,7 +42,6 @@ class MainActivity : ComponentActivity() {
                         .safeDrawingPadding(),
                     color = Color.Transparent
                 ) {
-//                     val onBoardingViewmodel = getViewModel<OnboardingViewModel>()
                     NavScreen()
                 }
             }

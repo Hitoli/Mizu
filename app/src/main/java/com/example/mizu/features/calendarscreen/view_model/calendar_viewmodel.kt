@@ -9,13 +9,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.mizu.model.OnboardingRepository
 import com.example.mizu.ui.theme.minorColor
 import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.utils.calendar_utils.WaterGoals
+import com.example.mizu.utils.home_screen_utils.StreakClass
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
-class CalendarViewModel:ViewModel() {
+class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewModel() {
 
     var onMonth by mutableStateOf("")
         private set
@@ -26,6 +30,10 @@ class CalendarViewModel:ViewModel() {
     var onDays by mutableIntStateOf(0)
         private set
 
+    var streaKDays  = mutableStateListOf<Int>()
+        private set
+    var _streak by mutableStateOf(StreakClass())
+        private set
     var onStreakDays by mutableIntStateOf(0)
         private set
 
@@ -33,8 +41,12 @@ class CalendarViewModel:ViewModel() {
         private set
 
     init {
-        getCalendarValues()
+        viewModelScope.launch {
+            getStreakScore()
+        }
+
         getWaterGoals()
+
     }
 
     fun updateWaterGoals(index:Int){
@@ -52,6 +64,20 @@ class CalendarViewModel:ViewModel() {
         ))
     }
 
+    private suspend fun getStreakScore() {
+        onboardingRepo.getStreak().collect {
+            _streak = it
+            onStreakDays = it.streak
+            streaKDays.addAll(it.streakDays)
+            getCalendarValues()
+            println(" calendarScreen streaKDays ${it.streakDays}")
+            println(" calendarScreen streaKDays ${streaKDays}")
+//            println("streakScore calendarScreen onStreakDays ${streaKDays[0]}")
+        }
+
+
+    }
+
 
     fun getCalendarValues(){
 
@@ -66,12 +92,27 @@ class CalendarViewModel:ViewModel() {
             val rowList = mutableListOf<Color>()
             for(j in 0 until 7){
                 val count =i*7+j
+
                 if(count<onDays){
-                    if(count< onStreakDays){
-                        rowList.add(waterColor)
-                    }else{
-                        rowList.add(minorColor)
-                    }
+                    println("streakScore calendarScreen streakDays ${streaKDays}")
+//                    if(k<streaKDays.size){
+                        println("streakScore calendarScreen count ${count}")
+                        if(streaKDays.contains(count)){
+
+//                        println("streakScore calendarScreen streaKDays ${streaKDays[count]}")
+//                        if(count==streaKDays[count] ){
+                            rowList.add(waterColor)
+//                        }else{
+//                            rowList.add(minorColor)
+//                        }
+                        }else{
+                            rowList.add(minorColor)
+                        }
+
+//                    }else{
+//                        rowList.add(minorColor)
+//                    }
+
                 }else{
                     rowList.add(minorColor)
                 }

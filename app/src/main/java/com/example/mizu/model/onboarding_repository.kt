@@ -3,10 +3,10 @@ package com.example.mizu.model
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
-import com.example.mizu.utils.SerializerStreak
-import com.example.mizu.utils.SerializerStreakMonth
-import com.example.mizu.utils.SerializerUserSetting
-import com.example.mizu.utils.SerializerWaterAmount
+import com.example.mizu.utils.storage_utils.SerializerStreak
+import com.example.mizu.utils.storage_utils.SerializerStreakMonth
+import com.example.mizu.utils.storage_utils.SerializerUserSetting
+import com.example.mizu.utils.storage_utils.SerializerWaterAmount
 import com.example.mizu.utils.home_screen_utils.StreakClass
 import com.example.mizu.utils.home_screen_utils.StreakMonthClass
 import com.example.mizu.utils.home_screen_utils.UserSettings
@@ -33,11 +33,11 @@ class OnboardingRepository(context: Context) {
     )
 
     var streakScore:DataStore<StreakClass> = context.streakStore
-     suspend fun updateStreak(streak:Int,streakBroken:Int,streakDay:String,waterTime:String,perks: List<Int>){
+     suspend fun updateStreak(streak:Int,streakDays:List<Int>,streakDay:String,waterTime:String,perks: List<Int>){
         streakScore.updateData {
             it.copy(
                 streak =streak,
-                streakBroken = streakBroken,
+                streakDays = streakDays,
                 streakDay = streakDay,
                 waterTime = waterTime,
                 perks = perks
@@ -83,15 +83,19 @@ class OnboardingRepository(context: Context) {
     fun getUserSettingsStore():Flow<UserSettings> = userSettingsStore.data
 
     var waterAmount:DataStore<WaterAmount> = context.waterAmount
-    suspend fun updateWaterAmount(onUsedWater:Int,onTotalWaterAmount: Int){
+    suspend fun updateWaterAmount(onUsedWater:Int,onTotalWaterAmount: Int,onWaterDay:String){
         waterAmount.updateData {
             it.copy(
                 onUsedWater= onUsedWater,
-                onTotalWater = onTotalWaterAmount
+                onTotalWater = onTotalWaterAmount,
+                onWaterDay =onWaterDay
             )
         }
         println("streakScore Onboarding WaterAmount ${onUsedWater}")
 
+
+    }
+    fun removeWaterAmount(){
 
     }
     fun getWaterAmount():Flow<WaterAmount> = waterAmount.data

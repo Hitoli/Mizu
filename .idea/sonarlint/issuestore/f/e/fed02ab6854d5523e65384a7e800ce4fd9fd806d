@@ -1,7 +1,10 @@
 
-fkotlin:S6310~"Avoid hardcoded dispatchers.(Óé‹øÿÿÿÿ8ÕîıÅô1J$a02d4844-dee4-4ed2-9ff3-224e2e6c53ad
-ukotlin:S1144}"0Remove this unused private "observeTime" method.(µµáê8ÙîıÅô1J$0e7c1e20-fb6f-4a89-a095-f855feb0f249
-vkotlin:S6518b",Replace function call with indexed accessor.(˜ÀÑµüÿÿÿÿ8ˆïıÅô1J$ff552f71-f2f8-4103-bf77-4ec0fc72bdbf
-wkotlin:S6518",Replace function call with indexed accessor.(Ğƒ‰üÿÿÿÿ8 ïıÅô1J$641ef3ad-36c9-4ca3-ae77-8b35ae5070e0
-wkotlin:S6518‘",Replace function call with indexed accessor.(·¹ıÔûÿÿÿÿ8 ïıÅô1J$c46181c7-1783-4601-9df2-a3d7f2fe07fc
-rkotlin:S6518’",Replace function call with indexed accessor.(÷±ÛÆ8 ïıÅô1J$45c5d31e-bfee-4ee8-bcf6-3720c06333d8
+xkotlin:S1481Y".Remove this unused "timeOfDay" local variable.(˜ÀÑµüÿÿÿÿ8÷Ä“„û1J$2ff10e2c-eaa6-4d60-9c81-dcbc84f67899
+dkotlin:S1128"Remove this unused import.(èãÊõûÿÿÿÿ8ùÄ“„û1J$5b56d8a6-8a1e-4d37-b7dd-b504b0d85f1b
+dkotlin:S1128"Remove this unused import.(Ó¸Ñÿÿÿÿÿ8ùÄ“„û1J$5bded28e-3e4e-4700-8e7c-b6c2314a024a
+dkotlin:S1128"Remove this unused import.(Ô±ßàúÿÿÿÿ8ùÄ“„û1J$82c5551a-d09c-4246-9373-03bee0e21abd
+^kotlin:S1128"Remove this unused import.(Ç¼…E8ùÄ“„û1J$3e61b563-9d3d-41c7-ad7d-032f3fa6fef7
+vkotlin:S6518Y",Replace function call with indexed accessor.(˜ÀÑµüÿÿÿÿ8ÿÄ“„û1J$0c88b2e2-0377-4e3f-b765-62df8bbd2595
+vkotlin:S6518d",Replace function call with indexed accessor.(˜ÀÑµüÿÿÿÿ8ÿÄ“„û1J$7837ce16-39ad-4a41-ae50-f853f58f4b5a
+wkotlin:S6518",Replace function call with indexed accessor.(³ş¸Èÿÿÿÿÿ8ÿÄ“„û1J$af40c330-2c9a-4602-8dd2-52f0d8d1d08d
+wkotlin:S6518Ÿ",Replace function call with indexed accessor.(¨Àšûÿÿÿÿ8ÿÄ“„û1J$0120af1b-0b1e-4b3a-86eb-ca0bdea8d9a4

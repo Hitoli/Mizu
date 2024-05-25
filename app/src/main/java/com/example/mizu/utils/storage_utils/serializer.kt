@@ -1,4 +1,4 @@
-package com.example.mizu.utils
+package com.example.mizu.utils.storage_utils
 
 import androidx.datastore.core.Serializer
 import com.example.mizu.utils.home_screen_utils.StreakClass

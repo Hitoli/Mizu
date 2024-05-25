@@ -3,6 +3,7 @@ package com.example.mizu.features.homescreen.view_model
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -22,17 +23,10 @@ import java.time.LocalTime
 import java.util.Calendar
 
 
+
 class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewModel() {
 
     var usedWaterAmount by mutableIntStateOf(0)
-        private set
-
-    var streakMonthDay by mutableIntStateOf(0)
-        private set
-    var streakMonth by mutableIntStateOf(0)
-        private set
-
-    var streakYear by mutableIntStateOf(0)
         private set
 
     var totalWaterAmount by mutableIntStateOf(0)
@@ -43,14 +37,11 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
     var canAddWater by mutableStateOf(true)
         private set
 
-    var streakBroken by mutableIntStateOf(0)
+    var streakDays =  mutableStateListOf<Int>()
         private set
     var waterPercent by mutableIntStateOf(0)
         private set
     var _streak by mutableStateOf(StreakClass())
-        private set
-
-    var _streakMonth by mutableStateOf(StreakMonthClass())
         private set
     var _waterAmount by mutableStateOf(WaterAmount())
         private set
@@ -71,6 +62,9 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
         rewardDialog = reward
     }
 
+    // Gets water amount, Gets streak score, Gets compliments for filling water,
+    // Updates the water amount at end of the day
+
     init {
 
         viewModelScope.launch {
@@ -82,17 +76,25 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
             getStreakScore()
 
         }
-        viewModelScope.launch {
-            getMonthStreak()
-        }
+
         waterStreak()
+        updateWaterAmountOnDayEnd()
 
 
     }
+
+    // Re-updates the water amount when the day ends
+    fun updateWaterAmountOnDayEnd(){
+        val calendar = Calendar.getInstance()
+        val timeOfDay = calendar.get(Calendar.HOUR_OF_DAY)
+    }
+
+    // updates the total water amount from onboarding to Homescreen
     fun updateTotalWaterAmount(totalWater:Int){
         totalWaterAmount = totalWater
     }
 
+    // Gets greetings according to the time of day
     fun getGreeting() {
         val calendar = Calendar.getInstance()
         val timeOfDay = calendar.get(Calendar.HOUR_OF_DAY)
@@ -105,7 +107,9 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
         }
     }
 
+    // Updates the perks in perk sheet
     fun updatePerks(){
+        println("Streak Score ${streakScore}")
         when {
             streakScore>=1 -> {
                 perks.add(R.drawable.day1)
@@ -122,36 +126,22 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
         }
     }
 
-    private fun observeTime() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val timeFlow = createTimeFlow()
 
-            timeFlow.collect { currentTime ->
-                // Check if the minute of the current time matches a specific water time (e.g., 30 minutes)
-                if (currentTime.minute != waterTime) {
-                    canAddWater = true
-                } else {
-                    canAddWater = false
-                }
-            }
-        }
-    }
-
+    // Updates the water amount and streak scores
     fun fillWaterUpdate(waterUpdate: Int) {
 
         val calendar = Calendar.getInstance()
         val currentTime = LocalTime.now()
-        val timeOfDay = calendar.get(Calendar.DAY_OF_WEEK)
-        val timeOfMonth = calendar.get(Calendar.MONTH)
-        val timeOfYear = calendar.get(Calendar.YEAR)
-        val date: LocalDate = LocalDate.of(timeOfYear, timeOfMonth + 1, timeOfDay)
+        val date: LocalDate = LocalDate.now()
+        println("currentTime ${date}")
+
 
         if (currentTime.minute != waterTime) {
             canAddWater = true
         } else {
             canAddWater = false
         }
-
+        println("streakScore Onboarding date.dayOfMonth ${calendar.get(Calendar.DAY_OF_MONTH)}")
 
         Log.e("WATER PERCENT", waterPercent.toString());
         if (waterPercent <= 100 && canAddWater) {
@@ -166,43 +156,47 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
                 rewardDialog = true
                 if (date.toString() != streakDay) {
                     streakScore++
+                    streakDays.add(calendar.get(Calendar.DAY_OF_MONTH))
                 }
                 streakDay = date.toString()
             }
-            updatePerks()
 
             viewModelScope.launch {
                 calculateStreakScore()
-                calculateStreakMonthScore()
+//                calculateStreakMonthScore()
                 calculateWaterAmount()
             }
             println("streakScore Onboarding streakScore ${streakScore}")
             println("streakScore Onboarding waterTime ${waterTime}")
+            println("streakScore Onboarding waterTime ${streakDays}")
             println("streakScore Onboarding currentTime hour ${currentTime.hour}")
             println("streakScore Onboarding streakDay ${streakDay}")
             println("streakScore Onboarding waterAmount ${usedWaterAmount}")
             println("streakScore Onboarding rewardDialog ${rewardDialog}")
             println("streakScore Onboarding streakDay ${streakDay}")
         }
-
         waterStreak()
-
+        updatePerks()
     }
 
+    // Update the water Amount in database
     private suspend fun calculateWaterAmount() {
+        val date = LocalDate.now()
         onboardingRepo.updateWaterAmount(
             onUsedWater = usedWaterAmount,
-            onTotalWaterAmount = totalWaterAmount
+            onTotalWaterAmount = totalWaterAmount,
+            onWaterDay = date.toString()
         )
-        println("streakScore Onboarding calculateWaterAmount ")
+        println("Date onWaterDay ${date.toString()}")
 
     }
 
+    // Update the streak Scores in database
     private suspend fun calculateStreakScore() {
         onboardingRepo.updateStreak(
             streak = streakScore,
-            streakDay = streakDay.toString(),
-            streakBroken = streakBroken,
+            streakDay = streakDay,
+            streakDays = streakDays,
             waterTime = waterTime.toString(),
             perks =perks
         )
@@ -210,23 +204,20 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
 
     }
 
-    private suspend fun calculateStreakMonthScore() {
-        onboardingRepo.updateStreakMonth(
-            streakYear = streakYear,
-            streakMonth = streakMonth,
-            streakDay = streakMonthDay
-        )
-        println("streakScore Onboarding calculateStreakMonthScore ")
-
-    }
-
+    // Gets the water amount filled in the glacier from the database
+    // Tries to compare todays date versus previous water date. If the dates are different, the water amount becomes zero
+    // It also calculates and updates the water percentage
     private suspend fun getWaterAmount() {
+        val date = LocalDate.now()
         onboardingRepo.getWaterAmount().collect {
+            println("Get Water Amount Home Viewmodel Function ${it}")
             _waterAmount = it
             usedWaterAmount = it.onUsedWater
             totalWaterAmount = it.onTotalWater
-
-
+            if(date.toString()!=it.onWaterDay){
+                usedWaterAmount = 0
+                calculateWaterAmount()
+            }
             if (it.onUsedWater > 0) {
                 if (it.onUsedWater * 100 / it.onTotalWater <= 100) {
                     waterPercent = it.onUsedWater * 100 / it.onTotalWater
@@ -234,49 +225,30 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
                 } else {
                     waterPercent = 100
                 }
-
             }
-            println("streakScore Onboarding waterPercent ${waterPercent}")
-
-//            else{
-//                viewModelScope.launch {
-//                    calculateWaterAmount()
-//                }
-//            }
-
         }
-
-        println("streakScore Onboarding getWaterAmount ${totalWaterAmount}")
-        println("streakScore Onboarding usedWaterAmount ${usedWaterAmount}")
-
-
     }
+
+
+    // Gets the streak score and updates perks in perk sheet
 
     private suspend fun getStreakScore() {
         onboardingRepo.getStreak().collect {
-            _streak = it
+            _streak =it
+            streakScore = it.streak
+            perks.addAll(it.perks)
             if (it.waterTime != "") {
                 waterTime = it.waterTime.toInt()
             }
             streakDay = it.streakDay
             if(perks.isNotEmpty()){
                 perks.addAll(it.perks)
-
             }
-
-            println("streakScore Onboarding getStreakScore ${it}")
+            println("getStreakScore ${it}")
         }
-
     }
 
-    private suspend fun getMonthStreak() {
-        onboardingRepo.getStreakMonth().collect {
-            _streakMonth = it
-            println("streakScore Onboarding getMonthStreak ${it}")
-        }
-
-    }
-
+    // Gives compliments according to percentage of water filled in the glacier
     fun waterStreak() {
         when (waterPercent) {
             in 0..30 -> onProgress = "Keep Going, You are doing Great"
@@ -286,14 +258,6 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
         }
     }
 
-    private fun createTimeFlow() = flow {
-        while (true) {
-            val currentTime = LocalDateTime.now()
-            emit(currentTime)
-            delay(1000) // Emit the current time every second
-            Log.e("Water Time", currentTime.hour.toString())
-        }
-    }
 
 
 }

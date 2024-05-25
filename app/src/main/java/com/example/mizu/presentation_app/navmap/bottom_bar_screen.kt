@@ -2,19 +2,15 @@ package com.example.mizu.presentation_app.navmap
 
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
-import androidx.compose.animation.slideIn
-import androidx.compose.animation.slideOut
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,61 +20,45 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButtonDefaults
-import androidx.compose.material3.FloatingActionButtonElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
-import androidx.compose.material3.contentColorFor
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
@@ -93,23 +73,19 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navigation
 import com.example.mizu.R
 import com.example.mizu.features.calendarscreen.presentation.CalendarScreen
 import com.example.mizu.features.homescreen.presentation.HomeScreen
-import com.example.mizu.features.homescreen.view_model.HomeViewModel
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.minorColor
 import com.example.mizu.ui.theme.waterColor
-import com.example.mizu.utils.BottomNavScreens
-import com.example.mizu.utils.Todos
+import com.example.mizu.utils.nav_utils.BottomNavScreens
 import com.example.mizu.utils.calendar_utils.WaterGoals
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
 @Composable
 fun BottomBarHostingScreen(
     modifier: Modifier = Modifier,
@@ -133,7 +109,9 @@ fun BottomBarHostingScreen(
     onMonth:String,
     calendarList:MutableList<List<Color>>,
     onWaterGoals:List<WaterGoals>,
-    getSelected: (Int) -> Unit
+    getSelected: (Int) -> Unit,
+    getProfileClick:()->Unit,
+    imgModifier: Modifier
     ) {
     var onAdd by remember {
         mutableStateOf(false)
@@ -201,9 +179,12 @@ fun BottomBarHostingScreen(
             TopBarLayout(
                 onTime = onTime,
                 getNotificationClick = {},
-                getPorfileClick = {},
+                getPorfileClick = {
+                    getProfileClick()
+                },
                 onUserName = onUserName,
-                onTitleChange = onTitleChage
+                onTitleChange = onTitleChage,
+                imgModifier = imgModifier
             )
         },
         bottomBar = {
@@ -271,11 +252,16 @@ fun BottomBarHostingScreen(
         },
         floatingActionButtonPosition = FabPosition.End,
     ) {
+//        SharedTransitionScope {
+//
+//        }
         val padding = it
         NavHost(
             navController = navController,
             startDestination = BottomNavScreens.HomeScreen.route
         ) {
+
+
             composable(route = BottomNavScreens.HomeScreen.route) {
                 HomeScreen(
                     onPad = padding,
@@ -289,7 +275,16 @@ fun BottomBarHostingScreen(
                     onWaterMeterResourceAmount = onWaterMeterResourceAmount,
                     onProgress = onProgress,
                     onStreak = onStreak,
-                    streakImages = streakImages
+                    streakImages = streakImages,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(
+                            Brush.linearGradient(
+                                start = Offset(Float.POSITIVE_INFINITY, 0f),
+                                end = Offset(0f, Float.POSITIVE_INFINITY),
+                                colors = listOf(backgroundColor1, backgroundColor2)
+                            )
+                        )
                 )
             }
             composable(route = BottomNavScreens.CalendarScreen.route) {
@@ -432,7 +427,8 @@ fun WaterCarouselSheet(
                           }
                 , modifier = Modifier
                     .fillMaxWidth()
-                    .height(60.dp).padding(start=14.dp,end=14.dp), shape = RoundedCornerShape(16.dp), colors = ButtonColors(
+                    .height(60.dp)
+                    .padding(start = 14.dp, end = 14.dp), shape = RoundedCornerShape(16.dp), colors = ButtonColors(
                     containerColor = waterColor,
                     contentColor = minorColor,
                     disabledContainerColor = waterColor,
@@ -463,7 +459,8 @@ fun TopBarLayout(
     getNotificationClick: () -> Unit,
     getPorfileClick: () -> Unit,
     onTitleChange: Boolean,
-    onUserName: String
+    onUserName: String,
+    imgModifier: Modifier
 ) {
 
     TopAppBar(
@@ -515,8 +512,9 @@ fun TopBarLayout(
                         tint = minorColor
                     )
                 }
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {getPorfileClick() }) {
                     Image(
+                        modifier = imgModifier,
                         painter = painterResource(id = R.drawable.mizunamelogo),
                         contentDescription = "UserIcon"
                     )
@@ -646,6 +644,6 @@ fun PreviewBottomBarHostingScreen() {
         items = listOf(50, 100, 200, 300, 400, 500),
         getUpdateTotalWaterTrackingAmount = {}, streakImages = listOf(R.drawable.day2,R.drawable.day1), onMonth = "", onWaterGoals = listOf() , calendarList = mutableListOf(
             listOf(Color.Black)
-        ), getSelected = {}
+        ), getSelected = {}, getProfileClick = {}, imgModifier = Modifier
     )
 }

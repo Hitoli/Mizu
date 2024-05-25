@@ -1,18 +1,11 @@
 package com.example.mizu.presentation_app.navmap
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import co.yml.charts.common.extensions.isNotNull
 import com.example.mizu.features.onboarding.presentation.OnBoardingActiveScreen
 import com.example.mizu.features.onboarding.presentation.OnBoardingHeightScreen
 import com.example.mizu.features.onboarding.presentation.OnBoardingScreen
@@ -20,9 +13,7 @@ import com.example.mizu.features.onboarding.presentation.OnBoardingWaterIntakeRe
 import com.example.mizu.features.onboarding.presentation.OnBoardingWeightScreen
 import com.example.mizu.features.onboarding.presentation.OnboardingLoadingScreen
 import com.example.mizu.features.onboarding.view_model.OnboardingViewModel
-import com.example.mizu.utils.BottomNavScreens
-import com.example.mizu.utils.OnboardingNavScreens
-import kotlinx.coroutines.launch
+import com.example.mizu.utils.nav_utils.OnboardingNavScreens
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

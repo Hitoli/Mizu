@@ -9,11 +9,8 @@ import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mizu.model.OnboardingRepository
-import com.example.mizu.utils.NavScreens
-import com.example.mizu.utils.OnboardingNavScreens
-import com.example.mizu.utils.home_screen_utils.StreakClass
+import com.example.mizu.utils.nav_utils.NavScreens
 import com.example.mizu.utils.Utils.Companion.capitalizeFirst
-import com.example.mizu.utils.home_screen_utils.StreakMonthClass
 import com.example.mizu.utils.home_screen_utils.UserSettings
 import kotlinx.coroutines.launch
 

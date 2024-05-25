@@ -87,8 +87,12 @@ dependencies {
     ksp ("androidx.room:room-compiler:2.6.1")
 
     implementation ("co.yml:ycharts:2.1.0")
+
     implementation("androidx.datastore:datastore:1.1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+    implementation("androidx.compose.animation:animation:1.7.0-alpha07")
+
 
 
 

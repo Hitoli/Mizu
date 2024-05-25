@@ -1,35 +1,11 @@
 
-Gkotlin:S1172y"(Remove these unused function parameters.(ƒŒ°8Ü½‹¹ö1
-Hkotlin:S1172Ï"(Remove these unused function parameters.(´œôß8Ş½‹¹ö1
-]kotlin:S1172¯"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8Ş½‹¹ö1
-Ckotlin:S125¯"Remove this commented out code.(à†çúÿÿÿÿ8ä½‹¹ö1
->kotlin:S125†"Remove this commented out code.(ıà¼8ä½‹¹ö1
-fkotlin:S107r"HThis function has 23 parameters, which is greater than the 7 authorized.(ôØ±Ú8ğ½‹¹ö1
-ekotlin:S107Ô"GThis function has 8 parameters, which is greater than the 7 authorized.(ø„©b8ğ½‹¹ö1
-Wkotlin:S1135ÿ"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8õ½‹¹ö1
-Wkotlin:S1135†"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8õ½‹¹ö1
->kotlin:S1128	"Remove this unused import.(¨íıôüÿÿÿÿ8ı½‹¹ö1
-9kotlin:S1128
-"Remove this unused import.(Íÿ¦ñ8ı½‹¹ö1
->kotlin:S1128"Remove this unused import.(ˆöŸ¤ûÿÿÿÿ8ı½‹¹ö1
->kotlin:S1128"Remove this unused import.(–Ÿ˜Ùûÿÿÿÿ8ı½‹¹ö1
-9kotlin:S1128"Remove this unused import.(¤¯†8ı½‹¹ö1
-9kotlin:S1128"Remove this unused import.(•† ‚8ı½‹¹ö1
->kotlin:S1128"Remove this unused import.(…Ìèœúÿÿÿÿ8ı½‹¹ö1
->kotlin:S1128""Remove this unused import.(®•±âùÿÿÿÿ8ı½‹¹ö1
-9kotlin:S1128$"Remove this unused import.(êåê±8ı½‹¹ö1
->kotlin:S1128&"Remove this unused import.(¢Ê†½üÿÿÿÿ8ı½‹¹ö1
-9kotlin:S1128("Remove this unused import.(ñˆĞë8ı½‹¹ö1
-9kotlin:S1128/"Remove this unused import.(Ñ“º8ı½‹¹ö1
-9kotlin:S11282"Remove this unused import.(„öÄá8ı½‹¹ö1
->kotlin:S11285"Remove this unused import.(³úÙëşÿÿÿÿ8ı½‹¹ö1
->kotlin:S11287"Remove this unused import.(¨Ò›ºşÿÿÿÿ8ı½‹¹ö1
->kotlin:S1128:"Remove this unused import.(¤–‡›ıÿÿÿÿ8ı½‹¹ö1
-9kotlin:S1128>"Remove this unused import.(‘è÷×8ı½‹¹ö1
->kotlin:S1128B"Remove this unused import.(ˆ²ŞÎûÿÿÿÿ8ı½‹¹ö1
->kotlin:S1128H"Remove this unused import.(—ÒÛÿûÿÿÿÿ8ı½‹¹ö1
->kotlin:S1128L"Remove this unused import.(ñïŞûÿÿÿÿ8ı½‹¹ö1
->kotlin:S1128Q"Remove this unused import.(®‘¿–ûÿÿÿÿ8ş½‹¹ö1
->kotlin:S1128`"Remove this unused import.(°‚ËØıÿÿÿÿ8ş½‹¹ö1
->kotlin:S1128n"Remove this unused import.(Ş°‚³üÿÿÿÿ8ş½‹¹ö1
-qkotlin:S3776Ô"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ø„©b8‚¾‹¹ö1
+Gkotlin:S1172a"(Remove these unused function parameters.(ƒŒ°8ã×øú1
+]kotlin:S1172Ë"=Remove this unused function parameter "getNotificationClick".(´œôß8æ×øú1
+]kotlin:S1172­"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8ç×øú1
+Ckotlin:S125™"Remove this commented out code.(à†çúÿÿÿÿ8ğ×øú1
+>kotlin:S125ó"Remove this commented out code.(ıà¼8ğ×øú1
+Ckotlin:S125ÿ"Remove this commented out code.(¹©Üúÿÿÿÿ8ñ×øú1
+fkotlin:S107Z"HThis function has 25 parameters, which is greater than the 7 authorized.(ôØ±Ú8€Øøú1
+ekotlin:S107Ï"GThis function has 8 parameters, which is greater than the 7 authorized.(ø„©b8€Øøú1
+Wkotlin:S1135ü"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8ˆØøú1
+qkotlin:S3776Ï"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ø„©b8˜Øøú1
