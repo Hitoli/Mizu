@@ -68,13 +68,3 @@ You can find me on Twitter, Linkedin and Youtube
 - [Twitter](https://twitter.com/Hitesh__kohli)
 - [Linkedin](https://www.linkedin.com/in/hitesh-kohli/)
 
-## Want to learn?
-You can ask me questions or book mock interviews or resume review sessions here:
-
-- [Mock Interview or Resume Review](https://topmate.io/hitesh_kohli)
-  
-You can learn more about Android Development with the help of our newsletter:
-
-- [Developer's Commute](https://developercommute.beehiiv.com/subscribe)
-
-
