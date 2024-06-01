@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mizu.features.onboarding.view_model.OnboardingViewModel
-import com.example.mizu.model.alarm_schedular.AlarmScheduler
+import com.example.mizu.alarm_schedular.AlarmScheduler
 import com.example.mizu.presentation_app.navmap.NavScreen
 import com.example.mizu.ui.theme.MizuTheme
 import com.example.mizu.utils.water_reminder.WaterReminder

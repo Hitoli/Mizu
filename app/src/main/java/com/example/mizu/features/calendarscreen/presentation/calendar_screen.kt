@@ -48,16 +48,17 @@ import co.yml.charts.ui.linechart.model.SelectionHighlightPopUp
 import co.yml.charts.ui.linechart.model.ShadowUnderLine
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
+import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.minorColor
 import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.utils.calendar_utils.WaterGoals
 
 @Composable
-fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:List<WaterGoals>,onPad:PaddingValues,caledarList:MutableList<List<Color>>,getSelected: (Int) -> Unit) {
+fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:List<WaterGoals>,onPad:PaddingValues,caledarList:MutableList<List<Color>>,getSelected: (Int) -> Unit,onAvgIntake: String,onHeight: String,onBestStreak: String,onWeight: String) {
 
 
-    Box(modifier = modifier.padding(
+    Box(modifier = modifier.padding(bottom = onPad.calculateBottomPadding()/4,
         top = onPad.calculateTopPadding()/8)) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.align(
             Alignment.Center)) {
@@ -124,7 +125,7 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:Li
                                                 .width(30.dp)
                                                 .border(
                                                     width = 1.dp,
-                                                    color = if(it!= waterColor)Color.White else minorColor,
+                                                    color = if (it != waterColor) Color.White else minorColor,
                                                     shape = RoundedCornerShape(6.dp)
                                                 )
                                         )
@@ -144,12 +145,12 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:Li
             }
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Water Goals",
+                text = "Stats",
                 modifier= Modifier
                     .fillMaxWidth()
                     .padding(start = 30.dp),
                 style = TextStyle(
-                    fontSize = 24.sp,
+                    fontSize = 20.sp,
                     fontFamily = fontFamilyLight,
                     fontWeight = FontWeight(400),
                     color = minorColor,
@@ -157,30 +158,185 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:Li
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Box(
-                modifier = Modifier
-                    .background(
-                        minorColor,
-                        shape = RoundedCornerShape(10.dp)
-                    )
-                    .fillMaxWidth(0.9f)
-                    .fillMaxHeight(0.45f)
-                    .padding(16.dp)
-            ) {
-                LazyColumn(content = {
-                   items(listOfTodos.size){
-                       TodoTextsLayout(text = listOfTodos.get(it).goal, onSelected =listOfTodos.get(it).onSelected,getSelected={index->
-                           getSelected(index)
-                       }, index =it)
-                   }
-                })
+//            Box(
+//                modifier = Modifier
+//                    .background(
+//                        minorColor,
+//                        shape = RoundedCornerShape(10.dp)
+//                    )
+//                    .fillMaxWidth(0.9f)
+//                    .fillMaxHeight(0.45f)
+//                    .padding(16.dp)
+//            ) {
+//                LazyColumn(content = {
+//                   items(listOfTodos.size){
+//                       TodoTextsLayout(text = listOfTodos.get(it).goal, onSelected =listOfTodos.get(it).onSelected,getSelected={index->
+//                           getSelected(index)
+//                       }, index =it)
+//                   }
+//                })
+//
+//            }
 
-            }
+            UserValues(onAvgIntake = onAvgIntake,onWeight=onWeight, onHeight = onHeight, onBestStreak = onBestStreak)
         }
 
 
 
 
+    }
+}
+
+@Composable
+fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:String) {
+    Box(modifier = Modifier){
+        Column(modifier=Modifier, verticalArrangement = Arrangement.SpaceEvenly, horizontalAlignment = Alignment.CenterHorizontally) {
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
+                Box(modifier = Modifier
+                    .height(110.dp)
+                    .width(150.dp)
+                    .background(waterColor, shape = RoundedCornerShape(10.dp))){
+                    Column(modifier=Modifier.align(Alignment.Center).padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = "Avg Intake",
+                            modifier= Modifier
+                                .fillMaxWidth()
+                            ,
+                            style = TextStyle(
+                                fontSize = 15.sp,
+                                fontFamily = fontFamily,
+                                fontWeight = FontWeight(400),
+                                color = minorColor,
+                                textAlign = TextAlign.Start,
+                            )
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Text(
+                            text = onAvgIntake,
+                            modifier= Modifier
+                                .fillMaxWidth(),
+                            style = TextStyle(
+                                fontSize = 35.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(600),
+                                color = minorColor,
+                                textAlign = TextAlign.Start,
+                            )
+                        )
+
+                    }
+
+                }
+                Box(modifier = Modifier
+                    .height(110.dp)
+                    .width(150.dp)
+                    .background(waterColor, shape = RoundedCornerShape(10.dp))){
+                    Column(modifier=Modifier.align(Alignment.Center).padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = "Best Streak",
+                            modifier= Modifier
+                                .fillMaxWidth()
+                            ,
+                            style = TextStyle(
+                                fontSize = 15.sp,
+                                fontFamily = fontFamily,
+                                fontWeight = FontWeight(400),
+                                color = minorColor,
+                                textAlign = TextAlign.Start,
+                            )
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Text(
+                            text = onBestStreak,
+                            modifier= Modifier
+                                .fillMaxWidth(),
+                            style = TextStyle(
+                                fontSize = 35.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(600),
+                                color = minorColor,
+                                textAlign = TextAlign.Start,
+                            )
+                        )
+
+                    }
+
+                }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically)  {
+                Box(modifier = Modifier
+                    .height(110.dp)
+                    .width(150.dp)
+                    .background(waterColor, shape = RoundedCornerShape(10.dp))){
+                    Column(modifier=Modifier.align(Alignment.Center).padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = "Weight",
+                            modifier= Modifier
+                                .fillMaxWidth()
+                            ,
+                            style = TextStyle(
+                                fontSize = 15.sp,
+                                fontFamily = fontFamily,
+                                fontWeight = FontWeight(400),
+                                color = minorColor,
+                                textAlign = TextAlign.Start,
+                            )
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Text(
+                            text = onWeight,
+                            modifier= Modifier
+                                .fillMaxWidth(),
+                            style = TextStyle(
+                                fontSize = 35.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(600),
+                                color = minorColor,
+                                textAlign = TextAlign.Start,
+                            )
+                        )
+
+                    }
+
+                }
+                Box(modifier = Modifier
+                    .height(110.dp)
+                    .width(150.dp)
+                    .background(waterColor, shape = RoundedCornerShape(10.dp))){
+                    Column(modifier=Modifier.align(Alignment.Center).padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = "Height",
+                            modifier= Modifier
+                                .fillMaxWidth()
+                            ,
+                            style = TextStyle(
+                                fontSize = 15.sp,
+                                fontFamily = fontFamily,
+                                fontWeight = FontWeight(400),
+                                color = minorColor,
+                                textAlign = TextAlign.Start,
+                            )
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Text(
+                            text = onHeight,
+                            modifier= Modifier
+                                .fillMaxWidth(),
+                            style = TextStyle(
+                                fontSize = 35.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(600),
+                                color = minorColor,
+                                textAlign = TextAlign.Start,
+                            )
+                        )
+
+                    }
+
+                }
+            }
+        }
     }
 }
 
@@ -298,5 +454,5 @@ fun PreviewCalendarScreen() {
             ), onMonth = "Feb", todosList, onPad = PaddingValues(40.dp), caledarList = mutableListOf(
             listOf(Color.Black)
         )
-    , getSelected = {})
+    , getSelected = {}, onAvgIntake = "1700ml", onWeight = "72", onHeight = "172", onBestStreak = "10")
 }

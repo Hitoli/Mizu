@@ -45,7 +45,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
         private set
     var _waterAmount by mutableStateOf(WaterAmount())
         private set
-    var perks = mutableListOf<Int>()
+    var perks = mutableStateListOf<Int>()
         private set
     var streakScore by mutableIntStateOf(0)
         private set
@@ -78,15 +78,9 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
         }
 
         waterStreak()
-        updateWaterAmountOnDayEnd()
+//        updateWaterAmountOnDayEnd()
 
 
-    }
-
-    // Re-updates the water amount when the day ends
-    fun updateWaterAmountOnDayEnd(){
-        val calendar = Calendar.getInstance()
-        val timeOfDay = calendar.get(Calendar.HOUR_OF_DAY)
     }
 
     // updates the total water amount from onboarding to Homescreen
@@ -144,7 +138,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
         println("streakScore Onboarding date.dayOfMonth ${calendar.get(Calendar.DAY_OF_MONTH)}")
 
         Log.e("WATER PERCENT", waterPercent.toString());
-        if (waterPercent <= 100 && canAddWater) {
+        if (waterPercent < 100 && canAddWater) {
             waterTime = currentTime.minute
 
             usedWaterAmount += waterUpdate
@@ -157,13 +151,15 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
                 if (date.toString() != streakDay) {
                     streakScore++
                     streakDays.add(calendar.get(Calendar.DAY_OF_MONTH))
+                    updatePerks()
+                    viewModelScope.launch {
+                        calculateStreakScore()
+                    }
                 }
                 streakDay = date.toString()
             }
 
             viewModelScope.launch {
-                calculateStreakScore()
-//                calculateStreakMonthScore()
                 calculateWaterAmount()
             }
             println("streakScore Onboarding streakScore ${streakScore}")
@@ -176,7 +172,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
             println("streakScore Onboarding streakDay ${streakDay}")
         }
         waterStreak()
-        updatePerks()
+
     }
 
     // Update the water Amount in database
@@ -214,10 +210,6 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
             _waterAmount = it
             usedWaterAmount = it.onUsedWater
             totalWaterAmount = it.onTotalWater
-            if(date.toString()!=it.onWaterDay){
-                usedWaterAmount = 0
-                calculateWaterAmount()
-            }
             if (it.onUsedWater > 0) {
                 if (it.onUsedWater * 100 / it.onTotalWater <= 100) {
                     waterPercent = it.onUsedWater * 100 / it.onTotalWater
@@ -226,6 +218,11 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
                     waterPercent = 100
                 }
             }
+            if(date.toString()!=it.onWaterDay){
+                usedWaterAmount = 0
+                waterPercent =0
+                calculateWaterAmount()
+            }
         }
     }
 
@@ -233,17 +230,25 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
     // Gets the streak score and updates perks in perk sheet
 
     private suspend fun getStreakScore() {
-        onboardingRepo.getStreak().collect {
+        onboardingRepo.getStreak().collect { it ->
             _streak =it
             streakScore = it.streak
-            perks.addAll(it.perks)
+            if(it.perks.isNotEmpty()){
+                perks.clear()
+                println("perks ${it.perks}")
+
+                it.perks.forEach{
+                    if(!perks.contains(it)){
+                        perks.add(it)
+                    }
+                }
+               /*perks.addAll(it.perks)*/
+            }
             if (it.waterTime != "") {
                 waterTime = it.waterTime.toInt()
             }
             streakDay = it.streakDay
-            if(perks.isNotEmpty()){
-                perks.addAll(it.perks)
-            }
+
             println("getStreakScore ${it}")
         }
     }

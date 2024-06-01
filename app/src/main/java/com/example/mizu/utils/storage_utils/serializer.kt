@@ -1,9 +1,11 @@
 package com.example.mizu.utils.storage_utils
 
 import androidx.datastore.core.Serializer
+import com.example.mizu.utils.calendar_utils.WaterGoals
 import com.example.mizu.utils.home_screen_utils.StreakClass
 import com.example.mizu.utils.home_screen_utils.StreakMonthClass
 import com.example.mizu.utils.home_screen_utils.UserSettings
+import com.example.mizu.utils.home_screen_utils.UserValues
 import com.example.mizu.utils.home_screen_utils.WaterAmount
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
@@ -116,3 +118,29 @@ object SerializerWaterAmount:Serializer<WaterAmount> {
     }
 }
 
+
+object SerializerUserValues:Serializer<UserValues> {
+    override val defaultValue: UserValues
+        get() = UserValues()
+
+    override suspend fun readFrom(input: InputStream): UserValues {
+        return try {
+            Json.decodeFromString(
+                deserializer = UserValues.serializer(),
+                string = input.readBytes().decodeToString()
+            )
+        }catch (e:SerializationException){
+            e.printStackTrace()
+            defaultValue
+        }
+    }
+
+    override suspend fun writeTo(t: UserValues, output: OutputStream) {
+        output.write(
+            Json.encodeToString(
+                serializer = UserValues.serializer(),
+                value = t
+            ).encodeToByteArray()
+        )
+    }
+}

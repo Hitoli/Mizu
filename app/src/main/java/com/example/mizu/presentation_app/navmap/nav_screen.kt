@@ -32,6 +32,7 @@ fun NavScreen(
 ) {
     var navController = rememberNavController()
 
+
     Log.d("updateWaterGoals NavScreen",caledarViewModel.onWaterGoals.toList().toString())
 
 //    SharedTransitionLayout {
@@ -94,7 +95,7 @@ fun NavScreen(
                             },
                             getProfileClick = {
                                navController.navigate(NavScreens.ProfileNavHostingScreen.route)
-                            }, imgModifier = Modifier
+                            }, imgModifier = Modifier, onAvgIntake = caledarViewModel.avgWaterIntake, onWeight = caledarViewModel.weight, onBestStreak = caledarViewModel.bestStreak, onHeight = caledarViewModel.height
 
 
                         )

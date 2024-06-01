@@ -1,7 +1,7 @@
 
-hkotlin:S125K"Remove this commented out code.(… ÎÔúÿÿÿÿ8ö†İ†û1J$ae64abdb-47b3-4a6d-adcc-8f7abeb4c348
-_kotlin:S1128"Remove this unused import.(™Ü¢ó8ı†İ†û1J$1fb0536a-4c82-4dc9-956c-5bf19ccf8eb5
-dkotlin:S1128"Remove this unused import.(ÊÒÅ­ùÿÿÿÿ8ı†İ†û1J$461a466a-a388-4409-b472-b3c321d84b8b
-dkotlin:S1128"Remove this unused import.(Ş°‚³üÿÿÿÿ8ı†İ†û1J$e2de6222-d3da-4b62-8ab6-3f0f29b4340c
-¥kotlin:S1192="[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(ØÒ¿şÿÿÿÿ8ş†İ†û1J$49f4bbab-e570-4792-bb64-c063d6d09022
-qkotlin:S6518V",Replace function call with indexed accessor.(‚àı 8‡İ†û1J$a13dfc9a-fd18-4377-b20a-a3bec62bd306
+hkotlin:S125E"Remove this commented out code.(ùÔ“ƒûÿÿÿÿ8¿ë¡ı1J$afccb034-5247-40cb-bdd1-b8a1c9cf4b03
+_kotlin:S1128"Remove this unused import.(™Ü¢ó8Îë¡ı1J$e8e8ecbb-3682-4a63-ba63-6e8b3a095f98
+dkotlin:S1128"Remove this unused import.(ÊÒÅ­ùÿÿÿÿ8Ïë¡ı1J$ad1d603b-8d60-4a51-affa-530167bac95d
+dkotlin:S1128"Remove this unused import.(Ş°‚³üÿÿÿÿ8Ïë¡ı1J$cd8356b1-4cba-46ad-8f85-aad99256e4b7
+vkotlin:S6529"1Replace collection size check with "isNotEmpty()"(Ÿƒº8æ£ì¡ı1J$a9cae2d8-6d8e-41c1-9dc9-ba8745c3f5b2
+qkotlin:S6518t",Replace function call with indexed accessor.(‚àı 8é£ì¡ı1J$ccd68199-0ed5-48fa-aef2-184b08851382

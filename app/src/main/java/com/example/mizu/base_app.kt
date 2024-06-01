@@ -7,7 +7,7 @@ import android.content.Context
 import android.os.Build
 import com.example.mizu.di.DIModule
 import com.example.mizu.features.notifications.NotificationChannelService
-import com.example.mizu.model.alarm_schedular.AlarmScheduler
+import com.example.mizu.alarm_schedular.AlarmScheduler
 import com.example.mizu.utils.water_reminder.WaterReminder
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger

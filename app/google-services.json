@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1042045653739",
+    "project_id": "mizu-5b404",
+    "storage_bucket": "mizu-5b404.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042045653739:android:0ac4d64fea579fbcbae4ae",
+        "android_client_info": {
+          "package_name": "com.example.mizu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnFMLoCP110hRGNxWssZbdub8JydV0d0A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

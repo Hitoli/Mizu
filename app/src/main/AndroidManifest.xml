@@ -30,9 +30,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".model.AlarmReceiver"
+        <receiver android:name=".receiver.AlarmReceiver"
             android:process=":remote"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.media.action.DISPLAY_NOTIFICATION" />
 

@@ -1,4 +1,4 @@
-package com.example.mizu.model.alarm_schedular
+package com.example.mizu.alarm_schedular
 
 import com.example.mizu.utils.water_reminder.WaterReminder
 

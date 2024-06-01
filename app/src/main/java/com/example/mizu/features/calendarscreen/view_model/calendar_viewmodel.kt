@@ -40,12 +40,24 @@ class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewMo
     var calendarList:MutableList<List<Color>> = mutableListOf()
         private set
 
+    var avgWaterIntake by mutableStateOf("")
+        private set
+    var bestStreak by mutableStateOf("")
+        private set
+    var weight by mutableStateOf("")
+        private set
+    var height by mutableStateOf("")
+        private set
+
     init {
         viewModelScope.launch {
             getStreakScore()
         }
+        viewModelScope.launch {
+            getUserSettings()
+        }
 
-        getWaterGoals()
+//        getWaterGoals()
 
     }
 
@@ -54,15 +66,15 @@ class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewMo
         //        _onWaterGoals.get(index).onSelected = !_onWaterGoals.get(index).onSelected
     }
 
-    fun getWaterGoals(){
-        _onWaterGoals.clear()
-
-        _onWaterGoals.addAll(listOf(
-            WaterGoals(goal = "Keep a bottle by your desk",onSelected = false),
-            WaterGoals(goal = "Keep a bottle by your desk",onSelected = false),
-            WaterGoals(goal = "Keep a bottle by your desk",onSelected = false)
-        ))
-    }
+//    fun getWaterGoals(){
+//        _onWaterGoals.clear()
+//
+//        _onWaterGoals.addAll(listOf(
+//            WaterGoals(goal = "Pre-fill water bottle in the morning",onSelected = false),
+//            WaterGoals(goal = "Keep a bottle by your desk",onSelected = false),
+//            WaterGoals(goal = "Drink your first cup of water",onSelected = false)
+//        ))
+//    }
 
     private suspend fun getStreakScore() {
         onboardingRepo.getStreak().collect {
@@ -72,10 +84,28 @@ class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewMo
             getCalendarValues()
             println(" calendarScreen streaKDays ${it.streakDays}")
             println(" calendarScreen streaKDays ${streaKDays}")
-//            println("streakScore calendarScreen onStreakDays ${streaKDays[0]}")
         }
+        calculateUserValues()
+    }
+    private suspend fun calculateUserValues(){
+        if (bestStreak.toInt()<onStreakDays){
+            bestStreak = onStreakDays.toString()
+        }
+        onboardingRepo.updateUserValues(avgIntake ="1000",bestStreak = bestStreak )
+    }
+
+    private suspend fun getUserSettings(){
+        onboardingRepo.getUserValues().collect{
+            avgWaterIntake = it.avgIntake
+            bestStreak = it.bestStreak
+        }
+        onboardingRepo.getUserSettingsStore().collect{
+
+            height = it.userHeight.toString()
+            weight = it.userWeight.toString()
 
 
+        }
     }
 
 
@@ -87,36 +117,21 @@ class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewMo
         val months = arrayOf("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
         onMonth =  months[monthIndex]
         onDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
-
+        calendarList.clear()
         for(i in 0 until 5){
             val rowList = mutableListOf<Color>()
             for(j in 0 until 7){
                 val count =i*7+j
-
                 if(count<onDays){
                     println("streakScore calendarScreen streakDays ${streaKDays}")
-//                    if(k<streaKDays.size){
-                        println("streakScore calendarScreen count ${count}")
-                        if(streaKDays.contains(count)){
-
-//                        println("streakScore calendarScreen streaKDays ${streaKDays[count]}")
-//                        if(count==streaKDays[count] ){
-                            rowList.add(waterColor)
-//                        }else{
-//                            rowList.add(minorColor)
-//                        }
+                        if(streaKDays.size!=0 && streaKDays.contains(count)){
+                            println("streakScore calendarScreen count ${count}")
+                            rowList.add(count-1, waterColor)
                         }else{
                             rowList.add(minorColor)
                         }
 
-//                    }else{
-//                        rowList.add(minorColor)
-//                    }
-
-                }else{
-                    rowList.add(minorColor)
                 }
-
             }
             calendarList.add(rowList)
         }

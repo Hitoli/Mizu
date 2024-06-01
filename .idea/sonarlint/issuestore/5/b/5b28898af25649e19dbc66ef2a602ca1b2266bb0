@@ -1,15 +1,7 @@
 
-|kotlin:S6619*"7Remove this useless non-null check, it always succeeds.(°¯´8áÛ°„ğ1J$af11c3ff-9aa7-4c70-bda0-a3a6e8884efa
-|kotlin:S6619K"7Remove this useless non-null check, it always succeeds.(°¯´8áÛ°„ğ1J$1c0e6d45-e758-45d8-8ef9-aec349d9325f
-|kotlin:S6619c"7Remove this useless non-null check, it always succeeds.(°¯´8áÛ°„ğ1J$dee499d0-14e0-4f1a-837f-cb4fbd7686e3
-|kotlin:S6619"7Remove this useless non-null check, it always succeeds.(°¯´8âÛ°„ğ1J$064c7e65-7d94-467e-b9aa-6cb83a39a145
-}kotlin:S1481""3Remove this unused "coroutineScope" local variable.(•±Éàüÿÿÿÿ8’·Ñ„ğ1J$f16d26b9-3d60-4cde-a8b4-5b86665e196c
-dkotlin:S1128"Remove this unused import.(‹‚ü†ıÿÿÿÿ8êÛ°„ğ1J$1732d121-2b12-4315-86b0-d6b9342fe20b
-_kotlin:S1128"Remove this unused import.(ÀÄ8ìÛ°„ğ1J$466fe34b-cda9-4255-8850-d034c82dcb8b
-^kotlin:S1128"Remove this unused import.(†™¹$8ìÛ°„ğ1J$b0ba94f1-02b2-4411-a817-ff8785341a68
-_kotlin:S1128	"Remove this unused import.(²ßêº8ìÛ°„ğ1J$912bd448-27ae-4b5e-a064-d265c47822f3
-_kotlin:S1128
-"Remove this unused import.(³¹¦–8ìÛ°„ğ1J$40001944-66a1-442d-ae6c-2a8b517b8676
-dkotlin:S1128"Remove this unused import.(—÷õ¸ıÿÿÿÿ8ìÛ°„ğ1J$a102e968-c3a2-4728-9b78-ef97cd9ede06
-dkotlin:S1128"Remove this unused import.(£ñ¹¸ûÿÿÿÿ8”·Ñ„ğ1J$b8e8d322-175c-45e4-8665-a5f092ad5418
-—kotlin:S3776"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(øŞ´8ïÛ°„ğ1J$e4627c3c-a2f6-46af-96b2-28e60484b448
+|kotlin:S6619!"7Remove this useless non-null check, it always succeeds.(°¯´8áÛ°„ğ1J$b8b653cf-273a-47a6-a560-175d02e8f644
+|kotlin:S6619B"7Remove this useless non-null check, it always succeeds.(°¯´8áÛ°„ğ1J$6ff810c4-25d9-43ba-8842-e96fc4c5062b
+|kotlin:S6619Z"7Remove this useless non-null check, it always succeeds.(°¯´8áÛ°„ğ1J$34450b56-249c-4294-b9a6-2499957e5283
+|kotlin:S6619v"7Remove this useless non-null check, it always succeeds.(°¯´8âÛ°„ğ1J$d9f7c98c-1651-4999-ab76-7adb0664f7c0
+}kotlin:S1481"3Remove this unused "coroutineScope" local variable.(•±Éàüÿÿÿÿ8’·Ñ„ğ1J$3e1ce064-c5f2-42c8-a144-e55102bdd892
+—kotlin:S3776"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(øŞ´8ïÛ°„ğ1J$f683351a-e92d-45bb-ae82-dd26018ba855

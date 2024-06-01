@@ -13,6 +13,7 @@ import com.example.mizu.utils.nav_utils.NavScreens
 import com.example.mizu.utils.Utils.Companion.capitalizeFirst
 import com.example.mizu.utils.home_screen_utils.UserSettings
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
 class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): ViewModel(){
 
@@ -116,9 +117,23 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
         }
 
         onWaterAmount =TWI.toInt()
+        viewModelScope.launch {
+            calculateWaterAmount()
+        }
         Log.d("onWaterAmount Onboarding",onWaterAmount.toString())
         TWI/=1000
         Log.d("TWI Onboarding",TWI.toString())
+    }
+    // Update the water Amount in database
+    private suspend fun calculateWaterAmount() {
+        val date = LocalDate.now()
+        onboardingRepo.updateWaterAmount(
+            onUsedWater = 0,
+            onTotalWaterAmount = onWaterAmount,
+            onWaterDay = date.toString()
+        )
+        println("Date onWaterDay ${date.toString()}")
+
     }
 
 
@@ -127,7 +142,7 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
     fun updateUserSettings(){
         onboardingCompleted = true
         viewModelScope.launch {
-            onboardingRepo.updateUserSettingsStore(userWeight = onWeightValue.toInt(), userWaterIntake =TWI.toInt() , userName =onNameValue , userHeight = onHeightValue.toInt(), onBoardingCompleted =true )
+            onboardingRepo.updateUserSettingsStore(userWeight = onWeightValue.toInt(), userWaterIntake = onWaterAmount, userName =onNameValue , userHeight = onHeightValue.toInt(), onBoardingCompleted =true, userAvgIntake = 0, bestStreak = 0 )
 
         }
         println("streakScore Onboarding UpdateUserSettings ")

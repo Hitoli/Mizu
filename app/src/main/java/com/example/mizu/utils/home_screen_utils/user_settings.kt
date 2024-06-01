@@ -8,5 +8,11 @@ data class UserSettings(
     var userHeight:Int=0,
     var userWeight:Int=0,
     var userWaterIntake:Int=0,
-    var registrationCompleted:Boolean =false
+    var registrationCompleted:Boolean =false,
+)
+
+@Serializable
+data class UserValues(
+    var avgIntake:String ="",
+    var bestStreak:String=""
 )

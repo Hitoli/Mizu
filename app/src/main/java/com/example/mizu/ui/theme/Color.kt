@@ -20,6 +20,8 @@ val waterColor=Color(0xFFA4EBF3)
 //homeWaterIndicatorColor
 val circleWaterIndicatorColor=Color(0xFF756AB6)
 
+val waterColorMeter=Color(0xFF1596A4)
+
 val buttonTextColor =Color(0xFFFFE5E5)
 
 val blackShadeColor=Color(0xFF29302C)

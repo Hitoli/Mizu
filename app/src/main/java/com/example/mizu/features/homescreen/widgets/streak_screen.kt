@@ -83,7 +83,7 @@ fun StreakScreen(modifier: Modifier=Modifier,Streak:String,username:String,getSt
                 .width(screenWidth.value * 0.25.dp)
                 .align(Alignment.Center),
             style = TextStyle(
-                fontSize = 18.sp,
+                fontSize = 15.sp,
                 fontFamily = fontFamily,
                 fontWeight = FontWeight(500),
                 color = minorColor,
@@ -98,7 +98,7 @@ fun StreakScreen(modifier: Modifier=Modifier,Streak:String,username:String,getSt
                     .width(60.dp)
                     .align(Alignment.Center),
                 style = TextStyle(
-                    fontSize = 18.sp,
+                    fontSize = 15.sp,
                     fontFamily = fontFamily,
                     fontWeight = FontWeight(500),
                     color = minorColor,

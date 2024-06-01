@@ -73,6 +73,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import co.yml.charts.common.extensions.isNotNull
 import com.example.mizu.R
 import com.example.mizu.features.calendarscreen.presentation.CalendarScreen
 import com.example.mizu.features.homescreen.presentation.HomeScreen
@@ -111,7 +112,8 @@ fun BottomBarHostingScreen(
     onWaterGoals:List<WaterGoals>,
     getSelected: (Int) -> Unit,
     getProfileClick:()->Unit,
-    imgModifier: Modifier
+    imgModifier: Modifier,
+    onAvgIntake: String,onHeight: String,onBestStreak: String,onWeight: String
     ) {
     var onAdd by remember {
         mutableStateOf(false)
@@ -238,13 +240,6 @@ fun BottomBarHostingScreen(
                             )
                         }
                     }
-
-
-//                    AnimatedVisibility(visible = onAdd, enter = fadeIn(), exit = fadeOut()) {
-//
-//                    }
-
-
                 }
             }
 
@@ -299,7 +294,7 @@ fun BottomBarHostingScreen(
                             )
                         ), onPad = padding, caledarList = calendarList, getSelected = {
                             getSelected(it)
-                    }
+                    }, onHeight = onHeight, onBestStreak = onBestStreak, onWeight = onWeight, onAvgIntake = onAvgIntake
                 )
             }
         }
@@ -420,10 +415,13 @@ fun WaterCarouselSheet(
             }
             Spacer(modifier = Modifier.height(10.dp))
             Button(
-                onClick = { getWaterTrackingResourceAmount(items[selected])
-                          getWaterAddSheet(false)
-                    println("Selected => ${items[selected]}")
-                         getSelected(-1)
+                onClick = {
+                    if(selected!=-1 && selected<items.size){
+                        getWaterTrackingResourceAmount(items[selected])
+                        getWaterAddSheet(false)
+                        getSelected(-1)
+                    }
+                    println("Selected => ${selected}")
                           }
                 , modifier = Modifier
                     .fillMaxWidth()
@@ -500,26 +498,26 @@ fun TopBarLayout(
 
         },
         actions = {
-            Row(
-                modifier = Modifier,
-                horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.Top
-            ) {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(R.drawable.notificationmizu),
-                        contentDescription = "notification",
-                        tint = minorColor
-                    )
-                }
-                IconButton(onClick = {getPorfileClick() }) {
-                    Image(
-                        modifier = imgModifier,
-                        painter = painterResource(id = R.drawable.mizunamelogo),
-                        contentDescription = "UserIcon"
-                    )
-                }
-            }
+//            Row(
+//                modifier = Modifier,
+//                horizontalArrangement = Arrangement.Start,
+//                verticalAlignment = Alignment.Top
+//            ) {
+//                IconButton(onClick = { /*TODO*/ }) {
+//                    Icon(
+//                        imageVector = ImageVector.vectorResource(R.drawable.notificationmizu),
+//                        contentDescription = "notification",
+//                        tint = minorColor
+//                    )
+//                }
+//                IconButton(onClick = {getPorfileClick() }) {
+//                    Image(
+//                        modifier = imgModifier,
+//                        painter = painterResource(id = R.drawable.mizunamelogo),
+//                        contentDescription = "UserIcon"
+//                    )
+//                }
+//            }
 
         },
         colors = TopAppBarColors(
@@ -644,6 +642,6 @@ fun PreviewBottomBarHostingScreen() {
         items = listOf(50, 100, 200, 300, 400, 500),
         getUpdateTotalWaterTrackingAmount = {}, streakImages = listOf(R.drawable.day2,R.drawable.day1), onMonth = "", onWaterGoals = listOf() , calendarList = mutableListOf(
             listOf(Color.Black)
-        ), getSelected = {}, getProfileClick = {}, imgModifier = Modifier
+        ), getSelected = {}, getProfileClick = {}, imgModifier = Modifier, onAvgIntake = "1700ml", onWeight = "72", onHeight = "172", onBestStreak = "10"
     )
 }

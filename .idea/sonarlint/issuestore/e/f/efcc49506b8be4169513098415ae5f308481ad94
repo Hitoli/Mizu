@@ -1,11 +1,16 @@
 
-Gkotlin:S1172a"(Remove these unused function parameters.(ƒŒ°8ã×øú1
-]kotlin:S1172Ë"=Remove this unused function parameter "getNotificationClick".(´œôß8æ×øú1
-]kotlin:S1172­"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8ç×øú1
-Ckotlin:S125™"Remove this commented out code.(à†çúÿÿÿÿ8ğ×øú1
->kotlin:S125ó"Remove this commented out code.(ıà¼8ğ×øú1
-Ckotlin:S125ÿ"Remove this commented out code.(¹©Üúÿÿÿÿ8ñ×øú1
-fkotlin:S107Z"HThis function has 25 parameters, which is greater than the 7 authorized.(ôØ±Ú8€Øøú1
-ekotlin:S107Ï"GThis function has 8 parameters, which is greater than the 7 authorized.(ø„©b8€Øøú1
-Wkotlin:S1135ü"2Complete the task associated to this TODO comment.(ïæïùÿÿÿÿ8ˆØøú1
-qkotlin:S3776Ï"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ø„©b8˜Øøú1
+mkotlin:S1172b"(Remove these unused function parameters.(ƒŒ°8ÒŞ„Ÿı1J$3c42add7-c379-4dd1-95fd-1f0f3c06a061
+nkotlin:S1172É"(Remove these unused function parameters.(´œôß8ÔŞ„Ÿı1J$fab3cf4d-a0f7-4293-86ee-d3303675664d
+ƒkotlin:S1172«"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8ÔŞ„Ÿı1J$96510159-2b4e-4d16-a38c-fb9fd3785f77
+ikotlin:S125›"Remove this commented out code.(à†çúÿÿÿÿ8ÜŞ„Ÿı1J$5d350313-0c2d-4f40-b3b3-9e9297e2b8b3
+ikotlin:S125ú"Remove this commented out code.(¹©Üúÿÿÿÿ8İŞ„Ÿı1J$63be5886-3d64-4b1c-87ef-0899a027ab2b
+dkotlin:S125õ"Remove this commented out code.(§ã†×8İŞ„Ÿı1J$d30b5d1f-5277-4892-a1a9-b95187f199db
+Œkotlin:S107["HThis function has 29 parameters, which is greater than the 7 authorized.(ôØ±Ú8ôŞ„Ÿı1J$622a1772-9166-4301-94ad-7b8dd76ca683
+‹kotlin:S107Ê"GThis function has 8 parameters, which is greater than the 7 authorized.(ø„©b8ôŞ„Ÿı1J$7e9e09a0-9a87-410d-a98e-9cf20b0650f4
+}kotlin:S1135ú"2Complete the task associated to this TODO comment.(£÷É şÿÿÿÿ8„ß„Ÿı1J$158cc361-3936-4572-b8e2-03b50d75775e
+_kotlin:S1128
+"Remove this unused import.(ÓşÈÆ8ß„Ÿı1J$4f32e5d4-6c28-497e-9ac7-2be9cabb3c4d
+dkotlin:S1128&"Remove this unused import.(÷à‚Ëûÿÿÿÿ8ß„Ÿı1J$03791d68-6726-494c-8b1b-4c97d8bd4fc3
+dkotlin:S1128>"Remove this unused import.(‚ÅÎùúÿÿÿÿ8ß„Ÿı1J$e7b46d27-4e72-4914-b6b9-2d820f2b89fd
+dkotlin:S1128L"Remove this unused import.(—÷õ¸ıÿÿÿÿ8ß„Ÿı1J$8380f5a4-7c7a-4041-a240-c5c84a0b3c69
+—kotlin:S3776Ê"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(ø„©b8’ß„Ÿı1J$a23b74c2-cf91-41f7-b8b5-f1f2faeda717

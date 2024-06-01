@@ -1,7 +1,8 @@
 
-™kotlin:S6558s"URemove this it parameter declaration or give this lambda parameter a meaningful name.(Ïçé}8Ã•¡¸ö1J$b9bb6362-45e7-40a4-b27e-0459eee6da19
-¦kotlin:S1192›"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(ØÒ¿şÿÿÿÿ8Ğ•¡¸ö1J$b52ae3a4-7709-4152-9689-76ea734a5964
-ikotlin:S65249"Make this collection immutable.(¨–„øÿÿÿÿ8Ô•¡¸ö1J$e5410592-302b-4f17-bfd8-27847a824337
-rkotlin:S6518¬",Replace function call with indexed accessor.(Ü°ÆÁ8Ú•¡¸ö1J$da8fdeff-22dd-4cce-bf1e-50de0397d9d0
-rkotlin:S6518¬",Replace function call with indexed accessor.(Ü°ÆÁ8Ú•¡¸ö1J$1e6cf7a6-e65d-4212-acad-3480064af83a
-pkotlin:S6518s",Replace function call with indexed accessor.(Ïçé}8Ú•¡¸ö1J$e47b90fb-3995-427e-8080-270bbfa9e32f
+mkotlin:S1172:"(Remove these unused function parameters.(²–Äà8í×ıı1J$8fcc1e1d-5a26-41a4-b282-886ae963f18c
+ikotlin:S125¡"Remove this commented out code.(±¦‹ğøÿÿÿÿ8ô×ıı1J$afdf06b9-b1a0-42bf-bfa5-ca54c8c47c32
+™kotlin:S6558t"URemove this it parameter declaration or give this lambda parameter a meaningful name.(Ïçé}8ú×ıı1J$9de8b1b1-d0b7-4e86-8821-38edea99a7d6
+Œkotlin:S107:"HThis function has 10 parameters, which is greater than the 7 authorized.(²–Äà8€Øıı1J$42efc347-3b12-4c27-b626-25174884faba
+¦kotlin:S1192·"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(ØÒ¿şÿÿÿÿ8ŒØıı1J$8b2559c7-ff77-4f2d-af91-0dd82e9e5977
+dkotlin:S6524:"Make this collection immutable.(²–Äà8‘Øıı1J$15cac280-6987-4096-8220-972cb26327bb
+pkotlin:S6518t",Replace function call with indexed accessor.(Ïçé}8˜Øıı1J$2bf46365-d7f4-40cc-bf1d-feed46d23867
