@@ -3,6 +3,7 @@ package com.example.mizu.features.calendarscreen.presentation
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,10 +21,15 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -35,6 +41,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import co.yml.charts.axis.AxisData
 import co.yml.charts.common.model.Point
 import co.yml.charts.ui.linechart.LineChart
@@ -57,6 +64,12 @@ import com.example.mizu.utils.calendar_utils.WaterGoals
 @Composable
 fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:List<WaterGoals>,onPad:PaddingValues,caledarList:MutableList<List<Color>>,getSelected: (Int) -> Unit,onAvgIntake: String,onHeight: String,onBestStreak: String,onWeight: String) {
 
+    var showMood by remember{
+        mutableStateOf(false)
+    }
+    var moodNow by remember{
+        mutableStateOf("😊")
+    }
 
     Box(modifier = modifier.padding(bottom = onPad.calculateBottomPadding()/4,
         top = onPad.calculateTopPadding()/8)) {
@@ -178,17 +191,28 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:Li
 //
 //            }
 
-            UserValues(onAvgIntake = onAvgIntake,onWeight=onWeight, onHeight = onHeight, onBestStreak = onBestStreak)
+            UserValues(onAvgIntake = onAvgIntake,onWeight=onWeight, onHeight = onHeight, onBestStreak = onBestStreak, getShowMood = {
+                showMood = it
+            }, moodNow = moodNow)
+
         }
 
 
 
 
     }
+    if(showMood){
+        MoodMeter(getShowMood = {
+            showMood = it
+        }, getMood = {
+            moodNow = it
+        })
+    }
+
 }
 
 @Composable
-fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:String) {
+fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:String,getShowMood: (Boolean) -> Unit,moodNow:String) {
     Box(modifier = Modifier){
         Column(modifier=Modifier, verticalArrangement = Arrangement.SpaceEvenly, horizontalAlignment = Alignment.CenterHorizontally) {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
@@ -196,9 +220,13 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                     .height(110.dp)
                     .width(150.dp)
                     .background(waterColor, shape = RoundedCornerShape(10.dp))){
-                    Column(modifier=Modifier.align(Alignment.Center).padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column(modifier= Modifier
+                        .align(Alignment.Center)
+                        .padding(10.dp).clickable {
+                                     getShowMood(true)
+                        }, verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
-                            text = "Avg Intake",
+                            text = "Mood",
                             modifier= Modifier
                                 .fillMaxWidth()
                             ,
@@ -207,12 +235,12 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontFamily = fontFamily,
                                 fontWeight = FontWeight(400),
                                 color = minorColor,
-                                textAlign = TextAlign.Start,
+                                textAlign = TextAlign.Center,
                             )
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
-                            text = onAvgIntake,
+                            text = moodNow,
                             modifier= Modifier
                                 .fillMaxWidth(),
                             style = TextStyle(
@@ -220,7 +248,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(600),
                                 color = minorColor,
-                                textAlign = TextAlign.Start,
+                                textAlign = TextAlign.Center,
                             )
                         )
 
@@ -231,7 +259,9 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                     .height(110.dp)
                     .width(150.dp)
                     .background(waterColor, shape = RoundedCornerShape(10.dp))){
-                    Column(modifier=Modifier.align(Alignment.Center).padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column(modifier= Modifier
+                        .align(Alignment.Center)
+                        .padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
                             text = "Best Streak",
                             modifier= Modifier
@@ -242,7 +272,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontFamily = fontFamily,
                                 fontWeight = FontWeight(400),
                                 color = minorColor,
-                                textAlign = TextAlign.Start,
+                                textAlign = TextAlign.Center,
                             )
                         )
                         Spacer(modifier = Modifier.height(10.dp))
@@ -255,7 +285,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(600),
                                 color = minorColor,
-                                textAlign = TextAlign.Start,
+                                textAlign = TextAlign.Center,
                             )
                         )
 
@@ -269,7 +299,9 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                     .height(110.dp)
                     .width(150.dp)
                     .background(waterColor, shape = RoundedCornerShape(10.dp))){
-                    Column(modifier=Modifier.align(Alignment.Center).padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column(modifier= Modifier
+                        .align(Alignment.Center)
+                        .padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
                             text = "Weight",
                             modifier= Modifier
@@ -280,7 +312,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontFamily = fontFamily,
                                 fontWeight = FontWeight(400),
                                 color = minorColor,
-                                textAlign = TextAlign.Start,
+                                textAlign = TextAlign.Center,
                             )
                         )
                         Spacer(modifier = Modifier.height(10.dp))
@@ -293,7 +325,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(600),
                                 color = minorColor,
-                                textAlign = TextAlign.Start,
+                                textAlign = TextAlign.Center,
                             )
                         )
 
@@ -304,7 +336,9 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                     .height(110.dp)
                     .width(150.dp)
                     .background(waterColor, shape = RoundedCornerShape(10.dp))){
-                    Column(modifier=Modifier.align(Alignment.Center).padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column(modifier= Modifier
+                        .align(Alignment.Center)
+                        .padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
                             text = "Height",
                             modifier= Modifier
@@ -315,7 +349,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontFamily = fontFamily,
                                 fontWeight = FontWeight(400),
                                 color = minorColor,
-                                textAlign = TextAlign.Start,
+                                textAlign =TextAlign.Center,
                             )
                         )
                         Spacer(modifier = Modifier.height(10.dp))
@@ -328,7 +362,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(600),
                                 color = minorColor,
-                                textAlign = TextAlign.Start,
+                                textAlign = TextAlign.Center,
                             )
                         )
 
@@ -383,6 +417,122 @@ fun TodoTextsLayout(text:String, onSelected:Boolean, getSelected:(Int)->Unit,ind
         }
     }
 
+
+}
+
+
+@Composable
+fun MoodMeter(getShowMood: (Boolean) -> Unit, getMood:(String)->Unit) {
+    Dialog(onDismissRequest = {}) {
+        Box(modifier = Modifier
+            .background(
+                minorColor,
+                shape = RoundedCornerShape(10.dp)
+            )
+            .fillMaxWidth()
+            .height(100.dp)
+            .padding(16.dp)){
+            Row(modifier=Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceEvenly) {
+                Box(modifier = Modifier
+                    .height(80.dp)
+                    .width(80.dp)
+                    .background(waterColor, shape = RoundedCornerShape(10.dp)).clickable { getShowMood(false)
+
+                    getMood("😊")}){
+                    Column(modifier=Modifier.align(Alignment.Center), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = "😊",
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(400),
+                                color = backgroundColor1,
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                        Text(
+                            text = "Good",
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(400),
+                                color = minorColor,
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                    }
+                }
+                Box(modifier = Modifier
+                    .height(80.dp)
+                    .width(80.dp)
+                    .background(waterColor, shape = RoundedCornerShape(10.dp)).clickable { getShowMood(false)
+                        getMood("😞") }){
+                    Column(modifier=Modifier.align(Alignment.Center), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = "😞",
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(400),
+                                color = backgroundColor1,
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                        Text(
+                            text = "Bad",
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(400),
+                                color = minorColor,
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                    }
+                }
+                Box(modifier = Modifier
+                    .height(80.dp)
+                    .width(80.dp)
+                    .background(waterColor, shape = RoundedCornerShape(10.dp)).clickable { getShowMood(false)
+                        getMood("😐")}){
+                    Column(modifier=Modifier.align(Alignment.Center), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            text = "😐",
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(400),
+                                color = backgroundColor1,
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                        Text(
+                            text = "Neutral",
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            style = TextStyle(
+                                fontSize = 16.sp,
+                                fontFamily = fontFamilyLight,
+                                fontWeight = FontWeight(400),
+                                color = minorColor,
+                                textAlign = TextAlign.Center,
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
 
 }
 

@@ -10,6 +10,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.yml.charts.common.extensions.isNotNull
 import com.example.mizu.model.OnboardingRepository
 import com.example.mizu.ui.theme.minorColor
 import com.example.mizu.ui.theme.waterColor
@@ -42,7 +43,7 @@ class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewMo
 
     var avgWaterIntake by mutableStateOf("")
         private set
-    var bestStreak by mutableStateOf("")
+    var bestStreak by mutableStateOf(0)
         private set
     var weight by mutableStateOf("")
         private set
@@ -55,6 +56,9 @@ class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewMo
         }
         viewModelScope.launch {
             getUserSettings()
+        }
+        viewModelScope.launch {
+            getUserValues()
         }
 
 //        getWaterGoals()
@@ -88,23 +92,35 @@ class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewMo
         calculateUserValues()
     }
     private suspend fun calculateUserValues(){
-        if (bestStreak.toInt()<onStreakDays){
-            bestStreak = onStreakDays.toString()
+        if (bestStreak<=onStreakDays){
+            bestStreak = onStreakDays
+                  }
+        if(!onStreakDays.isNotNull()){
+            bestStreak = 0
         }
-        onboardingRepo.updateUserValues(avgIntake ="1000",bestStreak = bestStreak )
+        Log.e("User Settings:==> BestStreak ", bestStreak.toString())
+        onboardingRepo.updateUserValues(avgIntake ="1000",bestStreak = bestStreak.toString() )
+    }
+
+    private suspend fun getUserValues(){
+        onboardingRepo.getUserValues().collect{
+            avgWaterIntake = it.avgIntake
+            if(it.bestStreak.isEmpty()){
+                bestStreak = 0
+            }else{
+                bestStreak = it.bestStreak.toInt()
+            }
+
+            Log.e("User Settings:==> BestStreak ", bestStreak.toString())
+        }
     }
 
     private suspend fun getUserSettings(){
-        onboardingRepo.getUserValues().collect{
-            avgWaterIntake = it.avgIntake
-            bestStreak = it.bestStreak
-        }
         onboardingRepo.getUserSettingsStore().collect{
-
             height = it.userHeight.toString()
             weight = it.userWeight.toString()
-
-
+//            Log.e("User Settings:==> Height  ", height)
+//            Log.e("User Settings:==> Weight ", weight)
         }
     }
 
@@ -124,9 +140,9 @@ class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewMo
                 val count =i*7+j
                 if(count<onDays){
                     println("streakScore calendarScreen streakDays ${streaKDays}")
-                        if(streaKDays.size!=0 && streaKDays.contains(count)){
+                        if(streaKDays.isNotEmpty() && streaKDays.contains(count)){
                             println("streakScore calendarScreen count ${count}")
-                            rowList.add(count-1, waterColor)
+                            rowList.add(waterColor)
                         }else{
                             rowList.add(minorColor)
                         }

@@ -1,18 +1,23 @@
 package com.example.mizu.features.homescreen.view_model
 
+import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mizu.R
+import com.example.mizu.alarm_schedular.AlarmScheduler
 import com.example.mizu.model.OnboardingRepository
 import com.example.mizu.utils.home_screen_utils.StreakClass
 import com.example.mizu.utils.home_screen_utils.StreakMonthClass
 import com.example.mizu.utils.home_screen_utils.WaterAmount
+import com.example.mizu.utils.water_reminder.WaterReminder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
@@ -24,7 +29,7 @@ import java.util.Calendar
 
 
 
-class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewModel() {
+class HomeViewModel(private val onboardingRepo: OnboardingRepository, context: Context) : ViewModel() {
 
     var usedWaterAmount by mutableIntStateOf(0)
         private set
@@ -68,7 +73,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
     init {
 
         viewModelScope.launch {
-            getWaterAmount()
+            getWaterAmount(context)
         }
 
         println("streakScore Onboarding totalWaterAmount ${totalWaterAmount}")
@@ -82,6 +87,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
 
 
     }
+
 
     // updates the total water amount from onboarding to Homescreen
     fun updateTotalWaterAmount(totalWater:Int){
@@ -121,6 +127,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
     }
 
 
+
     // Updates the water amount and streak scores
     fun fillWaterUpdate(waterUpdate: Int) {
 
@@ -150,7 +157,8 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
                 rewardDialog = true
                 if (date.toString() != streakDay) {
                     streakScore++
-                    streakDays.add(calendar.get(Calendar.DAY_OF_MONTH))
+                    streakDays.addAll(streakDays)
+                    streakDays.add(calendar.get(Calendar.DAY_OF_MONTH) -1)
                     updatePerks()
                     viewModelScope.launch {
                         calculateStreakScore()
@@ -203,13 +211,19 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
     // Gets the water amount filled in the glacier from the database
     // Tries to compare todays date versus previous water date. If the dates are different, the water amount becomes zero
     // It also calculates and updates the water percentage
-    private suspend fun getWaterAmount() {
+    private suspend fun getWaterAmount(context: Context) {
         val date = LocalDate.now()
         onboardingRepo.getWaterAmount().collect {
             println("Get Water Amount Home Viewmodel Function ${it}")
             _waterAmount = it
             usedWaterAmount = it.onUsedWater
             totalWaterAmount = it.onTotalWater
+            if(it.onUsedWater>it.onTotalWater){
+                createWaterReminders(context =context, it.onTotalWater.toString())
+            }else{
+                createWaterReminders(context =context, it.onUsedWater.toString())
+            }
+
             if (it.onUsedWater > 0) {
                 if (it.onUsedWater * 100 / it.onTotalWater <= 100) {
                     waterPercent = it.onUsedWater * 100 / it.onTotalWater
@@ -226,6 +240,14 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
         }
     }
 
+    private fun createWaterReminders(context: Context, waterReminderMessage:String){
+        val alarmScheduler = AlarmScheduler(context)
+        val reminder: WaterReminder =
+            WaterReminder(time = LocalDateTime.now().plusHours(2), message = "Your water intake for today is ${waterReminderMessage} ml")
+        reminder.let {
+            alarmScheduler.schedule(reminder)
+        }
+    }
 
     // Gets the streak score and updates perks in perk sheet
 
@@ -248,7 +270,9 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository) : ViewMode
                 waterTime = it.waterTime.toInt()
             }
             streakDay = it.streakDay
-
+            if(it.streakDays.isNotEmpty()){
+                streakDays.addAll(it.streakDays)
+            }
             println("getStreakScore ${it}")
         }
     }

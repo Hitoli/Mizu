@@ -30,7 +30,8 @@ class NotificationChannelService(
         )
         val reminderNotification = NotificationCompat.Builder(context, notificationIDWaterReminder).setSmallIcon(
             R.drawable.mizulogo
-        ).setContentTitle("Reminder !").setContentText(reminder).setContentIntent(activityPendingIntent).build()
+        ).setContentTitle("Water Reminder !").setContentText(reminder).setContentIntent(activityPendingIntent).setAutoCancel(false)
+            .setOngoing(true).build()
 
         notificationManager.notify(1234,reminderNotification)
     }

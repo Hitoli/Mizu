@@ -95,7 +95,7 @@ fun NavScreen(
                             },
                             getProfileClick = {
                                navController.navigate(NavScreens.ProfileNavHostingScreen.route)
-                            }, imgModifier = Modifier, onAvgIntake = caledarViewModel.avgWaterIntake, onWeight = caledarViewModel.weight, onBestStreak = caledarViewModel.bestStreak, onHeight = caledarViewModel.height
+                            }, imgModifier = Modifier, onAvgIntake = caledarViewModel.avgWaterIntake, onWeight = caledarViewModel.weight, onBestStreak = caledarViewModel.bestStreak.toString(), onHeight = caledarViewModel.height
 
 
                         )

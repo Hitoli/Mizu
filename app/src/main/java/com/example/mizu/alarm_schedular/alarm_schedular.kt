@@ -4,6 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.SystemClock
 import com.example.mizu.receiver.AlarmReceiver
 import com.example.mizu.utils.water_reminder.WaterReminder
 import java.time.ZoneId
@@ -18,9 +19,12 @@ class AlarmScheduler(
         var intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra("waterReminderMessage",reminder.message)
         }
-        alarmManager.setExactAndAllowWhileIdle(
+        val triggerAtMillis = SystemClock.elapsedRealtime() + 1 * 60 * 60 * 1000
+        val intervalMillis = 1 * 60 * 60 * 1000
+        alarmManager.setInexactRepeating(
             AlarmManager.RTC_WAKEUP,
-            reminder.time.atZone(ZoneId.systemDefault()).toEpochSecond()*1000,
+            triggerAtMillis,
+            intervalMillis.toLong(),
             PendingIntent.getBroadcast(
                 context,
                 reminder.hashCode(),

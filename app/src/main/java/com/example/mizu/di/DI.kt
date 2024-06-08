@@ -6,6 +6,7 @@ import com.example.mizu.features.onboarding.view_model.OnboardingViewModel
 import com.example.mizu.model.OnboardingRepository
 import com.example.mizu.alarm_schedular.AlarmScheduler
 import com.example.mizu.presentation_app.navmap.NavScreen
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -15,7 +16,7 @@ val DIModule = module {
         OnboardingRepository(get())
     }
     viewModel { OnboardingViewModel(get()) }
-    viewModel{HomeViewModel(get())}
+    viewModel{HomeViewModel(get(),androidApplication())}
     viewModel{ CalendarViewModel(get()) }
 
 

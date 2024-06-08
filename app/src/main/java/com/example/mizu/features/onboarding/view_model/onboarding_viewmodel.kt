@@ -142,7 +142,7 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
     fun updateUserSettings(){
         onboardingCompleted = true
         viewModelScope.launch {
-            onboardingRepo.updateUserSettingsStore(userWeight = onWeightValue.toInt(), userWaterIntake = onWaterAmount, userName =onNameValue , userHeight = onHeightValue.toInt(), onBoardingCompleted =true, userAvgIntake = 0, bestStreak = 0 )
+            onboardingRepo.updateUserSettingsStore(userWeight = onWeightValue.toInt(), userWaterIntake = onWaterAmount, userName =onNameValue , userHeight = onHeightValue.toInt(), onBoardingCompleted =true)
 
         }
         println("streakScore Onboarding UpdateUserSettings ")

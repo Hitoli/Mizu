@@ -1,10 +1,11 @@
 
-ikotlin:S125õ"Remove this commented out code.(ºí¿üÿÿÿÿ8ÈéÈ™ı1J$b7c6a060-0e6b-4600-a695-e6dda4229aaf
-›kotlin:S6558é"URemove this it parameter declaration or give this lambda parameter a meaningful name.(ì¨öÅ8ØéÈ™ı1J$43a7655c-4119-412e-8ccc-3e45dfa05a9e
-dkotlin:S1128"Remove this unused import.(èãÊõûÿÿÿÿ8›İó§û1J$5c551949-fcba-4bff-9a7b-db87b3d14570
-dkotlin:S1128"Remove this unused import.(Ó¸Ñÿÿÿÿÿ8›İó§û1J$4b18c70d-ce9a-4f2d-b4b3-3e4d7fcceb7e
-dkotlin:S1128"Remove this unused import.(Ô±ßàúÿÿÿÿ8›İó§û1J$5aa3e74f-cfce-49b2-b018-49e341f028b7
-^kotlin:S1128"Remove this unused import.(Ç¼…E8›İó§û1J$02196e7b-cea8-448c-b45f-53e1b15ab6a7
-vkotlin:S6518^",Replace function call with indexed accessor.(˜ÀÑµüÿÿÿÿ8ªİó§û1J$aa2be9e8-e7c9-407f-b321-e14d1173a7da
-wkotlin:S6518Š",Replace function call with indexed accessor.(³ş¸Èÿÿÿÿÿ8ªİó§û1J$267dd92c-9eab-4c5e-9a8c-a1aa87b83707
-wkotlin:S6518™",Replace function call with indexed accessor.(¨Àšûÿÿÿÿ8«İó§û1J$e0ae3409-8763-4224-b5ea-f3bc5bd7dcca
+ikotlin:S125‹"Remove this commented out code.(ºí¿üÿÿÿÿ8Ë»©Åÿ1J$e3906909-2ef3-4c9e-bf17-abcd3321316e
+›kotlin:S6558ÿ"URemove this it parameter declaration or give this lambda parameter a meaningful name.(ì¨öÅ8Î»©Åÿ1J$fda330fc-fae0-4c96-bfd1-e3f81ce1f01a
+_kotlin:S1128"Remove this unused import.(åğ•8Ö»©Åÿ1J$f2820414-b3c3-491a-a4d7-7c52c5b1c760
+dkotlin:S1128"Remove this unused import.(¿ÅÑùÿÿÿÿ8Ö»©Åÿ1J$35e9f6b7-4ab0-461c-9207-bdd335cc4806
+dkotlin:S1128"Remove this unused import.(èãÊõûÿÿÿÿ8Ö»©Åÿ1J$31c60532-acb6-4840-90ef-8844f9b5bd93
+dkotlin:S1128"Remove this unused import.(Ó¸Ñÿÿÿÿÿ8Ö»©Åÿ1J$ab2cc13a-3162-486d-8dce-b4e3aafff0af
+dkotlin:S1128"Remove this unused import.(Ô±ßàúÿÿÿÿ8Ö»©Åÿ1J$995f88f0-1be8-4257-bdae-ea2ee0303da4
+vkotlin:S6518d",Replace function call with indexed accessor.(˜ÀÑµüÿÿÿÿ8Ü»©Åÿ1J$946b095e-5a3f-4e91-afd2-4991970ec0b9
+wkotlin:S6518‘",Replace function call with indexed accessor.(³ş¸Èÿÿÿÿÿ8Ü»©Åÿ1J$f923931d-630f-4db3-9da8-9e8a10f8962a
+rkotlin:S6518¡",Replace function call with indexed accessor.(ê§š¤8Ü»©Åÿ1J$60476af6-d3b0-4499-90c8-3453e28145cb

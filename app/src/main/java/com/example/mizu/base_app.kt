@@ -24,18 +24,14 @@ class BaseAppMizu:Application(){
             modules(DIModule)
         }
         createNotificationChannel()
-        createWaterReminders(context = this)
+
+
 
     }
 
-    private fun createWaterReminders(context: Context){
-         val alarmScheduler = AlarmScheduler(context)
-        val reminder:WaterReminder =
-            WaterReminder(time = LocalDateTime.now().plusHours(2), message = "Don't Forget to drink Water")
-        reminder.let {
-            alarmScheduler.schedule(reminder)
-        }
-    }
+
+
+
 
     // Creates a Notification Channel to Show Notifications
     private fun createNotificationChannel(){
