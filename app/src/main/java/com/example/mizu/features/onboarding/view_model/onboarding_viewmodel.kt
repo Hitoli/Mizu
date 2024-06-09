@@ -13,7 +13,9 @@ import com.example.mizu.utils.nav_utils.NavScreens
 import com.example.mizu.utils.Utils.Companion.capitalizeFirst
 import com.example.mizu.utils.home_screen_utils.UserSettings
 import kotlinx.coroutines.launch
+import java.text.DecimalFormat
 import java.time.LocalDate
+import kotlin.math.sqrt
 
 class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): ViewModel(){
 
@@ -107,13 +109,26 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
     }
 
     fun calculateWaterIntake(){
-        BSA = Math.sqrt(onHeightValue.toDouble()*onWeightValue.toDouble()/3600).toInt()
-        BWI = onWeightValue.toInt()*34*BSA
-        TWI = (BWI+(BWI*activityLevel/100)).toDouble()
-        if (TWI>4){
-            TWI = 3700.0
-        }else if(TWI<2){
-            TWI  =2700.0
+        // Calculate BSA using the Mosteller formula
+         BSA = sqrt(onHeightValue.toInt().times(onWeightValue.toDouble()/ 3600)).toInt()
+
+        // Calculate BWI using a base factor of 35 ml per kg of body weight
+         BWI = onWeightValue.toInt().times(33)
+
+        // Adjust BWI based on BSA
+         var BWI_adjusted = BWI * BSA
+
+        // Calculate TWI by adjusting BWI for activity level
+         TWI = BWI_adjusted + (BWI_adjusted * activityLevel / 100).toDouble()
+        Log.d("TWI Onboarding",TWI.toString())
+        // Adjust TWI to reasonable limits
+        TWI = when {
+            TWI > 3700 -> 3700.0
+            TWI > 3000 && TWI < 3500 -> 3500.0
+            TWI > 2500 && TWI < 3000 -> 3000.0
+            TWI > 2000 && TWI < 2500 -> 2500.0
+            TWI < 2000 -> 2000.0
+            else -> "%.2f".format(TWI).toDouble()
         }
 
         onWaterAmount =TWI.toInt()
@@ -122,7 +137,7 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
         }
         Log.d("onWaterAmount Onboarding",onWaterAmount.toString())
         TWI/=1000
-        Log.d("TWI Onboarding",TWI.toString())
+        Log.d("TWI Onboarding","%.2f".format(TWI).toDouble().toString())
     }
     // Update the water Amount in database
     private suspend fun calculateWaterAmount() {

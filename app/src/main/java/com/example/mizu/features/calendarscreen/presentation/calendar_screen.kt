@@ -62,14 +62,7 @@ import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.utils.calendar_utils.WaterGoals
 
 @Composable
-fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:List<WaterGoals>,onPad:PaddingValues,caledarList:MutableList<List<Color>>,getSelected: (Int) -> Unit,onAvgIntake: String,onHeight: String,onBestStreak: String,onWeight: String) {
-
-    var showMood by remember{
-        mutableStateOf(false)
-    }
-    var moodNow by remember{
-        mutableStateOf("😊")
-    }
+fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:List<WaterGoals>,onPad:PaddingValues,caledarList:MutableList<List<Color>>,getSelected: (Int) -> Unit,onAvgIntake: String,onHeight: String,onBestStreak: String,onWeight: String,intakeAmount: String) {
 
     Box(modifier = modifier.padding(bottom = onPad.calculateBottomPadding()/4,
         top = onPad.calculateTopPadding()/8)) {
@@ -191,9 +184,7 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:Li
 //
 //            }
 
-            UserValues(onAvgIntake = onAvgIntake,onWeight=onWeight, onHeight = onHeight, onBestStreak = onBestStreak, getShowMood = {
-                showMood = it
-            }, moodNow = moodNow)
+            UserValues(onAvgIntake = onAvgIntake,onWeight=onWeight, onHeight = onHeight, onBestStreak = onBestStreak, intakeAmount = intakeAmount)
 
         }
 
@@ -201,18 +192,12 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:Li
 
 
     }
-    if(showMood){
-        MoodMeter(getShowMood = {
-            showMood = it
-        }, getMood = {
-            moodNow = it
-        })
-    }
+
 
 }
 
 @Composable
-fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:String,getShowMood: (Boolean) -> Unit,moodNow:String) {
+fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:String,intakeAmount:String) {
     Box(modifier = Modifier){
         Column(modifier=Modifier, verticalArrangement = Arrangement.SpaceEvenly, horizontalAlignment = Alignment.CenterHorizontally) {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
@@ -222,11 +207,9 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                     .background(waterColor, shape = RoundedCornerShape(10.dp))){
                     Column(modifier= Modifier
                         .align(Alignment.Center)
-                        .padding(10.dp).clickable {
-                                     getShowMood(true)
-                        }, verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
+                        .padding(10.dp), verticalArrangement = Arrangement.SpaceBetween, horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
-                            text = "Mood",
+                            text = "Intake Amt.",
                             modifier= Modifier
                                 .fillMaxWidth()
                             ,
@@ -240,7 +223,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
-                            text = moodNow,
+                            text = intakeAmount,
                             modifier= Modifier
                                 .fillMaxWidth(),
                             style = TextStyle(
@@ -604,5 +587,5 @@ fun PreviewCalendarScreen() {
             ), onMonth = "Feb", todosList, onPad = PaddingValues(40.dp), caledarList = mutableListOf(
             listOf(Color.Black)
         )
-    , getSelected = {}, onAvgIntake = "1700ml", onWeight = "72", onHeight = "172", onBestStreak = "10")
+    , getSelected = {}, onAvgIntake = "1700ml", onWeight = "72", onHeight = "172", onBestStreak = "10", intakeAmount = "1200")
 }

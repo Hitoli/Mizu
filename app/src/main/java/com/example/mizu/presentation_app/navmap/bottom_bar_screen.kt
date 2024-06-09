@@ -294,7 +294,11 @@ fun BottomBarHostingScreen(
                             )
                         ), onPad = padding, caledarList = calendarList, getSelected = {
                             getSelected(it)
-                    }, onHeight = onHeight, onBestStreak = onBestStreak, onWeight = onWeight, onAvgIntake = onAvgIntake
+                    }, onHeight = onHeight, onBestStreak = onBestStreak, onWeight = onWeight, onAvgIntake = onAvgIntake, intakeAmount = if(onWaterTrackingResourceAmount>=onTotalWaterTrackingResourceAmount) {
+                        onTotalWaterTrackingResourceAmount.toString()
+                    } else{
+                        onWaterTrackingResourceAmount.toString()
+                    }
                 )
             }
         }

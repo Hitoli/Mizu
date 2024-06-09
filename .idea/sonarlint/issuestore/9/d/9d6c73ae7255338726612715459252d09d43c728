@@ -1,10 +1,14 @@
 
-mkotlin:S1172A"(Remove these unused function parameters.(²–Äà8Ú òÇı1J$431b4ea2-5dd0-4796-abae-8f309c6fbf0d
-zkotlin:S1172×"4Remove this unused function parameter "onAvgIntake".(”ƒŸì8Ü òÇı1J$80a5bbdc-931b-4de7-ac24-5fcbe2729635
-ikotlin:S125®"Remove this commented out code.(±¦‹ğøÿÿÿÿ8â òÇı1J$d0b05fdd-209e-4420-ad98-870ccbf6d5d6
-škotlin:S6558"URemove this it parameter declaration or give this lambda parameter a meaningful name.(Ïçé}8ê òÇı1J$77113568-018b-4607-ab9b-e44afc80d74d
-Œkotlin:S107A"HThis function has 10 parameters, which is greater than the 7 authorized.(²–Äà8ğ òÇı1J$b3aa7606-f971-409e-8e9c-3112f964c465
-dkotlin:S1128"Remove this unused import.(ÅÍüÿÿÿÿ8…¡òÇı1J$e24a2814-1beb-429a-9a5a-b3d321bc52f7
-¦kotlin:S1192Í"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(ØÒ¿şÿÿÿÿ8•¡òÇı1J$ef80bc17-ebb7-42df-941f-9b7812dcad22
-dkotlin:S6524A"Make this collection immutable.(²–Äà8›¡òÇı1J$51aedf27-18fe-4e24-ace6-5925b4512dbb
-qkotlin:S6518",Replace function call with indexed accessor.(Ïçé}8£¡òÇı1J$ce89b4e1-cced-4c7a-9f7d-acec9c46ed34
+rkotlin:S1172A"(Remove these unused function parameters.(Ô¦¡°ùÿÿÿÿ8Ú òÇı1J$335fec1d-3e90-467e-b4c7-cedae06ad22a
+zkotlin:S1172È"4Remove this unused function parameter "onAvgIntake".(€¢øÄ8îçºÚÿ1J$e3423501-46b9-48d7-9736-4be0f5668136
+ikotlin:S125§"Remove this commented out code.(±¦‹ğøÿÿÿÿ8÷çºÚÿ1J$d2c9f229-e1fe-4bb7-bc92-4cb8f433c2b0
+™kotlin:S6558z"URemove this it parameter declaration or give this lambda parameter a meaningful name.(Ïçé}8‚èºÚÿ1J$bc9cf6ae-83c0-4899-b524-2508803e9687
+‘kotlin:S107A"HThis function has 11 parameters, which is greater than the 7 authorized.(Ô¦¡°ùÿÿÿÿ8ğ òÇı1J$a70258db-7204-42ae-89e4-4f1863fd1161
+dkotlin:S1128"Remove this unused import.(ÅÍüÿÿÿÿ8…¡òÇı1J$2b9febdb-6f3a-4b33-ac50-cd3b6f839e49
+_kotlin:S1128"Remove this unused import.(ŠëÙ 8ŸèºÚÿ1J$abf9a64e-a375-4a42-8a7c-ba5a3175764b
+dkotlin:S1128"Remove this unused import.(‹‚ü†ıÿÿÿÿ8ŸèºÚÿ1J$75c57ac6-4e6f-4253-9eb1-c75ed9df991d
+_kotlin:S1128"Remove this unused import.(ÀÄ8 èºÚÿ1J$0712fbad-c263-4193-9996-e73a158a0863
+^kotlin:S1128 "Remove this unused import.(†™¹$8 èºÚÿ1J$6fcf06e3-a297-4788-a75e-088707c5d008
+¦kotlin:S1192¼"[Define a constant instead of duplicating this literal "Keep a bottle by your desk" 3 times.(ØÒ¿şÿÿÿÿ8¤èºÚÿ1J$0dfacded-b3d1-45cb-9368-ce90bf776358
+ikotlin:S6524A"Make this collection immutable.(Ô¦¡°ùÿÿÿÿ8›¡òÇı1J$d5de036b-5274-4e37-b2ec-a8ae73c76a3d
+pkotlin:S6518z",Replace function call with indexed accessor.(Ïçé}8¶èºÚÿ1J$3a1614a7-1204-4eb0-a896-c345e002d032

@@ -1,16 +1,16 @@
 
-mkotlin:S1172b"(Remove these unused function parameters.(ƒŒ°8ÒŞ„Ÿı1J$3c42add7-c379-4dd1-95fd-1f0f3c06a061
-nkotlin:S1172É"(Remove these unused function parameters.(´œôß8ÔŞ„Ÿı1J$fab3cf4d-a0f7-4293-86ee-d3303675664d
-ƒkotlin:S1172«"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8ÔŞ„Ÿı1J$96510159-2b4e-4d16-a38c-fb9fd3785f77
-ikotlin:S125›"Remove this commented out code.(à†çúÿÿÿÿ8ÜŞ„Ÿı1J$5d350313-0c2d-4f40-b3b3-9e9297e2b8b3
-ikotlin:S125ú"Remove this commented out code.(¹©Üúÿÿÿÿ8İŞ„Ÿı1J$63be5886-3d64-4b1c-87ef-0899a027ab2b
-dkotlin:S125õ"Remove this commented out code.(§ã†×8İŞ„Ÿı1J$d30b5d1f-5277-4892-a1a9-b95187f199db
-Œkotlin:S107["HThis function has 29 parameters, which is greater than the 7 authorized.(ôØ±Ú8ôŞ„Ÿı1J$622a1772-9166-4301-94ad-7b8dd76ca683
-‹kotlin:S107Ê"GThis function has 8 parameters, which is greater than the 7 authorized.(ø„©b8ôŞ„Ÿı1J$7e9e09a0-9a87-410d-a98e-9cf20b0650f4
-}kotlin:S1135ú"2Complete the task associated to this TODO comment.(£÷É şÿÿÿÿ8„ß„Ÿı1J$158cc361-3936-4572-b8e2-03b50d75775e
+mkotlin:S1172b"(Remove these unused function parameters.(ƒŒ°8ñÑËÚÿ1J$1f4176e3-5d0a-48b6-8d64-189ef2b36794
+nkotlin:S1172Í"(Remove these unused function parameters.(´œôß8ûÑËÚÿ1J$44cf8014-d0ea-4985-bfa1-5e590de5e7a9
+ƒkotlin:S1172¯"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8üÑËÚÿ1J$214fd1ce-b5ad-43d0-9bd2-f95639fed79f
+ikotlin:S125›"Remove this commented out code.(à†çúÿÿÿÿ8„ÒËÚÿ1J$8d7ddfc0-293a-4989-bf5b-ec2f0ac074ac
+ikotlin:S125ú"Remove this commented out code.(¹©Üúÿÿÿÿ8„ÒËÚÿ1J$35536343-aa56-4444-a5db-3942d07a95a9
+dkotlin:S125ù"Remove this commented out code.(§ã†×8…ÒËÚÿ1J$2ebbb301-ef0f-438a-915b-5a52c2a633f3
+Œkotlin:S107["HThis function has 29 parameters, which is greater than the 7 authorized.(ôØ±Ú8”ÒËÚÿ1J$e0f53fcb-0d78-4a70-8b86-1b2417426d00
+‹kotlin:S107Î"GThis function has 8 parameters, which is greater than the 7 authorized.(ø„©b8”ÒËÚÿ1J$9d42c671-6575-4912-956a-44bd775198b9
+}kotlin:S1135ş"2Complete the task associated to this TODO comment.(£÷É şÿÿÿÿ8›ÒËÚÿ1J$2c73d158-0f1e-416f-8aad-7f44b6cdaa89
 _kotlin:S1128
-"Remove this unused import.(ÓşÈÆ8ß„Ÿı1J$4f32e5d4-6c28-497e-9ac7-2be9cabb3c4d
-dkotlin:S1128&"Remove this unused import.(÷à‚Ëûÿÿÿÿ8ß„Ÿı1J$03791d68-6726-494c-8b1b-4c97d8bd4fc3
-dkotlin:S1128>"Remove this unused import.(‚ÅÎùúÿÿÿÿ8ß„Ÿı1J$e7b46d27-4e72-4914-b6b9-2d820f2b89fd
-dkotlin:S1128L"Remove this unused import.(—÷õ¸ıÿÿÿÿ8ß„Ÿı1J$8380f5a4-7c7a-4041-a240-c5c84a0b3c69
-—kotlin:S3776Ê"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(ø„©b8’ß„Ÿı1J$a23b74c2-cf91-41f7-b8b5-f1f2faeda717
+"Remove this unused import.(ÓşÈÆ8¥ÒËÚÿ1J$615e306b-c444-4836-84ee-c858610b3665
+dkotlin:S1128&"Remove this unused import.(÷à‚Ëûÿÿÿÿ8¥ÒËÚÿ1J$d3c8daad-22c1-4b9c-8630-b3ff26af3060
+dkotlin:S1128>"Remove this unused import.(‚ÅÎùúÿÿÿÿ8¥ÒËÚÿ1J$f3f0f591-fbc3-4af2-a1bb-be9d5fdd435b
+dkotlin:S1128L"Remove this unused import.(—÷õ¸ıÿÿÿÿ8¥ÒËÚÿ1J$fa0754c4-145b-4720-9cf6-003cec77d4e2
+—kotlin:S3776Î"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(ø„©b8¬ÒËÚÿ1J$a0ab9cc3-92aa-4a2f-8a43-c7d8aa3e6253

@@ -87,18 +87,22 @@ class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewMo
             streaKDays.addAll(it.streakDays)
             getCalendarValues()
             println(" calendarScreen streaKDays ${it.streakDays}")
-            println(" calendarScreen streaKDays ${streaKDays}")
+            println(" calendarScreen streak ${it.streak}")
+            calculateUserValues()
         }
-        calculateUserValues()
+
     }
     private suspend fun calculateUserValues(){
-        if (bestStreak<=onStreakDays){
-            bestStreak = onStreakDays
-                  }
-        if(!onStreakDays.isNotNull()){
-            bestStreak = 0
+        if(onStreakDays == null || onStreakDays == 0){
+            bestStreak =0
+        }else{
+            if (bestStreak<=onStreakDays){
+                bestStreak = onStreakDays
+            }
         }
+
         Log.e("User Settings:==> BestStreak ", bestStreak.toString())
+        Log.e("User Settings:==> onStreakDays ", onStreakDays.toString())
         onboardingRepo.updateUserValues(avgIntake ="1000",bestStreak = bestStreak.toString() )
     }
 
@@ -112,6 +116,7 @@ class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewMo
             }
 
             Log.e("User Settings:==> BestStreak ", bestStreak.toString())
+
         }
     }
 
