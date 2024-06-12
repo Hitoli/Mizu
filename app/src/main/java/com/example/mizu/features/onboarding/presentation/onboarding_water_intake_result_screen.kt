@@ -1,5 +1,10 @@
 package com.example.mizu.features.onboarding.presentation
 
+import android.Manifest
+import android.os.Build
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -42,6 +47,13 @@ import com.example.mizu.ui.theme.minorColor
 
 @Composable
 fun OnBoardingWaterIntakeResultScreen(getNavigate:()->Unit,onWaterIntake:String,modifier:Modifier=Modifier, onName:String) {
+    val permissionLauncher = rememberLauncherForActivityResult(contract = ActivityResultContracts.RequestPermission() ) {
+        if(!it){
+            Log.e("PERMISSION CHECK +++> ", it.toString())
+        }
+
+    }
+
     Box(modifier = modifier) {
         Text(
             text = "${onName} \uD83D\uDC4B",
@@ -114,6 +126,9 @@ fun OnBoardingWaterIntakeResultScreen(getNavigate:()->Unit,onWaterIntake:String,
             Spacer(modifier = Modifier.height(90.dp))
             Button(
                 onClick = {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    }
                     getNavigate()
                 },
                 modifier = Modifier

@@ -1,6 +1,11 @@
 package com.example.mizu.features.homescreen.presentation
 
+import android.Manifest
+import android.os.Build
 import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
@@ -117,6 +122,7 @@ fun HomeScreen(
             lazyListState.firstVisibleItemIndex !=0
         }
     }
+
     var showStreakCollector by remember{
         mutableStateOf(false)
     }
