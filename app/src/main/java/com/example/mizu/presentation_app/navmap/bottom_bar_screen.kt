@@ -67,6 +67,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -304,16 +306,20 @@ fun BottomBarHostingScreen(
         }
     }
     if (onWaterAddSheet) {
-        ModalBottomSheet(
-            containerColor = backgroundColor1,
-            sheetState = sheetState,
-            onDismissRequest = { onWaterAddSheet = !onWaterAddSheet }, modifier = Modifier
+//        ModalBottomSheet(
+//            containerColor = backgroundColor1,
+//            sheetState = sheetState,
+//            onDismissRequest = { onWaterAddSheet = !onWaterAddSheet }, modifier = Modifier
+//                .fillMaxWidth()
+//                .fillMaxHeight(0.65f)
+//                .padding(10.dp)
+//        ) {
+        Dialog(properties = DialogProperties(usePlatformDefaultWidth = true, decorFitsSystemWindows = true),
+            onDismissRequest = {  onWaterAddSheet = !onWaterAddSheet}){
+        WaterCarouselSheet(
+                modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.65f)
-                .padding(10.dp)
-        ) {
-            WaterCarouselSheet(
-                modifier = Modifier,
+                .fillMaxHeight(0.65f).background(backgroundColor1.copy(alpha = 0.9f),shape = RoundedCornerShape(16.dp)),
                 listState,
                 isEndless,
                 items,
@@ -341,13 +347,12 @@ fun WaterCarouselSheet(
     getSelected: (Int) -> Unit,
     getWaterAddSheet:(Boolean)->Unit
 ) {
-    Box(modifier = Modifier.fillMaxWidth()) {
+    Box(modifier = modifier) {
         Column(modifier = Modifier.align(Alignment.Center)) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(backgroundColor2, shape = RoundedCornerShape(16.dp))
-                    .height(100.dp),
+                    .height(100.dp).padding(10.dp),
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {

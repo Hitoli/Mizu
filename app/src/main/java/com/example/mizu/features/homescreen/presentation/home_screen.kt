@@ -243,6 +243,7 @@ if(showStreakCollector){
 
 }
 
+
 @Composable
 fun StreakSheet(Streak: List<Int>, modifier: Modifier = Modifier) {
     Box(modifier = modifier) {

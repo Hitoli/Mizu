@@ -19,8 +19,8 @@ class AlarmScheduler(
         var intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra("waterReminderMessage",reminder.message)
         }
-        val triggerAtMillis = SystemClock.elapsedRealtime() + 1 * 60 * 60 * 1000
-        val intervalMillis = 1 * 60 * 60 * 1000
+        val triggerAtMillis = SystemClock.elapsedRealtime() + 3 * 60 * 60 * 1000
+        val intervalMillis = 3 * 60 * 60 * 1000
         alarmManager.setInexactRepeating(
             AlarmManager.RTC_WAKEUP,
             triggerAtMillis,
