@@ -99,6 +99,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-crashlytics")
 
+    implementation("io.appwrite:sdk-for-android:5.1.1")
+
 
 
 

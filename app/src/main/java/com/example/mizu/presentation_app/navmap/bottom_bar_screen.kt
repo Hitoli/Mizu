@@ -352,7 +352,7 @@ fun WaterCarouselSheet(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(100.dp).padding(10.dp),
+                    .height(100.dp).padding(10.dp ),
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
