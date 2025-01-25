@@ -14,7 +14,7 @@ val Pink40 = Color(0xFF7D5260)
 val backgroundColor1 = Color(0xFFF4F9F9);
 val backgroundColor2 = Color(0xFFF4F9F9);
 //textColor
-val minorColor = Color(0XFF1D1D1D)
+val mizuBlack = Color(0XFF1D1D1D)
 //waterColor
 val waterColor=Color(0xFFA4EBF3)
 //homeWaterIndicatorColor
@@ -27,5 +27,8 @@ val buttonTextColor =Color(0xFFFFE5E5)
 val blackShadeColor=Color(0xFF29302C)
 
 val textFieldColor=Color(0xFFF4F9F9)
+
+val onboardingBoxColor = Color(0xFFEEEEEE)
+
 
 

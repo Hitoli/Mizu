@@ -1,12 +1,6 @@
 package com.example.mizu.features.profilescreen.presentation
 
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.AnimatedVisibilityScope
-import androidx.compose.animation.ExperimentalSharedTransitionApi
-import androidx.compose.animation.SharedTransitionScope
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,9 +8,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,7 +19,6 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -36,15 +27,12 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -55,7 +43,6 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -63,11 +50,9 @@ import com.example.mizu.R
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamilyLight
-import com.example.mizu.ui.theme.minorColor
-import com.example.mizu.ui.theme.waterColor
+import com.example.mizu.ui.theme.mizuBlack
 
-
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifier: Modifier) {
     Scaffold(
@@ -80,7 +65,7 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
                         Icon(
                             imageVector = ImageVector.vectorResource(R.drawable.back_arrow),
                             contentDescription = "Arrow Back",
-                            tint = minorColor
+                            tint = mizuBlack
                         )
                     }
                 },
@@ -96,12 +81,12 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
                         .widthIn(300.dp),
                     shape = RoundedCornerShape(10.dp),
                     colors = ButtonDefaults.buttonColors(Color.Transparent),
-                    border = BorderStroke(1.dp, minorColor)
+                    border = BorderStroke(1.dp, mizuBlack)
                 ) {
                     Text(
                         text = "Save",
                         fontSize = 14.sp,
-                        color = minorColor,
+                        color = mizuBlack,
                         fontFamily = fontFamilyLight
                     )
                 }
@@ -119,7 +104,7 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
         ) {
             Box(
                 modifier = Modifier
-                    .background(color = minorColor, shape = RoundedCornerShape(16.dp))
+                    .background(color = mizuBlack, shape = RoundedCornerShape(16.dp))
                     .fillMaxWidth(0.9f)
                     .heightIn(110.dp)
             ) {
@@ -262,7 +247,7 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
                         fontSize = 16.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(400),
-                        color = minorColor,
+                        color = mizuBlack,
                         textAlign = TextAlign.Center,
                     )
                 )
@@ -272,14 +257,14 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
                     modifier = Modifier
                         .shadow(
                             elevation = 10.dp,
-                            ambientColor = minorColor,
+                            ambientColor = mizuBlack,
                             shape = RoundedCornerShape(16.dp)
                         )
                         .background(backgroundColor2, shape = RoundedCornerShape(16.dp))
                         .border(
                             border = BorderStroke(
                                 1.dp,
-                                minorColor
+                                mizuBlack
                             ), shape = RoundedCornerShape(16.dp)
                         )
                 ) {
@@ -297,8 +282,8 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
                             errorIndicatorColor = Color.Red.copy(alpha = 0.4f),
                             disabledIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
-                            focusedTextColor = minorColor,
-                            unfocusedTextColor = minorColor
+                            focusedTextColor = mizuBlack,
+                            unfocusedTextColor = mizuBlack
                         )
                     )
                 }
@@ -311,7 +296,7 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
                         fontSize = 16.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(400),
-                        color = minorColor,
+                        color = mizuBlack,
                         textAlign = TextAlign.Center,
                     )
                 )
@@ -321,14 +306,14 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
                     modifier = Modifier
                         .shadow(
                             elevation = 10.dp,
-                            ambientColor = minorColor,
+                            ambientColor = mizuBlack,
                             shape = RoundedCornerShape(16.dp)
                         )
                         .background(backgroundColor2, shape = RoundedCornerShape(16.dp))
                         .border(
                             border = BorderStroke(
                                 1.dp,
-                                minorColor
+                                mizuBlack
                             ), shape = RoundedCornerShape(16.dp)
                         )
                 ) {
@@ -346,8 +331,8 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
                             errorIndicatorColor = Color.Red.copy(alpha = 0.4f),
                             disabledIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
-                            focusedTextColor = minorColor,
-                            unfocusedTextColor = minorColor
+                            focusedTextColor = mizuBlack,
+                            unfocusedTextColor = mizuBlack
                         )
                     )
                 }
@@ -360,7 +345,7 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
                         fontSize = 16.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(400),
-                        color = minorColor,
+                        color = mizuBlack,
                         textAlign = TextAlign.Center,
                     )
                 )
@@ -370,14 +355,14 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
                     modifier = Modifier
                         .shadow(
                             elevation = 10.dp,
-                            ambientColor = minorColor,
+                            ambientColor = mizuBlack,
                             shape = RoundedCornerShape(16.dp)
                         )
                         .background(backgroundColor2, shape = RoundedCornerShape(16.dp))
                         .border(
                             border = BorderStroke(
                                 1.dp,
-                                minorColor
+                                mizuBlack
                             ), shape = RoundedCornerShape(16.dp)
                         )
                 ) {
@@ -395,7 +380,7 @@ fun ProfileScreen(modifier: Modifier = Modifier, getBack: () -> Unit, imgModifie
                             errorIndicatorColor = Color.Red.copy(alpha = 0.4f),
                             disabledIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
-                            focusedTextColor = minorColor, unfocusedTextColor = minorColor
+                            focusedTextColor = mizuBlack, unfocusedTextColor = mizuBlack
                         )
                     )
                 }

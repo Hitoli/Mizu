@@ -1,7 +1,6 @@
 package com.example.mizu.presentation_app.navmap
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,7 +9,7 @@ import com.example.mizu.features.onboarding.presentation.OnBoardingActiveScreen
 import com.example.mizu.features.onboarding.presentation.OnBoardingHeightScreen
 import com.example.mizu.features.onboarding.presentation.OnBoardingScreen
 import com.example.mizu.features.onboarding.presentation.OnBoardingWaterIntakeResultScreen
-import com.example.mizu.features.onboarding.presentation.OnBoardingWeightScreen
+import com.example.mizu.features.onboarding.presentation.OnBoardingBodyMeasurementsScreen
 import com.example.mizu.features.onboarding.presentation.OnboardingLoadingScreen
 import com.example.mizu.features.onboarding.view_model.OnboardingViewModel
 import com.example.mizu.utils.nav_utils.OnboardingNavScreens
@@ -22,7 +21,6 @@ fun OnboardingNavHostingScreen(
     getNavigate: () -> Unit,
     onboardingViewModel: OnboardingViewModel = koinViewModel()
 ) {
-    val coroutineScope = rememberCoroutineScope()
     NavHost(
         navController = navController,
         startDestination = OnboardingNavScreens.NameScreen.route
@@ -33,8 +31,6 @@ fun OnboardingNavHostingScreen(
                     if (it != null) {
                         onboardingViewModel.checkFields(it)
                         onboardingViewModel.onBoardingNameScreen(it)
-
-
                     }
                 },
                 onValue = onboardingViewModel.onNameValue,
@@ -79,13 +75,17 @@ fun OnboardingNavHostingScreen(
                 })
         }
         composable(route = OnboardingNavScreens.WaterIntakeResultScreen.route) {
-            OnBoardingWaterIntakeResultScreen(getNavigate = {
-                onboardingViewModel.updateUserSettings()
-                getNavigate()
-            }, onWaterIntake = (onboardingViewModel.TWI).toString(), onName = onboardingViewModel.onNameValue)
+            OnBoardingWaterIntakeResultScreen(
+                getNavigate = {
+                    onboardingViewModel.updateUserSettings()
+                    getNavigate()
+                },
+                onWaterIntake = (onboardingViewModel.TWI).toString(),
+                onName = onboardingViewModel.onNameValue
+            )
         }
         composable(route = OnboardingNavScreens.WeightIntakeScreen.route) {
-            OnBoardingWeightScreen(
+            OnBoardingBodyMeasurementsScreen(
                 getWeightChange = {
                     if (it != null) {
                         onboardingViewModel.checkDigitFields(it)

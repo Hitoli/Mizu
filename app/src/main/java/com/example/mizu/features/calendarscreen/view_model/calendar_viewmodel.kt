@@ -1,6 +1,5 @@
 package com.example.mizu.features.calendarscreen.view_model
 
-import android.provider.CalendarContract.Colors
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -10,13 +9,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.yml.charts.common.extensions.isNotNull
 import com.example.mizu.model.OnboardingRepository
-import com.example.mizu.ui.theme.minorColor
+import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.utils.calendar_utils.WaterGoals
 import com.example.mizu.utils.home_screen_utils.StreakClass
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
@@ -149,7 +146,7 @@ class CalendarViewModel(private val onboardingRepo: OnboardingRepository):ViewMo
                             println("streakScore calendarScreen count ${count}")
                             rowList.add(waterColor)
                         }else{
-                            rowList.add(minorColor)
+                            rowList.add(mizuBlack)
                         }
 
                 }

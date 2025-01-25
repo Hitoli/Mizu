@@ -17,7 +17,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,12 +36,9 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.mizu.R
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
-import com.example.mizu.ui.theme.buttonTextColor
-import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
-import com.example.mizu.ui.theme.minorColor
+import com.example.mizu.ui.theme.mizuBlack
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @Composable
 fun OnboardingLoadingScreen(modifier: Modifier = Modifier, getNavigate: () -> Unit) {
@@ -84,7 +80,7 @@ fun OnboardingLoadingScreen(modifier: Modifier = Modifier, getNavigate: () -> Un
                     fontSize = 24.sp,
                     fontFamily = fontFamilyLight,
                     fontWeight = FontWeight(400),
-                    color = minorColor,
+                    color = mizuBlack,
                     textAlign = TextAlign.Center,
                 ), modifier = Modifier.fillMaxWidth()
             )

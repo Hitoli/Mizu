@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -24,7 +23,6 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -47,12 +45,8 @@ import androidx.compose.ui.unit.sp
 import com.example.mizu.R
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
-import com.example.mizu.ui.theme.blackShadeColor
-import com.example.mizu.ui.theme.buttonTextColor
-import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
-import com.example.mizu.ui.theme.minorColor
-import com.example.mizu.ui.theme.textFieldColor
+import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.waterColor
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -74,7 +68,7 @@ fun OnBoardingHeightScreen(
                 fontSize = 24.sp,
                 fontFamily = fontFamilyLight,
                 fontWeight = FontWeight(400),
-                color = minorColor,
+                color = mizuBlack,
                 textAlign = TextAlign.Center,
             )
         )
@@ -88,7 +82,7 @@ fun OnBoardingHeightScreen(
             Box(
                 modifier = Modifier
                     .background(
-                        minorColor,
+                        mizuBlack,
                         shape = RoundedCornerShape(10.dp)
                     )
                     .fillMaxWidth(0.9f)
@@ -125,7 +119,7 @@ fun OnBoardingHeightScreen(
                     }, modifier = Modifier
                         .fillMaxWidth()
                         .height(60.dp), colors = TextFieldDefaults.colors(
-                        focusedTextColor = minorColor,
+                        focusedTextColor = mizuBlack,
                         unfocusedIndicatorColor = Color.Transparent,
                         disabledIndicatorColor = Color.Transparent,
                         focusedContainerColor = backgroundColor1,
@@ -141,7 +135,7 @@ fun OnBoardingHeightScreen(
                                 fontSize = 15.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(400),
-                                color = minorColor,
+                                color = mizuBlack,
 
                                 textAlign = TextAlign.Center,
                             )
@@ -150,7 +144,7 @@ fun OnBoardingHeightScreen(
                         fontSize = 20.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(200),
-                        color = minorColor,
+                        color = mizuBlack,
                         textAlign = TextAlign.Start,
                     ), keyboardActions = KeyboardActions(
                         onDone = {
@@ -200,7 +194,7 @@ fun OnBoardingHeightScreen(
                                 fontSize = 24.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(400),
-                                color = minorColor,
+                                color = mizuBlack,
 
                                 textAlign = TextAlign.Center,
                             )

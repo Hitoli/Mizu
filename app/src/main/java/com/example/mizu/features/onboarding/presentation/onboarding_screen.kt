@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,7 +18,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -44,17 +42,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.text.isDigitsOnly
 import com.example.mizu.R
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
-import com.example.mizu.ui.theme.blackShadeColor
-import com.example.mizu.ui.theme.buttonTextColor
-import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
-import com.example.mizu.ui.theme.fontName
-import com.example.mizu.ui.theme.minorColor
-import com.example.mizu.ui.theme.textFieldColor
+import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.waterColor
 
 @Composable
@@ -66,7 +58,7 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
             Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 Box(modifier = Modifier
                     .background(
-                        minorColor,
+                        mizuBlack,
                         shape = RoundedCornerShape(10.dp)
                     )
                     .fillMaxWidth(0.9f)
@@ -95,7 +87,7 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                         }, modifier = Modifier
                             .fillMaxWidth()
                             .height(60.dp), colors = TextFieldDefaults.colors(
-                            focusedTextColor = minorColor,
+                            focusedTextColor = mizuBlack,
                             unfocusedIndicatorColor = Color.Transparent,
                             disabledIndicatorColor = Color.Transparent,
                             focusedContainerColor = backgroundColor1,
@@ -110,7 +102,7 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                                     fontSize = 15.sp,
                                     fontFamily = fontFamilyLight,
                                     fontWeight = FontWeight(400),
-                                    color = minorColor,
+                                    color = mizuBlack,
 
                                     textAlign = TextAlign.Center,
                                 )
@@ -119,7 +111,7 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                             fontSize = 20.sp,
                             fontFamily = fontFamilyLight,
                             fontWeight = FontWeight(200),
-                            color = minorColor,
+                            color = mizuBlack,
                             textAlign = TextAlign.Start,
                         ), isError = check, keyboardActions = KeyboardActions(
                             onDone = {
@@ -161,7 +153,7 @@ fun OnBoardingScreen(getValue:(String?)->Unit, onValue:String?,onQuestionValue:S
                     modifier = Modifier
                         .width(180.dp)
                         .height(50.dp),
-                    colors = ButtonDefaults.buttonColors(minorColor),
+                    colors = ButtonDefaults.buttonColors(mizuBlack),
                     shape = RoundedCornerShape(10.dp)
                 ) {
                     Text(

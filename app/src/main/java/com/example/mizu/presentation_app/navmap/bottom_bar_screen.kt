@@ -7,7 +7,6 @@ import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -35,8 +34,6 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -59,7 +56,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -75,14 +71,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import co.yml.charts.common.extensions.isNotNull
 import com.example.mizu.R
 import com.example.mizu.features.calendarscreen.presentation.CalendarScreen
 import com.example.mizu.features.homescreen.presentation.HomeScreen
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamilyLight
-import com.example.mizu.ui.theme.minorColor
+import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.utils.nav_utils.BottomNavScreens
 import com.example.mizu.utils.calendar_utils.WaterGoals
@@ -223,7 +218,7 @@ fun BottomBarHostingScreen(
                     AnimatedVisibility(visible = !onAdd, enter = fadeIn(), exit = fadeOut()) {
                         Box(
                             modifier = Modifier
-                                .background(color = minorColor, shape = RoundedCornerShape(16.dp))
+                                .background(color = mizuBlack, shape = RoundedCornerShape(16.dp))
                                 .size(width = 100.dp, height = 60.dp)
                         ) {
                             Text(
@@ -362,7 +357,7 @@ fun WaterCarouselSheet(
                         fontSize = 24.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(400),
-                        color = minorColor,
+                        color = mizuBlack,
                         textAlign = TextAlign.Center,
                     )
 
@@ -373,7 +368,7 @@ fun WaterCarouselSheet(
                         fontSize = 24.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(400),
-                        color = minorColor,
+                        color = mizuBlack,
                         textAlign = TextAlign.Center,
                     )
 
@@ -411,7 +406,7 @@ fun WaterCarouselSheet(
                                     fontWeight = if (index == selected) FontWeight(500) else FontWeight(
                                         400
                                     ),
-                                    color = if (index == selected) minorColor else minorColor.copy(
+                                    color = if (index == selected) mizuBlack else mizuBlack.copy(
                                         alpha = 0.6f
                                     ),
                                     textAlign = TextAlign.Center,
@@ -437,9 +432,9 @@ fun WaterCarouselSheet(
                     .height(60.dp)
                     .padding(start = 14.dp, end = 14.dp), shape = RoundedCornerShape(16.dp), colors = ButtonColors(
                     containerColor = waterColor,
-                    contentColor = minorColor,
+                    contentColor = mizuBlack,
                     disabledContainerColor = waterColor,
-                    disabledContentColor = minorColor
+                    disabledContentColor = mizuBlack
                 )
             ) {
                 Text(
@@ -448,7 +443,7 @@ fun WaterCarouselSheet(
                         fontSize = 24.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(400),
-                        color = minorColor,
+                        color = mizuBlack,
                         textAlign = TextAlign.Center,
                     )
 
@@ -483,7 +478,7 @@ fun TopBarLayout(
                         fontSize = 26.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(200),
-                        color = minorColor,
+                        color = mizuBlack,
                         textAlign = TextAlign.Start,
                     )
                 )
@@ -499,7 +494,7 @@ fun TopBarLayout(
                         fontSize = 26.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(200),
-                        color = minorColor,
+                        color = mizuBlack,
                         textAlign = TextAlign.Start,
                     )
                 )
@@ -557,10 +552,10 @@ fun BottomBarLayout(
                     topStart = 16.dp, topEnd = 16.dp
                 )
             )
-            .border(width = 1.dp, color = minorColor, shape = RoundedCornerShape(20.dp)),
-        containerColor = minorColor
+            .border(width = 1.dp, color = mizuBlack, shape = RoundedCornerShape(20.dp)),
+        containerColor = mizuBlack
     ) {
-        NavigationBar(containerColor = minorColor) {
+        NavigationBar(containerColor = mizuBlack) {
             navScreens.forEachIndexed { index, bottomData ->
                 NavigationBarItem(
                     selected = bottomData.route == currentRoute,
@@ -583,7 +578,7 @@ fun BottomBarLayout(
                             Icon(
                                 imageVector = ImageVector.vectorResource(bottomData.icon),
                                 contentDescription = bottomData.route,
-                                tint = if (currentRoute == bottomData.route) minorColor else backgroundColor1
+                                tint = if (currentRoute == bottomData.route) mizuBlack else backgroundColor1
                             )
                             Spacer(modifier = Modifier.width(16.dp))
                             AnimatedVisibility(
@@ -598,7 +593,7 @@ fun BottomBarLayout(
                                         fontSize = 16.sp,
                                         fontFamily = fontFamilyLight,
                                         fontWeight = FontWeight(200),
-                                        color = minorColor,
+                                        color = mizuBlack,
                                         textAlign = TextAlign.Start,
                                     )
                                 )
@@ -610,7 +605,7 @@ fun BottomBarLayout(
                     },
                     alwaysShowLabel = false,
                     colors = NavigationBarItemDefaults.colors(
-                        minorColor, indicatorColor = waterColor
+                        mizuBlack, indicatorColor = waterColor
                     )
                 )
             }

@@ -14,37 +14,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mizu.R
 import com.example.mizu.ui.theme.backgroundColor1
-import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamilyLight
-import com.example.mizu.ui.theme.minorColor
+import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.waterColor
 
 @Composable
@@ -89,14 +77,14 @@ fun LoginScreen(modifier: Modifier) {
                             fontSize = 24.sp,
                             fontFamily = fontFamilyLight,
                             fontWeight = FontWeight(400),
-                            color = minorColor,
+                            color = mizuBlack,
                             textAlign = TextAlign.Center,
                         ), modifier = Modifier.fillMaxWidth()
                     )
 
                     Box( modifier = Modifier
                         .width(280.dp)
-                        .height(50.dp).background(minorColor.copy(alpha = 0.4f), shape = RoundedCornerShape(20.dp))){
+                        .height(50.dp).background(mizuBlack.copy(alpha = 0.4f), shape = RoundedCornerShape(20.dp))){
                         Text(
                             text = "Google Sign In",
                             style = TextStyle(
@@ -110,7 +98,7 @@ fun LoginScreen(modifier: Modifier) {
                     }
                     Box( modifier = Modifier
                         .width(280.dp)
-                        .height(50.dp).background(minorColor.copy(alpha = 0.4f), shape = RoundedCornerShape(20.dp))){
+                        .height(50.dp).background(mizuBlack.copy(alpha = 0.4f), shape = RoundedCornerShape(20.dp))){
                         Text(
                             text = "Email Sign In",
                             style = TextStyle(
@@ -124,7 +112,7 @@ fun LoginScreen(modifier: Modifier) {
                     }
                     Box( modifier = Modifier
                         .width(280.dp)
-                        .height(50.dp).background(minorColor.copy(alpha = 0.4f), shape = RoundedCornerShape(20.dp))){
+                        .height(50.dp).background(mizuBlack.copy(alpha = 0.4f), shape = RoundedCornerShape(20.dp))){
                         Text(
                             text = "Phone Sign In",
                             style = TextStyle(
@@ -221,7 +209,7 @@ fun PreviewCompScreen() {
                 Brush.linearGradient(
                     start = Offset(Float.POSITIVE_INFINITY, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY),
-                    colors = listOf(waterColor.copy(alpha = 0.6f), minorColor.copy(alpha = 0.3f))
+                    colors = listOf(waterColor.copy(alpha = 0.6f), mizuBlack.copy(alpha = 0.3f))
                 ),
             )
     )

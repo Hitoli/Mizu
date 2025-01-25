@@ -20,6 +20,7 @@ import com.example.mizu.features.profilescreen.presentation.ProfileScreen
 import com.example.mizu.features.splash_screen.SplashScreen
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
+import com.example.mizu.ui.theme.waterColorMeter
 import com.example.mizu.utils.nav_utils.NavScreens
 import org.koin.androidx.compose.koinViewModel
 
@@ -31,96 +32,108 @@ fun NavScreen(
     caledarViewModel: CalendarViewModel = koinViewModel()
 ) {
     var navController = rememberNavController()
-
-
-    Log.d("updateWaterGoals NavScreen",caledarViewModel.onWaterGoals.toList().toString())
-
-//    SharedTransitionLayout {
-                NavHost(
-                    navController = navController,
-                    startDestination = OnboardingViewModel.onBoardingScreensRoutes
-                ) {
-                    composable(route= NavScreens.ProfileNavHostingScreen.route) {
-                        ProfileScreen( modifier = Modifier
-                            .fillMaxSize()
-                            .background(
-                                Brush.linearGradient(
-                                    start = Offset(Float.POSITIVE_INFINITY, 0f),
-                                    end = Offset(0f, Float.POSITIVE_INFINITY),
-                                    colors = listOf(backgroundColor1, backgroundColor2)
-                                )
-                            )
-                            .padding(top = 20.dp), getBack = {
-                                navController.navigate(NavScreens.BottomNavHostingScreen.route){
-                                    popUpTo(NavScreens.ProfileNavHostingScreen.route){
-                                        inclusive =true
-                                    }
-                                }
-                        }, imgModifier = Modifier
+    NavHost(
+        navController = navController,
+        startDestination = OnboardingViewModel.onBoardingScreensRoutes
+    ) {
+        composable(route = NavScreens.ProfileNavHostingScreen.route) {
+            ProfileScreen(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.linearGradient(
+                            start = Offset(Float.POSITIVE_INFINITY, 0f),
+                            end = Offset(0f, Float.POSITIVE_INFINITY),
+                            colors = listOf(backgroundColor1, backgroundColor2)
                         )
-
+                    )
+                    .padding(top = 20.dp), getBack = {
+                    navController.navigate(NavScreens.BottomNavHostingScreen.route) {
+                        popUpTo(NavScreens.ProfileNavHostingScreen.route) {
+                            inclusive = true
+                        }
                     }
-                    composable(route = NavScreens.BottomNavHostingScreen.route) {
-                        Log.d("onTotalWaterTrackingResourceAmount Onboarding",OnboardingViewModel.onWaterAmount.toString())
+                }, imgModifier = Modifier
+            )
 
-                        BottomBarHostingScreen(
-                            getUpdateTotalWaterTrackingAmount = {
-                                OnboardingViewModel.updateOnboardingWaterAmount(it)
+        }
+        composable(route = NavScreens.BottomNavHostingScreen.route) {
+            BottomBarHostingScreen(
+                getUpdateTotalWaterTrackingAmount = {
+                    OnboardingViewModel.updateOnboardingWaterAmount(it)
 
-                                Log.d("totalWaterAmount OnboardingViewModel",  homeViewModel.totalWaterAmount.toString())
-                            },
-                            onUserName = OnboardingViewModel.onNameValue,
-                            onWaterTrackingResourceAmount = homeViewModel.usedWaterAmount,
-                            onTotalWaterTrackingResourceAmount = homeViewModel.totalWaterAmount,
-                            onReward = homeViewModel.rewardDialog,
-                            getWaterTrackingResourceAmount = {
-                                homeViewModel.fillWaterUpdate(it)
+                    Log.d(
+                        "totalWaterAmount OnboardingViewModel",
+                        homeViewModel.totalWaterAmount.toString()
+                    )
+                },
+                onUserName = OnboardingViewModel.onNameValue,
+                onWaterTrackingResourceAmount = homeViewModel.usedWaterAmount,
+                onTotalWaterTrackingResourceAmount = homeViewModel.totalWaterAmount,
+                onReward = homeViewModel.rewardDialog,
+                getWaterTrackingResourceAmount = {
+                    homeViewModel.fillWaterUpdate(it)
 
-                            },
-                            getReward = {
-                                if (it!=null){
-                                    homeViewModel.DismissReward(it)
-                                }
-                            },
-                            getAddWater = {
-
-                            }, onWaterMeterResourceAmount =homeViewModel.waterPercent, onProgress = homeViewModel.onProgress, onStreak =homeViewModel._streak.streak.toString(), getStreak = {}, onTime = homeViewModel.onTime, getGreeting = {
-                                homeViewModel.getGreeting();
-                            }, items = listOf(50,100,200,300,400,500),
-                            streakImages = homeViewModel.perks,
-                            onMonth = caledarViewModel.onMonth,
-                            onWaterGoals = caledarViewModel.onWaterGoals,
-                            calendarList = caledarViewModel.calendarList, getSelected = {
-                                caledarViewModel.updateWaterGoals(it)
-                            },
-                            getProfileClick = {
-                               navController.navigate(NavScreens.ProfileNavHostingScreen.route)
-                            }, imgModifier = Modifier, onAvgIntake = caledarViewModel.avgWaterIntake, onWeight = caledarViewModel.weight, onBestStreak = caledarViewModel.bestStreak.toString(), onHeight = caledarViewModel.height
-
-
-                        )
+                },
+                getReward = {
+                    if (it != null) {
+                        homeViewModel.DismissReward(it)
                     }
-                    composable(route = NavScreens.OnboardingNavHostingScreen.route) {
-                        OnboardingNavHostingScreen(getNavigate = {
-                            homeViewModel.updateTotalWaterAmount(OnboardingViewModel.onWaterAmount)
-                            navController.navigate(NavScreens.BottomNavHostingScreen.route) {
-                                popUpTo(NavScreens.OnboardingNavHostingScreen.route) {
-                                    inclusive = true
-                                }
-                            }
-                        }, onboardingViewModel = OnboardingViewModel)
-                    }
-                    composable(route= NavScreens.SplashNavHostingScreen.route){
-                        SplashScreen()
+                },
+                getAddWater = {
+
+                },
+                onWaterMeterResourceAmount = homeViewModel.waterPercent,
+                onProgress = homeViewModel.onProgress,
+                onStreak = homeViewModel._streak.streak.toString(),
+                getStreak = {},
+                onTime = homeViewModel.onTime,
+                getGreeting = {
+                    homeViewModel.getGreeting();
+                },
+                items = listOf(50, 100, 200, 300, 400, 500),
+                streakImages = homeViewModel.perks,
+                onMonth = caledarViewModel.onMonth,
+                onWaterGoals = caledarViewModel.onWaterGoals,
+                calendarList = caledarViewModel.calendarList,
+                getSelected = {
+                    caledarViewModel.updateWaterGoals(it)
+                },
+                getProfileClick = {
+                    navController.navigate(NavScreens.ProfileNavHostingScreen.route)
+                },
+                imgModifier = Modifier,
+                onAvgIntake = caledarViewModel.avgWaterIntake,
+                onWeight = caledarViewModel.weight,
+                onBestStreak = caledarViewModel.bestStreak.toString(),
+                onHeight = caledarViewModel.height
+
+
+            )
+        }
+        composable(route = NavScreens.OnboardingNavHostingScreen.route) {
+            OnboardingNavHostingScreen(getNavigate = {
+                homeViewModel.updateTotalWaterAmount(OnboardingViewModel.onWaterAmount)
+                navController.navigate(NavScreens.BottomNavHostingScreen.route) {
+                    popUpTo(NavScreens.OnboardingNavHostingScreen.route) {
+                        inclusive = true
                     }
                 }
-
-//        }
-
-
-
-
+            }, onboardingViewModel = OnboardingViewModel)
+        }
+        composable(route = NavScreens.SplashNavHostingScreen.route) {
+            SplashScreen(modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.linearGradient(
+                        start = Offset(Float.POSITIVE_INFINITY*0.4f, 0f),
+                        end = Offset(0f, Float.POSITIVE_INFINITY),
+                        colors = listOf(waterColorMeter.copy(alpha = 0.4f), backgroundColor2)
+                    )
+                ))
+        }
     }
+}
 
 
 

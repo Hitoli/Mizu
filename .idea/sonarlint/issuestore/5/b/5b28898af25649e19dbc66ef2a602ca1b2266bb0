@@ -1,7 +1,5 @@
 
-|kotlin:S6619!"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8·€∞Ñ1J$b8b653cf-273a-47a6-a560-175d02e8f644
-|kotlin:S6619B"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8·€∞Ñ1J$6ff810c4-25d9-43ba-8842-e96fc4c5062b
-|kotlin:S6619Z"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8·€∞Ñ1J$34450b56-249c-4294-b9a6-2499957e5283
-|kotlin:S6619v"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8‚€∞Ñ1J$d9f7c98c-1651-4999-ab76-7adb0664f7c0
-}kotlin:S1481"3Remove this unused "coroutineScope" local variable.(ï±…‡¸ˇˇˇˇ8í∑—Ñ1J$3e1ce064-c5f2-42c8-a144-e55102bdd892
-ókotlin:S3776"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(¯ﬁç¥8Ô€∞Ñ1J$f683351a-e92d-45bb-ae82-dd26018ba855
+Vkotlin:S6619"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8Û∂‰Û…2
+Vkotlin:S6619>"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8Û∂‰Û…2
+Vkotlin:S6619v"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8Ù∂‰Û…2
+qkotlin:S3776"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(¯ﬁç¥8¸∂‰Û…2

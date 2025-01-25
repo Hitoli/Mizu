@@ -5,7 +5,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -15,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.TextStyle
@@ -26,8 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.times
 import com.example.mizu.ui.theme.fontFamily
-import com.example.mizu.ui.theme.fontFamilyLight
-import com.example.mizu.ui.theme.minorColor
+import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.waterColor
 
 @Composable
@@ -51,7 +48,7 @@ fun WaterProgressScreen(modifier: Modifier = Modifier,
                 .width(screenWidth.value * 0.5.dp)
                 .height(screenHeight.value * 0.05.dp)
                 .clip(RoundedCornerShape(40.dp))
-                .border(width = 0.5.dp, color = minorColor, shape = RoundedCornerShape(40.dp))
+                .border(width = 0.5.dp, color = mizuBlack, shape = RoundedCornerShape(40.dp))
                 .align(Alignment.TopStart)
         ) {
             val width = size.width
@@ -91,7 +88,7 @@ fun WaterProgressScreen(modifier: Modifier = Modifier,
                 fontSize = 18.sp,
                 fontFamily = fontFamily,
                 fontWeight = FontWeight(500),
-                color = minorColor,
+                color = mizuBlack,
                 textAlign = TextAlign.Center,
             )
         )

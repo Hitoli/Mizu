@@ -1,18 +1,12 @@
 
-mkotlin:S1172d"(Remove these unused function parameters.(ƒŒ°8—¡¶Ù2J$ae1e93e1-ee25-449b-8dc8-55ab4bf823c3
-nkotlin:S1172Ò"(Remove these unused function parameters.(´œôß8™¡¶Ù2J$6ade937f-cc0f-4674-b9a6-4381e621ce33
-ƒkotlin:S1172´"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8™¡¶Ù2J$19690148-feca-4a99-a449-f1a7f2b55534
-ikotlin:S125"Remove this commented out code.(à†çúÿÿÿÿ8Ÿ¡¶Ù2J$dfa809e2-a868-4e11-9be3-63e6715b1f2b
-ikotlin:S125ü"Remove this commented out code.(¹©Üúÿÿÿÿ8 ¡¶Ù2J$147d35e8-531b-438b-bf31-455f82acb3d6
-dkotlin:S125ş"Remove this commented out code.(§ã†×8¡¡¶Ù2J$4d698cba-3507-455b-b6fc-d96af25ee871
-Œkotlin:S107]"HThis function has 29 parameters, which is greater than the 7 authorized.(ôØ±Ú8­¡¶Ù2J$421e4864-6be0-4eea-a6c9-221e77b8b592
-‹kotlin:S107Ô"GThis function has 8 parameters, which is greater than the 7 authorized.(ø„©b8­¡¶Ù2J$5a028f62-6956-4160-9338-5042aad79a2d
-}kotlin:S1135ƒ"2Complete the task associated to this TODO comment.(£÷É şÿÿÿÿ8´¡¶Ù2J$bece1947-3ec6-4852-8cf1-2610b9f2e6ad
-zkotlin:S1481Š"/Remove this unused "sheetState" local variable.(Ù„°áÿÿÿÿÿ8·¡¶Ù2J$3a442420-1013-43bc-b0da-89c30c11d484
-_kotlin:S1128
-"Remove this unused import.(ÓşÈÆ8½¡¶Ù2J$68fe7304-ac99-45d9-87f6-8d0072a91810
-dkotlin:S1128&"Remove this unused import.(÷à‚Ëûÿÿÿÿ8½¡¶Ù2J$f1214683-d466-431f-8e59-f339aa9e7412
-_kotlin:S1128'"Remove this unused import.(¨±È¤8½¡¶Ù2J$a514151f-b758-4248-a123-4c1beded4a03
-dkotlin:S1128>"Remove this unused import.(‚ÅÎùúÿÿÿÿ8½¡¶Ù2J$174d2e93-589b-4b31-8d7f-0961b2f68aac
-dkotlin:S1128N"Remove this unused import.(—÷õ¸ıÿÿÿÿ8½¡¶Ù2J$2709c15a-dfa2-4459-8e2e-f4040e2891df
-—kotlin:S3776Ô"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(ø„©b8Ä¡¶Ù2J$18be99d8-587d-4273-a9ae-86bb6319d146
+mkotlin:S1172_"(Remove these unused function parameters.(ƒŒ°8—¡¶Ù2J$2d8d6594-0063-49d8-841a-5ecbc090d4a2
+nkotlin:S1172Í"(Remove these unused function parameters.(´œôß8™¡¶Ù2J$0a480a59-1ff7-4712-aed9-25664529222b
+ƒkotlin:S1172¯"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8™¡¶Ù2J$5a286eac-12c4-47fc-a2d5-171b768ab33d
+ikotlin:S125˜"Remove this commented out code.(à†çúÿÿÿÿ8Ÿ¡¶Ù2J$32166d5b-ed0e-46c2-8a36-cff32c1dd6b7
+ikotlin:S125÷"Remove this commented out code.(¹©Üúÿÿÿÿ8 ¡¶Ù2J$338b5f78-6c3a-474d-8c0c-e72c11f9883c
+dkotlin:S125ù"Remove this commented out code.(§ã†×8¡¡¶Ù2J$53b13f72-76af-4463-9071-11265eaf1097
+Œkotlin:S107X"HThis function has 29 parameters, which is greater than the 7 authorized.(ôØ±Ú8­¡¶Ù2J$81ac0269-84fc-4076-b2d6-a3ef31ffac9e
+‹kotlin:S107Ï"GThis function has 8 parameters, which is greater than the 7 authorized.(ø„©b8­¡¶Ù2J$0ca30ade-fa68-4a59-9448-fd88a896efaf
+}kotlin:S1135ş"2Complete the task associated to this TODO comment.(£÷É şÿÿÿÿ8´¡¶Ù2J$0ff2db84-7081-4a18-b701-7e70e614e00b
+zkotlin:S1481…"/Remove this unused "sheetState" local variable.(Ù„°áÿÿÿÿÿ8·¡¶Ù2J$2f8cdde8-f582-4c73-a755-8ef8f745ed12
+—kotlin:S3776Ï"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(ø„©b8Ä¡¶Ù2J$4dc2a396-c9ab-4e46-b2d3-86b9b01de6d3

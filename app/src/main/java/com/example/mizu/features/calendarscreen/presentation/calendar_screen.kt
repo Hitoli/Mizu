@@ -21,15 +21,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -57,7 +52,7 @@ import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
-import com.example.mizu.ui.theme.minorColor
+import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.utils.calendar_utils.WaterGoals
 
@@ -77,7 +72,7 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:Li
                     fontSize = 24.sp,
                     fontFamily = fontFamilyLight,
                     fontWeight = FontWeight(400),
-                    color = minorColor,
+                    color = mizuBlack,
                     textAlign = TextAlign.Start,
                 )
             )
@@ -85,7 +80,7 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:Li
             Box(
                 modifier = Modifier
                     .background(
-                        minorColor,
+                        mizuBlack,
                         shape = RoundedCornerShape(10.dp)
                     )
                     .fillMaxWidth(0.9f)
@@ -131,7 +126,7 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:Li
                                                 .width(30.dp)
                                                 .border(
                                                     width = 1.dp,
-                                                    color = if (it != waterColor) Color.White else minorColor,
+                                                    color = if (it != waterColor) Color.White else mizuBlack,
                                                     shape = RoundedCornerShape(6.dp)
                                                 )
                                         )
@@ -159,7 +154,7 @@ fun CalendarScreen(modifier: Modifier = Modifier, onMonth:String, listOfTodos:Li
                     fontSize = 20.sp,
                     fontFamily = fontFamilyLight,
                     fontWeight = FontWeight(400),
-                    color = minorColor,
+                    color = mizuBlack,
                     textAlign = TextAlign.Start,
                 )
             )
@@ -217,7 +212,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontSize = 15.sp,
                                 fontFamily = fontFamily,
                                 fontWeight = FontWeight(400),
-                                color = minorColor,
+                                color = mizuBlack,
                                 textAlign = TextAlign.Center,
                             )
                         )
@@ -230,7 +225,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontSize = 35.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(600),
-                                color = minorColor,
+                                color = mizuBlack,
                                 textAlign = TextAlign.Center,
                             )
                         )
@@ -254,7 +249,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontSize = 15.sp,
                                 fontFamily = fontFamily,
                                 fontWeight = FontWeight(400),
-                                color = minorColor,
+                                color = mizuBlack,
                                 textAlign = TextAlign.Center,
                             )
                         )
@@ -267,7 +262,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontSize = 35.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(600),
-                                color = minorColor,
+                                color = mizuBlack,
                                 textAlign = TextAlign.Center,
                             )
                         )
@@ -294,7 +289,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontSize = 15.sp,
                                 fontFamily = fontFamily,
                                 fontWeight = FontWeight(400),
-                                color = minorColor,
+                                color = mizuBlack,
                                 textAlign = TextAlign.Center,
                             )
                         )
@@ -307,7 +302,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontSize = 35.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(600),
-                                color = minorColor,
+                                color = mizuBlack,
                                 textAlign = TextAlign.Center,
                             )
                         )
@@ -331,7 +326,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontSize = 15.sp,
                                 fontFamily = fontFamily,
                                 fontWeight = FontWeight(400),
-                                color = minorColor,
+                                color = mizuBlack,
                                 textAlign =TextAlign.Center,
                             )
                         )
@@ -344,7 +339,7 @@ fun UserValues(onAvgIntake:String,onBestStreak:String,onWeight:String,onHeight:S
                                 fontSize = 35.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(600),
-                                color = minorColor,
+                                color = mizuBlack,
                                 textAlign = TextAlign.Center,
                             )
                         )
@@ -409,7 +404,7 @@ fun MoodMeter(getShowMood: (Boolean) -> Unit, getMood:(String)->Unit) {
     Dialog(onDismissRequest = {}) {
         Box(modifier = Modifier
             .background(
-                minorColor,
+                mizuBlack,
                 shape = RoundedCornerShape(10.dp)
             )
             .fillMaxWidth()
@@ -443,7 +438,7 @@ fun MoodMeter(getShowMood: (Boolean) -> Unit, getMood:(String)->Unit) {
                                 fontSize = 16.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(400),
-                                color = minorColor,
+                                color = mizuBlack,
                                 textAlign = TextAlign.Center,
                             )
                         )
@@ -475,7 +470,7 @@ fun MoodMeter(getShowMood: (Boolean) -> Unit, getMood:(String)->Unit) {
                                 fontSize = 16.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(400),
-                                color = minorColor,
+                                color = mizuBlack,
                                 textAlign = TextAlign.Center,
                             )
                         )
@@ -507,7 +502,7 @@ fun MoodMeter(getShowMood: (Boolean) -> Unit, getMood:(String)->Unit) {
                                 fontSize = 16.sp,
                                 fontFamily = fontFamilyLight,
                                 fontWeight = FontWeight(400),
-                                color = minorColor,
+                                color = mizuBlack,
                                 textAlign = TextAlign.Center,
                             )
                         )
@@ -543,11 +538,11 @@ fun GraphScreen() {
             lines = listOf(
                 Line(
                     dataPoints = pointsData,
-                    LineStyle(color = minorColor),
+                    LineStyle(color = mizuBlack),
                     IntersectionPoint(color = waterColor),
-                    SelectionHighlightPoint(minorColor),
-                    ShadowUnderLine(minorColor),
-                    SelectionHighlightPopUp(minorColor)
+                    SelectionHighlightPoint(mizuBlack),
+                    ShadowUnderLine(mizuBlack),
+                    SelectionHighlightPopUp(mizuBlack)
                 )
             )
         ),

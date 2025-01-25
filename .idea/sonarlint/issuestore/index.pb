@@ -103,11 +103,11 @@ n
 >app/src/main/java/com/example/mizu/model/data/water_storage.kt,9\8\98de6b4c9ff8e104261d863efae72cf726398173
 {
 Kapp/src/main/java/com/example/mizu/alarm_schedular/alram_schedule_interf.kt,6\e\6e06569b052aa263ace0dfc79ffbcbc1438c5373
-v
-Fapp/src/main/java/com/example/mizu/features/authscreen/login_screen.kt,b\2\b266ea0af7a19ff5d4ad46233b90a552a23f3b25
-w
-Gapp/src/main/java/com/example/mizu/features/authscreen/signup_screen.kt,1\5\155e45987e881f783d63dca4702694842b7cf433
 ƒ
 Sapp/src/main/java/com/example/mizu/features/authscreen/presentation/login_screen.kt,7\5\75379ca46db6fb536a3ca181822854dabf32e526
 „
 Tapp/src/main/java/com/example/mizu/features/authscreen/presentation/signup_screen.kt,e\3\e369b3ec4233f4b1e1c0cb32d3796e32c5cd9c8d
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+|
+Lapp/src/main/java/com/example/mizu/utils/nav_utils/onboarding_nav_screens.kt,4\b\4b8bc68b0a22588821f917e40086590da5d706ae

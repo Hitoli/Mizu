@@ -31,41 +31,45 @@ import com.example.mizu.R
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
+import com.example.mizu.ui.theme.waterColorMeter
 
 @Composable
-fun SplashScreen(modifier:Modifier=Modifier) {
+fun SplashScreen(modifier: Modifier = Modifier) {
 
-    Box(modifier = modifier){
+    Box(modifier = modifier) {
 
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-            .align(
-                Alignment.Center
-            )
-            .padding(top = 16.dp, bottom = 16.dp, start = 4.dp, end = 4.dp),
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .align(
+                    Alignment.Center
+                )
+                .padding(top = 16.dp, bottom = 16.dp, start = 4.dp, end = 4.dp),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally) {
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-           Image(imageVector = ImageVector.vectorResource(R.drawable.mizulogo), contentDescription = "MizuLogo",)
+            Image(
+                imageVector = ImageVector.vectorResource(R.drawable.mizulogo),
+                contentDescription = "MizuLogo",
+            )
         }
-
-
-
     }
-
 }
 
 @Preview(showBackground = true)
 @Composable
 fun PreviewSplashScreen() {
-    SplashScreen(modifier = Modifier
-        .fillMaxSize()
-        .background(
-            Brush.linearGradient(
-                start = Offset(Float.POSITIVE_INFINITY, 0f),
-                end = Offset(0f, Float.POSITIVE_INFINITY),
-                colors = listOf(backgroundColor1, backgroundColor2)
+    SplashScreen(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Brush.linearGradient(
+                    start = Offset(Float.POSITIVE_INFINITY*0.4f, 0f),
+                    end = Offset(0f, Float.POSITIVE_INFINITY),
+                    colors = listOf(waterColorMeter.copy(alpha = 0.4f), backgroundColor2)
+                )
             )
-        ))
+    )
 }
