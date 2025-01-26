@@ -34,8 +34,6 @@ Japp/src/main/java/com/example/mizu/features/splash_screen/splash_screen.kt,f\c
 à
 Xapp/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_screen.kt,0\9\09cf53906cb6fdb40befb7028fd3c838884ba858
 è
-_app/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_weight_screen.kt,a\8\a88498577e79ab2c600e05f1361283e1db7c4a4a
-è
 _app/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_height_screen.kt,b\d\bd634fc73e675b4c70f4a79d3b4203bc68da69a0
 ê
 `app/src/main/java/com/example/mizu/features/onboarding/presentation/Onboarding_loading_screen.kt,e\2\e22577f404bd38187095f191f8295b4a10628483
@@ -49,8 +47,6 @@ x
 Happ/src/main/java/com/example/mizu/presentation_app/navmap/nav_screen.kt,1\8\18b1ee14715b2b6bcbbc32caa0faf9ad904f10f3
 d
 4app/src/main/java/com/example/mizu/ui/theme/Theme.kt,0\9\096a292b820304dad700acd91b20be687c781f26
-â
-Yapp/src/main/java/com/example/mizu/features/onboarding/view_model/onboarding_viewmodel.kt,4\4\44947f3c10b143811ed5cb4fa586ac96b6befad9
 [
 +app/src/main/java/com/example/mizu/di/DI.kt,d\0\d024bf64ab02160e0cc76867f1d73875df1e15ca
 ^
@@ -111,11 +107,13 @@ Tapp/src/main/java/com/example/mizu/features/authscreen/presentation/signup_scre
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 |
 Lapp/src/main/java/com/example/mizu/utils/nav_utils/onboarding_nav_screens.kt,4\b\4b8bc68b0a22588821f917e40086590da5d706ae
-ñ
-fapp/src/main/java/com/example/mizu/features/onboarding/presentation/onBoardingBodyMeasurementScreen.kt,7\3\735414fe4d255b242c96184ff25cb0316920f982
 Ç
 Rapp/src/main/java/com/example/mizu/features/onboarding/utils/BodyMeasurmentData.kt,4\c\4c99327386a3fecbb75e4e7968ef6090fb0951ca
 ¶
 vapp/src/main/java/com/example/mizu/features/onboarding/presentation/bodyMeasurement/onBoardingBodyMeasurementScreen.kt,2\f\2fc2aba485b0d9ae7e1d385cb826b942443224f7
 ñ
 fapp/src/main/java/com/example/mizu/features/onboarding/presentation/bodyMeasurement/textFieldCustom.kt,5\3\5372579297e994ae4257081d14dd49698e195a74
+à
+Xapp/src/main/java/com/example/mizu/features/onboarding/viewModel/onboarding_viewmodel.kt,c\c\cc1ac431c9f48874485a442de8076fdd8f2be4e8
+É
+Sapp/src/main/java/com/example/mizu/features/onboarding/utils/onboardingIndicator.kt,f\2\f2a3d9654c46f5663575dd75f4a7f7a9081891dd

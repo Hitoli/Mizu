@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mizu.R
 import com.example.mizu.features.onboarding.utils.BodyMeasurementData
+import com.example.mizu.features.onboarding.utils.OnboardingIndicator
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
@@ -61,7 +62,6 @@ fun OnBoardingBodyMeasurementsScreen(
     getHeightChange: (String?) -> Unit,
     getNavigate: () -> Unit,
 ) {
-    val focusManager = LocalFocusManager.current
 
     Column(
         modifier = modifier
@@ -108,10 +108,9 @@ fun OnBoardingBodyMeasurementsScreen(
                     .padding(horizontal = 20.dp)
             )
         }
-
+        OnboardingIndicator(onboardingNav = 0)
         Column(
             modifier = Modifier
-                .fillMaxHeight()
                 .weight(1f)
                 .fillMaxWidth()
                 .background(
@@ -144,7 +143,7 @@ fun OnBoardingBodyMeasurementsScreen(
                 getNavigate = getNavigate,
                 onLabelText = "Weight"
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(5.dp))
 
             TextFieldCustom(
                 onTextChange = bodyMeasurementData.onHeightChange,

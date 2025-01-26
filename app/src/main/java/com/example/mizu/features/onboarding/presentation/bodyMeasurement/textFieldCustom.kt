@@ -73,7 +73,7 @@ fun TextFieldCustom(
                 .fillMaxWidth().padding(0.dp),
             isError = checkError,
             maxLines = 1,
-            shape = RoundedCornerShape(6.dp),
+            shape = RoundedCornerShape(10.dp),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedLabelColor = mizuBlack,
                 focusedTextColor = mizuBlack,
