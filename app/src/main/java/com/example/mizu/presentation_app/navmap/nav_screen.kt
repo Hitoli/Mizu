@@ -15,7 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mizu.features.calendarscreen.view_model.CalendarViewModel
 import com.example.mizu.features.homescreen.view_model.HomeViewModel
-import com.example.mizu.features.onboarding.view_model.OnboardingViewModel
+import com.example.mizu.features.onboarding.viewModel.OnboardingViewModel
 import com.example.mizu.features.profilescreen.presentation.ProfileScreen
 import com.example.mizu.features.splash_screen.SplashScreen
 import com.example.mizu.ui.theme.backgroundColor1

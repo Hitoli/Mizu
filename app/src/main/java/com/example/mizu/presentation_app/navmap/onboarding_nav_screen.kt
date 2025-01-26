@@ -1,6 +1,11 @@
 package com.example.mizu.presentation_app.navmap
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -9,9 +14,12 @@ import com.example.mizu.features.onboarding.presentation.OnBoardingActiveScreen
 import com.example.mizu.features.onboarding.presentation.OnBoardingHeightScreen
 import com.example.mizu.features.onboarding.presentation.OnBoardingScreen
 import com.example.mizu.features.onboarding.presentation.OnBoardingWaterIntakeResultScreen
-import com.example.mizu.features.onboarding.presentation.OnBoardingBodyMeasurementsScreen
+import com.example.mizu.features.onboarding.presentation.bodyMeasurement.OnBoardingBodyMeasurementsScreen
 import com.example.mizu.features.onboarding.presentation.OnboardingLoadingScreen
-import com.example.mizu.features.onboarding.view_model.OnboardingViewModel
+import com.example.mizu.features.onboarding.utils.BodyMeasurementData
+import com.example.mizu.features.onboarding.viewModel.OnboardingViewModel
+import com.example.mizu.ui.theme.backgroundColor2
+import com.example.mizu.ui.theme.waterColorMeter
 import com.example.mizu.utils.nav_utils.OnboardingNavScreens
 import org.koin.androidx.compose.koinViewModel
 
@@ -87,30 +95,30 @@ fun OnboardingNavHostingScreen(
         composable(route = OnboardingNavScreens.WeightIntakeScreen.route) {
             OnBoardingBodyMeasurementsScreen(
                 getWeightChange = {
-                    if (it != null) {
-                        onboardingViewModel.checkDigitFields(it)
-                        onboardingViewModel.onBoardingWeightScreen(it)
-                    }
+                    if (it != null) {}
+                }, getHeightChange = {
+
                 },
-                onWeightChange = onboardingViewModel.onWeightValue,
-                onUserName = onboardingViewModel.onNameValue,
-                check = onboardingViewModel.checkDigit,
-                checkText = "Field can not be empty or contain words",
                 getNavigate = {
-                    onboardingViewModel.checkDigitFields(onboardingViewModel.onWeightValue)
-
-                    if (!onboardingViewModel.checkDigit) {
-                        navController.navigate(
-                            OnboardingNavScreens.HeightIntakeScreen.route
-                        ) {
-                            popUpTo(OnboardingNavScreens.WeightIntakeScreen.route) {
-                                inclusive = true
-                            }
-                        }
-                    }
-
-
-                })
+                    println("Naavigationg")
+                },
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.linearGradient(
+                            start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                            end = Offset(0f, Float.POSITIVE_INFINITY),
+                            colors = listOf(waterColorMeter.copy(alpha = 0.4f), backgroundColor2)
+                        )
+                    ),
+                bodyMeasurementData = BodyMeasurementData(
+                    onWeightChange = "",
+                    onHeightChange = "",
+                    onWeightCheck = false,
+                    onHeightCheck = false,
+                    onHeightError = "",
+                    onWeightError = ""
+                ))
         }
         composable(route = OnboardingNavScreens.HeightIntakeScreen.route) {
             OnBoardingHeightScreen(

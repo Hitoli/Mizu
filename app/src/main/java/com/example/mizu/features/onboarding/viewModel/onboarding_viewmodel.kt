@@ -1,4 +1,4 @@
-package com.example.mizu.features.onboarding.view_model
+package com.example.mizu.features.onboarding.viewModel
 
 import android.util.Log
 import androidx.compose.runtime.getValue
@@ -13,7 +13,6 @@ import com.example.mizu.utils.nav_utils.NavScreens
 import com.example.mizu.utils.Utils.Companion.capitalizeFirst
 import com.example.mizu.utils.home_screen_utils.UserSettings
 import kotlinx.coroutines.launch
-import java.text.DecimalFormat
 import java.time.LocalDate
 import kotlin.math.sqrt
 
