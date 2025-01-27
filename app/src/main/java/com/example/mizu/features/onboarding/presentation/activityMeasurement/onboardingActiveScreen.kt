@@ -1,8 +1,8 @@
-package com.example.mizu.features.onboarding.presentation.bodyMeasurement
+package com.example.mizu.features.onboarding.presentation.activityMeasurement
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +16,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -32,23 +32,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mizu.R
-import com.example.mizu.features.onboarding.utils.BodyMeasurementData
+import com.example.mizu.features.onboarding.utils.ActivityMeasurementData
+import com.example.mizu.features.onboarding.utils.OnBoardingButtons
 import com.example.mizu.features.onboarding.utils.OnboardingIndicator
-import com.example.mizu.features.onboarding.utils.TextFieldCustom
+import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.onboardingBoxColor
 import com.example.mizu.ui.theme.waterColor
-import com.example.mizu.ui.theme.waterColorMeter
 
 @Composable
-fun OnBoardingBodyMeasurementsScreen(
+fun OnBoardingActiveScreen(
     modifier: Modifier = Modifier,
-    bodyMeasurementData: BodyMeasurementData,
-    getWeightChange: (String?) -> Unit,
-    getHeightChange: (String?) -> Unit,
+    activityMeasurementData: ActivityMeasurementData,
+    getActiveOutcome: (Int?) -> Unit,
     getNavigate: () -> Unit,
 ) {
 
@@ -69,12 +68,12 @@ fun OnBoardingBodyMeasurementsScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                imageVector = ImageVector.vectorResource(R.drawable.drinkwater),
+                imageVector = ImageVector.vectorResource(R.drawable.acitivitymeasurement),
                 contentDescription = "onBoarding Getting Weight and Height"
             )
             Spacer(modifier = Modifier.height(20.dp))
             Text(
-                text = "Right Hydration",
+                text = "Calculate Amount",
                 style = TextStyle(
                     fontSize = 16.sp,
                     fontFamily = fontFamily,
@@ -85,7 +84,7 @@ fun OnBoardingBodyMeasurementsScreen(
             )
             Spacer(modifier = Modifier.height(30.dp))
             Text(
-                text = "Please enter your weight and height. This helps us recommend the right hydration plan for you!",
+                text = "Please Select your activity level. This helps us calculate the right amount of water",
                 style = TextStyle(
                     fontSize = 15.sp,
                     fontFamily = fontFamilyLight,
@@ -97,7 +96,7 @@ fun OnBoardingBodyMeasurementsScreen(
                     .padding(horizontal = 20.dp)
             )
         }
-        OnboardingIndicator(onboardingNav = 0)
+        OnboardingIndicator(onboardingNav = 1)
         Column(
             modifier = Modifier
                 .weight(1f)
@@ -112,7 +111,7 @@ fun OnBoardingBodyMeasurementsScreen(
         ) {
 
             Text(
-                text = "What is your height and weight?",
+                text = "How Active are you?",
                 style = TextStyle(
                     fontSize = 18.sp,
                     fontFamily = fontFamily,
@@ -122,39 +121,20 @@ fun OnBoardingBodyMeasurementsScreen(
                 ), modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(15.dp))
-
-            TextFieldCustom(
-                onTextChange = bodyMeasurementData.onWeightChange,
-                checkError = bodyMeasurementData.onWeightCheck,
-                onErrorText = "Error",
-                onPlaceHolderText = "Enter Weight in Kgs",
-                getTextChange = getWeightChange,
-                getNavigate = getNavigate,
-                onLabelText = "Weight"
-            )
-            Spacer(modifier = Modifier.height(5.dp))
-
-            TextFieldCustom(
-                onTextChange = bodyMeasurementData.onHeightChange,
-                checkError = bodyMeasurementData.onHeightCheck,
-                onErrorText = bodyMeasurementData.onHeightError,
-                onPlaceHolderText = "Enter Height in Cms",
-                getTextChange = getHeightChange,
-                getNavigate = getNavigate,
-                onLabelText = "Height"
-            )
             Box(
                 modifier = Modifier
-                    .clickable {
-                        getNavigate()
-                    }
                     .fillMaxWidth()
-                    .height(90.dp)
-                    .padding(horizontal = 20.dp, vertical = 20.dp)
-                    .background(waterColor, shape = RoundedCornerShape(6.dp)),
+                    .height(60.dp)
+                    .padding(horizontal = 20.dp, vertical = 5.dp)
+                    .border(
+                        width = 0.2.dp,
+                        color = mizuBlack.copy(alpha = 0.5f),
+                        shape = RoundedCornerShape(6.dp)
+                    )
+                    .background(onboardingBoxColor, shape = RoundedCornerShape(6.dp)),
             ) {
                 Text(
-                    text = "Done",
+                    text = "5-6 Days of workout",
                     style = TextStyle(
                         fontSize = 16.sp,
                         fontFamily = fontFamilyLight,
@@ -167,49 +147,87 @@ fun OnBoardingBodyMeasurementsScreen(
                 )
             }
 
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+                    .padding(horizontal = 20.dp, vertical = 5.dp)
+                    .border(
+                        width = 0.2.dp,
+                        color = mizuBlack.copy(alpha = 0.5f),
+                        shape = RoundedCornerShape(6.dp)
+                    )
+                    .background(onboardingBoxColor, shape = RoundedCornerShape(6.dp)),
+            ) {
+                Text(
+                    text = "2-3 Days of workout",
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(400),
+                        color = mizuBlack,
+                        textAlign = TextAlign.Center,
+                    ), modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.Center)
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+                    .padding(horizontal = 20.dp, vertical = 5.dp)
+                    .border(
+                        width = 0.2.dp,
+                        color = mizuBlack.copy(alpha = 0.5f),
+                        shape = RoundedCornerShape(6.dp)
+                    )
+                    .background(onboardingBoxColor, shape = RoundedCornerShape(6.dp)),
+            ) {
+                Text(
+                    text = "Minimal Activity",
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(400),
+                        color = mizuBlack,
+                        textAlign = TextAlign.Center,
+                    ), modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.Center)
+                )
+            }
+
+            OnBoardingButtons(getNavigate)
         }
-
-
     }
-
-
 }
-
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewOnBoardingWeightScreen() {
-    var weightValue by remember {
-        mutableStateOf("")
+fun PreviewOnBoardingActiveScreen() {
+    var ActiveOutcome by remember {
+        mutableIntStateOf(2)
     }
-    OnBoardingBodyMeasurementsScreen(
-        getWeightChange = {
-            if (it != null) {
-                weightValue = it
-            }
-        },
-        getNavigate = {
-            println("Naavigationg")
-        },
-        getHeightChange = {
-
-        },
+    OnBoardingActiveScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 Brush.linearGradient(
-                    start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                    start = Offset(Float.POSITIVE_INFINITY, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY),
-                    colors = listOf(waterColorMeter.copy(alpha = 0.2f), backgroundColor2)
+                    colors = listOf(backgroundColor1, backgroundColor2)
                 )
             ),
-        bodyMeasurementData = BodyMeasurementData(
-            onWeightChange = "",
-            onHeightChange = "",
-            onWeightCheck = false,
-            onHeightCheck = false,
-            onHeightError = "",
-            onWeightError = ""
-        )
+        getActiveOutcome = {
+            ActiveOutcome = it!!
+        },
+        activityMeasurementData = ActivityMeasurementData(
+            onActivityOutcome = 0,
+            onErrorText = "",
+            onUserName = "",
+            checkError = false
+        ), getNavigate = {}
     )
 }

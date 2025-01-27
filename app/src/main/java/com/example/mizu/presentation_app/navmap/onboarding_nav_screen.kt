@@ -10,12 +10,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.mizu.features.onboarding.presentation.OnBoardingActiveScreen
-import com.example.mizu.features.onboarding.presentation.OnBoardingHeightScreen
-import com.example.mizu.features.onboarding.presentation.OnBoardingScreen
-import com.example.mizu.features.onboarding.presentation.OnBoardingWaterIntakeResultScreen
+import com.example.mizu.features.onboarding.presentation.activityMeasurement.OnBoardingActiveScreen
+import com.example.mizu.features.onboarding.presentation.resultMeasurement.OnBoardingWaterIntakeResultScreen
 import com.example.mizu.features.onboarding.presentation.bodyMeasurement.OnBoardingBodyMeasurementsScreen
-import com.example.mizu.features.onboarding.presentation.OnboardingLoadingScreen
+import com.example.mizu.features.onboarding.utils.OnboardingLoadingScreen
+import com.example.mizu.features.onboarding.utils.ActivityMeasurementData
 import com.example.mizu.features.onboarding.utils.BodyMeasurementData
 import com.example.mizu.features.onboarding.viewModel.OnboardingViewModel
 import com.example.mizu.ui.theme.backgroundColor2
@@ -31,34 +30,8 @@ fun OnboardingNavHostingScreen(
 ) {
     NavHost(
         navController = navController,
-        startDestination = OnboardingNavScreens.NameScreen.route
+        startDestination = OnboardingNavScreens.BodyMeasurementScreen.route
     ) {
-        composable(route = OnboardingNavScreens.NameScreen.route) {
-            OnBoardingScreen(
-                getValue = {
-                    if (it != null) {
-                        onboardingViewModel.checkFields(it)
-                        onboardingViewModel.onBoardingNameScreen(it)
-                    }
-                },
-                onValue = onboardingViewModel.onNameValue,
-                onQuestionValue = "What is your name?",
-                getNavigate = {
-
-                    onboardingViewModel.checkFields(onboardingViewModel.onNameValue)
-                    if (!onboardingViewModel.check) {
-                        navController.navigate(OnboardingNavScreens.WeightIntakeScreen.route) {
-                            popUpTo(OnboardingNavScreens.NameScreen.route) {
-                                inclusive = true
-                            }
-                        }
-
-                    }
-                },
-                check = onboardingViewModel.check,
-                checkText = "Name field can not be empty or contain number / Special characters"
-            )
-        }
         composable(route = OnboardingNavScreens.LoadingScreen.route) {
             OnboardingLoadingScreen(getNavigate = {
                 navController.navigate(OnboardingNavScreens.WaterIntakeResultScreen.route)
@@ -71,10 +44,12 @@ fun OnboardingNavHostingScreen(
                         onboardingViewModel.onBoardingActiveScreen(it)
                     }
                 },
-                onActiveOutcome = onboardingViewModel.onActiveValue,
-                onUserName = onboardingViewModel.onNameValue,
-                check = onboardingViewModel.onActiveValue == Int.MIN_VALUE,
-                checkText = "Please enter your acitivity level",
+                activityMeasurementData = ActivityMeasurementData(
+                    onUserName = "",
+                    onErrorText = "",
+                    onActivityOutcome = 0,
+                    checkError = false
+                ),
                 getNavigate = {
                     if (onboardingViewModel.onActiveValue != Int.MIN_VALUE) {
                         onboardingViewModel.calculateWaterIntake()
@@ -92,15 +67,17 @@ fun OnboardingNavHostingScreen(
                 onName = onboardingViewModel.onNameValue
             )
         }
-        composable(route = OnboardingNavScreens.WeightIntakeScreen.route) {
+        composable(route = OnboardingNavScreens.BodyMeasurementScreen.route) {
             OnBoardingBodyMeasurementsScreen(
                 getWeightChange = {
-                    if (it != null) {}
+                    if (it != null) {
+
+                    }
                 }, getHeightChange = {
 
                 },
                 getNavigate = {
-                    println("Naavigationg")
+                    navController.navigate(OnboardingNavScreens.ActivityIntakeScreen.route)
                 },
                 modifier = Modifier
                     .fillMaxSize()
@@ -118,31 +95,8 @@ fun OnboardingNavHostingScreen(
                     onHeightCheck = false,
                     onHeightError = "",
                     onWeightError = ""
-                ))
-        }
-        composable(route = OnboardingNavScreens.HeightIntakeScreen.route) {
-            OnBoardingHeightScreen(
-                getHeightChange = {
-                    if (it != null) {
-                        onboardingViewModel.checkDigitFields(it)
-                        onboardingViewModel.onBoardingHeightScreen(it)
-                    }
-                },
-                onHeightChange = onboardingViewModel.onHeightValue,
-                onUserName = onboardingViewModel.onNameValue,
-                check = onboardingViewModel.checkDigit,
-                checkText = "Field can not be empty or contain words",
-                getNavigate = {
-                    onboardingViewModel.checkDigitFields(onboardingViewModel.onHeightValue)
-                    if (!onboardingViewModel.checkDigit) {
-                        navController.navigate(OnboardingNavScreens.ActivityIntakeScreen.route) {
-                            popUpTo(OnboardingNavScreens.HeightIntakeScreen.route) {
-                                inclusive = true
-                            }
-                        }
-                    }
-
-                })
+                )
+            )
         }
     }
 

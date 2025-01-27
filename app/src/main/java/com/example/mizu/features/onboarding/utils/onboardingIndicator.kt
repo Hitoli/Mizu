@@ -30,7 +30,7 @@ fun OnboardingIndicator(onboardingNav: Int) {
     ) {
         items(3) {
             Indicator(
-                width = if (onboardingNav == it) 35.dp else 20.dp,
+                width = if (onboardingNav == it) 40.dp else 20.dp,
                 color = if (onboardingNav == it) waterColor else waterColor.copy(alpha = 0.5f)
             )
             Spacer(modifier = Modifier.width(3.dp))

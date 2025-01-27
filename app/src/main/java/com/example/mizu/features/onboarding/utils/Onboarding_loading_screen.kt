@@ -1,4 +1,4 @@
-package com.example.mizu.features.onboarding.presentation
+package com.example.mizu.features.onboarding.utils
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

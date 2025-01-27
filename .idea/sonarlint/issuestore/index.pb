@@ -15,8 +15,6 @@ P
 Zapp/src/main/java/com/example/mizu/features/calendarscreen/presentation/calendar_screen.kt,9\d\9d6c73ae7255338726612715459252d09d43c728
 Ç
 Rapp/src/main/java/com/example/mizu/features/homescreen/presentation/home_screen.kt,2\f\2f7e2d9f0ebbed02ebfc4b47f09eada94c8816df
-è
-_app/src/main/java/com/example/mizu/features/onboarding/presentation/Onboarding_active_screen.kt,c\6\c6b75541ece243ab6647868200007122c130f887
 Ä
 Papp/src/main/java/com/example/mizu/features/homescreen/widgets/glacier_screen.kt,a\2\a21854923893b532d1c2eac2407f7317f5fd7cbc
 
@@ -37,8 +35,6 @@ Xapp/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_
 _app/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_height_screen.kt,b\d\bd634fc73e675b4c70f4a79d3b4203bc68da69a0
 ê
 `app/src/main/java/com/example/mizu/features/onboarding/presentation/Onboarding_loading_screen.kt,e\2\e22577f404bd38187095f191f8295b4a10628483
-ú
-lapp/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_water_intake_result_screen.kt,f\6\f60e81fbdfe324c48e0b63cafe4497b20d035c13
 
 Oapp/src/main/java/com/example/mizu/presentation_app/navmap/bottom_bar_screen.kt,e\f\efcc49506b8be4169513098415ae5f308481ad94
 É
@@ -117,3 +113,15 @@ fapp/src/main/java/com/example/mizu/features/onboarding/presentation/bodyMeasure
 Xapp/src/main/java/com/example/mizu/features/onboarding/viewModel/onboarding_viewmodel.kt,c\c\cc1ac431c9f48874485a442de8076fdd8f2be4e8
 É
 Sapp/src/main/java/com/example/mizu/features/onboarding/utils/onboardingIndicator.kt,f\2\f2a3d9654c46f5663575dd75f4a7f7a9081891dd
+á
+Wapp/src/main/java/com/example/mizu/features/onboarding/utils/ActivityMeasurementData.kt,f\0\f00f9c968b40cf5745385c7b23571d7eb02f519a
+°
+qapp/src/main/java/com/example/mizu/features/onboarding/presentation/activityMeasurement/onboardingActiveScreen.kt,8\4\8449d6e23c868746aaf24f114249ce440f11b785
+§
+tapp/src/main/java/com/example/mizu/features/onboarding/presentation/resultMeasurement/onboardingWaterIntakeResult.kt,0\a\0afca5eca6284734675cea84bb06dbc95b08cb66
+
+Oapp/src/main/java/com/example/mizu/features/onboarding/utils/textFieldCustom.kt,f\d\fd01359234a00fa734dc38c7a4dc38d589a0ba9d
+Å
+Qapp/src/main/java/com/example/mizu/features/onboarding/utils/onBoardingButtons.kt,f\d\fd58afcb226870abedd21d45d41831882ad5df25
+â
+Yapp/src/main/java/com/example/mizu/features/onboarding/utils/Onboarding_loading_screen.kt,2\4\24b71292cef58ac2f387481878cf9ce093af66f9

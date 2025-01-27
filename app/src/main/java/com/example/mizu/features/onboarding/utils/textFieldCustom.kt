@@ -1,6 +1,5 @@
-package com.example.mizu.features.onboarding.presentation.bodyMeasurement
+package com.example.mizu.features.onboarding.utils
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,9 +14,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,15 +31,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mizu.features.onboarding.utils.BodyMeasurementData
-import com.example.mizu.ui.theme.backgroundColor1
-import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.onboardingBoxColor
-import com.example.mizu.ui.theme.textFieldColor
 import com.example.mizu.ui.theme.textFieldErrorColor
-import com.example.mizu.ui.theme.waterColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

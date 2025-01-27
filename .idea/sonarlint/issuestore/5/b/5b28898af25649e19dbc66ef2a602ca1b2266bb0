@@ -1,7 +1,4 @@
 
-|kotlin:S6619'"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8Û∂‰Û…2J$aa882f4d-eefe-4ac2-ae5a-b89b605c029b
-|kotlin:S6619F"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8À©Œè 2J$973108a5-7a6d-4c83-82a5-91608c121d1d
-Vkotlin:S6619b"7Remove this useless non-null check, it always succeeds.(ˆÁ∫€8¯∆Àõ 2
-Vkotlin:S6619~"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8¯∆Àõ 2
-mkotlin:S108b")Either remove or fill this block of code.(ˆÁ∫€8◊Çöê 2J$f1682419-4f45-4219-9680-686dd27918a0
-ókotlin:S3776"RRefactor this method to reduce its Cognitive Complexity from 28 to the 15 allowed.(¯ﬁç¥8¸∂‰Û…2J$d07628b5-7795-4378-b1e6-5acbd79bfa68
+|kotlin:S6619+"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8„¨à« 2J$d4ed9ee2-b770-4d9c-be44-2cc295845f01
+|kotlin:S6619I"7Remove this useless non-null check, it always succeeds.(Å∞Ø¥8‰¨à« 2J$7b08495e-c868-40d9-85c0-cfd26db8d1c5
+mkotlin:S108I")Either remove or fill this block of code.(Å∞Ø¥8Ì¨à« 2J$5906de79-f653-4a2e-b6c7-ba607b6707da
