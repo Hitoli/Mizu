@@ -29,12 +29,6 @@ b
 Oapp/src/main/java/com/example/mizu/features/homescreen/widgets/streak_screen.kt,b\f\bfb679bf86914d619984b3845078ecbdf6e1de45
 z
 Japp/src/main/java/com/example/mizu/features/splash_screen/splash_screen.kt,f\c\fcc28b158118211454c699549b2d5cf363b242ca
-à
-Xapp/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_screen.kt,0\9\09cf53906cb6fdb40befb7028fd3c838884ba858
-è
-_app/src/main/java/com/example/mizu/features/onboarding/presentation/onboarding_height_screen.kt,b\d\bd634fc73e675b4c70f4a79d3b4203bc68da69a0
-ê
-`app/src/main/java/com/example/mizu/features/onboarding/presentation/Onboarding_loading_screen.kt,e\2\e22577f404bd38187095f191f8295b4a10628483
 
 Oapp/src/main/java/com/example/mizu/presentation_app/navmap/bottom_bar_screen.kt,e\f\efcc49506b8be4169513098415ae5f308481ad94
 É
@@ -107,8 +101,6 @@ Lapp/src/main/java/com/example/mizu/utils/nav_utils/onboarding_nav_screens.kt,4
 Rapp/src/main/java/com/example/mizu/features/onboarding/utils/BodyMeasurmentData.kt,4\c\4c99327386a3fecbb75e4e7968ef6090fb0951ca
 ¶
 vapp/src/main/java/com/example/mizu/features/onboarding/presentation/bodyMeasurement/onBoardingBodyMeasurementScreen.kt,2\f\2fc2aba485b0d9ae7e1d385cb826b942443224f7
-ñ
-fapp/src/main/java/com/example/mizu/features/onboarding/presentation/bodyMeasurement/textFieldCustom.kt,5\3\5372579297e994ae4257081d14dd49698e195a74
 à
 Xapp/src/main/java/com/example/mizu/features/onboarding/viewModel/onboarding_viewmodel.kt,c\c\cc1ac431c9f48874485a442de8076fdd8f2be4e8
 É
@@ -125,3 +117,5 @@ Oapp/src/main/java/com/example/mizu/features/onboarding/utils/textFieldCustom.kt
 Qapp/src/main/java/com/example/mizu/features/onboarding/utils/onBoardingButtons.kt,f\d\fd58afcb226870abedd21d45d41831882ad5df25
 â
 Yapp/src/main/java/com/example/mizu/features/onboarding/utils/Onboarding_loading_screen.kt,2\4\24b71292cef58ac2f387481878cf9ce093af66f9
+å
+\app/src/main/java/com/example/mizu/features/onboarding/presentation/premium/PremiumScreen.kt,4\a\4a1dc7b0687746ac9648d9d91bb840b7b8b4be06
