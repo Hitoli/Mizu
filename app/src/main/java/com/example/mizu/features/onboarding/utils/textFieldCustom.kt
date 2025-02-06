@@ -52,7 +52,7 @@ fun TextFieldCustom(
 
     Column(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth().wrapContentSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -119,18 +119,20 @@ fun TextFieldCustom(
                 imeAction = ImeAction.Done
             )
         )
+        if (checkError){
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = onErrorText,
+                style = TextStyle(
+                    fontSize = 10.sp,
+                    fontFamily = fontFamilyLight,
+                    fontWeight = FontWeight(200),
+                    color = textFieldErrorColor,
+                    textAlign = TextAlign.Center,
+                ), modifier = Modifier.fillMaxWidth()
+            )
+        }
 
-        Spacer(modifier = Modifier.height(10.dp))
-        Text(
-            text = onErrorText,
-            style = TextStyle(
-                fontSize = 10.sp,
-                fontFamily = fontFamilyLight,
-                fontWeight = FontWeight(200),
-                color = textFieldErrorColor,
-                textAlign = TextAlign.Center,
-            ), modifier = Modifier.fillMaxWidth()
-        )
     }
 }
 

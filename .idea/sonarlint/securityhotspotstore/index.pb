@@ -89,10 +89,6 @@ n
 >app/src/main/java/com/example/mizu/model/data/water_storage.kt,9\8\98de6b4c9ff8e104261d863efae72cf726398173
 {
 Kapp/src/main/java/com/example/mizu/alarm_schedular/alram_schedule_interf.kt,6\e\6e06569b052aa263ace0dfc79ffbcbc1438c5373
-É
-Sapp/src/main/java/com/example/mizu/features/authscreen/presentation/login_screen.kt,7\5\75379ca46db6fb536a3ca181822854dabf32e526
-Ñ
-Tapp/src/main/java/com/example/mizu/features/authscreen/presentation/signup_screen.kt,e\3\e369b3ec4233f4b1e1c0cb32d3796e32c5cd9c8d
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 |
@@ -119,3 +115,15 @@ Qapp/src/main/java/com/example/mizu/features/onboarding/utils/onBoardingButtons.
 Yapp/src/main/java/com/example/mizu/features/onboarding/utils/Onboarding_loading_screen.kt,2\4\24b71292cef58ac2f387481878cf9ce093af66f9
 å
 \app/src/main/java/com/example/mizu/features/onboarding/presentation/premium/PremiumScreen.kt,4\a\4a1dc7b0687746ac9648d9d91bb840b7b8b4be06
+â
+Yapp/src/main/java/com/example/mizu/features/authscreen/presentation/login/login_screen.kt,3\5\352bba5e4f1467b1f32fe8447b74f9a3dc427b54
+ã
+[app/src/main/java/com/example/mizu/features/authscreen/presentation/login/LoginViewModel.kt,8\1\8179116ee83c9f2b97d6b7561c0e04cf628cffa2
+ç
+]app/src/main/java/com/example/mizu/features/authscreen/presentation/signup/SignUpViewModel.kt,2\8\28b473cc425a609c1416bbad829fc0af0118048f
+y
+Iapp/src/main/java/com/example/mizu/features/authscreen/utils/LoginData.kt,1\e\1e5f4a5ef3686cc9195bcb266d053b99bc7672ef
+z
+Japp/src/main/java/com/example/mizu/features/authscreen/utils/SignUpData.kt,d\b\db4506aa5909f2cfe244c5341ee0c4d6137356ee
+ã
+[app/src/main/java/com/example/mizu/features/authscreen/presentation/signup/signup_screen.kt,d\f\dfaf3bcf320fdbe922f4718c38b1fb0603d9ee50
