@@ -58,6 +58,7 @@ import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.blackShadeColor
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
+import com.example.mizu.ui.theme.waterColorMeter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -284,9 +285,9 @@ fun PreviewHomeScreen() {
             .fillMaxSize()
             .background(
                 Brush.linearGradient(
-                    start = Offset(Float.POSITIVE_INFINITY, 0f),
+                    start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY),
-                    colors = listOf(backgroundColor1, backgroundColor2)
+                    colors = listOf(waterColorMeter.copy(alpha = 0.1f), backgroundColor2)
                 )
             ), onReward = rewardScreenShow, getReward = {
             if (it != null) {

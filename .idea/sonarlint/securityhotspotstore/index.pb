@@ -127,3 +127,5 @@ z
 Japp/src/main/java/com/example/mizu/features/authscreen/utils/SignUpData.kt,d\b\db4506aa5909f2cfe244c5341ee0c4d6137356ee
 ‹
 [app/src/main/java/com/example/mizu/features/authscreen/presentation/signup/signup_screen.kt,d\f\dfaf3bcf320fdbe922f4718c38b1fb0603d9ee50
+~
+Napp/src/main/java/com/example/mizu/features/profilescreen/utils/ProfileData.kt,b\4\b40a38ae887230de2e9ceee36d16c70d03f3afa0

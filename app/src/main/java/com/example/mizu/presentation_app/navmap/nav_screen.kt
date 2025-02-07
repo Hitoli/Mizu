@@ -1,5 +1,6 @@
 package com.example.mizu.presentation_app.navmap
 
+import ProfileScreen
 import android.util.Log
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.foundation.background
@@ -16,7 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mizu.features.calendarscreen.view_model.CalendarViewModel
 import com.example.mizu.features.homescreen.view_model.HomeViewModel
 import com.example.mizu.features.onboarding.viewModel.OnboardingViewModel
-import com.example.mizu.features.profilescreen.presentation.ProfileScreen
+import com.example.mizu.features.profilescreen.utils.ProfileData
 import com.example.mizu.features.splash_screen.SplashScreen
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
@@ -53,7 +54,17 @@ fun NavScreen(
                             inclusive = true
                         }
                     }
-                }, imgModifier = Modifier
+                }, getNavigate = {},
+                getEmailChange = {},
+                getNameChange = {},
+                profileData = ProfileData(
+                    onNameChange = "",
+                    onEmailError = "",
+                    onEmailChange = "",
+                    onEmailCheck = false,
+                    onNameCheck = false,
+                    onNameError = "", onNotificationChange = false
+                ), getNotificationIntervals = {}, getNotificationChange = {}, getBugReport = {}
             )
 
         }
@@ -122,15 +133,17 @@ fun NavScreen(
             }, onboardingViewModel = OnboardingViewModel)
         }
         composable(route = NavScreens.SplashNavHostingScreen.route) {
-            SplashScreen(modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.linearGradient(
-                        start = Offset(Float.POSITIVE_INFINITY*0.4f, 0f),
-                        end = Offset(0f, Float.POSITIVE_INFINITY),
-                        colors = listOf(waterColorMeter.copy(alpha = 0.4f), backgroundColor2)
+            SplashScreen(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.linearGradient(
+                            start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                            end = Offset(0f, Float.POSITIVE_INFINITY),
+                            colors = listOf(waterColorMeter.copy(alpha = 0.4f), backgroundColor2)
+                        )
                     )
-                ))
+            )
         }
     }
 }
