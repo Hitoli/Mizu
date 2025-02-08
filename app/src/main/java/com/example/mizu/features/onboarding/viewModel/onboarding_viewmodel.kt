@@ -30,20 +30,20 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
         private  set
     var onActiveValue by mutableIntStateOf(Int.MIN_VALUE)
         private set
-    var check by mutableStateOf(false)
+    var onWeightCheck by mutableStateOf(false)
+        private set
+    var onHeightCheck by mutableStateOf(false)
+        private set
+    var onWeightError by mutableStateOf("")
+        private set
+    var onHeightError by mutableStateOf("")
         private set
     var onboardingCompleted by mutableStateOf(false)
         private set
-
     var _userSettings by mutableStateOf(UserSettings())
         private set
-
-
     var checkDigit by mutableStateOf(false)
         private set
-
-
-
     var BSA by mutableStateOf(0)
         private set
     var BWI by mutableStateOf(0)
@@ -65,12 +65,15 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
 
     }
 
-
-    fun checkFields(value:String){
-        check = value.isBlank()
-        check= value.isDigitsOnly()
-        Log.d("check Onboarding",check.toString())
-
+    fun checkBodyMeasurementsFields(){
+        onWeightCheck = onWeightValue.isBlank()
+        onHeightCheck = onHeightValue.isBlank()
+        if (onWeightCheck){
+            onWeightError = "Please Enter the Weight"
+        }
+        if (onHeightCheck){
+            onHeightError = "Please Enter the Height"
+        }
     }
     fun updateOnboardingWaterAmount(value:Int){
         onWaterAmount = value
@@ -78,21 +81,12 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
 
     fun checkDigitFields(value:String){
         checkDigit = value.isNullOrBlank()
-        Log.d("checkDigit Onboarding",checkDigit.toString())
     }
-    fun onBoardingNameScreen(getNameValue:String){
-        onNameValue = getNameValue.capitalizeFirst().filter { it.isLetter() }
-
-        Log.d("onNameValue Onboarding",onNameValue)
-    }
-    fun onBoardingWeightScreen(getWeightValue:String){
+    fun onWeightChange(getWeightValue:String){
             onWeightValue = getWeightValue.filter { it.isDigit() }
-
-        Log.d("onWeightValue Onboarding",onWeightValue.toString())
     }
-    fun onBoardingHeightScreen(getHeightValue:String){
+    fun onHeightChange(getHeightValue:String){
         onHeightValue = getHeightValue.filter { it.isDigit() }
-        Log.d("getHeightValue Onboarding",onHeightValue.toString())
     }
     fun onBoardingActiveScreen(getActiveValue:Int){
         onActiveValue = getActiveValue
@@ -103,8 +97,6 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
         }else{
             20
         }
-        Log.d("getActiveValue Onboarding",activityLevel.toString())
-        Log.d("getActiveValue Onboarding",getActiveValue.toString())
     }
 
     fun calculateWaterIntake(){

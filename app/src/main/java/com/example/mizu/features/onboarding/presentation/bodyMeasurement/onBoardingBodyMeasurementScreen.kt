@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,14 +42,15 @@ import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.onboardingBoxColor
 import com.example.mizu.ui.theme.waterColor
+import com.example.mizu.ui.theme.waterColorBackground
 import com.example.mizu.ui.theme.waterColorMeter
 
 @Composable
 fun OnBoardingBodyMeasurementsScreen(
     modifier: Modifier = Modifier,
     bodyMeasurementData: BodyMeasurementData,
-    getWeightChange: (String?) -> Unit,
-    getHeightChange: (String?) -> Unit,
+    getWeightChange: (String) -> Unit,
+    getHeightChange: (String) -> Unit,
     getNavigate: () -> Unit,
 ) {
 
@@ -107,7 +109,7 @@ fun OnBoardingBodyMeasurementsScreen(
                     shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
                 )
                 .padding(20.dp),
-            verticalArrangement = Arrangement.SpaceAround,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -126,13 +128,13 @@ fun OnBoardingBodyMeasurementsScreen(
             TextFieldCustom(
                 onTextChange = bodyMeasurementData.onWeightChange,
                 checkError = bodyMeasurementData.onWeightCheck,
-                onErrorText = "Error",
+                onErrorText = bodyMeasurementData.onWeightError,
                 onPlaceHolderText = "Enter Weight in Kgs",
                 getTextChange = getWeightChange,
-                getNavigate = getNavigate,
-                onLabelText = "Weight"
+                onLabelText = "Weight",
+                onImeAction = ImeAction.Next
             )
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             TextFieldCustom(
                 onTextChange = bodyMeasurementData.onHeightChange,
@@ -140,12 +142,13 @@ fun OnBoardingBodyMeasurementsScreen(
                 onErrorText = bodyMeasurementData.onHeightError,
                 onPlaceHolderText = "Enter Height in Cms",
                 getTextChange = getHeightChange,
-                getNavigate = getNavigate,
-                onLabelText = "Height"
+                onLabelText = "Height",
+                onImeAction = ImeAction.Done
             )
             Box(
                 modifier = Modifier
                     .clickable {
+
                         getNavigate()
                     }
                     .fillMaxWidth()
@@ -184,12 +187,9 @@ fun PreviewOnBoardingWeightScreen() {
     }
     OnBoardingBodyMeasurementsScreen(
         getWeightChange = {
-            if (it != null) {
                 weightValue = it
-            }
         },
         getNavigate = {
-            println("Naavigationg")
         },
         getHeightChange = {
 
@@ -200,7 +200,7 @@ fun PreviewOnBoardingWeightScreen() {
                 Brush.linearGradient(
                     start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY),
-                    colors = listOf(waterColorMeter.copy(alpha = 0.2f), backgroundColor2)
+                    colors = listOf(waterColorBackground, backgroundColor2)
                 )
             ),
         bodyMeasurementData = BodyMeasurementData(

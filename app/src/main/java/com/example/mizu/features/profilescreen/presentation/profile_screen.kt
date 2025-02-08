@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -88,8 +89,8 @@ fun ProfileScreen(
             onErrorText = "Error",
             onPlaceHolderText = "Enter Name",
             getTextChange = getNameChange,
-            getNavigate = getNavigate,
-            onLabelText = "Name"
+            onLabelText = "Name",
+            onImeAction = ImeAction.Next
         )
         Spacer(modifier = Modifier.height(5.dp))
 
@@ -99,8 +100,8 @@ fun ProfileScreen(
             onErrorText = profileData.onEmailError,
             onPlaceHolderText = "Enter Email",
             getTextChange = getEmailChange,
-            getNavigate = getNavigate,
-            onLabelText = "Email"
+            onLabelText = "Email",
+            onImeAction = ImeAction.Done
         )
         Spacer(modifier = Modifier.height(25.dp))
 

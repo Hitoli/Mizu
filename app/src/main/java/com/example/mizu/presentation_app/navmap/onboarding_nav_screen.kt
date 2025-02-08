@@ -1,5 +1,8 @@
 package com.example.mizu.presentation_app.navmap
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -18,6 +21,7 @@ import com.example.mizu.features.onboarding.utils.ActivityMeasurementData
 import com.example.mizu.features.onboarding.utils.BodyMeasurementData
 import com.example.mizu.features.onboarding.viewModel.OnboardingViewModel
 import com.example.mizu.ui.theme.backgroundColor2
+import com.example.mizu.ui.theme.waterColorBackground
 import com.example.mizu.ui.theme.waterColorMeter
 import com.example.mizu.utils.nav_utils.OnboardingNavScreens
 import org.koin.androidx.compose.koinViewModel
@@ -30,7 +34,23 @@ fun OnboardingNavHostingScreen(
 ) {
     NavHost(
         navController = navController,
-        startDestination = OnboardingNavScreens.BodyMeasurementScreen.route
+        startDestination = OnboardingNavScreens.BodyMeasurementScreen.route,
+        enterTransition = { slideInHorizontally(
+            initialOffsetX = { fullWidth -> fullWidth },
+            animationSpec = tween(300)
+        ) },
+        exitTransition = { slideOutHorizontally(
+            targetOffsetX = { fullWidth -> -fullWidth },
+            animationSpec = tween(300)
+        ) },
+        popEnterTransition = { slideInHorizontally(
+            initialOffsetX = { fullWidth -> -fullWidth },
+            animationSpec = tween(300)
+        ) },
+        popExitTransition = { slideOutHorizontally(
+            targetOffsetX = { fullWidth -> fullWidth },
+            animationSpec = tween(300)
+        ) }
     ) {
         composable(route = OnboardingNavScreens.LoadingScreen.route) {
             OnboardingLoadingScreen(getNavigate = {
@@ -70,14 +90,15 @@ fun OnboardingNavHostingScreen(
         composable(route = OnboardingNavScreens.BodyMeasurementScreen.route) {
             OnBoardingBodyMeasurementsScreen(
                 getWeightChange = {
-                    if (it != null) {
-
-                    }
+                    onboardingViewModel.onWeightChange(it)
                 }, getHeightChange = {
-
+                    onboardingViewModel.onHeightChange(it)
                 },
                 getNavigate = {
-                    navController.navigate(OnboardingNavScreens.ActivityIntakeScreen.route)
+                    onboardingViewModel.checkBodyMeasurementsFields()
+                    if (!onboardingViewModel.onWeightCheck && !onboardingViewModel.onHeightCheck){
+                        navController.navigate(OnboardingNavScreens.ActivityIntakeScreen.route)
+                    }
                 },
                 modifier = Modifier
                     .fillMaxSize()
@@ -85,16 +106,16 @@ fun OnboardingNavHostingScreen(
                         Brush.linearGradient(
                             start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                             end = Offset(0f, Float.POSITIVE_INFINITY),
-                            colors = listOf(waterColorMeter.copy(alpha = 0.4f), backgroundColor2)
+                            colors = listOf(waterColorBackground, backgroundColor2)
                         )
                     ),
                 bodyMeasurementData = BodyMeasurementData(
-                    onWeightChange = "",
-                    onHeightChange = "",
-                    onWeightCheck = false,
-                    onHeightCheck = false,
-                    onHeightError = "",
-                    onWeightError = ""
+                    onWeightChange = onboardingViewModel.onWeightValue,
+                    onHeightChange = onboardingViewModel.onHeightValue,
+                    onWeightCheck = onboardingViewModel.onWeightCheck,
+                    onHeightCheck = onboardingViewModel.onHeightCheck,
+                    onHeightError = onboardingViewModel.onHeightError,
+                    onWeightError = onboardingViewModel.onWeightError
                 )
             )
         }

@@ -31,6 +31,7 @@ import com.example.mizu.R
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
+import com.example.mizu.ui.theme.waterColorBackground
 import com.example.mizu.ui.theme.waterColorMeter
 
 @Composable
@@ -68,7 +69,7 @@ fun PreviewSplashScreen() {
                 Brush.linearGradient(
                     start = Offset(Float.POSITIVE_INFINITY*0.4f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY),
-                    colors = listOf(waterColorMeter.copy(alpha = 0.4f), backgroundColor2)
+                    colors = listOf(waterColorBackground, backgroundColor2)
                 )
             )
     )

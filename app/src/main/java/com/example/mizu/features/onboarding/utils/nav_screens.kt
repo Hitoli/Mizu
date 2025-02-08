@@ -1,4 +1,4 @@
-package com.example.mizu.utils.onboarding_utils
+package com.example.mizu.features.onboarding.utils
 
 enum class NavState {
     Loading,

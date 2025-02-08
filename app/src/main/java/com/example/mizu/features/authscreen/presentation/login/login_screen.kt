@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -131,8 +132,8 @@ fun LoginScreen(
                     onErrorText = loginData.onEmailError,
                     onPlaceHolderText = "Enter Email",
                     getTextChange = getEmailChange,
-                    getNavigate = {},
-                    onLabelText = "Email"
+                    onLabelText = "Email",
+                    onImeAction = ImeAction.Next
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 TextFieldCustom(
@@ -141,8 +142,8 @@ fun LoginScreen(
                     onErrorText = loginData.onPasswordError,
                     onPlaceHolderText = "Enter Password",
                     getTextChange = getPasswordChange,
-                    getNavigate = {},
-                    onLabelText = "Password"
+                    onLabelText = "Password",
+                    onImeAction = ImeAction.Done
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))

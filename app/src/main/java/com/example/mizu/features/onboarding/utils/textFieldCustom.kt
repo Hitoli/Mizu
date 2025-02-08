@@ -36,7 +36,6 @@ import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.onboardingBoxColor
 import com.example.mizu.ui.theme.textFieldErrorColor
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TextFieldCustom(
     modifier: Modifier = Modifier,
@@ -46,7 +45,7 @@ fun TextFieldCustom(
     onPlaceHolderText: String,
     onLabelText:String,
     getTextChange: (String) -> Unit,
-    getNavigate: () -> Unit
+    onImeAction: ImeAction
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -106,17 +105,9 @@ fun TextFieldCustom(
                 color = mizuBlack,
                 textAlign = TextAlign.Start
             ),
-            keyboardActions = KeyboardActions(
-                onDone = {
-                    if (!checkError) {
-                        getNavigate()
-                    }
-                    focusManager.clearFocus()
-                }
-            ),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Done
+                imeAction = onImeAction
             )
         )
         if (checkError){
@@ -149,8 +140,6 @@ fun PreviewTextField() {
         onPlaceHolderText = "Enter the Text",
         getTextChange = {
             text = it
-        }, onLabelText = "Text"
-    ) {
-
-    }
+        }, onLabelText = "Text", onImeAction = ImeAction.Done
+    )
 }

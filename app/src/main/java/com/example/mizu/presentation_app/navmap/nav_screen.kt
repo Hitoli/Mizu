@@ -21,6 +21,7 @@ import com.example.mizu.features.profilescreen.utils.ProfileData
 import com.example.mizu.features.splash_screen.SplashScreen
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
+import com.example.mizu.ui.theme.waterColorBackground
 import com.example.mizu.ui.theme.waterColorMeter
 import com.example.mizu.utils.nav_utils.NavScreens
 import org.koin.androidx.compose.koinViewModel
@@ -45,7 +46,7 @@ fun NavScreen(
                         Brush.linearGradient(
                             start = Offset(Float.POSITIVE_INFINITY, 0f),
                             end = Offset(0f, Float.POSITIVE_INFINITY),
-                            colors = listOf(backgroundColor1, backgroundColor2)
+                            colors = listOf(waterColorBackground, backgroundColor2)
                         )
                     )
                     .padding(top = 20.dp), getBack = {
@@ -140,7 +141,7 @@ fun NavScreen(
                         Brush.linearGradient(
                             start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                             end = Offset(0f, Float.POSITIVE_INFINITY),
-                            colors = listOf(waterColorMeter.copy(alpha = 0.4f), backgroundColor2)
+                            colors = listOf(waterColorBackground, backgroundColor2)
                         )
                     )
             )

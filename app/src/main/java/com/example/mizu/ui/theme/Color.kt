@@ -7,6 +7,7 @@ val backgroundColor1 = Color(0xFFF4F9F9);
 val backgroundColor2 = Color(0xFFF4F9F9);
 val mizuBlack = Color(0XFF1D1D1D)
 val waterColor=Color(0xFFA4EBF3)
+val waterColorBackground=Color(0x221596A4)
 val circleWaterIndicatorColor=Color(0xFF756AB6)
 val waterColorMeter=Color(0xFF1596A4)
 val buttonTextColor =Color(0xFFFFE5E5)
