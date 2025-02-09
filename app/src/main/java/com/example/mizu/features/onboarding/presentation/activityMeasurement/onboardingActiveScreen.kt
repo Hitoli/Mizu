@@ -3,6 +3,7 @@ package com.example.mizu.features.onboarding.presentation.activityMeasurement
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,14 +42,16 @@ import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.onboardingBoxColor
+import com.example.mizu.ui.theme.textFieldErrorColor
 import com.example.mizu.ui.theme.waterColor
 
 @Composable
 fun OnBoardingActiveScreen(
     modifier: Modifier = Modifier,
     activityMeasurementData: ActivityMeasurementData,
-    getActiveOutcome: (Int?) -> Unit,
+    getActiveOutcome: (Int) -> Unit,
     getNavigate: () -> Unit,
+    getBacK: () -> Unit,
 ) {
 
     Column(
@@ -131,7 +134,13 @@ fun OnBoardingActiveScreen(
                         color = mizuBlack.copy(alpha = 0.5f),
                         shape = RoundedCornerShape(6.dp)
                     )
-                    .background(onboardingBoxColor, shape = RoundedCornerShape(6.dp)),
+                    .background(
+                        if (activityMeasurementData.onActivityOutcome == 0) mizuBlack else onboardingBoxColor,
+                        shape = RoundedCornerShape(6.dp)
+                    )
+                    .clickable {
+                        getActiveOutcome(0)
+                    },
             ) {
                 Text(
                     text = "5-6 Days of workout",
@@ -139,7 +148,7 @@ fun OnBoardingActiveScreen(
                         fontSize = 16.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(400),
-                        color = mizuBlack,
+                        color = if (activityMeasurementData.onActivityOutcome == 0) onboardingBoxColor else mizuBlack,
                         textAlign = TextAlign.Center,
                     ), modifier = Modifier
                         .fillMaxWidth()
@@ -157,7 +166,13 @@ fun OnBoardingActiveScreen(
                         color = mizuBlack.copy(alpha = 0.5f),
                         shape = RoundedCornerShape(6.dp)
                     )
-                    .background(onboardingBoxColor, shape = RoundedCornerShape(6.dp)),
+                    .background(
+                        if (activityMeasurementData.onActivityOutcome == 1) mizuBlack else onboardingBoxColor,
+                        shape = RoundedCornerShape(6.dp)
+                    )
+                    .clickable {
+                        getActiveOutcome(1)
+                    },
             ) {
                 Text(
                     text = "2-3 Days of workout",
@@ -165,7 +180,7 @@ fun OnBoardingActiveScreen(
                         fontSize = 16.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(400),
-                        color = mizuBlack,
+                        color = if (activityMeasurementData.onActivityOutcome == 1) onboardingBoxColor else mizuBlack,
                         textAlign = TextAlign.Center,
                     ), modifier = Modifier
                         .fillMaxWidth()
@@ -183,7 +198,13 @@ fun OnBoardingActiveScreen(
                         color = mizuBlack.copy(alpha = 0.5f),
                         shape = RoundedCornerShape(6.dp)
                     )
-                    .background(onboardingBoxColor, shape = RoundedCornerShape(6.dp)),
+                    .background(
+                        if (activityMeasurementData.onActivityOutcome == 2) mizuBlack else onboardingBoxColor,
+                        shape = RoundedCornerShape(6.dp)
+                    )
+                    .clickable {
+                        getActiveOutcome(2)
+                    },
             ) {
                 Text(
                     text = "Minimal Activity",
@@ -191,7 +212,7 @@ fun OnBoardingActiveScreen(
                         fontSize = 16.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(400),
-                        color = mizuBlack,
+                        color = if (activityMeasurementData.onActivityOutcome == 2) onboardingBoxColor else mizuBlack,
                         textAlign = TextAlign.Center,
                     ), modifier = Modifier
                         .fillMaxWidth()
@@ -199,7 +220,22 @@ fun OnBoardingActiveScreen(
                 )
             }
 
-            OnBoardingButtons(getNavigate)
+            if (activityMeasurementData.checkError) {
+                Text(
+                    text = activityMeasurementData.onErrorText,
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(400),
+                        color = textFieldErrorColor,
+                        textAlign = TextAlign.Center,
+                    ), modifier = Modifier
+                        .fillMaxWidth()
+                )
+            }
+
+
+            OnBoardingButtons(getNavigate, getBacK)
         }
     }
 }
@@ -221,13 +257,12 @@ fun PreviewOnBoardingActiveScreen() {
                 )
             ),
         getActiveOutcome = {
-            ActiveOutcome = it!!
+            ActiveOutcome = it
         },
         activityMeasurementData = ActivityMeasurementData(
             onActivityOutcome = 0,
             onErrorText = "",
-            onUserName = "",
             checkError = false
-        ), getNavigate = {}
+        ), getNavigate = {}, getBacK = {}
     )
 }

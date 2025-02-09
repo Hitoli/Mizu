@@ -23,6 +23,7 @@ import com.example.mizu.features.onboarding.viewModel.OnboardingViewModel
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.waterColorBackground
 import com.example.mizu.ui.theme.waterColorMeter
+import com.example.mizu.utils.nav_utils.NavScreens
 import com.example.mizu.utils.nav_utils.OnboardingNavScreens
 import org.koin.androidx.compose.koinViewModel
 
@@ -35,56 +36,102 @@ fun OnboardingNavHostingScreen(
     NavHost(
         navController = navController,
         startDestination = OnboardingNavScreens.BodyMeasurementScreen.route,
-        enterTransition = { slideInHorizontally(
-            initialOffsetX = { fullWidth -> fullWidth },
-            animationSpec = tween(300)
-        ) },
-        exitTransition = { slideOutHorizontally(
-            targetOffsetX = { fullWidth -> -fullWidth },
-            animationSpec = tween(300)
-        ) },
-        popEnterTransition = { slideInHorizontally(
-            initialOffsetX = { fullWidth -> -fullWidth },
-            animationSpec = tween(300)
-        ) },
-        popExitTransition = { slideOutHorizontally(
-            targetOffsetX = { fullWidth -> fullWidth },
-            animationSpec = tween(300)
-        ) }
+        enterTransition = {
+            slideInHorizontally(
+                initialOffsetX = { fullWidth -> fullWidth },
+                animationSpec = tween(300)
+            )
+        },
+        exitTransition = {
+            slideOutHorizontally(
+                targetOffsetX = { fullWidth -> -fullWidth },
+                animationSpec = tween(300)
+            )
+        },
+        popEnterTransition = {
+            slideInHorizontally(
+                initialOffsetX = { fullWidth -> -fullWidth },
+                animationSpec = tween(300)
+            )
+        },
+        popExitTransition = {
+            slideOutHorizontally(
+                targetOffsetX = { fullWidth -> fullWidth },
+                animationSpec = tween(300)
+            )
+        }
     ) {
         composable(route = OnboardingNavScreens.LoadingScreen.route) {
-            OnboardingLoadingScreen(getNavigate = {
-                navController.navigate(OnboardingNavScreens.WaterIntakeResultScreen.route)
+            OnboardingLoadingScreen(modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.linearGradient(
+                        start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                        end = Offset(0f, Float.POSITIVE_INFINITY),
+                        colors = listOf(waterColorBackground, backgroundColor2)
+                    )
+                ),getNavigate = {
+                navController.navigate(OnboardingNavScreens.WaterIntakeResultScreen.route){
+                    popUpTo(OnboardingNavScreens.ActivityIntakeScreen.route){
+                        inclusive  = true
+                    }
+                }
             })
         }
         composable(route = OnboardingNavScreens.ActivityIntakeScreen.route) {
-            OnBoardingActiveScreen(
+            OnBoardingActiveScreen(modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.linearGradient(
+                        start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                        end = Offset(0f, Float.POSITIVE_INFINITY),
+                        colors = listOf(waterColorBackground, backgroundColor2)
+                    )
+                ),
                 getActiveOutcome = {
-                    if (it != null) {
-                        onboardingViewModel.onBoardingActiveScreen(it)
-                    }
+                    onboardingViewModel.onBoardingActiveScreen(it)
                 },
                 activityMeasurementData = ActivityMeasurementData(
-                    onUserName = "",
-                    onErrorText = "",
-                    onActivityOutcome = 0,
-                    checkError = false
+                    onErrorText = onboardingViewModel.onActivityLevelError,
+                    onActivityOutcome = onboardingViewModel.onActiveValue ?: 0,
+                    checkError = onboardingViewModel.onActivityLevelCheck
                 ),
                 getNavigate = {
-                    if (onboardingViewModel.onActiveValue != Int.MIN_VALUE) {
-                        onboardingViewModel.calculateWaterIntake()
+                    onboardingViewModel.checkActivtyLevels()
+                    if (!onboardingViewModel.onActivityLevelCheck) {
+                        if (onboardingViewModel.onActiveValue != Int.MIN_VALUE) {
+                            onboardingViewModel.calculateWaterIntake()
+                            navController.navigate(OnboardingNavScreens.LoadingScreen.route)
+                        }
                     }
-                    navController.navigate(OnboardingNavScreens.LoadingScreen.route)
+
+                }, getBacK = {
+                    navController.navigateUp()
+                    navController.popBackStack(
+                        OnboardingNavScreens.ActivityIntakeScreen.route,
+                        inclusive = true
+                    )
                 })
         }
         composable(route = OnboardingNavScreens.WaterIntakeResultScreen.route) {
-            OnBoardingWaterIntakeResultScreen(
+            OnBoardingWaterIntakeResultScreen(modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.linearGradient(
+                        start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                        end = Offset(0f, Float.POSITIVE_INFINITY),
+                        colors = listOf(waterColorBackground, backgroundColor2)
+                    )
+                ),
                 getNavigate = {
                     onboardingViewModel.updateUserSettings()
                     getNavigate()
                 },
-                onWaterIntake = (onboardingViewModel.TWI).toString(),
-                onName = onboardingViewModel.onNameValue
+                onWaterIntake = (onboardingViewModel.onWaterAmount).toString(),
+                getBack = {
+                    navController.navigateUp()
+                    navController.popBackStack(OnboardingNavScreens.BodyMeasurementScreen.route,true)
+                }
             )
         }
         composable(route = OnboardingNavScreens.BodyMeasurementScreen.route) {
@@ -96,7 +143,7 @@ fun OnboardingNavHostingScreen(
                 },
                 getNavigate = {
                     onboardingViewModel.checkBodyMeasurementsFields()
-                    if (!onboardingViewModel.onWeightCheck && !onboardingViewModel.onHeightCheck){
+                    if (!onboardingViewModel.onWeightCheck && !onboardingViewModel.onHeightCheck) {
                         navController.navigate(OnboardingNavScreens.ActivityIntakeScreen.route)
                     }
                 },

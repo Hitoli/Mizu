@@ -26,7 +26,7 @@ import com.example.mizu.ui.theme.onboardingBoxColor
 import com.example.mizu.ui.theme.waterColor
 
 @Composable
-fun OnBoardingButtons(getNavigate:()->Unit) {
+fun OnBoardingButtons(getNavigate:()->Unit ,getBack:()->Unit) {
     Row(
         modifier = Modifier.fillMaxWidth().wrapContentSize(),
         verticalAlignment = Alignment.CenterVertically,
@@ -38,7 +38,9 @@ fun OnBoardingButtons(getNavigate:()->Unit) {
                 .height(90.dp)
                 .padding(horizontal = 20.dp, vertical = 20.dp)
                 .border(width = 0.2.dp, color = mizuBlack, shape = RoundedCornerShape(6.dp))
-                .background(onboardingBoxColor, shape = RoundedCornerShape(6.dp)),
+                .background(onboardingBoxColor, shape = RoundedCornerShape(6.dp)).clickable {
+                                                                                            getBack()
+                },
         ) {
             Text(
                 text = "Back",

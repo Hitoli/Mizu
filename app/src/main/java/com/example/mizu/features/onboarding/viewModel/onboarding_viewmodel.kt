@@ -28,7 +28,7 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
         private set
     var onHeightValue by mutableStateOf("")
         private  set
-    var onActiveValue by mutableIntStateOf(Int.MIN_VALUE)
+    var onActiveValue by mutableStateOf<Int?>(null)
         private set
     var onWeightCheck by mutableStateOf(false)
         private set
@@ -50,7 +50,11 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
         private set
     var TWI by mutableStateOf(0.0)
         private set
-    var activityLevel by mutableStateOf(0)
+    var activityLevel by mutableStateOf<Int?>(null)
+        private set
+    var onActivityLevelCheck by mutableStateOf(false)
+        private set
+    var onActivityLevelError by mutableStateOf("")
         private set
 
 
@@ -78,10 +82,6 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
     fun updateOnboardingWaterAmount(value:Int){
         onWaterAmount = value
     }
-
-    fun checkDigitFields(value:String){
-        checkDigit = value.isNullOrBlank()
-    }
     fun onWeightChange(getWeightValue:String){
             onWeightValue = getWeightValue.filter { it.isDigit() }
     }
@@ -90,13 +90,22 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
     }
     fun onBoardingActiveScreen(getActiveValue:Int){
         onActiveValue = getActiveValue
-        activityLevel = if (onActiveValue==0){
-            50
-        }else if(onActiveValue==1){
-            35
-        }else{
-            20
+        activityLevel = when (onActiveValue) {
+            0 -> {
+                50
+            }
+            1 -> {
+                35
+            }
+            else -> {
+                20
+            }
         }
+    }
+
+    fun checkActivtyLevels(){
+        onActivityLevelCheck = onActiveValue == null
+        onActivityLevelError = if(onActiveValue == null)"Please Add your Activity Levels"  else ""
     }
 
     fun calculateWaterIntake(){
@@ -107,10 +116,10 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
          BWI = onWeightValue.toInt().times(33)
 
         // Adjust BWI based on BSA
-         var BWI_adjusted = BWI * BSA
+         val BWI_adjusted = BWI * BSA
 
         // Calculate TWI by adjusting BWI for activity level
-         TWI = BWI_adjusted + (BWI_adjusted * activityLevel / 100).toDouble()
+         TWI = BWI_adjusted + (BWI_adjusted.times(activityLevel?:0) / 100).toDouble()
         Log.d("TWI Onboarding",TWI.toString())
         // Adjust TWI to reasonable limits
         TWI = when {
@@ -170,10 +179,10 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
 
             TWI = it.userWaterIntake.toDouble()
 
-            if(!_userSettings.registrationCompleted){
-                onBoardingScreensRoutes = NavScreens.OnboardingNavHostingScreen.route
+            onBoardingScreensRoutes = if(!_userSettings.registrationCompleted){
+                NavScreens.OnboardingNavHostingScreen.route
             }else{
-                onBoardingScreensRoutes = NavScreens.BottomNavHostingScreen.route
+                NavScreens.BottomNavHostingScreen.route
 
             }
             println("streakScore Onboarding getUserSettings ${it}")

@@ -47,10 +47,10 @@ import com.example.mizu.ui.theme.waterColor
 
 @Composable
 fun OnBoardingWaterIntakeResultScreen(
-    getNavigate: () -> Unit,
-    onWaterIntake: String,
     modifier: Modifier = Modifier,
-    onName: String
+    onWaterIntake: String,
+    getNavigate: () -> Unit,
+    getBack:()->Unit,
 ) {
 //    val permissionLauncher = rememberLauncherForActivityResult(contract = ActivityResultContracts.RequestPermission() ) {
 //        if(!it){
@@ -106,7 +106,7 @@ fun OnBoardingWaterIntakeResultScreen(
             Spacer(modifier = Modifier.height(10.dp))
 
             Text(
-                text = "2500 ml",
+                text = onWaterIntake,
                 style = TextStyle(
                     fontSize = 35.sp,
                     fontFamily = fontFamilyLight,
@@ -120,13 +120,13 @@ fun OnBoardingWaterIntakeResultScreen(
         }
         OnboardingIndicator(onboardingNav = 2)
 
-        OnBoardingButtons(getNavigate)
+        OnBoardingButtons(getNavigate,getBack)
     }
 }
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun PreivewOnBoardingWaterIntakeResultScreen() {
+fun PreviewOnBoardingWaterIntakeResultScreen() {
     OnBoardingWaterIntakeResultScreen(
         getNavigate = {}, onWaterIntake = "2500", modifier = Modifier
             .fillMaxSize()
@@ -136,6 +136,6 @@ fun PreivewOnBoardingWaterIntakeResultScreen() {
                     end = Offset(0f, Float.POSITIVE_INFINITY),
                     colors = listOf(backgroundColor1, backgroundColor2)
                 )
-            ), onName = "Hi, Hitesh"
+            ), getBack = {}
     )
 }
