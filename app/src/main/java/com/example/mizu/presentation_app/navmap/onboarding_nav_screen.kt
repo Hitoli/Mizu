@@ -72,7 +72,7 @@ fun OnboardingNavHostingScreen(
                     )
                 ),getNavigate = {
                 navController.navigate(OnboardingNavScreens.WaterIntakeResultScreen.route){
-                    popUpTo(OnboardingNavScreens.ActivityIntakeScreen.route){
+                    popUpTo(OnboardingNavScreens.LoadingScreen.route){
                         inclusive  = true
                     }
                 }
@@ -130,7 +130,7 @@ fun OnboardingNavHostingScreen(
                 onWaterIntake = (onboardingViewModel.onWaterAmount).toString(),
                 getBack = {
                     navController.navigateUp()
-                    navController.popBackStack(OnboardingNavScreens.BodyMeasurementScreen.route,true)
+                    navController.popBackStack(OnboardingNavScreens.ActivityIntakeScreen.route,false)
                 }
             )
         }
