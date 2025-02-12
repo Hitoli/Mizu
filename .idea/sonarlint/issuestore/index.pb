@@ -127,3 +127,9 @@ Japp/src/main/java/com/example/mizu/features/authscreen/utils/SignUpData.kt,d\b
 [app/src/main/java/com/example/mizu/features/authscreen/presentation/signup/signup_screen.kt,d\f\dfaf3bcf320fdbe922f4718c38b1fb0603d9ee50
 ~
 Napp/src/main/java/com/example/mizu/features/profilescreen/utils/ProfileData.kt,b\4\b40a38ae887230de2e9ceee36d16c70d03f3afa0
+{
+Kapp/src/main/java/com/example/mizu/features/onboarding/utils/nav_screens.kt,d\0\d0bfe339d7860fe6e6ce8e8678e7dce2fd4bb914
+{
+Kapp/src/main/java/com/example/mizu/features/onboarding/utils/PremiumData.kt,d\e\de0bf4caf892245af4bd3b859e4bcca9d3fce3d6
+x
+Happ/src/main/java/com/example/mizu/utils/nav_utils/bottom_nav_screens.kt,1\2\1260565d4b2f4c5903f4faf92c37c5567e33cde2

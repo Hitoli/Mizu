@@ -16,18 +16,18 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import kotlin.math.sqrt
 
-class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): ViewModel(){
+class OnboardingViewModel(private val onboardingRepo: OnboardingRepository) : ViewModel() {
 
     var onNameValue by mutableStateOf("")
         private set
     var onBoardingScreensRoutes by mutableStateOf(NavScreens.SplashNavHostingScreen.route)
         private set
     var onWeightValue by mutableStateOf("")
-        private  set
+        private set
     var onWaterAmount by mutableIntStateOf(0)
         private set
     var onHeightValue by mutableStateOf("")
-        private  set
+        private set
     var onActiveValue by mutableStateOf<Int?>(null)
         private set
     var onWeightCheck by mutableStateOf(false)
@@ -59,68 +59,74 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
 
 
     init {
-    viewModelScope.launch {
+        viewModelScope.launch {
 //        calculateStreakScore()
 //        getStreakScore()
 //        calculateStreakMonthScore()
 //        getMonthStreak()
-        getUserSettings()
-    }
+            getUserSettings()
+        }
 
     }
 
-    fun checkBodyMeasurementsFields(){
+    fun checkBodyMeasurementsFields() {
         onWeightCheck = onWeightValue.isBlank()
         onHeightCheck = onHeightValue.isBlank()
-        if (onWeightCheck){
+        if (onWeightCheck) {
             onWeightError = "Please Enter the Weight"
         }
-        if (onHeightCheck){
+        if (onHeightCheck) {
             onHeightError = "Please Enter the Height"
         }
     }
-    fun updateOnboardingWaterAmount(value:Int){
+
+    fun updateOnboardingWaterAmount(value: Int) {
         onWaterAmount = value
     }
-    fun onWeightChange(getWeightValue:String){
-            onWeightValue = getWeightValue.filter { it.isDigit() }
+
+    fun onWeightChange(getWeightValue: String) {
+        onWeightValue = getWeightValue.filter { it.isDigit() }
     }
-    fun onHeightChange(getHeightValue:String){
+
+    fun onHeightChange(getHeightValue: String) {
         onHeightValue = getHeightValue.filter { it.isDigit() }
     }
-    fun onBoardingActiveScreen(getActiveValue:Int){
+
+    fun onBoardingActiveScreen(getActiveValue: Int) {
         onActiveValue = getActiveValue
         activityLevel = when (onActiveValue) {
             0 -> {
                 50
             }
+
             1 -> {
                 35
             }
+
             else -> {
                 20
             }
         }
     }
 
-    fun checkActivtyLevels(){
+    fun checkActivtyLevels() {
         onActivityLevelCheck = onActiveValue == null
-        onActivityLevelError = if(onActiveValue == null)"Please Add your Activity Levels"  else ""
+        onActivityLevelError = if (onActiveValue == null) "Please Add your Activity Levels" else ""
     }
 
-    fun calculateWaterIntake(){
+    fun calculateWaterIntake() {
         // Calculate BSA using the Mosteller formula
-         BSA = sqrt(onHeightValue.toInt().times(onWeightValue.toDouble()/ 3600)).toInt()
+        BSA = sqrt(onHeightValue.toInt().times(onWeightValue.toDouble() / 3600)).toInt()
 
         // Calculate BWI using a base factor of 35 ml per kg of body weight
-         BWI = onWeightValue.toInt().times(33)
+        BWI = onWeightValue.toInt().times(33)
 
         // Adjust BWI based on BSA
-         val BWI_adjusted = BWI * BSA
+        val BWI_adjusted = BWI * BSA
 
         // Calculate TWI by adjusting BWI for activity level
-         TWI = BWI_adjusted + (BWI_adjusted.times(activityLevel?:0) / 100).toDouble()
-        Log.d("TWI Onboarding",TWI.toString())
+        TWI = BWI_adjusted + (BWI_adjusted.times(activityLevel ?: 0) / 100).toDouble()
+        Log.d("TWI Onboarding", TWI.toString())
         // Adjust TWI to reasonable limits
         TWI = when {
             TWI > 3700 -> 3700.0
@@ -131,14 +137,15 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
             else -> "%.2f".format(TWI).toDouble()
         }
 
-        onWaterAmount =TWI.toInt()
+        onWaterAmount = TWI.toInt()
         viewModelScope.launch {
             calculateWaterAmount()
         }
-        Log.d("onWaterAmount Onboarding",onWaterAmount.toString())
-        TWI/=1000
-        Log.d("TWI Onboarding","%.2f".format(TWI).toDouble().toString())
+        Log.d("onWaterAmount Onboarding", onWaterAmount.toString())
+        TWI /= 1000
+        Log.d("TWI Onboarding", "%.2f".format(TWI).toDouble().toString())
     }
+
     // Update the water Amount in database
     private suspend fun calculateWaterAmount() {
         val date = LocalDate.now()
@@ -152,12 +159,16 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
     }
 
 
-
-
-    fun updateUserSettings(){
+    fun updateUserSettings() {
         onboardingCompleted = true
         viewModelScope.launch {
-            onboardingRepo.updateUserSettingsStore(userWeight = onWeightValue.toInt(), userWaterIntake = onWaterAmount, userName =onNameValue , userHeight = onHeightValue.toInt(), onBoardingCompleted =true)
+            onboardingRepo.updateUserSettingsStore(
+                userWeight = onWeightValue.toInt(),
+                userWaterIntake = onWaterAmount,
+                userName = onNameValue,
+                userHeight = onHeightValue.toInt(),
+                onBoardingCompleted = false
+            )
 
         }
         println("streakScore Onboarding UpdateUserSettings ")
@@ -169,19 +180,19 @@ class OnboardingViewModel(private val onboardingRepo:OnboardingRepository): View
         onboardingRepo.getUserSettingsStore().collect {
             _userSettings = it
             onNameValue = it.userName
-            if(it.userWeight!=0 &&it.userHeight!=0 ){
+            if (it.userWeight != 0 && it.userHeight != 0) {
                 onWeightValue = it.userWeight.toString()
                 onHeightValue = it.userHeight.toString()
-            }else{
-                onWeightValue =""
-                onHeightValue=""
+            } else {
+                onWeightValue = ""
+                onHeightValue = ""
             }
 
             TWI = it.userWaterIntake.toDouble()
 
-            onBoardingScreensRoutes = if(!_userSettings.registrationCompleted){
+            onBoardingScreensRoutes = if (!_userSettings.registrationCompleted) {
                 NavScreens.OnboardingNavHostingScreen.route
-            }else{
+            } else {
                 NavScreens.BottomNavHostingScreen.route
 
             }

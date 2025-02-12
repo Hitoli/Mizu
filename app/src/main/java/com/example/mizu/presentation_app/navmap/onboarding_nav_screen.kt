@@ -16,9 +16,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mizu.features.onboarding.presentation.activityMeasurement.OnBoardingActiveScreen
 import com.example.mizu.features.onboarding.presentation.resultMeasurement.OnBoardingWaterIntakeResultScreen
 import com.example.mizu.features.onboarding.presentation.bodyMeasurement.OnBoardingBodyMeasurementsScreen
+import com.example.mizu.features.onboarding.presentation.premium.PremiumScreen
 import com.example.mizu.features.onboarding.utils.OnboardingLoadingScreen
 import com.example.mizu.features.onboarding.utils.ActivityMeasurementData
 import com.example.mizu.features.onboarding.utils.BodyMeasurementData
+import com.example.mizu.features.onboarding.utils.PremiumData
 import com.example.mizu.features.onboarding.viewModel.OnboardingViewModel
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.waterColorBackground
@@ -70,10 +72,10 @@ fun OnboardingNavHostingScreen(
                         end = Offset(0f, Float.POSITIVE_INFINITY),
                         colors = listOf(waterColorBackground, backgroundColor2)
                     )
-                ),getNavigate = {
-                navController.navigate(OnboardingNavScreens.WaterIntakeResultScreen.route){
-                    popUpTo(OnboardingNavScreens.LoadingScreen.route){
-                        inclusive  = true
+                ), getNavigate = {
+                navController.navigate(OnboardingNavScreens.WaterIntakeResultScreen.route) {
+                    popUpTo(OnboardingNavScreens.LoadingScreen.route) {
+                        inclusive = true
                     }
                 }
             })
@@ -125,12 +127,16 @@ fun OnboardingNavHostingScreen(
                 ),
                 getNavigate = {
                     onboardingViewModel.updateUserSettings()
-                    getNavigate()
+                    navController.navigate(OnboardingNavScreens.PremiumScreen.route)
+//                    getNavigate()
                 },
                 onWaterIntake = (onboardingViewModel.onWaterAmount).toString(),
                 getBack = {
                     navController.navigateUp()
-                    navController.popBackStack(OnboardingNavScreens.ActivityIntakeScreen.route,false)
+                    navController.popBackStack(
+                        OnboardingNavScreens.ActivityIntakeScreen.route,
+                        false
+                    )
                 }
             )
         }
@@ -164,6 +170,33 @@ fun OnboardingNavHostingScreen(
                     onHeightError = onboardingViewModel.onHeightError,
                     onWeightError = onboardingViewModel.onWeightError
                 )
+            )
+        }
+
+        composable(route = OnboardingNavScreens.PremiumScreen.route) {
+            PremiumScreen(modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.linearGradient(
+                        start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                        end = Offset(0f, Float.POSITIVE_INFINITY),
+                        colors = listOf(waterColorBackground, backgroundColor2)
+                    )
+                ), getBack = {
+                             navController.navigateUp()
+            }, getSubscribe = {
+                              getNavigate()
+            }, getSkip = {
+                         getNavigate()
+            }, onPremiumData = PremiumData(
+                onMonthlyPrice = "29.9", onLifeTimePrice = "99.9", onListOfPremiumBenefits =
+                listOf(
+                    "Get Access to Home Screen Widget",
+                    "Set Custom Daily Reminders",
+                    "Advanced Tracking and Analytics",
+                    "Ad-Free Experience"
+                )
+            )
             )
         }
     }

@@ -1,10 +1,13 @@
 
-mkotlin:S1172_"(Remove these unused function parameters.(ƒŒ°8—¡¶Ù2J$2d8d6594-0063-49d8-841a-5ecbc090d4a2
-nkotlin:S1172Í"(Remove these unused function parameters.(´œôß8™¡¶Ù2J$0a480a59-1ff7-4712-aed9-25664529222b
-ƒkotlin:S1172¯"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8™¡¶Ù2J$5a286eac-12c4-47fc-a2d5-171b768ab33d
-ikotlin:S125˜"Remove this commented out code.(à†çúÿÿÿÿ8Ÿ¡¶Ù2J$32166d5b-ed0e-46c2-8a36-cff32c1dd6b7
-ikotlin:S125÷"Remove this commented out code.(¹©Üúÿÿÿÿ8 ¡¶Ù2J$338b5f78-6c3a-474d-8c0c-e72c11f9883c
-dkotlin:S125ù"Remove this commented out code.(§ã†×8¡¡¶Ù2J$53b13f72-76af-4463-9071-11265eaf1097
-}kotlin:S1135ş"2Complete the task associated to this TODO comment.(£÷É şÿÿÿÿ8´¡¶Ù2J$0ff2db84-7081-4a18-b701-7e70e614e00b
-zkotlin:S1481…"/Remove this unused "sheetState" local variable.(Ù„°áÿÿÿÿÿ8·¡¶Ù2J$2f8cdde8-f582-4c73-a755-8ef8f745ed12
-—kotlin:S3776Ï"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(ø„©b8Ä¡¶Ù2J$4dc2a396-c9ab-4e46-b2d3-86b9b01de6d3
+mkotlin:S1172b"(Remove these unused function parameters.(ƒŒ°8»­ŒÚÏ2J$f550ee5e-70f9-439d-98a7-3e6b9ca9104b
+nkotlin:S1172‡"(Remove these unused function parameters.(´œôß8½­ŒÚÏ2J$d2a6711a-1bba-4cad-8eae-a89ba67be536
+ƒkotlin:S1172é"8Use "_" instead of this unused lambda parameter "index".(Æªêçşÿÿÿÿ8¾­ŒÚÏ2J$7c7be5b9-c29f-4903-b9ff-92212d2eecf2
+ikotlin:S125"Remove this commented out code.(à†çúÿÿÿÿ8Å­ŒÚÏ2J$f313330b-036e-4b5a-93a5-82522de05a3f
+ikotlin:S125ı"Remove this commented out code.(¹©Üúÿÿÿÿ8Å­ŒÚÏ2J$1e257b5a-370c-434b-b0ff-12a47b8e2796
+dkotlin:S125³"Remove this commented out code.(§ã†×8Æ­ŒÚÏ2J$5a894e26-98c4-4d6a-83e7-059f136fd6f3
+}kotlin:S1135¿"2Complete the task associated to this TODO comment.(™‚†ùÿÿÿÿ8Ù­ŒÚÏ2J$c834b121-026d-40d5-8d17-3718f8ae62cc
+}kotlin:S1135Ê"2Complete the task associated to this TODO comment.(­ºóºøÿÿÿÿ8Ú­ŒÚÏ2J$24eabe8d-2757-4323-965d-ca8428586c62
+xkotlin:S1135Í"2Complete the task associated to this TODO comment.(¤ë—ô8Ú­ŒÚÏ2J$0ff91bd8-8029-46a3-91dd-175337bebd3f
+}kotlin:S1135¸"2Complete the task associated to this TODO comment.(£÷É şÿÿÿÿ8Ú­ŒÚÏ2J$1f736785-86be-49a8-8556-7f7c87b4e788
+zkotlin:S1481ˆ"/Remove this unused "sheetState" local variable.(Ù„°áÿÿÿÿÿ8İ­ŒÚÏ2J$9b61e0a5-dfcf-42d2-a438-82d19bab9f8b
+—kotlin:S3776…"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(ø„©b8é­ŒÚÏ2J$7f9d4737-edf9-4fe3-bcf5-7090a20a9d0b

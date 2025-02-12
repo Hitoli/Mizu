@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowBackIosNew
@@ -35,6 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mizu.features.onboarding.utils.PremiumData
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
@@ -45,7 +47,13 @@ import com.example.mizu.ui.theme.waterColorMeter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PremiumScreen(modifier: Modifier = Modifier) {
+fun PremiumScreen(
+    modifier: Modifier = Modifier,
+    getBack: () -> Unit,
+    getSubscribe: () -> Unit,
+    getSkip: () -> Unit,
+    onPremiumData: PremiumData
+) {
 
     Scaffold(
         modifier = modifier,
@@ -62,7 +70,9 @@ fun PremiumScreen(modifier: Modifier = Modifier) {
                     ), modifier = Modifier.fillMaxWidth()
                 )
             }, navigationIcon = {
-                Icon(imageVector = Icons.Rounded.ArrowBackIosNew, contentDescription = "Arrow")
+                Icon(imageVector = Icons.Rounded.ArrowBackIosNew, contentDescription = "Arrow", modifier = Modifier.clickable {
+                    getBack()
+                })
             }, colors = TopAppBarDefaults.topAppBarColors(waterColorMeter.copy(alpha = 0.1f)))
         }
     ) {
@@ -74,15 +84,16 @@ fun PremiumScreen(modifier: Modifier = Modifier) {
                     start = 16.dp,
                     end = 16.dp,
                     top = pad.calculateTopPadding(),
-                    bottom = pad.calculateBottomPadding()
+                    bottom = pad.calculateBottomPadding() + 60.dp
                 ),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Column(modifier = Modifier
-                .wrapContentSize()
-                ) {
+            Column(
+                modifier = Modifier
+                    .wrapContentSize()
+            ) {
                 Row(
                     modifier = Modifier
                         .wrapContentSize()
@@ -110,7 +121,7 @@ fun PremiumScreen(modifier: Modifier = Modifier) {
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
-                            text = "$9.99",
+                            text = "₹ ${onPremiumData.onMonthlyPrice}",
                             style = TextStyle(
                                 fontSize = 20.sp,
                                 fontFamily = fontFamily,
@@ -140,7 +151,7 @@ fun PremiumScreen(modifier: Modifier = Modifier) {
                         horizontalAlignment = Alignment.Start
                     ) {
                         Text(
-                            text = "Lifetime",
+                            text = "₹ ${onPremiumData.onLifeTimePrice}",
                             style = TextStyle(
                                 fontSize = 12.sp,
                                 fontFamily = fontFamily,
@@ -150,7 +161,7 @@ fun PremiumScreen(modifier: Modifier = Modifier) {
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
-                            text = "$12.00",
+                            text = "₹ 199.9",
                             style = TextStyle(
                                 fontSize = 20.sp,
                                 fontFamily = fontFamily,
@@ -170,71 +181,40 @@ fun PremiumScreen(modifier: Modifier = Modifier) {
                         )
                     }
                 }
-                
+
                 Spacer(modifier = Modifier.height(80.dp))
 
-                Column(
+                LazyColumn(
                     modifier = Modifier
                         .wrapContentSize(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
-                    Text(
-                        text = "• Get Access to Home Screen Widget",
-                        style = TextStyle(
-                            fontSize = 18.sp,
-                            fontFamily = fontFamily,
-                            fontWeight = FontWeight(600),
-                            color = mizuBlack,
-                        ), modifier = Modifier.fillMaxWidth()
-                    )
-                    Spacer(modifier = Modifier.height(5.dp))
-                    Text(
-                        text = "• Set Custom Daily Reminders",
-                        style = TextStyle(
-                            fontSize = 18.sp,
-                            fontFamily = fontFamily,
-                            fontWeight = FontWeight(600),
-                            color = mizuBlack,
-                        ), modifier = Modifier.fillMaxWidth()
-                    )
-                    Spacer(modifier = Modifier.height(5.dp))
-
-                    Text(
-                        text = "• Advanced Tracking and Analytics",
-                        style = TextStyle(
-                            fontSize = 18.sp,
-                            fontFamily = fontFamily,
-                            fontWeight = FontWeight(600),
-                            color = mizuBlack,
-                        ), modifier = Modifier.fillMaxWidth()
-                    )
-                    Spacer(modifier = Modifier.height(5.dp))
-
-                    Text(
-                        text = "• Ad-Free Experience",
-                        style = TextStyle(
-                            fontSize = 18.sp,
-                            fontFamily = fontFamily,
-                            fontWeight = FontWeight(600),
-                            color = mizuBlack,
-                        ), modifier = Modifier.fillMaxWidth()
-                    )
-                    Spacer(modifier = Modifier.height(5.dp))
-
+                    items(onPremiumData.onListOfPremiumBenefits.size){
+                        Text(
+                            text = onPremiumData.onListOfPremiumBenefits[it],
+                            style = TextStyle(
+                                fontSize = 18.sp,
+                                fontFamily = fontFamily,
+                                fontWeight = FontWeight(600),
+                                color = mizuBlack,
+                            ), modifier = Modifier.fillMaxWidth()
+                        )
+                        Spacer(modifier = Modifier.height(5.dp))
+                    }
                 }
             }
 
 
 
-            Column(modifier= Modifier
-                .wrapContentSize()
-                ) {
+            Column(
+                modifier = Modifier
+                    .wrapContentSize()
+            ) {
                 Box(
                     modifier = Modifier
                         .clickable {
-//                        getNavigate()
+                        getSubscribe()
                         }
                         .fillMaxWidth()
                         .height(90.dp)
@@ -260,13 +240,15 @@ fun PremiumScreen(modifier: Modifier = Modifier) {
                 Text(
                     text = "Skip",
                     style = TextStyle(
-                        fontSize = 16.sp,
+                        fontSize = 14.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(400),
                         color = mizuBlack,
                         textAlign = TextAlign.Center,
                     ), modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxWidth().clickable {
+                            getSkip()
+                        }
                 )
             }
 
@@ -289,6 +271,14 @@ fun PreviewPremiumScreen() {
                     end = Offset(0f, Float.POSITIVE_INFINITY),
                     colors = listOf(waterColorMeter.copy(alpha = 0.2f), backgroundColor2)
                 )
+            ), getBack = {}, getSubscribe = {}, getSkip = {}, onPremiumData = PremiumData(
+            onMonthlyPrice = "", onLifeTimePrice = "", onListOfPremiumBenefits =
+            listOf(
+                "Get Access to Home Screen Widget",
+                "Set Custom Daily Reminders",
+                "Advanced Tracking and Analytics",
+                "Ad-Free Experience"
             )
+        )
     )
 }

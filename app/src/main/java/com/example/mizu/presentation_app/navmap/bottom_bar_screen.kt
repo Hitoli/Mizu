@@ -1,5 +1,6 @@
 package com.example.mizu.presentation_app.navmap
 
+import ProfileScreen
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -74,11 +75,13 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mizu.R
 import com.example.mizu.features.calendarscreen.presentation.CalendarScreen
 import com.example.mizu.features.homescreen.presentation.HomeScreen
+import com.example.mizu.features.profilescreen.utils.ProfileData
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.waterColor
+import com.example.mizu.ui.theme.waterColorMeter
 import com.example.mizu.utils.nav_utils.BottomNavScreens
 import com.example.mizu.utils.calendar_utils.WaterGoals
 import kotlinx.coroutines.delay
@@ -91,7 +94,7 @@ fun BottomBarHostingScreen(
     onWaterTrackingResourceAmount: Int,
     getWaterTrackingResourceAmount: (Int) -> Unit,
     onTotalWaterTrackingResourceAmount: Int,
-    getUpdateTotalWaterTrackingAmount:(Int)->Unit,
+    getUpdateTotalWaterTrackingAmount: (Int) -> Unit,
     getAddWater: () -> Unit,
     onUserName: String,
     getReward: (Boolean?) -> Unit,
@@ -103,15 +106,15 @@ fun BottomBarHostingScreen(
     getGreeting: () -> Unit,
     isEndless: Boolean = true,
     items: List<Int>,
-    streakImages:List<Int>,
-    onMonth:String,
-    calendarList:MutableList<List<Color>>,
-    onWaterGoals:List<WaterGoals>,
+    streakImages: List<Int>,
+    onMonth: String,
+    calendarList: MutableList<List<Color>>,
+    onWaterGoals: List<WaterGoals>,
     getSelected: (Int) -> Unit,
-    getProfileClick:()->Unit,
+    getProfileClick: () -> Unit,
     imgModifier: Modifier,
-    onAvgIntake: String,onHeight: String,onBestStreak: String,onWeight: String
-    ) {
+    onAvgIntake: String, onHeight: String, onBestStreak: String, onWeight: String
+) {
     var onAdd by remember {
         mutableStateOf(false)
     }
@@ -133,19 +136,22 @@ fun BottomBarHostingScreen(
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true);
     val navItems = listOf<BottomNavScreens>(
         BottomNavScreens.HomeScreen,
-        BottomNavScreens.CalendarScreen
+        BottomNavScreens.CalendarScreen,
+        BottomNavScreens.ProfileScreen
     )
     val listState = rememberLazyListState()
 
     LaunchedEffect(Unit) {
-        Log.d("onTotalWaterTrackingResourceAmount Onboarding",onTotalWaterTrackingResourceAmount.toString())
+        Log.d(
+            "onTotalWaterTrackingResourceAmount Onboarding",
+            onTotalWaterTrackingResourceAmount.toString()
+        )
         getUpdateTotalWaterTrackingAmount(onTotalWaterTrackingResourceAmount)
         getGreeting()
         delay(3000)
         onTitleChage = true
         delay(3000)
         onTitleChage = false
-
 
 
     }
@@ -281,7 +287,9 @@ fun BottomBarHostingScreen(
             }
             composable(route = BottomNavScreens.CalendarScreen.route) {
                 CalendarScreen(
-                    onMonth = onMonth, listOfTodos = onWaterGoals, modifier = Modifier
+                    onMonth = onMonth,
+                    listOfTodos = onWaterGoals,
+                    modifier = Modifier
                         .fillMaxSize()
                         .background(
                             Brush.linearGradient(
@@ -289,13 +297,52 @@ fun BottomBarHostingScreen(
                                 end = Offset(0f, Float.POSITIVE_INFINITY),
                                 colors = listOf(backgroundColor1, backgroundColor2)
                             )
-                        ), onPad = padding, caledarList = calendarList, getSelected = {
-                            getSelected(it)
-                    }, onHeight = onHeight, onBestStreak = onBestStreak, onWeight = onWeight, onAvgIntake = onAvgIntake, intakeAmount = if(onWaterTrackingResourceAmount>=onTotalWaterTrackingResourceAmount) {
+                        ),
+                    onPad = padding,
+                    caledarList = calendarList,
+                    getSelected = {
+                        getSelected(it)
+                    },
+                    onHeight = onHeight,
+                    onBestStreak = onBestStreak,
+                    onWeight = onWeight,
+                    onAvgIntake = onAvgIntake,
+                    intakeAmount = if (onWaterTrackingResourceAmount >= onTotalWaterTrackingResourceAmount) {
                         onTotalWaterTrackingResourceAmount.toString()
-                    } else{
+                    } else {
                         onWaterTrackingResourceAmount.toString()
                     }
+                )
+            }
+            composable(route = BottomNavScreens.ProfileScreen.route) {
+                ProfileScreen(
+                    getBack = { /*TODO*/ },
+                    profileData = ProfileData(
+                        onNotificationChange = false,
+                        onNameError = "",
+                        onNameCheck = false,
+                        onNameChange = "",
+                        onEmailCheck = false,
+                        onEmailChange = "",
+                        onEmailError = ""
+                    ),
+                    getNameChange = {},
+                    getNavigate = { /*TODO*/ },
+                    getEmailChange = {},
+                    getNotificationChange = {},
+                    getNotificationIntervals = { /*TODO*/ }, getBugReport = {}, modifier = Modifier
+                        .fillMaxSize()
+                        .background(
+                            Brush.linearGradient(
+                                start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                                end = Offset(0f, Float.POSITIVE_INFINITY),
+                                colors = listOf(
+                                    waterColorMeter.copy(alpha = 0.1f),
+                                    backgroundColor2
+                                )
+                            )
+                        ).padding(bottom = padding.calculateBottomPadding()/4,
+                            top = padding.calculateTopPadding()/8)
                 )
             }
         }
@@ -309,12 +356,19 @@ fun BottomBarHostingScreen(
 //                .fillMaxHeight(0.65f)
 //                .padding(10.dp)
 //        ) {
-        Dialog(properties = DialogProperties(usePlatformDefaultWidth = true, decorFitsSystemWindows = true),
-            onDismissRequest = {  onWaterAddSheet = !onWaterAddSheet}){
-        WaterCarouselSheet(
+        Dialog(properties = DialogProperties(
+            usePlatformDefaultWidth = true,
+            decorFitsSystemWindows = true
+        ),
+            onDismissRequest = { onWaterAddSheet = !onWaterAddSheet }) {
+            WaterCarouselSheet(
                 modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.65f).background(backgroundColor1.copy(alpha = 0.9f),shape = RoundedCornerShape(16.dp)),
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.65f)
+                    .background(
+                        backgroundColor1.copy(alpha = 0.9f),
+                        shape = RoundedCornerShape(16.dp)
+                    ),
                 listState,
                 isEndless,
                 items,
@@ -340,14 +394,15 @@ fun WaterCarouselSheet(
     selected: Int,
     getWaterTrackingResourceAmount: (Int) -> Unit,
     getSelected: (Int) -> Unit,
-    getWaterAddSheet:(Boolean)->Unit
+    getWaterAddSheet: (Boolean) -> Unit
 ) {
     Box(modifier = modifier) {
         Column(modifier = Modifier.align(Alignment.Center)) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(100.dp).padding(10.dp ),
+                    .height(100.dp)
+                    .padding(10.dp),
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
@@ -363,7 +418,8 @@ fun WaterCarouselSheet(
 
                 )
                 Text(
-                    text = if(selected!=-1)items[selected].toString() else "", modifier = Modifier.weight(0.5f),
+                    text = if (selected != -1) items[selected].toString() else "",
+                    modifier = Modifier.weight(0.5f),
                     style = TextStyle(
                         fontSize = 24.sp,
                         fontFamily = fontFamilyLight,
@@ -420,17 +476,19 @@ fun WaterCarouselSheet(
             Spacer(modifier = Modifier.height(10.dp))
             Button(
                 onClick = {
-                    if(selected!=-1 && selected<items.size){
+                    if (selected != -1 && selected < items.size) {
                         getWaterTrackingResourceAmount(items[selected])
                         getWaterAddSheet(false)
                         getSelected(-1)
                     }
                     println("Selected => ${selected}")
-                          }
-                , modifier = Modifier
+                },
+                modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp)
-                    .padding(start = 14.dp, end = 14.dp), shape = RoundedCornerShape(16.dp), colors = ButtonColors(
+                    .padding(start = 14.dp, end = 14.dp),
+                shape = RoundedCornerShape(16.dp),
+                colors = ButtonColors(
                     containerColor = waterColor,
                     contentColor = mizuBlack,
                     disabledContainerColor = waterColor,
@@ -563,7 +621,9 @@ fun BottomBarLayout(
                         navController.navigate(bottomData.route) {
                             if (bottomData.route == "Track") {
                                 getHome(false)
-                            } else {
+                            } else if (bottomData.route == "Profile") {
+                                getHome(false)
+                            }else{
                                 getHome(true)
                             }
                             popUpTo(navController.graph.findStartDestination().id) {
@@ -574,13 +634,14 @@ fun BottomBarLayout(
                         }
                     },
                     icon = {
-                        Row(modifier = Modifier.padding(10.dp)) {
+                        Row(modifier = Modifier.padding(vertical = 8.dp, horizontal = 2.dp)) {
+                            Log.d("Navigation", bottomData.route)
                             Icon(
                                 imageVector = ImageVector.vectorResource(bottomData.icon),
                                 contentDescription = bottomData.route,
                                 tint = if (currentRoute == bottomData.route) mizuBlack else backgroundColor1
                             )
-                            Spacer(modifier = Modifier.width(16.dp))
+                            Spacer(modifier = Modifier.width(10.dp))
                             AnimatedVisibility(
                                 visible = bottomData.route == currentRoute,
                                 enter = expandHorizontally(),
@@ -644,8 +705,19 @@ fun PreviewBottomBarHostingScreen() {
         onTime = "Goodmorning",
         getGreeting = {},
         items = listOf(50, 100, 200, 300, 400, 500),
-        getUpdateTotalWaterTrackingAmount = {}, streakImages = listOf(R.drawable.day2,R.drawable.day1), onMonth = "", onWaterGoals = listOf() , calendarList = mutableListOf(
+        getUpdateTotalWaterTrackingAmount = {},
+        streakImages = listOf(R.drawable.day2, R.drawable.day1),
+        onMonth = "",
+        onWaterGoals = listOf(),
+        calendarList = mutableListOf(
             listOf(Color.Black)
-        ), getSelected = {}, getProfileClick = {}, imgModifier = Modifier, onAvgIntake = "1700ml", onWeight = "72", onHeight = "172", onBestStreak = "10"
+        ),
+        getSelected = {},
+        getProfileClick = {},
+        imgModifier = Modifier,
+        onAvgIntake = "1700ml",
+        onWeight = "72",
+        onHeight = "172",
+        onBestStreak = "10"
     )
 }
