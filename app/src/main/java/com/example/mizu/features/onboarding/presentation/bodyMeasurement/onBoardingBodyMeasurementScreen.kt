@@ -2,6 +2,7 @@ package com.example.mizu.features.onboarding.presentation.bodyMeasurement
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -40,6 +41,7 @@ import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
+import com.example.mizu.ui.theme.mizuBlackLight
 import com.example.mizu.ui.theme.onboardingBoxColor
 import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.ui.theme.waterColorBackground
@@ -78,14 +80,14 @@ fun OnBoardingBodyMeasurementsScreen(
             Text(
                 text = "Right Hydration",
                 style = TextStyle(
-                    fontSize = 16.sp,
+                    fontSize = 18.sp,
                     fontFamily = fontFamily,
                     fontWeight = FontWeight(600),
                     color = mizuBlack,
                     textAlign = TextAlign.Center,
                 ), modifier = Modifier.fillMaxWidth()
             )
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(35.dp))
             Text(
                 text = "Please enter your weight and height. This helps us recommend the right hydration plan for you!",
                 style = TextStyle(
@@ -96,18 +98,18 @@ fun OnBoardingBodyMeasurementsScreen(
                     textAlign = TextAlign.Center,
                 ), modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
+                    .padding(horizontal = 24.dp)
             )
         }
         OnboardingIndicator(onboardingNav = 0)
         Column(
             modifier = Modifier
-                .weight(1f)
+                .weight(1.2f)
                 .fillMaxWidth()
                 .background(
                     onboardingBoxColor,
                     shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
-                )
+                ).border(width = 0.1.dp, color = mizuBlackLight, shape =RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp) )
                 .padding(20.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -116,14 +118,14 @@ fun OnBoardingBodyMeasurementsScreen(
             Text(
                 text = "What is your height and weight?",
                 style = TextStyle(
-                    fontSize = 18.sp,
+                    fontSize = 20.sp,
                     fontFamily = fontFamily,
                     fontWeight = FontWeight(400),
                     color = mizuBlack,
                     textAlign = TextAlign.Center,
                 ), modifier = Modifier.fillMaxWidth()
             )
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(24.dp))
 
             TextFieldCustom(
                 onTextChange = bodyMeasurementData.onWeightChange,
@@ -134,7 +136,7 @@ fun OnBoardingBodyMeasurementsScreen(
                 onLabelText = "Weight",
                 onImeAction = ImeAction.Next
             )
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(6.dp))
 
             TextFieldCustom(
                 onTextChange = bodyMeasurementData.onHeightChange,
@@ -145,19 +147,20 @@ fun OnBoardingBodyMeasurementsScreen(
                 onLabelText = "Height",
                 onImeAction = ImeAction.Done
             )
+
+            Spacer(modifier = Modifier.height(25.dp))
             Box(
                 modifier = Modifier
                     .clickable {
-
                         getNavigate()
                     }
                     .fillMaxWidth()
                     .height(90.dp)
-                    .padding(horizontal = 20.dp, vertical = 20.dp)
+                    .padding(horizontal = 24.dp, vertical = 20.dp)
                     .background(waterColor, shape = RoundedCornerShape(6.dp)),
             ) {
                 Text(
-                    text = "Done",
+                    text = "Next",
                     style = TextStyle(
                         fontSize = 16.sp,
                         fontFamily = fontFamilyLight,

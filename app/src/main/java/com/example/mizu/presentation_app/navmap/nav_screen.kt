@@ -23,10 +23,9 @@ import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.waterColorBackground
 import com.example.mizu.ui.theme.waterColorMeter
-import com.example.mizu.utils.nav_utils.NavScreens
+import com.example.mizu.presentation_app.navmap.nav_utils.NavScreens
 import org.koin.androidx.compose.koinViewModel
 
-@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun NavScreen(
     OnboardingViewModel: OnboardingViewModel = koinViewModel(),
@@ -38,36 +37,14 @@ fun NavScreen(
         navController = navController,
         startDestination = OnboardingViewModel.onBoardingScreensRoutes
     ) {
-        composable(route = NavScreens.ProfileNavHostingScreen.route) {
-            ProfileScreen(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        Brush.linearGradient(
-                            start = Offset(Float.POSITIVE_INFINITY, 0f),
-                            end = Offset(0f, Float.POSITIVE_INFINITY),
-                            colors = listOf(waterColorBackground, backgroundColor2)
-                        )
-                    )
-                    .padding(top = 20.dp), getBack = {
-                    navController.navigate(NavScreens.BottomNavHostingScreen.route) {
-                        popUpTo(NavScreens.ProfileNavHostingScreen.route) {
-                            inclusive = true
-                        }
+        composable(route = NavScreens.AuthNavHostingScreen.route) {
+            AuthNavHostingScreen(getNavigate = {
+                navController.navigate(NavScreens.BottomNavHostingScreen.route) {
+                    popUpTo(NavScreens.AuthNavHostingScreen.route) {
+                        inclusive = true
                     }
-                }, getNavigate = {},
-                getEmailChange = {},
-                getNameChange = {},
-                profileData = ProfileData(
-                    onNameChange = "",
-                    onEmailError = "",
-                    onEmailChange = "",
-                    onEmailCheck = false,
-                    onNameCheck = false,
-                    onNameError = "", onNotificationChange = false
-                ), getNotificationIntervals = {}, getNotificationChange = {}, getBugReport = {}
-            )
-
+                }
+            })
         }
         composable(route = NavScreens.BottomNavHostingScreen.route) {
             BottomBarHostingScreen(
@@ -112,7 +89,7 @@ fun NavScreen(
                     caledarViewModel.updateWaterGoals(it)
                 },
                 getProfileClick = {
-                    navController.navigate(NavScreens.ProfileNavHostingScreen.route)
+//                    navController.navigate(NavScreens.ProfileNavHostingScreen.route)
                 },
                 imgModifier = Modifier,
                 onAvgIntake = caledarViewModel.avgWaterIntake,
@@ -126,7 +103,7 @@ fun NavScreen(
         composable(route = NavScreens.OnboardingNavHostingScreen.route) {
             OnboardingNavHostingScreen(getNavigate = {
                 homeViewModel.updateTotalWaterAmount(OnboardingViewModel.onWaterAmount)
-                navController.navigate(NavScreens.BottomNavHostingScreen.route) {
+                navController.navigate(NavScreens.AuthNavHostingScreen.route) {
                     popUpTo(NavScreens.OnboardingNavHostingScreen.route) {
                         inclusive = true
                     }

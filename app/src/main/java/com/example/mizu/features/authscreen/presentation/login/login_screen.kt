@@ -255,7 +255,9 @@ fun LoginScreen(
                         fontWeight = FontWeight(600),
                         color = mizuBlack,
                         textAlign = TextAlign.Center
-                    ), modifier = Modifier
+                    ), modifier = Modifier.clickable {
+                        getSignUpNavigate()
+                    }
                 )
             }
         }

@@ -82,7 +82,7 @@ import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.ui.theme.waterColorMeter
-import com.example.mizu.utils.nav_utils.BottomNavScreens
+import com.example.mizu.presentation_app.navmap.nav_utils.BottomNavScreens
 import com.example.mizu.utils.calendar_utils.WaterGoals
 import kotlinx.coroutines.delay
 
@@ -334,12 +334,9 @@ fun BottomBarHostingScreen(
                         .fillMaxSize()
                         .background(
                             Brush.linearGradient(
-                                start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                                start = Offset(Float.POSITIVE_INFINITY, 0f),
                                 end = Offset(0f, Float.POSITIVE_INFINITY),
-                                colors = listOf(
-                                    waterColorMeter.copy(alpha = 0.1f),
-                                    backgroundColor2
-                                )
+                                colors = listOf(backgroundColor1, backgroundColor2)
                             )
                         ).padding(bottom = padding.calculateBottomPadding()/4,
                             top = padding.calculateTopPadding()/8)

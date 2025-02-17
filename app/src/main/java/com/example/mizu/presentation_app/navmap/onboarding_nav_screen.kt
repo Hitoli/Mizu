@@ -25,8 +25,8 @@ import com.example.mizu.features.onboarding.viewModel.OnboardingViewModel
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.waterColorBackground
 import com.example.mizu.ui.theme.waterColorMeter
-import com.example.mizu.utils.nav_utils.NavScreens
-import com.example.mizu.utils.nav_utils.OnboardingNavScreens
+import com.example.mizu.presentation_app.navmap.nav_utils.NavScreens
+import com.example.mizu.presentation_app.navmap.nav_utils.OnboardingNavScreens
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

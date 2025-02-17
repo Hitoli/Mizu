@@ -1,4 +1,4 @@
-package com.example.mizu.utils.nav_utils
+package com.example.mizu.presentation_app.navmap.nav_utils
 
 import com.example.mizu.R
 
