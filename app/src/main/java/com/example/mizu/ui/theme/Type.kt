@@ -64,3 +64,21 @@ val fontFamilyLight = FontFamily(
         style = FontStyle.Normal
     )
 )
+
+val fontFamilySemiBold = FontFamily(
+    Font(
+        googleFont = fontName,
+        fontProvider = provider,
+        weight = FontWeight.SemiBold,
+        style = FontStyle.Normal
+    )
+)
+
+val fontFamilyBold = FontFamily(
+    Font(
+        googleFont = fontName,
+        fontProvider = provider,
+        weight = FontWeight.Bold,
+        style = FontStyle.Normal
+    )
+)

@@ -36,8 +36,10 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.mizu.R
 import com.example.mizu.ui.theme.backgroundColor1
 import com.example.mizu.ui.theme.backgroundColor2
+import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
+import com.example.mizu.ui.theme.mizuBlackLight
 import kotlinx.coroutines.delay
 
 @Composable
@@ -77,10 +79,10 @@ fun OnboardingLoadingScreen(modifier: Modifier = Modifier, getNavigate: () -> Un
             Text(
                 text = "Calculating Your Water Intake",
                 style = TextStyle(
-                    fontSize = 24.sp,
-                    fontFamily = fontFamilyLight,
+                    fontSize = 20.sp,
+                    fontFamily = fontFamily,
                     fontWeight = FontWeight(400),
-                    color = mizuBlack,
+                    color = mizuBlackLight,
                     textAlign = TextAlign.Center,
                 ), modifier = Modifier.fillMaxWidth()
             )

@@ -31,10 +31,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mizu.ui.theme.circleWaterIndicatorColor
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
+import com.example.mizu.ui.theme.mizuBlackLight
 import com.example.mizu.ui.theme.onboardingBoxColor
+import com.example.mizu.ui.theme.textFieldColor
 import com.example.mizu.ui.theme.textFieldErrorColor
+import com.example.mizu.ui.theme.waterColorMeter
 
 @Composable
 fun TextFieldCustom(
@@ -65,6 +69,9 @@ fun TextFieldCustom(
             maxLines = 1,
             shape = RoundedCornerShape(10.dp),
             colors = OutlinedTextFieldDefaults.colors(
+                cursorColor = waterColorMeter,
+                errorCursorColor = textFieldErrorColor,
+                errorBorderColor = textFieldErrorColor,
                 focusedLabelColor = mizuBlack,
                 focusedTextColor = mizuBlack,
                 unfocusedBorderColor = mizuBlack.copy(alpha = 0.5f),
@@ -93,7 +100,7 @@ fun TextFieldCustom(
                         fontSize = 14.sp,
                         fontFamily = fontFamilyLight,
                         fontWeight = FontWeight(100),
-                        color = mizuBlack,
+                        color = mizuBlackLight,
                         textAlign = TextAlign.Center
                     )
                 )

@@ -43,7 +43,7 @@ fun Indicator(width: Dp, color: Color) {
     Box(
         modifier = Modifier
             .background(color = color, shape = RoundedCornerShape(10.dp))
-            .height(5.dp)
+            .height(6.dp)
             .width(width)
             .border(0.2.dp, color = mizuBlack.copy(alpha = 0.5f), shape = RoundedCornerShape(10.dp))
     )

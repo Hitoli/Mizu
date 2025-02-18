@@ -42,6 +42,7 @@ import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
+import com.example.mizu.ui.theme.mizuBlackLight
 import com.example.mizu.ui.theme.onboardingBoxColor
 import com.example.mizu.ui.theme.waterColor
 
@@ -86,7 +87,7 @@ fun OnBoardingWaterIntakeResultScreen(
                     fontSize = 16.sp,
                     fontFamily = fontFamily,
                     fontWeight = FontWeight(600),
-                    color = mizuBlack,
+                    color = mizuBlackLight,
                     textAlign = TextAlign.Center,
                 ), modifier = Modifier.fillMaxWidth()
             )
@@ -97,7 +98,7 @@ fun OnBoardingWaterIntakeResultScreen(
                     fontSize = 15.sp,
                     fontFamily = fontFamilyLight,
                     fontWeight = FontWeight(200),
-                    color = mizuBlack,
+                    color = mizuBlackLight,
                     textAlign = TextAlign.Center,
                 ), modifier = Modifier
                     .fillMaxWidth()
@@ -108,7 +109,7 @@ fun OnBoardingWaterIntakeResultScreen(
             Text(
                 text = onWaterIntake,
                 style = TextStyle(
-                    fontSize = 35.sp,
+                    fontSize = 45.sp,
                     fontFamily = fontFamilyLight,
                     fontWeight = FontWeight(700),
                     color = mizuBlack,

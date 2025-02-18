@@ -41,6 +41,7 @@ import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
+import com.example.mizu.ui.theme.mizuBlackLight
 import com.example.mizu.ui.theme.onboardingBoxColor
 import com.example.mizu.ui.theme.textFieldErrorColor
 import com.example.mizu.ui.theme.waterColor
@@ -81,7 +82,7 @@ fun OnBoardingActiveScreen(
                     fontSize = 16.sp,
                     fontFamily = fontFamily,
                     fontWeight = FontWeight(600),
-                    color = mizuBlack,
+                    color = mizuBlackLight,
                     textAlign = TextAlign.Center,
                 ), modifier = Modifier.fillMaxWidth()
             )
@@ -92,7 +93,7 @@ fun OnBoardingActiveScreen(
                     fontSize = 15.sp,
                     fontFamily = fontFamilyLight,
                     fontWeight = FontWeight(200),
-                    color = mizuBlack,
+                    color = mizuBlackLight,
                     textAlign = TextAlign.Center,
                 ), modifier = Modifier
                     .fillMaxWidth()
@@ -221,19 +222,18 @@ fun OnBoardingActiveScreen(
             }
 
             if (activityMeasurementData.checkError) {
+
                 Text(
                     text = activityMeasurementData.onErrorText,
                     style = TextStyle(
-                        fontSize = 16.sp,
+                        fontSize = 10.sp,
                         fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(400),
+                        fontWeight = FontWeight(200),
                         color = textFieldErrorColor,
                         textAlign = TextAlign.Center,
-                    ), modifier = Modifier
-                        .fillMaxWidth()
+                    ), modifier = Modifier.fillMaxWidth()
                 )
             }
-
 
             OnBoardingButtons(getNavigate, getBacK)
         }

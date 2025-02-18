@@ -95,7 +95,7 @@ fun OnboardingNavHostingScreen(
                 },
                 activityMeasurementData = ActivityMeasurementData(
                     onErrorText = onboardingViewModel.onActivityLevelError,
-                    onActivityOutcome = onboardingViewModel.onActiveValue ?: 0,
+                    onActivityOutcome = onboardingViewModel.onActiveValue ?: -1,
                     checkError = onboardingViewModel.onActivityLevelCheck
                 ),
                 getNavigate = {
@@ -130,7 +130,7 @@ fun OnboardingNavHostingScreen(
                     navController.navigate(OnboardingNavScreens.PremiumScreen.route)
 //                    getNavigate()
                 },
-                onWaterIntake = (onboardingViewModel.onWaterAmount).toString(),
+                onWaterIntake = "${onboardingViewModel.onWaterAmount} ml",
                 getBack = {
                     navController.navigateUp()
                     navController.popBackStack(
@@ -153,6 +153,7 @@ fun OnboardingNavHostingScreen(
                         navController.navigate(OnboardingNavScreens.ActivityIntakeScreen.route)
                     }
                 },
+                getLogin={},
                 modifier = Modifier
                     .fillMaxSize()
                     .background(

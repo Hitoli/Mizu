@@ -1,9 +1,11 @@
 package com.example.mizu.features.onboarding.presentation.bodyMeasurement
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.Indication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,6 +42,7 @@ import com.example.mizu.features.onboarding.utils.TextFieldCustom
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
+import com.example.mizu.ui.theme.fontFamilySemiBold
 import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.mizuBlackLight
 import com.example.mizu.ui.theme.onboardingBoxColor
@@ -54,6 +57,7 @@ fun OnBoardingBodyMeasurementsScreen(
     getWeightChange: (String) -> Unit,
     getHeightChange: (String) -> Unit,
     getNavigate: () -> Unit,
+    getLogin:()->Unit,
 ) {
 
     Column(
@@ -83,25 +87,27 @@ fun OnBoardingBodyMeasurementsScreen(
                     fontSize = 18.sp,
                     fontFamily = fontFamily,
                     fontWeight = FontWeight(600),
-                    color = mizuBlack,
+                    color = mizuBlackLight,
                     textAlign = TextAlign.Center,
                 ), modifier = Modifier.fillMaxWidth()
             )
-            Spacer(modifier = Modifier.height(35.dp))
+            Spacer(modifier = Modifier.height(22.dp))
             Text(
                 text = "Please enter your weight and height. This helps us recommend the right hydration plan for you!",
                 style = TextStyle(
                     fontSize = 15.sp,
                     fontFamily = fontFamilyLight,
                     fontWeight = FontWeight(200),
-                    color = mizuBlack,
+                    color = mizuBlackLight,
                     textAlign = TextAlign.Center,
                 ), modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 24.dp)
+                    .padding(horizontal = 20.dp)
             )
         }
+
         OnboardingIndicator(onboardingNav = 0)
+
         Column(
             modifier = Modifier
                 .weight(1.2f)
@@ -109,11 +115,17 @@ fun OnBoardingBodyMeasurementsScreen(
                 .background(
                     onboardingBoxColor,
                     shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
-                ).border(width = 0.1.dp, color = mizuBlackLight, shape =RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp) )
+                )
+                .border(
+                    width = 0.1.dp,
+                    color = mizuBlackLight,
+                    shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+                )
                 .padding(20.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
 
             Text(
                 text = "What is your height and weight?",
@@ -151,9 +163,11 @@ fun OnBoardingBodyMeasurementsScreen(
             Spacer(modifier = Modifier.height(25.dp))
             Box(
                 modifier = Modifier
-                    .clickable {
+                    .clickable(interactionSource = remember {
+                        MutableInteractionSource()
+                    }, indication = null, onClick = {
                         getNavigate()
-                    }
+                    })
                     .fillMaxWidth()
                     .height(90.dp)
                     .padding(horizontal = 24.dp, vertical = 20.dp)
@@ -162,9 +176,9 @@ fun OnBoardingBodyMeasurementsScreen(
                 Text(
                     text = "Next",
                     style = TextStyle(
-                        fontSize = 16.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(400),
+                        fontSize = 18.sp,
+                        fontFamily = fontFamily,
+                        fontWeight = FontWeight(500),
                         color = mizuBlack,
                         textAlign = TextAlign.Center,
                     ), modifier = Modifier
@@ -172,6 +186,22 @@ fun OnBoardingBodyMeasurementsScreen(
                         .align(Alignment.Center)
                 )
             }
+
+            Text(
+                text = "Already a member? Login In",
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    fontFamily = fontFamilyLight,
+                    fontWeight = FontWeight(400),
+                    color = mizuBlackLight,
+                    textAlign = TextAlign.Center,
+                ), modifier = Modifier.clickable(interactionSource = remember {
+                    MutableInteractionSource()
+                }, indication = null, onClick = {
+                    getLogin()
+                })
+                    .fillMaxWidth()
+            )
 
         }
 
@@ -190,7 +220,7 @@ fun PreviewOnBoardingWeightScreen() {
     }
     OnBoardingBodyMeasurementsScreen(
         getWeightChange = {
-                weightValue = it
+            weightValue = it
         },
         getNavigate = {
         },
@@ -213,6 +243,6 @@ fun PreviewOnBoardingWeightScreen() {
             onHeightCheck = false,
             onHeightError = "",
             onWeightError = ""
-        )
+        ), getLogin = {}
     )
 }

@@ -3,6 +3,7 @@ package com.example.mizu.features.onboarding.utils
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -20,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.onboardingBoxColor
@@ -38,15 +41,17 @@ fun OnBoardingButtons(getNavigate:()->Unit ,getBack:()->Unit) {
                 .height(90.dp)
                 .padding(horizontal = 20.dp, vertical = 20.dp)
                 .border(width = 0.2.dp, color = mizuBlack, shape = RoundedCornerShape(6.dp))
-                .background(onboardingBoxColor, shape = RoundedCornerShape(6.dp)).clickable {
-                                                                                            getBack()
-                },
+                .background(onboardingBoxColor, shape = RoundedCornerShape(6.dp)).clickable(interactionSource = remember {
+                    MutableInteractionSource()
+                }, indication = null, onClick = {
+                    getBack()
+                }),
         ) {
             Text(
                 text = "Back",
                 style = TextStyle(
                     fontSize = 16.sp,
-                    fontFamily = fontFamilyLight,
+                    fontFamily = fontFamily,
                     fontWeight = FontWeight(400),
                     color = mizuBlack,
                     textAlign = TextAlign.Center,
@@ -56,9 +61,11 @@ fun OnBoardingButtons(getNavigate:()->Unit ,getBack:()->Unit) {
             )
         }
         Box(
-            modifier = Modifier.clickable {
+            modifier = Modifier.clickable(interactionSource = remember {
+                MutableInteractionSource()
+            }, indication = null, onClick = {
                 getNavigate()
-            }
+            })
                 .weight(1f)
                 .height(90.dp)
                 .padding(horizontal = 20.dp, vertical = 20.dp)
@@ -68,7 +75,7 @@ fun OnBoardingButtons(getNavigate:()->Unit ,getBack:()->Unit) {
                 text = "Done",
                 style = TextStyle(
                     fontSize = 16.sp,
-                    fontFamily = fontFamilyLight,
+                    fontFamily = fontFamily,
                     fontWeight = FontWeight(400),
                     color = mizuBlack,
                     textAlign = TextAlign.Center,
