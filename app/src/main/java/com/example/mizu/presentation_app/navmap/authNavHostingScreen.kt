@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,6 +18,7 @@ import com.example.mizu.features.authscreen.presentation.login.LoginScreen
 import com.example.mizu.features.authscreen.presentation.signup.SignUpScreen
 import com.example.mizu.features.authscreen.utils.LoginData
 import com.example.mizu.features.authscreen.utils.SignUpData
+import com.example.mizu.features.homescreen.view_model.HomeViewModel
 import com.example.mizu.presentation_app.navmap.nav_utils.AuthNavScreens
 import com.example.mizu.presentation_app.navmap.nav_utils.OnboardingNavScreens
 import com.example.mizu.ui.theme.backgroundColor2
@@ -28,6 +30,7 @@ fun AuthNavHostingScreen(
     getNavigate:()->Unit,
     navHostController: NavHostController = rememberNavController()
 ) {
+
     NavHost(
         navController = navHostController,
         startDestination = AuthNavScreens.LoginScreen.route,

@@ -2,6 +2,7 @@ package com.example.mizu.features.onboarding.presentation.premium
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -57,6 +59,8 @@ fun PremiumScreen(
 
     Scaffold(
         modifier = modifier,
+        containerColor = Color.Transparent,
+        contentColor = Color.Transparent,
         topBar = {
             TopAppBar(title = {
                 Text(
@@ -70,9 +74,12 @@ fun PremiumScreen(
                     ), modifier = Modifier.fillMaxWidth()
                 )
             }, navigationIcon = {
-                Icon(imageVector = Icons.Rounded.ArrowBackIosNew, contentDescription = "Arrow", modifier = Modifier.clickable {
-                    getBack()
-                })
+                Icon(
+                    imageVector = Icons.Rounded.ArrowBackIosNew,
+                    contentDescription = "Arrow",
+                    modifier = Modifier.clickable {
+                        getBack()
+                    })
             }, colors = TopAppBarDefaults.topAppBarColors(waterColorMeter.copy(alpha = 0.1f)))
         }
     ) {
@@ -151,7 +158,7 @@ fun PremiumScreen(
                         horizontalAlignment = Alignment.Start
                     ) {
                         Text(
-                            text = "₹ ${onPremiumData.onLifeTimePrice}",
+                            text = "One Time",
                             style = TextStyle(
                                 fontSize = 12.sp,
                                 fontFamily = fontFamily,
@@ -161,7 +168,7 @@ fun PremiumScreen(
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
-                            text = "₹ 199.9",
+                            text = "₹ ${onPremiumData.onLifeTimePrice}",
                             style = TextStyle(
                                 fontSize = 20.sp,
                                 fontFamily = fontFamily,
@@ -190,7 +197,7 @@ fun PremiumScreen(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    items(onPremiumData.onListOfPremiumBenefits.size){
+                    items(onPremiumData.onListOfPremiumBenefits.size) {
                         Text(
                             text = onPremiumData.onListOfPremiumBenefits[it],
                             style = TextStyle(
@@ -213,9 +220,11 @@ fun PremiumScreen(
             ) {
                 Box(
                     modifier = Modifier
-                        .clickable {
-                        getSubscribe()
-                        }
+                        .clickable(interactionSource = remember {
+                            MutableInteractionSource()
+                        }, indication = null, onClick = {
+                            getSubscribe()
+                        })
                         .fillMaxWidth()
                         .height(90.dp)
                         .padding(horizontal = 20.dp, vertical = 20.dp)
@@ -246,9 +255,12 @@ fun PremiumScreen(
                         color = mizuBlack,
                         textAlign = TextAlign.Center,
                     ), modifier = Modifier
-                        .fillMaxWidth().clickable {
+                        .fillMaxWidth()
+                        .clickable(interactionSource = remember {
+                            MutableInteractionSource()
+                        }, indication = null, onClick = {
                             getSkip()
-                        }
+                        })
                 )
             }
 

@@ -8,4 +8,6 @@ sealed class OnboardingNavScreens(val route:String, val icon:Int, ) {
     data object WaterIntakeResultScreen: OnboardingNavScreens(route = "WaterIntakeResultScreen", icon = R.drawable.calendarmizu)
     data object LoadingScreen: OnboardingNavScreens(route = "LoadingScreen", icon = R.drawable.calendarmizu)
     data object PremiumScreen: OnboardingNavScreens(route = "PremiumScreen", icon = R.drawable.calendarmizu)
+    data object ReminderPermissionScreen: OnboardingNavScreens(route = "ReminderPermissionScreen", icon = R.drawable.calendarmizu)
+    data object NotificationPermissionScreen: OnboardingNavScreens(route = "NotificationPermissionScreen", icon = R.drawable.calendarmizu)
 }

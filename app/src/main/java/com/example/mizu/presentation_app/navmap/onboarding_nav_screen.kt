@@ -16,6 +16,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mizu.features.onboarding.presentation.activityMeasurement.OnBoardingActiveScreen
 import com.example.mizu.features.onboarding.presentation.resultMeasurement.OnBoardingWaterIntakeResultScreen
 import com.example.mizu.features.onboarding.presentation.bodyMeasurement.OnBoardingBodyMeasurementsScreen
+import com.example.mizu.features.onboarding.presentation.permissionScreens.OnboardingNotifications
+import com.example.mizu.features.onboarding.presentation.permissionScreens.OnboardingReminder
 import com.example.mizu.features.onboarding.presentation.premium.PremiumScreen
 import com.example.mizu.features.onboarding.utils.OnboardingLoadingScreen
 import com.example.mizu.features.onboarding.utils.ActivityMeasurementData
@@ -174,8 +176,8 @@ fun OnboardingNavHostingScreen(
             )
         }
 
-        composable(route = OnboardingNavScreens.PremiumScreen.route) {
-            PremiumScreen(modifier = Modifier
+        composable(route = OnboardingNavScreens.NotificationPermissionScreen.route){
+            OnboardingNotifications(modifier = Modifier
                 .fillMaxSize()
                 .background(
                     Brush.linearGradient(
@@ -183,12 +185,41 @@ fun OnboardingNavHostingScreen(
                         end = Offset(0f, Float.POSITIVE_INFINITY),
                         colors = listOf(waterColorBackground, backgroundColor2)
                     )
+                ), getAllow = {
+                              getNavigate()
+
+            },onPermissionDenied = false)
+        }
+
+        composable(route = OnboardingNavScreens.ReminderPermissionScreen.route){
+            OnboardingReminder(modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.linearGradient(
+                        start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                        end = Offset(0f, Float.POSITIVE_INFINITY),
+                        colors = listOf(waterColorBackground, backgroundColor2)
+                    )
+                ), getAllow = {
+                navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
+            }, onPermissionDenied = false)
+        }
+
+        composable(route = OnboardingNavScreens.PremiumScreen.route) {
+            PremiumScreen(   modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.linearGradient(
+                        start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                        end = Offset(0f, Float.POSITIVE_INFINITY),
+                        colors = listOf(waterColorMeter.copy(alpha = 0.2f), backgroundColor2)
+                    )
                 ), getBack = {
                              navController.navigateUp()
             }, getSubscribe = {
-                              getNavigate()
+                navController.navigate(OnboardingNavScreens.ReminderPermissionScreen.route)
             }, getSkip = {
-                         getNavigate()
+                navController.navigate(OnboardingNavScreens.ReminderPermissionScreen.route)
             }, onPremiumData = PremiumData(
                 onMonthlyPrice = "29.9", onLifeTimePrice = "99.9", onListOfPremiumBenefits =
                 listOf(

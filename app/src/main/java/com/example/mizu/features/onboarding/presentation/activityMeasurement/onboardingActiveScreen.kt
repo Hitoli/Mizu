@@ -53,7 +53,8 @@ fun OnBoardingActiveScreen(
     getActiveOutcome: (Int) -> Unit,
     getNavigate: () -> Unit,
     getBacK: () -> Unit,
-) {
+)
+{
 
     Column(
         modifier = modifier

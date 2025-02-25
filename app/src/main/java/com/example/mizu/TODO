@@ -1,12 +1,17 @@
-Onboarding Screen - OnboardingBodyMeasurementScreen:
+Onboarding Screen:
 - Update Next Button ripple Effect - Done
 - Update Next Button text - Done
 - Add Already a member, Login In button in onBoarding - Done
 - Make onBoarding Indicators more professional - Done
 - Make Background more lighter blue -  Done
+- Fix Button and Text field Scroll problem -
 - Reference:
  https://dribbble.com/shots/23815372-Onboarding-Screen-App-UI
  https://dribbble.com/shots/9912221-Onboarding-Screen-App-UI-UX-Design
 
-Onboarding Screen - OnboardingActiveScreen:
+New Onboarding Screen - Sip to Scroll + Notifications Screen
+- Make the UI - Done
+- Add the screen to Navigation Graph - Done
+- Write the permissions for notifications + overlay
 
+New Feature: Drink water to scroll instagram

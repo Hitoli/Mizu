@@ -135,3 +135,9 @@ Rapp/src/main/java/com/example/mizu/presentation_app/navmap/authNavHostingScreen
 Vapp/src/main/java/com/example/mizu/presentation_app/navmap/nav_utils/authNavScreens.kt,3\6\364180e5f987353e01e9b9eeb73e7f12db15c8da
 ƒ
 Sapp/src/main/java/com/example/mizu/presentation_app/navmap/nav_utils/nav_screens.kt,9\3\933a3cb3df4e0982fd5b1e427d5b2bb1ea3e6f4d
+¥
+uapp/src/main/java/com/example/mizu/features/onboarding/presentation/permissionScreens/onboardingReminderPermission.kt,d\1\d14f0fec7c17aa61bf5472946bf9a94c664e1972
+©
+yapp/src/main/java/com/example/mizu/features/onboarding/presentation/permissionScreens/onboardingNotificationPermission.kt,6\5\659a32aa80742761d8caa5f8f5689b1330904ff8
+Ž
+^app/src/main/java/com/example/mizu/presentation_app/navmap/nav_utils/onboarding_nav_screens.kt,2\e\2e749bdde07f6c4e4b6adb4ae2ab79647d41b897
