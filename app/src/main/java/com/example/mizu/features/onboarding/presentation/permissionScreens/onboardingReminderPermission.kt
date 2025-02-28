@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import com.example.mizu.R
 import com.example.mizu.features.onboarding.utils.OnBoardingButtons
 import com.example.mizu.features.onboarding.utils.OnboardingIndicator
+import com.example.mizu.features.onboarding.utils.SingleButton
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
@@ -109,7 +110,7 @@ fun OnboardingReminder(modifier:Modifier = Modifier, getAllow:()->Unit, onPermis
             Text(
                 text = "Reminders",
                 style = TextStyle(
-                    fontSize = 24.sp,
+                    fontSize = 18.sp,
                     fontFamily = fontFamily,
                     fontWeight = FontWeight(400),
                     color = mizuBlack,
@@ -143,31 +144,7 @@ fun OnboardingReminder(modifier:Modifier = Modifier, getAllow:()->Unit, onPermis
 //                )
 //            }
             Spacer(modifier = Modifier.height(30.dp))
-            Box(
-                modifier = Modifier
-                    .clickable(interactionSource = remember {
-                        MutableInteractionSource()
-                    }, indication = null, onClick = {
-                        getAllow()
-                    })
-                    .fillMaxWidth()
-                    .height(90.dp)
-                    .padding(horizontal = 24.dp, vertical = 20.dp)
-                    .background(waterColor, shape = RoundedCornerShape(6.dp)),
-            ) {
-                Text(
-                    text = "Allow",
-                    style = TextStyle(
-                        fontSize = 18.sp,
-                        fontFamily = fontFamily,
-                        fontWeight = FontWeight(500),
-                        color = mizuBlack,
-                        textAlign = TextAlign.Center,
-                    ), modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Center)
-                )
-            }
+            SingleButton(getNavigate = {getAllow()}, buttonName ="Allow" )
         }
     }
 }

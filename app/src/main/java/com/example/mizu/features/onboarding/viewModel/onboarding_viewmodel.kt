@@ -167,7 +167,7 @@ class OnboardingViewModel(private val onboardingRepo: OnboardingRepository) : Vi
                 userWaterIntake = onWaterAmount,
                 userName = onNameValue,
                 userHeight = onHeightValue.toInt(),
-                onBoardingCompleted = false
+                onBoardingCompleted = onboardingCompleted
             )
 
         }

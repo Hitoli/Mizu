@@ -53,13 +53,6 @@ fun OnBoardingWaterIntakeResultScreen(
     getNavigate: () -> Unit,
     getBack:()->Unit,
 ) {
-//    val permissionLauncher = rememberLauncherForActivityResult(contract = ActivityResultContracts.RequestPermission() ) {
-//        if(!it){
-//            Log.e("PERMISSION CHECK +++> ", it.toString())
-//        }
-//
-//    }
-
     Column(
         modifier = modifier
             .fillMaxSize(),

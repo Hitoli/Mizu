@@ -35,16 +35,14 @@ class BaseAppMizu:Application(){
 
     // Creates a Notification Channel to Show Notifications
     private fun createNotificationChannel(){
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
-            val channel = NotificationChannel(
-                NotificationChannelService.notificationIDWaterReminder,
-                "Water Reminders",
-                NotificationManager.IMPORTANCE_HIGH
-            )
-            channel.description =" Reminds user to drink water"
+        val channel = NotificationChannel(
+            NotificationChannelService.notificationIDWaterReminder,
+            "Water Reminders",
+            NotificationManager.IMPORTANCE_HIGH
+        )
+        channel.description =" Reminds user to drink water"
 
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
     }
 }

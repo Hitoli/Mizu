@@ -27,7 +27,6 @@ import com.example.mizu.features.onboarding.viewModel.OnboardingViewModel
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.waterColorBackground
 import com.example.mizu.ui.theme.waterColorMeter
-import com.example.mizu.presentation_app.navmap.nav_utils.NavScreens
 import com.example.mizu.presentation_app.navmap.nav_utils.OnboardingNavScreens
 import org.koin.androidx.compose.koinViewModel
 
@@ -128,9 +127,7 @@ fun OnboardingNavHostingScreen(
                     )
                 ),
                 getNavigate = {
-                    onboardingViewModel.updateUserSettings()
                     navController.navigate(OnboardingNavScreens.PremiumScreen.route)
-//                    getNavigate()
                 },
                 onWaterIntake = "${onboardingViewModel.onWaterAmount} ml",
                 getBack = {
@@ -155,7 +152,7 @@ fun OnboardingNavHostingScreen(
                         navController.navigate(OnboardingNavScreens.ActivityIntakeScreen.route)
                     }
                 },
-                getLogin={},
+                getLogin = {},
                 modifier = Modifier
                     .fillMaxSize()
                     .background(
@@ -176,7 +173,7 @@ fun OnboardingNavHostingScreen(
             )
         }
 
-        composable(route = OnboardingNavScreens.NotificationPermissionScreen.route){
+        composable(route = OnboardingNavScreens.NotificationPermissionScreen.route) {
             OnboardingNotifications(modifier = Modifier
                 .fillMaxSize()
                 .background(
@@ -186,12 +183,13 @@ fun OnboardingNavHostingScreen(
                         colors = listOf(waterColorBackground, backgroundColor2)
                     )
                 ), getAllow = {
-                              getNavigate()
-
-            },onPermissionDenied = false)
+                onboardingViewModel.updateUserSettings()
+                getNavigate()
+            }, onPermissionDenied = false
+            )
         }
 
-        composable(route = OnboardingNavScreens.ReminderPermissionScreen.route){
+        composable(route = OnboardingNavScreens.ReminderPermissionScreen.route) {
             OnboardingReminder(modifier = Modifier
                 .fillMaxSize()
                 .background(
@@ -202,11 +200,12 @@ fun OnboardingNavHostingScreen(
                     )
                 ), getAllow = {
                 navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
-            }, onPermissionDenied = false)
+            }, onPermissionDenied = false
+            )
         }
 
         composable(route = OnboardingNavScreens.PremiumScreen.route) {
-            PremiumScreen(   modifier = Modifier
+            PremiumScreen(modifier = Modifier
                 .fillMaxSize()
                 .background(
                     Brush.linearGradient(
@@ -215,7 +214,7 @@ fun OnboardingNavHostingScreen(
                         colors = listOf(waterColorMeter.copy(alpha = 0.2f), backgroundColor2)
                     )
                 ), getBack = {
-                             navController.navigateUp()
+                navController.navigateUp()
             }, getSubscribe = {
                 navController.navigate(OnboardingNavScreens.ReminderPermissionScreen.route)
             }, getSkip = {

@@ -338,8 +338,11 @@ fun BottomBarHostingScreen(
                                 end = Offset(0f, Float.POSITIVE_INFINITY),
                                 colors = listOf(backgroundColor1, backgroundColor2)
                             )
-                        ).padding(bottom = padding.calculateBottomPadding()/4,
-                            top = padding.calculateTopPadding()/8)
+                        )
+                        .padding(
+                            bottom = padding.calculateBottomPadding() / 4,
+                            top = padding.calculateTopPadding() / 8
+                        )
                 )
             }
         }
@@ -604,10 +607,10 @@ fun BottomBarLayout(
             .height(80.dp)
             .clip(
                 shape = RoundedCornerShape(
-                    topStart = 16.dp, topEnd = 16.dp
+                    topStart = 8.dp, topEnd = 8.dp
                 )
             )
-            .border(width = 1.dp, color = mizuBlack, shape = RoundedCornerShape(20.dp)),
+            .border(width = 0.5.dp, color = mizuBlack, shape = RoundedCornerShape(8.dp)),
         containerColor = mizuBlack
     ) {
         NavigationBar(containerColor = mizuBlack) {
@@ -620,7 +623,7 @@ fun BottomBarLayout(
                                 getHome(false)
                             } else if (bottomData.route == "Profile") {
                                 getHome(false)
-                            }else{
+                            } else {
                                 getHome(true)
                             }
                             popUpTo(navController.graph.findStartDestination().id) {
@@ -631,14 +634,19 @@ fun BottomBarLayout(
                         }
                     },
                     icon = {
-                        Row(modifier = Modifier.padding(vertical = 8.dp, horizontal = 2.dp)) {
+                        Row(
+                            modifier = Modifier.padding(vertical = 8.dp, horizontal = 1.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
                             Log.d("Navigation", bottomData.route)
                             Icon(
                                 imageVector = ImageVector.vectorResource(bottomData.icon),
                                 contentDescription = bottomData.route,
-                                tint = if (currentRoute == bottomData.route) mizuBlack else backgroundColor1
+                                tint = if (currentRoute == bottomData.route) mizuBlack else backgroundColor1,
+                                modifier = Modifier.size(18.dp)
                             )
-                            Spacer(modifier = Modifier.width(10.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
                             AnimatedVisibility(
                                 visible = bottomData.route == currentRoute,
                                 enter = expandHorizontally(),
@@ -648,7 +656,7 @@ fun BottomBarLayout(
                                     text = bottomData.route,
                                     modifier = Modifier,
                                     style = TextStyle(
-                                        fontSize = 16.sp,
+                                        fontSize = 14.sp,
                                         fontFamily = fontFamilyLight,
                                         fontWeight = FontWeight(200),
                                         color = mizuBlack,

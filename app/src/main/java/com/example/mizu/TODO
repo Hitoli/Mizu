@@ -12,6 +12,37 @@ Onboarding Screen:
 New Onboarding Screen - Sip to Scroll + Notifications Screen
 - Make the UI - Done
 - Add the screen to Navigation Graph - Done
+
+Onboarding Screens:
+- Fix all UI related issues - Done
+- Make everything functional
+- Add Tick Emojis in Premium screen
+- Add allow permission graphics in Reminders and Notifications screen
+- Case where permissions are denied
+- Purchasing functionality
+- Update WaterFunctionality Navigation -- save data after permissions
+
+Login and Sign up screens:
+- Fix all UI related issues
+- Make everything functional
+- Connect it with a viewmodel
+
+BottomSheet Screens:
+- Fix Navigation transition
+- Fix UI related issues
+- Make everything Functional
+- Connect everything with Local data storage
+
+
+TODO:
 - Write the permissions for notifications + overlay
 
-New Feature: Drink water to scroll instagram
+Feature:
+- Scroll to Sip
+- Calculate Water according to height and weight
+- Water tracking widget
+- Water tracking calendar
+- Backup with Backend
+- Login and Sign up flow
+- Streaks and perks
+- Water tracking

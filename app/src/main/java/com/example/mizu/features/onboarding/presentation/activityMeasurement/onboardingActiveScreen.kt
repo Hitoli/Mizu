@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -56,188 +57,195 @@ fun OnBoardingActiveScreen(
 )
 {
 
-    Column(
+    LazyColumn(
         modifier = modifier
             .fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
-        Column(
-            modifier = Modifier
-                .wrapContentSize()
-                .weight(1f)
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.SpaceAround,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                imageVector = ImageVector.vectorResource(R.drawable.acitivitymeasurement),
-                contentDescription = "onBoarding Getting Weight and Height"
-            )
-            Spacer(modifier = Modifier.height(20.dp))
-            Text(
-                text = "Calculate Amount",
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontFamily = fontFamily,
-                    fontWeight = FontWeight(600),
-                    color = mizuBlackLight,
-                    textAlign = TextAlign.Center,
-                ), modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.height(30.dp))
-            Text(
-                text = "Please Select your activity level. This helps us calculate the right amount of water",
-                style = TextStyle(
-                    fontSize = 15.sp,
-                    fontFamily = fontFamilyLight,
-                    fontWeight = FontWeight(200),
-                    color = mizuBlackLight,
-                    textAlign = TextAlign.Center,
-                ), modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-            )
-        }
-        OnboardingIndicator(onboardingNav = 1)
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-                .background(
-                    onboardingBoxColor,
-                    shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
-                )
-                .padding(20.dp),
-            verticalArrangement = Arrangement.SpaceAround,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-
-            Text(
-                text = "How Active are you?",
-                style = TextStyle(
-                    fontSize = 18.sp,
-                    fontFamily = fontFamily,
-                    fontWeight = FontWeight(400),
-                    color = mizuBlack,
-                    textAlign = TextAlign.Center,
-                ), modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.height(15.dp))
-            Box(
+        item {
+            Column(
                 modifier = Modifier
+                    .wrapContentSize()
                     .fillMaxWidth()
-                    .height(60.dp)
-                    .padding(horizontal = 20.dp, vertical = 5.dp)
-                    .border(
-                        width = 0.2.dp,
-                        color = mizuBlack.copy(alpha = 0.5f),
-                        shape = RoundedCornerShape(6.dp)
-                    )
-                    .background(
-                        if (activityMeasurementData.onActivityOutcome == 0) mizuBlack else onboardingBoxColor,
-                        shape = RoundedCornerShape(6.dp)
-                    )
-                    .clickable {
-                        getActiveOutcome(0)
-                    },
+                    .padding(horizontal = 16.dp),
+                verticalArrangement = Arrangement.SpaceAround,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Image(
+                    imageVector = ImageVector.vectorResource(R.drawable.acitivitymeasurement),
+                    contentDescription = "onBoarding Getting Weight and Height"
+                )
+                Spacer(modifier = Modifier.height(20.dp))
                 Text(
-                    text = "5-6 Days of workout",
+                    text = "Calculate Amount",
                     style = TextStyle(
                         fontSize = 16.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(400),
-                        color = if (activityMeasurementData.onActivityOutcome == 0) onboardingBoxColor else mizuBlack,
-                        textAlign = TextAlign.Center,
-                    ), modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Center)
-                )
-            }
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp)
-                    .padding(horizontal = 20.dp, vertical = 5.dp)
-                    .border(
-                        width = 0.2.dp,
-                        color = mizuBlack.copy(alpha = 0.5f),
-                        shape = RoundedCornerShape(6.dp)
-                    )
-                    .background(
-                        if (activityMeasurementData.onActivityOutcome == 1) mizuBlack else onboardingBoxColor,
-                        shape = RoundedCornerShape(6.dp)
-                    )
-                    .clickable {
-                        getActiveOutcome(1)
-                    },
-            ) {
-                Text(
-                    text = "2-3 Days of workout",
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(400),
-                        color = if (activityMeasurementData.onActivityOutcome == 1) onboardingBoxColor else mizuBlack,
-                        textAlign = TextAlign.Center,
-                    ), modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Center)
-                )
-            }
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp)
-                    .padding(horizontal = 20.dp, vertical = 5.dp)
-                    .border(
-                        width = 0.2.dp,
-                        color = mizuBlack.copy(alpha = 0.5f),
-                        shape = RoundedCornerShape(6.dp)
-                    )
-                    .background(
-                        if (activityMeasurementData.onActivityOutcome == 2) mizuBlack else onboardingBoxColor,
-                        shape = RoundedCornerShape(6.dp)
-                    )
-                    .clickable {
-                        getActiveOutcome(2)
-                    },
-            ) {
-                Text(
-                    text = "Minimal Activity",
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(400),
-                        color = if (activityMeasurementData.onActivityOutcome == 2) onboardingBoxColor else mizuBlack,
-                        textAlign = TextAlign.Center,
-                    ), modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Center)
-                )
-            }
-
-            if (activityMeasurementData.checkError) {
-
-                Text(
-                    text = activityMeasurementData.onErrorText,
-                    style = TextStyle(
-                        fontSize = 10.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(200),
-                        color = textFieldErrorColor,
+                        fontFamily = fontFamily,
+                        fontWeight = FontWeight(600),
+                        color = mizuBlackLight,
                         textAlign = TextAlign.Center,
                     ), modifier = Modifier.fillMaxWidth()
                 )
+                Spacer(modifier = Modifier.height(30.dp))
+                Text(
+                    text = "Please Select your activity level. This helps us calculate the right amount of water",
+                    style = TextStyle(
+                        fontSize = 15.sp,
+                        fontFamily = fontFamilyLight,
+                        fontWeight = FontWeight(200),
+                        color = mizuBlackLight,
+                        textAlign = TextAlign.Center,
+                    ), modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                )
             }
-
-            OnBoardingButtons(getNavigate, getBacK)
         }
+        item{
+            OnboardingIndicator(onboardingNav = 1)
+        }
+
+        item{
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        onboardingBoxColor,
+                        shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+                    )
+                    .padding(20.dp),
+                verticalArrangement = Arrangement.SpaceAround,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
+                Text(
+                    text = "How Active are you?",
+                    style = TextStyle(
+                        fontSize = 16.sp,
+                        fontFamily = fontFamily,
+                        fontWeight = FontWeight(400),
+                        color = mizuBlack,
+                        textAlign = TextAlign.Center,
+                    ), modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(modifier = Modifier.height(15.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .padding(horizontal = 20.dp, vertical = 5.dp)
+                        .border(
+                            width = 0.2.dp,
+                            color = mizuBlack.copy(alpha = 0.5f),
+                            shape = RoundedCornerShape(6.dp)
+                        )
+                        .background(
+                            if (activityMeasurementData.onActivityOutcome == 0) mizuBlack else onboardingBoxColor,
+                            shape = RoundedCornerShape(6.dp)
+                        )
+                        .clickable {
+                            getActiveOutcome(0)
+                        },
+                ) {
+                    Text(
+                        text = "5-6 Days of workout",
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            fontFamily = fontFamilyLight,
+                            fontWeight = FontWeight(400),
+                            color = if (activityMeasurementData.onActivityOutcome == 0) onboardingBoxColor else mizuBlack,
+                            textAlign = TextAlign.Center,
+                        ), modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.Center)
+                    )
+                }
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .padding(horizontal = 20.dp, vertical = 5.dp)
+                        .border(
+                            width = 0.2.dp,
+                            color = mizuBlack.copy(alpha = 0.5f),
+                            shape = RoundedCornerShape(6.dp)
+                        )
+                        .background(
+                            if (activityMeasurementData.onActivityOutcome == 1) mizuBlack else onboardingBoxColor,
+                            shape = RoundedCornerShape(6.dp)
+                        )
+                        .clickable {
+                            getActiveOutcome(1)
+                        },
+                ) {
+                    Text(
+                        text = "2-3 Days of workout",
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            fontFamily = fontFamilyLight,
+                            fontWeight = FontWeight(400),
+                            color = if (activityMeasurementData.onActivityOutcome == 1) onboardingBoxColor else mizuBlack,
+                            textAlign = TextAlign.Center,
+                        ), modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.Center)
+                    )
+                }
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .padding(horizontal = 20.dp, vertical = 5.dp)
+                        .border(
+                            width = 0.2.dp,
+                            color = mizuBlack.copy(alpha = 0.5f),
+                            shape = RoundedCornerShape(6.dp)
+                        )
+                        .background(
+                            if (activityMeasurementData.onActivityOutcome == 2) mizuBlack else onboardingBoxColor,
+                            shape = RoundedCornerShape(6.dp)
+                        )
+                        .clickable {
+                            getActiveOutcome(2)
+                        },
+                ) {
+                    Text(
+                        text = "Minimal Activity",
+                        style = TextStyle(
+                            fontSize = 16.sp,
+                            fontFamily = fontFamilyLight,
+                            fontWeight = FontWeight(400),
+                            color = if (activityMeasurementData.onActivityOutcome == 2) onboardingBoxColor else mizuBlack,
+                            textAlign = TextAlign.Center,
+                        ), modifier = Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.Center)
+                    )
+                }
+
+                if (activityMeasurementData.checkError) {
+
+                    Text(
+                        text = activityMeasurementData.onErrorText,
+                        style = TextStyle(
+                            fontSize = 10.sp,
+                            fontFamily = fontFamilyLight,
+                            fontWeight = FontWeight(200),
+                            color = textFieldErrorColor,
+                            textAlign = TextAlign.Center,
+                        ), modifier = Modifier.fillMaxWidth()
+                    )
+                }
+
+                OnBoardingButtons(getNavigate, getBacK)
+            }
+        }
+
+
+
     }
 }
 

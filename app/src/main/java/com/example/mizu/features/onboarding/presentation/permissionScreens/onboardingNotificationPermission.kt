@@ -1,5 +1,9 @@
 package com.example.mizu.features.onboarding.presentation.permissionScreens
 
+import android.os.Build
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -18,6 +22,8 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,9 +37,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
+import com.example.mizu.Manifest
 import com.example.mizu.R
 import com.example.mizu.features.onboarding.utils.OnBoardingButtons
 import com.example.mizu.features.onboarding.utils.OnboardingIndicator
+import com.example.mizu.features.onboarding.utils.SingleButton
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.fontFamilyLight
@@ -45,7 +54,19 @@ import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.ui.theme.waterColorBackground
 
 @Composable
-fun OnboardingNotifications(modifier:Modifier = Modifier,  getAllow:()->Unit, onPermissionDenied:Boolean) {
+fun OnboardingNotifications(
+    modifier: Modifier = Modifier,
+    getAllow: () -> Unit,
+    onPermissionDenied: Boolean
+) {
+
+    val permissionLauncher =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.RequestPermission()) {
+            if (!it) {
+                Log.e("PERMISSION CHECK +++> ", it.toString())
+            }
+
+        }
 
     Column(
         modifier = modifier
@@ -66,7 +87,7 @@ fun OnboardingNotifications(modifier:Modifier = Modifier,  getAllow:()->Unit, on
             Image(
                 imageVector = ImageVector.vectorResource(R.drawable.bg_notification),
                 contentDescription = "Notification Permission Background",
-                modifier= Modifier.size(180.dp)
+                modifier = Modifier.size(180.dp)
             )
             Spacer(modifier = Modifier.height(20.dp))
             Text(
@@ -109,7 +130,7 @@ fun OnboardingNotifications(modifier:Modifier = Modifier,  getAllow:()->Unit, on
             Text(
                 text = "Notifications",
                 style = TextStyle(
-                    fontSize = 24.sp,
+                    fontSize = 16.sp,
                     fontFamily = fontFamily,
                     fontWeight = FontWeight(400),
                     color = mizuBlack,
@@ -144,31 +165,14 @@ fun OnboardingNotifications(modifier:Modifier = Modifier,  getAllow:()->Unit, on
 //            }
 
             Spacer(modifier = Modifier.height(30.dp))
-            Box(
-                modifier = Modifier
-                    .clickable(interactionSource = remember {
-                        MutableInteractionSource()
-                    }, indication = null, onClick = {
-                        getAllow()
-                    })
-                    .fillMaxWidth()
-                    .height(90.dp)
-                    .padding(horizontal = 24.dp, vertical = 20.dp)
-                    .background(waterColor, shape = RoundedCornerShape(6.dp)),
-            ) {
-                Text(
-                    text = "Allow",
-                    style = TextStyle(
-                        fontSize = 18.sp,
-                        fontFamily = fontFamily,
-                        fontWeight = FontWeight(500),
-                        color = mizuBlack,
-                        textAlign = TextAlign.Center,
-                    ), modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Center)
-                )
-            }
+            SingleButton(getNavigate = {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//                    permissionLauncher.launch(Manifest.permission.Re)
+//                }
+                getAllow()
+
+            }, buttonName = "Allow")
+
         }
     }
 }
@@ -184,5 +188,6 @@ fun PreviewOnboardingNotificationsPermission() {
                 end = Offset(0f, Float.POSITIVE_INFINITY),
                 colors = listOf(waterColorBackground, backgroundColor2)
             )
-        ), getAllow = {},onPermissionDenied = false)
+        ), getAllow = {}, onPermissionDenied = false
+    )
 }
