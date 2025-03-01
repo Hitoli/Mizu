@@ -57,6 +57,9 @@ class OnboardingViewModel(private val onboardingRepo: OnboardingRepository) : Vi
     var onActivityLevelError by mutableStateOf("")
         private set
 
+    var onNotificationPermissionDenied by mutableStateOf<Boolean?>(null)
+        private set
+
 
     init {
         viewModelScope.launch {
@@ -67,6 +70,10 @@ class OnboardingViewModel(private val onboardingRepo: OnboardingRepository) : Vi
             getUserSettings()
         }
 
+    }
+
+    fun updatePermissionNotification(permission:Boolean){
+        onNotificationPermissionDenied = permission
     }
 
     fun checkBodyMeasurementsFields() {
@@ -159,15 +166,15 @@ class OnboardingViewModel(private val onboardingRepo: OnboardingRepository) : Vi
     }
 
 
-    fun updateUserSettings() {
-        onboardingCompleted = true
+    fun updateUserSettings(onBoardingCompleted:Boolean) {
+
         viewModelScope.launch {
             onboardingRepo.updateUserSettingsStore(
                 userWeight = onWeightValue.toInt(),
                 userWaterIntake = onWaterAmount,
                 userName = onNameValue,
                 userHeight = onHeightValue.toInt(),
-                onBoardingCompleted = onboardingCompleted
+                onBoardingCompleted = onBoardingCompleted
             )
 
         }
@@ -193,9 +200,10 @@ class OnboardingViewModel(private val onboardingRepo: OnboardingRepository) : Vi
             onBoardingScreensRoutes = if (!_userSettings.registrationCompleted) {
                 NavScreens.OnboardingNavHostingScreen.route
             } else {
-                NavScreens.BottomNavHostingScreen.route
+                NavScreens.AuthNavHostingScreen.route
 
             }
+            // Add check for Auth screens and Bottom Screens
             println("streakScore Onboarding getUserSettings ${it}")
         }
 

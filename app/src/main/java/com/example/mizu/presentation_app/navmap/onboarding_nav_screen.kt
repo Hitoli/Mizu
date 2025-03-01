@@ -127,6 +127,7 @@ fun OnboardingNavHostingScreen(
                     )
                 ),
                 getNavigate = {
+                    onboardingViewModel.updateUserSettings(false)
                     navController.navigate(OnboardingNavScreens.PremiumScreen.route)
                 },
                 onWaterIntake = "${onboardingViewModel.onWaterAmount} ml",
@@ -183,9 +184,10 @@ fun OnboardingNavHostingScreen(
                         colors = listOf(waterColorBackground, backgroundColor2)
                     )
                 ), getAllow = {
-                onboardingViewModel.updateUserSettings()
                 getNavigate()
-            }, onPermissionDenied = false
+            }, onPermissionDenied = onboardingViewModel.onNotificationPermissionDenied?:false, getPermissionDenied = {
+                onboardingViewModel.updatePermissionNotification(it)
+            }
             )
         }
 

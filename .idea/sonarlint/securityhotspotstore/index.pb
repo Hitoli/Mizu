@@ -141,5 +141,5 @@ uapp/src/main/java/com/example/mizu/features/onboarding/presentation/permissionS
 yapp/src/main/java/com/example/mizu/features/onboarding/presentation/permissionScreens/onboardingNotificationPermission.kt,6\5\659a32aa80742761d8caa5f8f5689b1330904ff8
 Ž
 ^app/src/main/java/com/example/mizu/presentation_app/navmap/nav_utils/onboarding_nav_screens.kt,2\e\2e749bdde07f6c4e4b6adb4ae2ab79647d41b897
-|
-Lapp/src/main/java/com/example/mizu/features/onboarding/utils/singleButton.kt,9\5\9590082f9c930c2fd8cf89d8bf9451004d99b661
+‹
+[app/src/main/java/com/example/mizu/features/onboarding/utils/permissionDeniedAlertDialog.kt,f\1\f143bbc0c460162139704a000c1262ecf5560322

@@ -108,6 +108,7 @@ fun NavScreen(
                         inclusive = true
                     }
                 }
+                OnboardingViewModel.updateUserSettings(true)
             }, onboardingViewModel = OnboardingViewModel)
         }
         composable(route = NavScreens.SplashNavHostingScreen.route) {

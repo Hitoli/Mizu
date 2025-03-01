@@ -1,6 +1,10 @@
 package com.example.mizu.features.onboarding.presentation.permissionScreens
 
+import android.Manifest
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
+import android.provider.Settings
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -22,14 +26,17 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -38,10 +45,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
-import com.example.mizu.Manifest
 import com.example.mizu.R
 import com.example.mizu.features.onboarding.utils.OnBoardingButtons
 import com.example.mizu.features.onboarding.utils.OnboardingIndicator
+import com.example.mizu.features.onboarding.utils.PermissionDeniedAlertDialog
 import com.example.mizu.features.onboarding.utils.SingleButton
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
@@ -57,16 +64,56 @@ import com.example.mizu.ui.theme.waterColorBackground
 fun OnboardingNotifications(
     modifier: Modifier = Modifier,
     getAllow: () -> Unit,
-    onPermissionDenied: Boolean
+    onPermissionDenied: Boolean,
+    getPermissionDenied: (Boolean) -> Unit
 ) {
-
+    var showPermissionDialog by remember {
+        mutableStateOf(false)
+    }
+    var context = LocalContext.current
     val permissionLauncher =
         rememberLauncherForActivityResult(contract = ActivityResultContracts.RequestPermission()) {
-            if (!it) {
-                Log.e("PERMISSION CHECK +++> ", it.toString())
+            Log.e("Notification Permission: ", it.toString())
+            getPermissionDenied(it)
+            if (it) {
+                getAllow()
+            } else {
+                showPermissionDialog = true
             }
-
         }
+
+    if (showPermissionDialog) {
+        PermissionDeniedAlertDialog(
+            getDismissButton = {
+                showPermissionDialog = false
+                getAllow()
+                Log.e("DISMISS BUTTON", "Dismiss")
+            },
+            getConfirmButton = {
+               val intent =  Intent(
+                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts(
+                        "package",
+                        context.packageName, null
+                    )
+                )
+                context.startActivity(intent)
+                Log.e("CONFIRM BUTTON", "Confirm")
+            },
+            getAppSettings = {
+              val intent =   Intent(
+                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts(
+                        "package",
+                        context.packageName, null
+                    )
+                )
+                context.startActivity(intent)
+                Log.e("GET TO APP SETTINGS", "App Settings")
+            },
+            onPermissionTitle = "Notification Permission",
+            onPermissionText = "It seems you permanently denied Notification Permission. Notifications are necessary to remind of your water breaks. You can go into settings to grant it",
+            onPermanentlyDenied = onPermissionDenied,
+        )
+    }
 
     Column(
         modifier = modifier
@@ -166,11 +213,9 @@ fun OnboardingNotifications(
 
             Spacer(modifier = Modifier.height(30.dp))
             SingleButton(getNavigate = {
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//                    permissionLauncher.launch(Manifest.permission.Re)
-//                }
-                getAllow()
-
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
             }, buttonName = "Allow")
 
         }
@@ -180,14 +225,15 @@ fun OnboardingNotifications(
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun PreviewOnboardingNotificationsPermission() {
-    OnboardingNotifications(modifier = Modifier
-        .fillMaxSize()
-        .background(
-            Brush.linearGradient(
-                start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
-                end = Offset(0f, Float.POSITIVE_INFINITY),
-                colors = listOf(waterColorBackground, backgroundColor2)
-            )
-        ), getAllow = {}, onPermissionDenied = false
+    OnboardingNotifications(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Brush.linearGradient(
+                    start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                    end = Offset(0f, Float.POSITIVE_INFINITY),
+                    colors = listOf(waterColorBackground, backgroundColor2)
+                )
+            ), getAllow = {}, onPermissionDenied = false, getPermissionDenied = {}
     )
 }

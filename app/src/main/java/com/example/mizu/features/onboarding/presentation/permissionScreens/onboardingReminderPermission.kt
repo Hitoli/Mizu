@@ -1,5 +1,8 @@
 package com.example.mizu.features.onboarding.presentation.permissionScreens
 
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -18,12 +21,14 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -46,7 +51,16 @@ import com.example.mizu.ui.theme.waterColor
 import com.example.mizu.ui.theme.waterColorBackground
 
 @Composable
-fun OnboardingReminder(modifier:Modifier = Modifier, getAllow:()->Unit, onPermissionDenied:Boolean) {
+fun OnboardingReminder(
+    modifier: Modifier = Modifier,
+    getAllow: () -> Unit,
+    onPermissionDenied: Boolean
+) {
+    val context = LocalContext.current
+
+//    LaunchedEffect(!Settings.canDrawOverlays(context)) {
+//        getAllow()
+//    }
 
     Column(
         modifier = modifier
@@ -144,7 +158,17 @@ fun OnboardingReminder(modifier:Modifier = Modifier, getAllow:()->Unit, onPermis
 //                )
 //            }
             Spacer(modifier = Modifier.height(30.dp))
-            SingleButton(getNavigate = {getAllow()}, buttonName ="Allow" )
+            SingleButton(getNavigate = {
+                if (!Settings.canDrawOverlays(context)) {
+                    val intent = Intent(
+                        Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.fromParts("package", context.packageName, null)
+                    )
+                    context.startActivity(intent)
+                }else{
+                    getAllow()
+                }
+            }, buttonName = "Allow")
         }
     }
 }
@@ -152,13 +176,15 @@ fun OnboardingReminder(modifier:Modifier = Modifier, getAllow:()->Unit, onPermis
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun PreviewOnboardingReminderPermission() {
-    OnboardingReminder(modifier = Modifier
-        .fillMaxSize()
-        .background(
-            Brush.linearGradient(
-                start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
-                end = Offset(0f, Float.POSITIVE_INFINITY),
-                colors = listOf(waterColorBackground, backgroundColor2)
-            )
-        ), getAllow = {},onPermissionDenied = false)
+    OnboardingReminder(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Brush.linearGradient(
+                    start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+                    end = Offset(0f, Float.POSITIVE_INFINITY),
+                    colors = listOf(waterColorBackground, backgroundColor2)
+                )
+            ), getAllow = {}, onPermissionDenied = false
+    )
 }

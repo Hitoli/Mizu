@@ -26,6 +26,7 @@ Login and Sign up screens:
 - Fix all UI related issues
 - Make everything functional
 - Connect it with a viewmodel
+- Make sure to check if the user is Logged in then open the bottom screens
 
 BottomSheet Screens:
 - Fix Navigation transition
