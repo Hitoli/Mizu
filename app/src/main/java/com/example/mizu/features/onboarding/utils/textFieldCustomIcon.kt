@@ -27,6 +27,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,7 +43,7 @@ import com.example.mizu.ui.theme.textFieldErrorColor
 import com.example.mizu.ui.theme.waterColorMeter
 
 @Composable
-fun TextFieldCustom(
+fun TextFieldCustomIcon(
     modifier: Modifier = Modifier,
     onTextChange: String,
     checkError: Boolean,
@@ -51,6 +52,7 @@ fun TextFieldCustom(
     onLabelText:String,
     getTextChange: (String) -> Unit,
     onImeAction: ImeAction,
+    onTrailingIcon:@Composable ()->Unit,
     visualTransformation: VisualTransformation? = null,
     onKeyboardType: KeyboardType? = null
 ) {
@@ -58,7 +60,8 @@ fun TextFieldCustom(
 
     Column(
         modifier = modifier
-            .fillMaxWidth().wrapContentSize(),
+            .fillMaxWidth()
+            .wrapContentSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -67,7 +70,8 @@ fun TextFieldCustom(
             onValueChange = { getTextChange(it) },
             modifier = Modifier
                 .wrapContentSize()
-                .fillMaxWidth().padding(0.dp),
+                .fillMaxWidth()
+                .padding(0.dp),
             isError = checkError,
             maxLines = 1,
             shape = RoundedCornerShape(10.dp),
@@ -108,6 +112,7 @@ fun TextFieldCustom(
                     )
                 )
             },
+            visualTransformation = visualTransformation?:VisualTransformation.None,
             textStyle = TextStyle(
                 fontSize = 14.sp,
                 fontFamily = fontFamilyLight,
@@ -119,7 +124,9 @@ fun TextFieldCustom(
                 keyboardType = onKeyboardType?:KeyboardType.Unspecified,
                 imeAction = onImeAction
             ),
-            visualTransformation = visualTransformation?:VisualTransformation.None,
+            trailingIcon = {
+                onTrailingIcon()
+            }
         )
         if (checkError){
             Spacer(modifier = Modifier.height(10.dp))
@@ -140,17 +147,17 @@ fun TextFieldCustom(
 
 @Preview(showSystemUi = false, showBackground = true)
 @Composable
-fun PreviewTextField() {
+fun PreviewTextFieldIcon() {
     var text by remember {
         mutableStateOf("")
     }
-    TextFieldCustom(
+    TextFieldCustomIcon(
         onTextChange = text,
         checkError = false,
         onErrorText = "TextError",
         onPlaceHolderText = "Enter the Text",
         getTextChange = {
             text = it
-        }, onLabelText = "Text", onImeAction = ImeAction.Done
+        }, onLabelText = "Text", onImeAction = ImeAction.Done, onTrailingIcon = {}
     )
 }

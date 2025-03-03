@@ -32,6 +32,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -154,7 +155,8 @@ fun OnBoardingBodyMeasurementsScreen(
                     onPlaceHolderText = "Enter Weight in Kgs",
                     getTextChange = getWeightChange,
                     onLabelText = "Weight",
-                    onImeAction = ImeAction.Next
+                    onImeAction = ImeAction.Next,
+                    onKeyboardType = KeyboardType.Number
                 )
                 Spacer(modifier = Modifier.height(6.dp))
 
@@ -165,7 +167,8 @@ fun OnBoardingBodyMeasurementsScreen(
                     onPlaceHolderText = "Enter Height in Cms",
                     getTextChange = getHeightChange,
                     onLabelText = "Height",
-                    onImeAction = ImeAction.Done
+                    onImeAction = ImeAction.Done,
+                    onKeyboardType = KeyboardType.Number
                 )
 
                 Spacer(modifier = Modifier.height(25.dp))

@@ -6,5 +6,5 @@ data class LoginData(
     val onEmailError:String,
     val onPasswordError:String,
     val onEmailCheckError:Boolean,
-    val onPasswordCheckError:Boolean
+    val onPasswordCheckError:Boolean,
 )
