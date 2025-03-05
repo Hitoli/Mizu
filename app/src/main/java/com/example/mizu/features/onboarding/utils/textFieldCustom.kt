@@ -116,7 +116,7 @@ fun TextFieldCustom(
                 textAlign = TextAlign.Start
             ),
             keyboardOptions = KeyboardOptions(
-                keyboardType = onKeyboardType?:KeyboardType.Unspecified,
+                keyboardType = onKeyboardType?:KeyboardType.Text,
                 imeAction = onImeAction
             ),
             visualTransformation = visualTransformation?:VisualTransformation.None,

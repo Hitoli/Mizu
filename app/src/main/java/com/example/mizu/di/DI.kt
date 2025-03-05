@@ -1,5 +1,7 @@
 package com.example.mizu.di
 
+import com.example.mizu.features.authscreen.presentation.login.LoginViewModel
+import com.example.mizu.features.authscreen.presentation.signup.SignUpViewModel
 import com.example.mizu.features.calendarscreen.view_model.CalendarViewModel
 import com.example.mizu.features.homescreen.view_model.HomeViewModel
 import com.example.mizu.features.onboarding.viewModel.OnboardingViewModel
@@ -13,10 +15,10 @@ val DIModule = module {
         OnboardingRepository(get())
     }
     viewModel { OnboardingViewModel(get()) }
-    viewModel{HomeViewModel(get(),androidApplication())}
-    viewModel{ CalendarViewModel(get()) }
-
-
+    viewModel { HomeViewModel(get(), androidApplication()) }
+    viewModel { CalendarViewModel(get()) }
+    viewModel { LoginViewModel() }
+    viewModel { SignUpViewModel() }
 
 
 }

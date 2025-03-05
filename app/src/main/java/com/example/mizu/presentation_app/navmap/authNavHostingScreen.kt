@@ -15,7 +15,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.mizu.features.authscreen.presentation.login.LoginScreen
+import com.example.mizu.features.authscreen.presentation.login.LoginViewModel
 import com.example.mizu.features.authscreen.presentation.signup.SignUpScreen
+import com.example.mizu.features.authscreen.presentation.signup.SignUpViewModel
 import com.example.mizu.features.authscreen.utils.LoginData
 import com.example.mizu.features.authscreen.utils.SignUpData
 import com.example.mizu.features.homescreen.view_model.HomeViewModel
@@ -23,12 +25,15 @@ import com.example.mizu.presentation_app.navmap.nav_utils.AuthNavScreens
 import com.example.mizu.presentation_app.navmap.nav_utils.OnboardingNavScreens
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.waterColorBackground
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AuthNavHostingScreen(
     modifier: Modifier = Modifier,
-    getNavigate:()->Unit,
-    navHostController: NavHostController = rememberNavController()
+    getNavigate: () -> Unit,
+    navHostController: NavHostController = rememberNavController(),
+    loginViewModel: LoginViewModel = koinViewModel(),
+    signUpViewModel: SignUpViewModel = koinViewModel(),
 ) {
 
     NavHost(
@@ -62,20 +67,31 @@ fun AuthNavHostingScreen(
         composable(route = AuthNavScreens.LoginScreen.route) {
             LoginScreen(
                 loginData = LoginData(
-                    onEmailError = "",
-                    onEmail = "",
-                    onPasswordError = "",
-                    onPassword = "",
-                    onPasswordCheckError = false,
-                    onEmailCheckError = false
+                    onEmailError = loginViewModel.onEmailError,
+                    onEmail = loginViewModel.onEmail,
+                    onPasswordError = loginViewModel.onPasswordError,
+                    onPassword = loginViewModel.onPassword,
+                    onPasswordCheckError = loginViewModel.onPasswordErrorCheck,
+                    onEmailCheckError = loginViewModel.onEmailErrorCheck
                 ),
-                getEmailChange = {},
-                getPasswordChange = {},
-                getLogin = {
-                           getNavigate()
+                getEmailChange = {
+                    loginViewModel.getEmail(it)
                 },
-                getForgotPassword = { /*TODO*/ },
-                getLoginWithGoogle = { /*TODO*/ }, getSignUpNavigate = {
+                getPasswordChange = {
+                    loginViewModel.getPassword(it)
+                },
+                getLogin = {
+                    loginViewModel.checkLoginValidation()
+                    if (!loginViewModel.onEmailErrorCheck && !loginViewModel.onPasswordErrorCheck) {
+                        getNavigate()
+                    }
+                },
+                getForgotPassword = {
+                    loginViewModel.forgotPassword()
+                },
+                getLoginWithGoogle = {
+                    loginViewModel.loginWithGoogle()
+                }, getSignUpNavigate = {
                     navHostController.navigate(AuthNavScreens.SignUpScreen.route)
                 }, modifier = Modifier
                     .fillMaxSize()
@@ -91,25 +107,38 @@ fun AuthNavHostingScreen(
         composable(route = AuthNavScreens.SignUpScreen.route) {
             SignUpScreen(
                 signUpData = SignUpData(
-                    onEmailCheckError = false,
-                    onPasswordCheckError = false,
-                    onPassword = "",
-                    onPasswordError = "",
-                    onEmailError = "",
-                    onEmail = "",
-                    onConfirmPasswordError = "",
-                    onConfirmPassword = "",
-                    onConfirmPasswordCheckError = false
+                    onEmailCheckError = signUpViewModel.onEmailErrorCheck,
+                    onPasswordCheckError = signUpViewModel.onPasswordErrorCheck,
+                    onPassword = signUpViewModel.onPassword,
+                    onPasswordError = signUpViewModel.onPasswordError,
+                    onEmailError = signUpViewModel.onEmailError,
+                    onEmail = signUpViewModel.onEmail,
+                    onConfirmPasswordError = signUpViewModel.onConfirmPasswordError,
+                    onConfirmPassword = signUpViewModel.onConfirmPassword,
+                    onConfirmPasswordCheckError = signUpViewModel.onConfirmPasswordErrorCheck
                 ),
-                getEmailChange = {},
-                getPasswordChange = {},
-                getConfirmPasswordChange = {},
-                getSignUp = {
-                    getNavigate()
+                getEmailChange = {
+                    signUpViewModel.getEmail(it)
                 },
-                getSignUpWithGoogle = { /*TODO*/ }, getLoginInNavigate = {
+                getPasswordChange = {
+                    signUpViewModel.getPassword(it)
+                },
+                getConfirmPasswordChange = {
+                    signUpViewModel.getConfirmPassword(it)
+                },
+                getSignUp = {
+                    signUpViewModel.checkLoginValidation()
+                    if (!signUpViewModel.onEmailErrorCheck && !signUpViewModel.onPasswordErrorCheck && !signUpViewModel.onConfirmPasswordErrorCheck) {
+                        getNavigate()
+                    }
+                },
+                getSignUpWithGoogle = {
+                    signUpViewModel.getSignUpWithGoogle()
+                },
+                getLoginInNavigate = {
                     navHostController.navigate(AuthNavScreens.LoginScreen.route)
-                }, modifier = Modifier
+                },
+                modifier = Modifier
                     .fillMaxSize()
                     .background(
                         Brush.linearGradient(
