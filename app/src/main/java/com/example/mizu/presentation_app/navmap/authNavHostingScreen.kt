@@ -6,10 +6,10 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,9 +20,7 @@ import com.example.mizu.features.authscreen.presentation.signup.SignUpScreen
 import com.example.mizu.features.authscreen.presentation.signup.SignUpViewModel
 import com.example.mizu.features.authscreen.utils.LoginData
 import com.example.mizu.features.authscreen.utils.SignUpData
-import com.example.mizu.features.homescreen.view_model.HomeViewModel
 import com.example.mizu.presentation_app.navmap.nav_utils.AuthNavScreens
-import com.example.mizu.presentation_app.navmap.nav_utils.OnboardingNavScreens
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.waterColorBackground
 import org.koin.androidx.compose.koinViewModel
@@ -37,6 +35,7 @@ fun AuthNavHostingScreen(
 ) {
 
     NavHost(
+        modifier = modifier,
         navController = navHostController,
         startDestination = AuthNavScreens.LoginScreen.route,
         enterTransition = {
@@ -99,7 +98,7 @@ fun AuthNavHostingScreen(
                         Brush.linearGradient(
                             start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                             end = Offset(0f, Float.POSITIVE_INFINITY),
-                            colors = listOf(waterColorBackground, backgroundColor2)
+                            colors = mutableStateListOf(waterColorBackground, backgroundColor2)
                         )
                     )
             )
@@ -144,7 +143,7 @@ fun AuthNavHostingScreen(
                         Brush.linearGradient(
                             start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                             end = Offset(0f, Float.POSITIVE_INFINITY),
-                            colors = listOf(waterColorBackground, backgroundColor2)
+                            colors = mutableStateListOf(waterColorBackground, backgroundColor2)
                         )
                     )
             )

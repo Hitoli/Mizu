@@ -6,6 +6,7 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -71,7 +72,7 @@ fun OnboardingNavHostingScreen(
                     Brush.linearGradient(
                         start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                         end = Offset(0f, Float.POSITIVE_INFINITY),
-                        colors = listOf(waterColorBackground, backgroundColor2)
+                        colors = mutableStateListOf(waterColorBackground, backgroundColor2)
                     )
                 ), getNavigate = {
                 navController.navigate(OnboardingNavScreens.WaterIntakeResultScreen.route) {
@@ -88,7 +89,7 @@ fun OnboardingNavHostingScreen(
                     Brush.linearGradient(
                         start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                         end = Offset(0f, Float.POSITIVE_INFINITY),
-                        colors = listOf(waterColorBackground, backgroundColor2)
+                        colors = mutableStateListOf(waterColorBackground, backgroundColor2)
                     )
                 ),
                 getActiveOutcome = {
@@ -123,7 +124,7 @@ fun OnboardingNavHostingScreen(
                     Brush.linearGradient(
                         start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                         end = Offset(0f, Float.POSITIVE_INFINITY),
-                        colors = listOf(waterColorBackground, backgroundColor2)
+                        colors = mutableStateListOf(waterColorBackground, backgroundColor2)
                     )
                 ),
                 getNavigate = {
@@ -160,7 +161,7 @@ fun OnboardingNavHostingScreen(
                         Brush.linearGradient(
                             start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                             end = Offset(0f, Float.POSITIVE_INFINITY),
-                            colors = listOf(waterColorBackground, backgroundColor2)
+                            colors = mutableStateListOf(waterColorBackground, backgroundColor2)
                         )
                     ),
                 bodyMeasurementData = BodyMeasurementData(
@@ -181,7 +182,7 @@ fun OnboardingNavHostingScreen(
                     Brush.linearGradient(
                         start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                         end = Offset(0f, Float.POSITIVE_INFINITY),
-                        colors = listOf(waterColorBackground, backgroundColor2)
+                        colors = mutableStateListOf(waterColorBackground, backgroundColor2)
                     )
                 ), getAllow = {
                 getNavigate()
@@ -198,7 +199,7 @@ fun OnboardingNavHostingScreen(
                     Brush.linearGradient(
                         start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                         end = Offset(0f, Float.POSITIVE_INFINITY),
-                        colors = listOf(waterColorBackground, backgroundColor2)
+                        colors = mutableStateListOf(waterColorBackground, backgroundColor2)
                     )
                 ), getAllow = {
                 navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
@@ -213,7 +214,7 @@ fun OnboardingNavHostingScreen(
                     Brush.linearGradient(
                         start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                         end = Offset(0f, Float.POSITIVE_INFINITY),
-                        colors = listOf(waterColorMeter.copy(alpha = 0.2f), backgroundColor2)
+                        colors = mutableStateListOf(waterColorMeter.copy(alpha = 0.2f), backgroundColor2)
                     )
                 ), getBack = {
                 navController.navigateUp()
@@ -223,7 +224,7 @@ fun OnboardingNavHostingScreen(
                 navController.navigate(OnboardingNavScreens.ReminderPermissionScreen.route)
             }, onPremiumData = PremiumData(
                 onMonthlyPrice = "29.9", onLifeTimePrice = "99.9", onListOfPremiumBenefits =
-                listOf(
+                mutableStateListOf(
                     "Get Access to Home Screen Widget",
                     "Set Custom Daily Reminders",
                     "Advanced Tracking and Analytics",

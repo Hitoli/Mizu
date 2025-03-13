@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -80,7 +81,7 @@ fun NavScreen(
                 getGreeting = {
                     homeViewModel.getGreeting();
                 },
-                items = listOf(50, 100, 200, 300, 400, 500),
+                items = mutableStateListOf(50, 100, 200, 300, 400, 500),
                 streakImages = homeViewModel.perks,
                 onMonth = caledarViewModel.onMonth,
                 onWaterGoals = caledarViewModel.onWaterGoals,
@@ -119,7 +120,7 @@ fun NavScreen(
                         Brush.linearGradient(
                             start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                             end = Offset(0f, Float.POSITIVE_INFINITY),
-                            colors = listOf(waterColorBackground, backgroundColor2)
+                            colors = mutableStateListOf(waterColorBackground, backgroundColor2)
                         )
                     )
             )

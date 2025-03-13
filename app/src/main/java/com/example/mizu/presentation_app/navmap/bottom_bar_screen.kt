@@ -47,6 +47,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -64,6 +65,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.util.fastForEachIndexed
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -81,7 +83,6 @@ import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamilyLight
 import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.waterColor
-import com.example.mizu.ui.theme.waterColorMeter
 import com.example.mizu.presentation_app.navmap.nav_utils.BottomNavScreens
 import com.example.mizu.utils.calendar_utils.WaterGoals
 import kotlinx.coroutines.delay
@@ -134,7 +135,7 @@ fun BottomBarHostingScreen(
         mutableStateOf(false)
     }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true);
-    val navItems = listOf<BottomNavScreens>(
+    val navItems = mutableStateListOf<BottomNavScreens>(
         BottomNavScreens.HomeScreen,
         BottomNavScreens.CalendarScreen,
         BottomNavScreens.ProfileScreen
@@ -280,7 +281,7 @@ fun BottomBarHostingScreen(
                             Brush.linearGradient(
                                 start = Offset(Float.POSITIVE_INFINITY, 0f),
                                 end = Offset(0f, Float.POSITIVE_INFINITY),
-                                colors = listOf(backgroundColor1, backgroundColor2)
+                                colors = mutableStateListOf(backgroundColor1, backgroundColor2)
                             )
                         )
                 )
@@ -295,7 +296,7 @@ fun BottomBarHostingScreen(
                             Brush.linearGradient(
                                 start = Offset(Float.POSITIVE_INFINITY, 0f),
                                 end = Offset(0f, Float.POSITIVE_INFINITY),
-                                colors = listOf(backgroundColor1, backgroundColor2)
+                                colors = mutableStateListOf(backgroundColor1, backgroundColor2)
                             )
                         ),
                     onPad = padding,
@@ -336,7 +337,7 @@ fun BottomBarHostingScreen(
                             Brush.linearGradient(
                                 start = Offset(Float.POSITIVE_INFINITY, 0f),
                                 end = Offset(0f, Float.POSITIVE_INFINITY),
-                                colors = listOf(backgroundColor1, backgroundColor2)
+                                colors = mutableStateListOf(backgroundColor1, backgroundColor2)
                             )
                         )
                         .padding(
@@ -454,7 +455,7 @@ fun WaterCarouselSheet(
                                     )
                                     .clickable {
                                         getSelected(index)
-                                        println("Target Water ${items[index]}")
+                                        Log.d("Target Water ", items[index].toString())
                                     },
                                 style = TextStyle(
                                     fontSize = if (index == selected) 40.sp else 30.sp,
@@ -481,7 +482,6 @@ fun WaterCarouselSheet(
                         getWaterAddSheet(false)
                         getSelected(-1)
                     }
-                    println("Selected => ${selected}")
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -600,8 +600,8 @@ fun BottomBarLayout(
     navScreens: List<BottomNavScreens>,
     getHome: (Boolean) -> Unit
 ) {
-    val navBackStackentry by navController.currentBackStackEntryAsState();
-    val currentRoute = navBackStackentry?.destination?.route
+    val navBackStackEntry by navController.currentBackStackEntryAsState();
+    val currentRoute = navBackStackEntry?.destination?.route
     BottomAppBar(
         modifier = Modifier
             .height(80.dp)
@@ -614,17 +614,21 @@ fun BottomBarLayout(
         containerColor = mizuBlack
     ) {
         NavigationBar(containerColor = mizuBlack) {
-            navScreens.forEachIndexed { index, bottomData ->
+            navScreens.fastForEachIndexed { _, bottomData ->
                 NavigationBarItem(
                     selected = bottomData.route == currentRoute,
                     onClick = {
                         navController.navigate(bottomData.route) {
-                            if (bottomData.route == "Track") {
-                                getHome(false)
-                            } else if (bottomData.route == "Profile") {
-                                getHome(false)
-                            } else {
-                                getHome(true)
+                            when (bottomData.route) {
+                                "Track" -> {
+                                    getHome(false)
+                                }
+                                "Profile" -> {
+                                    getHome(false)
+                                }
+                                else -> {
+                                    getHome(true)
+                                }
                             }
                             popUpTo(navController.graph.findStartDestination().id) {
                                 saveState = true
@@ -692,7 +696,7 @@ fun PreviewBottomBarHostingScreen() {
                 Brush.linearGradient(
                     start = Offset(Float.POSITIVE_INFINITY, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY),
-                    colors = listOf(backgroundColor1, backgroundColor2)
+                    colors = mutableStateListOf(backgroundColor1, backgroundColor2)
                 )
             ),
         navController = navController,
@@ -709,13 +713,13 @@ fun PreviewBottomBarHostingScreen() {
         getStreak = {},
         onTime = "Goodmorning",
         getGreeting = {},
-        items = listOf(50, 100, 200, 300, 400, 500),
+        items = mutableStateListOf(50, 100, 200, 300, 400, 500),
         getUpdateTotalWaterTrackingAmount = {},
-        streakImages = listOf(R.drawable.day2, R.drawable.day1),
+        streakImages = mutableStateListOf(R.drawable.day2, R.drawable.day1),
         onMonth = "",
-        onWaterGoals = listOf(),
-        calendarList = mutableListOf(
-            listOf(Color.Black)
+        onWaterGoals = mutableStateListOf(),
+        calendarList = mutableStateListOf(
+            mutableStateListOf(Color.Black)
         ),
         getSelected = {},
         getProfileClick = {},

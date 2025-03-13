@@ -24,6 +24,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -65,7 +66,7 @@ fun ProfileScreen(
     ) {
         Box(
             modifier = Modifier
-                .background(backgroundColor2, shape = RoundedCornerShape(100.dp))
+                .background(color = backgroundColor2, shape = RoundedCornerShape(100.dp))
                 .width(150.dp)
                 .height(150.dp)
                 .border(
@@ -256,7 +257,7 @@ fun PreviewProfileScreen() {
                 Brush.linearGradient(
                     start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY),
-                    colors = listOf(waterColorMeter.copy(alpha = 0.1f), backgroundColor2)
+                    colors = mutableStateListOf(waterColorMeter.copy(alpha = 0.1f), backgroundColor2)
                 )
             ),
         getBack = {},

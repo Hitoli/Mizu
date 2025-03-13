@@ -20,6 +20,10 @@ class Utils {
             return this
         }
 
+        fun logIt(tag:String, message:String){
+            Log.e(tag,message)
+        }
+
 
     }
 
