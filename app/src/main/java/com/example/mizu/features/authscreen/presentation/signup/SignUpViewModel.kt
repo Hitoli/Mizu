@@ -4,8 +4,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.mizu.utils.Result
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
-class SignUpViewModel:ViewModel() {
+class SignUpViewModel(private val dispatcherIO: CoroutineDispatcher, private val signUpRepository: SignUpRepository):ViewModel() {
 
     var onEmail by mutableStateOf("")
         private set
@@ -33,6 +38,9 @@ class SignUpViewModel:ViewModel() {
 
     var onConfirmPasswordErrorCheck by mutableStateOf(false)
         private set
+
+    val authSignUp: StateFlow<Result<String>> get()= signUpRepository.authSignUp
+
     fun getEmail(email:String){
         onEmail = email
     }
@@ -44,6 +52,11 @@ class SignUpViewModel:ViewModel() {
         onConfirmPassword = confirmPassword
     }
 
+     fun authSignUpWithEmailAndPassword(){
+        viewModelScope.launch(dispatcherIO) {
+            signUpRepository.authSignUpWithEmailAndPassword(onEmail,onPassword)
+        }
+    }
 
     fun checkLoginValidation(){
         if (onEmail.isBlank() && !onEmail.contains("@")){

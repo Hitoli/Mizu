@@ -4,8 +4,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.mizu.utils.Result
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
-class LoginViewModel():ViewModel() {
+class LoginViewModel(private val dispatcherIO:CoroutineDispatcher,private val loginRepository: LoginRepository):ViewModel() {
     var onEmail by mutableStateOf("")
         private set
 
@@ -24,11 +31,19 @@ class LoginViewModel():ViewModel() {
     var onPasswordErrorCheck by mutableStateOf(false)
         private set
 
+    val authSignIn:StateFlow<Result<String>> get()= loginRepository.authSignIn
+
     fun getEmail(email:String){
         onEmail = email
     }
     fun getPassword(password:String){
         onPassword = password
+    }
+
+    fun authSignInWithEmailAndPassword(){
+        viewModelScope.launch(dispatcherIO) {
+               loginRepository.authSignInWithEmailAndPassword(onEmail,onPassword)
+        }
     }
 
     fun checkLoginValidation(){

@@ -4,6 +4,7 @@ import com.example.mizu.utils.Result
 import com.example.mizu.utils.Utils
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -17,14 +18,15 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class AuthManager() {
+class AuthManager(private val dispatchersIO:CoroutineDispatcher) {
     private val _authSignUpResult:MutableStateFlow<Result<String>> =MutableStateFlow(Result.Loading)
     val authSignUpResult:StateFlow<Result<String>> get() = _authSignUpResult.asStateFlow()
 
     private val _authSignInResult:MutableStateFlow<Result<String>> =MutableStateFlow(Result.Loading)
     val authSignInResult:StateFlow<Result<String>> get() = _authSignInResult.asStateFlow()
 
-    private val authScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private val authScope = CoroutineScope(dispatchersIO + SupervisorJob())
+
     var auth:FirebaseAuth = FirebaseAuth.getInstance()
 
     suspend fun authSignUp(email:String, password:String){

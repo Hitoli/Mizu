@@ -6,6 +6,8 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -23,6 +25,8 @@ import com.example.mizu.features.authscreen.utils.SignUpData
 import com.example.mizu.presentation_app.navmap.nav_utils.AuthNavScreens
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.waterColorBackground
+import com.example.mizu.utils.Result
+import com.example.mizu.utils.Utils
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -98,12 +102,25 @@ fun AuthNavHostingScreen(
                         Brush.linearGradient(
                             start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                             end = Offset(0f, Float.POSITIVE_INFINITY),
-                            colors = mutableStateListOf(waterColorBackground, backgroundColor2)
+                            colors = mutableListOf(waterColorBackground, backgroundColor2)
                         )
                     )
             )
         }
         composable(route = AuthNavScreens.SignUpScreen.route) {
+            val authResult by signUpViewModel.authSignUp.collectAsState()
+            when (authResult) {
+                is Result.Failure -> {
+                    Utils.logIt("Failure Sign UP", "Failure")
+                }
+                is Result.Loading -> {
+                    Utils.logIt("Failure Sign UP", "Loading")
+                }
+                is Result.Success -> {
+                    Utils.logIt("Failure Sign UP", "Success")
+                    getNavigate()
+                }
+            }
             SignUpScreen(
                 signUpData = SignUpData(
                     onEmailCheckError = signUpViewModel.onEmailErrorCheck,
@@ -128,7 +145,8 @@ fun AuthNavHostingScreen(
                 getSignUp = {
                     signUpViewModel.checkLoginValidation()
                     if (!signUpViewModel.onEmailErrorCheck && !signUpViewModel.onPasswordErrorCheck && !signUpViewModel.onConfirmPasswordErrorCheck) {
-                        getNavigate()
+                        signUpViewModel.authSignUpWithEmailAndPassword()
+//                        getNavigate()
                     }
                 },
                 getSignUpWithGoogle = {
