@@ -68,6 +68,19 @@ fun AuthNavHostingScreen(
         }
     ) {
         composable(route = AuthNavScreens.LoginScreen.route) {
+            val authResult by loginViewModel.authSignIn.collectAsState()
+            when (authResult) {
+                is Result.Failure -> {
+                    Utils.logIt("Failure Sign IN", "Failure")
+                }
+                is Result.Loading -> {
+                    Utils.logIt("Loading Sign IN", "Loading")
+                }
+                is Result.Success -> {
+                    Utils.logIt("Success Sign IN", "Success")
+                    getNavigate()
+                }
+            }
             LoginScreen(
                 loginData = LoginData(
                     onEmailError = loginViewModel.onEmailError,
@@ -86,7 +99,7 @@ fun AuthNavHostingScreen(
                 getLogin = {
                     loginViewModel.checkLoginValidation()
                     if (!loginViewModel.onEmailErrorCheck && !loginViewModel.onPasswordErrorCheck) {
-                        getNavigate()
+                        loginViewModel.authSignInWithEmailAndPassword()
                     }
                 },
                 getForgotPassword = {
@@ -114,10 +127,10 @@ fun AuthNavHostingScreen(
                     Utils.logIt("Failure Sign UP", "Failure")
                 }
                 is Result.Loading -> {
-                    Utils.logIt("Failure Sign UP", "Loading")
+                    Utils.logIt("Loading Sign UP", "Loading")
                 }
                 is Result.Success -> {
-                    Utils.logIt("Failure Sign UP", "Success")
+                    Utils.logIt("Success Sign UP", "Success")
                     getNavigate()
                 }
             }

@@ -1,6 +1,6 @@
 package com.example.mizu.di
 
-import com.example.mizu.features.authscreen.presentation.login.AuthManager
+import com.example.mizu.features.authscreen.utils.AuthManager
 import com.example.mizu.features.authscreen.presentation.login.LoginRepository
 import com.example.mizu.features.authscreen.presentation.login.LoginViewModel
 import com.example.mizu.features.authscreen.presentation.signup.SignUpRepository

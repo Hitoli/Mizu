@@ -1,6 +1,6 @@
 package com.example.mizu.features.authscreen.presentation.signup
 
-import com.example.mizu.features.authscreen.presentation.login.AuthManager
+import com.example.mizu.features.authscreen.utils.AuthManager
 import com.example.mizu.features.authscreen.utils.AuthInterface
 import com.example.mizu.utils.Result
 import kotlinx.coroutines.CoroutineDispatcher

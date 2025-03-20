@@ -1,18 +1,5 @@
 package com.example.mizu.di
 
-import com.example.mizu.features.authscreen.presentation.login.AuthManager
-import com.example.mizu.features.authscreen.presentation.login.LoginRepository
-import com.example.mizu.features.authscreen.presentation.login.LoginViewModel
-import com.example.mizu.features.authscreen.presentation.signup.SignUpRepository
-import com.example.mizu.features.authscreen.presentation.signup.SignUpViewModel
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.qualifier.named
-import org.koin.dsl.module
-
 
 //val CoroutineModule = module {
 //    // Provide Main Dispatcher

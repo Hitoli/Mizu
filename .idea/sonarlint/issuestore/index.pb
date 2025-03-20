@@ -159,3 +159,5 @@ h
 8app/src/main/java/com/example/mizu/di/coroutineModule.kt,c\f\cff3fb4638c239be0934181ed5844fbf6ba8e5af
 Ž
 ^app/src/main/java/com/example/mizu/features/authscreen/presentation/signup/SignUpRepository.kt,c\8\c805f3c3ab9f4cd78fff03c1ac694913f50cf9ae
+{
+Kapp/src/main/java/com/example/mizu/features/authscreen/utils/AuthManager.kt,3\4\3428eedf56846c7eb5fdaa46a168278cccd78ac1
