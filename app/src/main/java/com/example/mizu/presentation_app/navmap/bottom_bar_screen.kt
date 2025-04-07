@@ -4,10 +4,13 @@ import ProfileScreen
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -135,7 +138,7 @@ fun BottomBarHostingScreen(
         mutableStateOf(false)
     }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true);
-    val navItems = mutableStateListOf<BottomNavScreens>(
+    val navItems = mutableListOf(
         BottomNavScreens.HomeScreen,
         BottomNavScreens.CalendarScreen,
         BottomNavScreens.ProfileScreen
@@ -153,8 +156,6 @@ fun BottomBarHostingScreen(
         onTitleChage = true
         delay(3000)
         onTitleChage = false
-
-
     }
 //    LaunchedEffect(key1 = listState) {
 //        snapshotFlow{
@@ -257,7 +258,31 @@ fun BottomBarHostingScreen(
         val padding = it
         NavHost(
             navController = navController,
-            startDestination = BottomNavScreens.HomeScreen.route
+            startDestination = BottomNavScreens.HomeScreen.route,
+            enterTransition = {
+                slideInHorizontally(
+                    initialOffsetX = { fullWidth -> fullWidth },
+                    animationSpec = tween(300)
+                )
+            },
+            exitTransition = {
+                slideOutHorizontally(
+                    targetOffsetX = { fullWidth -> -fullWidth },
+                    animationSpec = tween(300)
+                )
+            },
+            popEnterTransition = {
+                slideInHorizontally(
+                    initialOffsetX = { fullWidth -> -fullWidth },
+                    animationSpec = tween(300)
+                )
+            },
+            popExitTransition = {
+                slideOutHorizontally(
+                    targetOffsetX = { fullWidth -> fullWidth },
+                    animationSpec = tween(300)
+                )
+            }
         ) {
 
 
@@ -281,7 +306,7 @@ fun BottomBarHostingScreen(
                             Brush.linearGradient(
                                 start = Offset(Float.POSITIVE_INFINITY, 0f),
                                 end = Offset(0f, Float.POSITIVE_INFINITY),
-                                colors = mutableStateListOf(backgroundColor1, backgroundColor2)
+                                colors = mutableListOf(backgroundColor1, backgroundColor2)
                             )
                         )
                 )
@@ -296,7 +321,7 @@ fun BottomBarHostingScreen(
                             Brush.linearGradient(
                                 start = Offset(Float.POSITIVE_INFINITY, 0f),
                                 end = Offset(0f, Float.POSITIVE_INFINITY),
-                                colors = mutableStateListOf(backgroundColor1, backgroundColor2)
+                                colors = mutableListOf(backgroundColor1, backgroundColor2)
                             )
                         ),
                     onPad = padding,
@@ -337,7 +362,7 @@ fun BottomBarHostingScreen(
                             Brush.linearGradient(
                                 start = Offset(Float.POSITIVE_INFINITY, 0f),
                                 end = Offset(0f, Float.POSITIVE_INFINITY),
-                                colors = mutableStateListOf(backgroundColor1, backgroundColor2)
+                                colors = mutableListOf(backgroundColor1, backgroundColor2)
                             )
                         )
                         .padding(
@@ -696,7 +721,7 @@ fun PreviewBottomBarHostingScreen() {
                 Brush.linearGradient(
                     start = Offset(Float.POSITIVE_INFINITY, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY),
-                    colors = mutableStateListOf(backgroundColor1, backgroundColor2)
+                    colors = mutableListOf(backgroundColor1, backgroundColor2)
                 )
             ),
         navController = navController,
@@ -713,13 +738,13 @@ fun PreviewBottomBarHostingScreen() {
         getStreak = {},
         onTime = "Goodmorning",
         getGreeting = {},
-        items = mutableStateListOf(50, 100, 200, 300, 400, 500),
+        items = mutableListOf(50, 100, 200, 300, 400, 500),
         getUpdateTotalWaterTrackingAmount = {},
-        streakImages = mutableStateListOf(R.drawable.day2, R.drawable.day1),
+        streakImages = mutableListOf(R.drawable.day2, R.drawable.day1),
         onMonth = "",
-        onWaterGoals = mutableStateListOf(),
-        calendarList = mutableStateListOf(
-            mutableStateListOf(Color.Black)
+        onWaterGoals = mutableListOf(),
+        calendarList = mutableListOf(
+            mutableListOf(Color.Black)
         ),
         getSelected = {},
         getProfileClick = {},

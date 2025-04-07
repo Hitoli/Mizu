@@ -64,8 +64,6 @@ class OnboardingRepository(context: Context) {
             )
         }
          println("streakScore Onboarding updateStreak ${perks}")
-
-
      }
      fun getStreak():Flow<StreakClass> = streakScore.data
 

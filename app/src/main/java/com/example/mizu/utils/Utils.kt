@@ -9,6 +9,9 @@ import androidx.compose.foundation.layout.systemBars
 class Utils {
 
     companion object{
+        @JvmField
+        var ApiKey = "iosdhgaoewrnfnodDFKFS234"
+
         fun String.capitalizeFirst(): String {
             if (isNotEmpty()) {
                 var str =  this.substring(0, 1).uppercase() + this.substring(1)
@@ -19,6 +22,7 @@ class Utils {
 
             return this
         }
+
 
         fun logIt(tag:String, message:String){
             Log.e(tag,message)

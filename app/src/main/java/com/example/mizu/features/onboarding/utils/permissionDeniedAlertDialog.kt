@@ -1,17 +1,23 @@
 package com.example.mizu.features.onboarding.utils
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import com.example.mizu.ui.theme.backgroundColor1
+import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
 import com.example.mizu.ui.theme.mizuBlackLight
 import com.example.mizu.ui.theme.waterColorMeter
@@ -28,6 +34,7 @@ fun PermissionDeniedAlertDialog(
 ) {
     AlertDialog(
         modifier = modifier,
+        containerColor = backgroundColor1,
         icon = {
             Icon(
                 imageVector = Icons.Rounded.Notifications,

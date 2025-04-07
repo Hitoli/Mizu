@@ -5,6 +5,7 @@ import com.example.mizu.features.authscreen.presentation.login.LoginRepository
 import com.example.mizu.features.authscreen.presentation.login.LoginViewModel
 import com.example.mizu.features.authscreen.presentation.signup.SignUpRepository
 import com.example.mizu.features.authscreen.presentation.signup.SignUpViewModel
+import com.example.mizu.features.authscreen.utils.AuthRepositoryCommon
 import com.example.mizu.features.calendarscreen.view_model.CalendarViewModel
 import com.example.mizu.features.homescreen.view_model.HomeViewModel
 import com.example.mizu.features.onboarding.viewModel.OnboardingViewModel
@@ -30,6 +31,11 @@ val DIModule = module {
     single<AuthManager>{
         AuthManager(get(named("ioDispatcher")))
     }
+
+    single<AuthRepositoryCommon>{
+        AuthRepositoryCommon(get(),get(named("ioDispatcher")))
+    }
+
     single<LoginRepository>{
         LoginRepository(get(),get(named("ioDispatcher")))
     }
@@ -40,8 +46,8 @@ val DIModule = module {
     viewModel { OnboardingViewModel(get()) }
     viewModel { HomeViewModel(get(), androidApplication()) }
     viewModel { CalendarViewModel(get()) }
-    viewModel { LoginViewModel(get(named("ioDispatcher")),get()) }
-    viewModel { SignUpViewModel(get(named("ioDispatcher")),get()) }
+    viewModel { LoginViewModel(get(named("ioDispatcher")),get(),get()) }
+    viewModel { SignUpViewModel(get(named("ioDispatcher")),get(),get()) }
 
 
 }

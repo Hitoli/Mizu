@@ -1,5 +1,6 @@
 package com.example.mizu.presentation_app.navmap
 
+import android.widget.Toast
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
@@ -12,6 +13,8 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,6 +26,7 @@ import com.example.mizu.features.authscreen.presentation.signup.SignUpViewModel
 import com.example.mizu.features.authscreen.utils.LoginData
 import com.example.mizu.features.authscreen.utils.SignUpData
 import com.example.mizu.presentation_app.navmap.nav_utils.AuthNavScreens
+import com.example.mizu.presentation_app.navmap.nav_utils.NavScreens
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.waterColorBackground
 import com.example.mizu.utils.Result
@@ -68,8 +72,13 @@ fun AuthNavHostingScreen(
         }
     ) {
         composable(route = AuthNavScreens.LoginScreen.route) {
-            val authResult by loginViewModel.authSignIn.collectAsState()
-            when (authResult) {
+
+            loginViewModel.updateAuthManagerContext(LocalContext.current)
+
+            loginViewModel.getIsUserSignedIn()
+
+            val isUserSignedIn by loginViewModel.authIsUserSignedIn.collectAsStateWithLifecycle()
+            when (isUserSignedIn) {
                 is Result.Failure -> {
                     Utils.logIt("Failure Sign IN", "Failure")
                 }
@@ -77,10 +86,46 @@ fun AuthNavHostingScreen(
                     Utils.logIt("Loading Sign IN", "Loading")
                 }
                 is Result.Success -> {
-                    Utils.logIt("Success Sign IN", "Success")
+
+                    val isSignedIn = (isUserSignedIn as Result.Success<Boolean>).data
+                    Utils.logIt("Success isSignedIn", "Success ${isSignedIn}")
+                    if (isSignedIn) {
+                        getNavigate()
+                    }
+                }
+            }
+            val authSignIn by loginViewModel.authSignIn.collectAsStateWithLifecycle()
+            when (authSignIn) {
+                is Result.Failure -> {
+                    Utils.logIt("Failure Sign IN", "Failure")
+                }
+                is Result.Loading -> {
+                    Utils.logIt("Loading Sign IN", "Loading")
+                }
+                is Result.Success -> {
+                    val authResultsignIn = (authSignIn as Result.Success<String>).data
+                    Utils.logIt("Success authSignIn", " Success ${authResultsignIn}")
                     getNavigate()
                 }
             }
+
+            val authGoogleSignIn by loginViewModel.authGoogleSignIn.collectAsStateWithLifecycle()
+            when(authGoogleSignIn){
+                is Result.Failure ->{
+                    Utils.logIt("Failure Sign In", "Failure")
+                }
+                is Result.Loading ->{
+                    Utils.logIt("Loading Sign In", "Loading")
+                }
+                is Result.Success -> {
+                    val signIn = (authGoogleSignIn as Result.Success<Boolean>).data
+                    Utils.logIt("Success authGoogleSignIn", " Success ${signIn}")
+                    if (signIn) {
+                        getNavigate()
+                    }
+                }
+            }
+
             LoginScreen(
                 loginData = LoginData(
                     onEmailError = loginViewModel.onEmailError,
@@ -106,7 +151,7 @@ fun AuthNavHostingScreen(
                     loginViewModel.forgotPassword()
                 },
                 getLoginWithGoogle = {
-                    loginViewModel.loginWithGoogle()
+                    loginViewModel.getLoginWithGoogle()
                 }, getSignUpNavigate = {
                     navHostController.navigate(AuthNavScreens.SignUpScreen.route)
                 }, modifier = Modifier
@@ -121,8 +166,8 @@ fun AuthNavHostingScreen(
             )
         }
         composable(route = AuthNavScreens.SignUpScreen.route) {
-            val authResult by signUpViewModel.authSignUp.collectAsState()
-            when (authResult) {
+            val authSignUp by signUpViewModel.authSignUp.collectAsStateWithLifecycle()
+            when (authSignUp) {
                 is Result.Failure -> {
                     Utils.logIt("Failure Sign UP", "Failure")
                 }
@@ -130,8 +175,26 @@ fun AuthNavHostingScreen(
                     Utils.logIt("Loading Sign UP", "Loading")
                 }
                 is Result.Success -> {
-                    Utils.logIt("Success Sign UP", "Success")
+                    val authSignUpResult = (authSignUp as Result.Success<String>).data
+                    Utils.logIt("Success authSignUp", " Success ${authSignUpResult}")
                     getNavigate()
+                }
+            }
+
+            val authGoogleSignUp by signUpViewModel.authGoogleSignUp.collectAsStateWithLifecycle()
+            when(authGoogleSignUp){
+                is Result.Failure ->{
+                    Utils.logIt("Failure Sign UP", "Failure")
+                }
+                is Result.Loading ->{
+                    Utils.logIt("Loading Sign UP", "Loading")
+                }
+                is Result.Success -> {
+                    val authGoogleSignUpResult = (authGoogleSignUp as Result.Success<Boolean>).data
+                    Utils.logIt("Success authGoogleSignUp", " Success ${authGoogleSignUpResult}")
+                    if(authGoogleSignUpResult){
+                        getNavigate()
+                    }
                 }
             }
             SignUpScreen(
@@ -159,7 +222,6 @@ fun AuthNavHostingScreen(
                     signUpViewModel.checkLoginValidation()
                     if (!signUpViewModel.onEmailErrorCheck && !signUpViewModel.onPasswordErrorCheck && !signUpViewModel.onConfirmPasswordErrorCheck) {
                         signUpViewModel.authSignUpWithEmailAndPassword()
-//                        getNavigate()
                     }
                 },
                 getSignUpWithGoogle = {
@@ -174,7 +236,7 @@ fun AuthNavHostingScreen(
                         Brush.linearGradient(
                             start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                             end = Offset(0f, Float.POSITIVE_INFINITY),
-                            colors = mutableStateListOf(waterColorBackground, backgroundColor2)
+                            colors = mutableListOf(waterColorBackground, backgroundColor2)
                         )
                     )
             )

@@ -273,7 +273,7 @@ fun SignUpScreen(
                     ) {
                         Image(
                             imageVector = ImageVector.vectorResource(R.drawable.ic_google),
-                            contentDescription = "Google Login",
+                            contentDescription = "Google Sign Up",
                             modifier = Modifier.size(30.dp)
                         )
                         Spacer(modifier = Modifier.width(10.dp))

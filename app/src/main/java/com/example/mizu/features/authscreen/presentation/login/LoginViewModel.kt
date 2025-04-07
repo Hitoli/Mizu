@@ -1,18 +1,21 @@
 package com.example.mizu.features.authscreen.presentation.login
 
+import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mizu.features.authscreen.utils.AuthRepositoryCommon
 import com.example.mizu.utils.Result
+import com.example.mizu.utils.Utils
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val dispatcherIO:CoroutineDispatcher,private val loginRepository: LoginRepository):ViewModel() {
+class LoginViewModel(private val dispatcherIO:CoroutineDispatcher,private val loginRepository: LoginRepository, private val authRepositoryCommon: AuthRepositoryCommon):ViewModel() {
     var onEmail by mutableStateOf("")
         private set
 
@@ -33,11 +36,19 @@ class LoginViewModel(private val dispatcherIO:CoroutineDispatcher,private val lo
 
     val authSignIn:StateFlow<Result<String>> get()= loginRepository.authSignIn
 
+    val authGoogleSignIn:StateFlow<Result<Boolean>> get() = authRepositoryCommon.authGoogleSignIn
+
+    val authIsUserSignedIn:StateFlow<Result<Boolean>> get() = authRepositoryCommon.authIsUserSignedIn
+
     fun getEmail(email:String){
         onEmail = email
     }
     fun getPassword(password:String){
         onPassword = password
+    }
+
+    fun updateAuthManagerContext(context: Context){
+        loginRepository.updateAuthManagerContext(context)
     }
 
     fun authSignInWithEmailAndPassword(){
@@ -67,7 +78,16 @@ class LoginViewModel(private val dispatcherIO:CoroutineDispatcher,private val lo
 
     }
 
-    fun loginWithGoogle(){
-
+    fun getLoginWithGoogle(){
+        Utils.logIt("getSignUpWithGoogle", "Clicked")
+        viewModelScope.launch(dispatcherIO) {
+            authRepositoryCommon.authGoogleSignIn()
+        }
     }
+    fun getIsUserSignedIn(){
+        viewModelScope.launch(dispatcherIO) {
+            authRepositoryCommon.authIsUserSignedIn()
+        }
+    }
+
 }

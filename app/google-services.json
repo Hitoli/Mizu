@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "1042045653739",
     "project_id": "mizu-5b404",
-    "storage_bucket": "mizu-5b404.appspot.com"
+    "storage_bucket": "mizu-5b404.firebasestorage.app"
   },
   "client": [
     {
@@ -12,7 +12,20 @@
           "package_name": "com.example.mizu"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1042045653739-ost8ovmf9q5gfp0cgdk2mgko75cn59ev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mizu",
+            "certificate_hash": "56f11e95e05172031a2c00faf1a55e1843145cbe"
+          }
+        },
+        {
+          "client_id": "1042045653739-3qp73bunuiadnvb8fut2skc1irdl9t61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAnFMLoCP110hRGNxWssZbdub8JydV0d0A"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042045653739-3qp73bunuiadnvb8fut2skc1irdl9t61.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

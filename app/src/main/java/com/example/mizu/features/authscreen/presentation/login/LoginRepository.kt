@@ -1,5 +1,6 @@
 package com.example.mizu.features.authscreen.presentation.login
 
+import android.content.Context
 import com.example.mizu.features.authscreen.utils.AuthInterface
 import com.example.mizu.features.authscreen.utils.AuthManager
 import com.example.mizu.utils.Result
@@ -17,5 +18,8 @@ class LoginRepository(
     private val authScope = CoroutineScope(dispatchersIO + SupervisorJob())
     override suspend fun authSignInWithEmailAndPassword(email: String, password: String) {
         authManager.authSignIn(email, password)
+    }
+    fun updateAuthManagerContext(context: Context){
+        authManager.updateContext(context = context)
     }
 }

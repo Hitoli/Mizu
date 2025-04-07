@@ -5,12 +5,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mizu.features.authscreen.utils.AuthRepositoryCommon
 import com.example.mizu.utils.Result
+import com.example.mizu.utils.Utils
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.koin.core.component.getScopeId
 
-class SignUpViewModel(private val dispatcherIO: CoroutineDispatcher, private val signUpRepository: SignUpRepository):ViewModel() {
+class SignUpViewModel(private val dispatcherIO: CoroutineDispatcher, private val signUpRepository: SignUpRepository, private val authRepositoryCommon: AuthRepositoryCommon):ViewModel() {
 
     var onEmail by mutableStateOf("")
         private set
@@ -40,6 +43,7 @@ class SignUpViewModel(private val dispatcherIO: CoroutineDispatcher, private val
         private set
 
     val authSignUp: StateFlow<Result<String>> get()= signUpRepository.authSignUp
+    val authGoogleSignUp:StateFlow<Result<Boolean>> get() = authRepositoryCommon.authGoogleSignIn
 
     fun getEmail(email:String){
         onEmail = email
@@ -57,6 +61,7 @@ class SignUpViewModel(private val dispatcherIO: CoroutineDispatcher, private val
             signUpRepository.authSignUpWithEmailAndPassword(onEmail,onPassword)
         }
     }
+
 
     fun checkLoginValidation(){
         if (onEmail.isBlank() && !onEmail.contains("@")){
@@ -84,6 +89,11 @@ class SignUpViewModel(private val dispatcherIO: CoroutineDispatcher, private val
     }
 
     fun getSignUpWithGoogle(){
-
+        Utils.logIt("getSignUpWithGoogle", "Clicked")
+        viewModelScope.launch(dispatcherIO) {
+            authRepositoryCommon.authGoogleSignIn()
+        }
     }
+
+
 }

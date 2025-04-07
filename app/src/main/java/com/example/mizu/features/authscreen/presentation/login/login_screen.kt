@@ -183,10 +183,11 @@ fun LoginScreen(
                         color = mizuBlack,
                         textAlign = TextAlign.End
                     ), modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable {
+                        .fillMaxWidth().clickable(interactionSource = remember {
+                            MutableInteractionSource()
+                        }, indication = null, onClick = {
                             getForgotPassword()
-                        }
+                        })
                 )
 
                 Box(
@@ -296,9 +297,11 @@ fun LoginScreen(
                             fontWeight = FontWeight(600),
                             color = mizuBlack,
                             textAlign = TextAlign.Center
-                        ), modifier = Modifier.clickable {
+                        ), modifier = Modifier.clickable(interactionSource = remember {
+                            MutableInteractionSource()
+                        }, indication = null, onClick = {
                             getSignUpNavigate()
-                        }
+                        })
                     )
                 }
             }

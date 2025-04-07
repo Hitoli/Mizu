@@ -14,10 +14,10 @@ class SignUpRepository(
 ) : AuthInterface {
 
     val authSignUp: StateFlow<Result<String>> get() = authManager.authSignUpResult
-
     private val authScope = CoroutineScope(dispatchersIO + SupervisorJob())
 
     override suspend fun authSignUpWithEmailAndPassword(email: String, password: String) {
         authManager.authSignUp(email, password)
     }
+
 }

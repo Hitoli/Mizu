@@ -151,8 +151,6 @@ Sapp/src/main/java/com/example/mizu/features/onboarding/utils/textFieldCustomIco
 \app/src/main/java/com/example/mizu/features/authscreen/presentation/login/LoginRepository.kt,5\7\574782e50ad039c6528508211bd95b9de26aef0b
 }
 Mapp/src/main/java/com/example/mizu/features/authscreen/utils/AuthInterface.kt,5\f\5f20bcc75203e7d82af82fd1b73e0a0eaf1a3ce3
-ˆ
-Xapp/src/main/java/com/example/mizu/features/authscreen/presentation/login/AuthManager.kt,5\3\53dacfc6b2f17b5b87441efca63dd2f4492fb3a7
 b
 2app/src/main/java/com/example/mizu/utils/Result.kt,3\5\35bcba7bae7cb3ff66aff93cb400653be8c0cb4c
 h
@@ -161,3 +159,8 @@ h
 ^app/src/main/java/com/example/mizu/features/authscreen/presentation/signup/SignUpRepository.kt,c\8\c805f3c3ab9f4cd78fff03c1ac694913f50cf9ae
 {
 Kapp/src/main/java/com/example/mizu/features/authscreen/utils/AuthManager.kt,3\4\3428eedf56846c7eb5fdaa46a168278cccd78ac1
+„
+Tapp/src/main/java/com/example/mizu/features/authscreen/utils/AuthRepositoryCommon.kt,e\2\e2c6375480f092def5ee1be40a8145d6e667654c
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302

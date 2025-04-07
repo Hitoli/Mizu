@@ -60,7 +60,6 @@ fun OnBoardingBodyMeasurementsScreen(
     getWeightChange: (String) -> Unit,
     getHeightChange: (String) -> Unit,
     getNavigate: () -> Unit,
-    getLogin: () -> Unit,
 ) {
 
     LazyColumn(
@@ -176,22 +175,6 @@ fun OnBoardingBodyMeasurementsScreen(
                     getNavigate()
                 }, buttonName = "Next")
 
-                Text(
-                    text = "Already a member? Login In",
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        fontFamily = fontFamilyLight,
-                        fontWeight = FontWeight(400),
-                        color = mizuBlackLight,
-                        textAlign = TextAlign.Center,
-                    ), modifier = Modifier
-                        .clickable(interactionSource = remember {
-                            MutableInteractionSource()
-                        }, indication = null, onClick = {
-                            getLogin()
-                        })
-                        .fillMaxWidth()
-                )
 
             }
         }
@@ -234,6 +217,6 @@ fun PreviewOnBoardingWeightScreen() {
             onHeightCheck = false,
             onHeightError = "",
             onWeightError = ""
-        ), getLogin = {}
+        )
     )
 }
