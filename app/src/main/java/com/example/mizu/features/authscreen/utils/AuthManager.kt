@@ -1,6 +1,8 @@
 package com.example.mizu.features.authscreen.utils
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.net.http.NetworkException
 import androidx.credentials.ClearCredentialStateRequest
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
@@ -27,7 +29,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class AuthManager(private val dispatchersIO: CoroutineDispatcher) {
+class AuthManager(private val dispatchersIO: CoroutineDispatcher, private val sharedPreferences: SharedPreferences) {
     companion object {
         const val TAG = "Auth_Manager:"
     }
@@ -75,16 +77,21 @@ class AuthManager(private val dispatchersIO: CoroutineDispatcher) {
         password: String
     ): Result<String> {
         return suspendCoroutine { continuation ->
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-                if (it.isComplete) {
-                    Utils.logIt(TAG, "Success authSignUpWithEmailAndPassword")
-                    continuation.resume(Result.Success(it.result.toString()))
-                } else {
-                    it.exception?.printStackTrace()
-                    Utils.logIt(TAG, "Failed authSignUpWithEmailAndPassword ${it.exception} ")
-                    continuation.resumeWithException(it.exception ?: Exception("FAILED"))
-                }
+            try {
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnSuccessListener { authResult ->
+                        Utils.logIt(TAG, "Success authSignUpWithEmailAndPassword")
+                        continuation.resume(Result.Success(authResult.user?.uid ?: "No UID"))
+                    }
+                    .addOnFailureListener { exception ->
+                        Utils.logIt(TAG, "Failed authSignUpWithEmailAndPassword ${exception}")
+                        continuation.resumeWithException(exception)
+                    }
+            }catch (e: Exception){
+                Utils.logIt(TAG, "Failed authSignUpWithEmailAndPassword ${e.message.toString()}")
+                continuation.resumeWithException(exception = e)
             }
+
         }
     }
 
@@ -105,18 +112,20 @@ class AuthManager(private val dispatchersIO: CoroutineDispatcher) {
     private suspend fun authSignInWithEmailAndPassword(
         email: String,
         password: String
-    ): Result<String> {
-        return suspendCoroutine { continuation ->
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                if (it.isComplete) {
+    ): Result<String> = suspendCoroutine { continuation ->
+        try {
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener { authResult ->
                     Utils.logIt(TAG, "Success authSignInWithEmailAndPassword")
-                    continuation.resume(Result.Success(it.result.toString()))
-                } else {
-                    it.exception?.printStackTrace()
-                    Utils.logIt(TAG, "Failed authSignInWithEmailAndPassword ${it.exception}")
-                    continuation.resumeWithException(it.exception ?: Exception("FAILED"))
+                    continuation.resume(Result.Success(authResult.user?.uid ?: "No UID"))
                 }
-            }
+                .addOnFailureListener { exception ->
+                    Utils.logIt(TAG, "Failed authSignInWithEmailAndPassword: $exception")
+                    continuation.resumeWithException(exception)
+                }
+        } catch (e: Exception) {
+            Utils.logIt(TAG, "Failed authSignInWithEmailAndPassword ${e.message.toString()}")
+            continuation.resumeWithException(exception = e)
         }
     }
 
@@ -170,6 +179,7 @@ class AuthManager(private val dispatchersIO: CoroutineDispatcher) {
                 Utils.logIt(TAG, "Google Sign In Name: ${tokenCredential.displayName}")
                 Utils.logIt(TAG, "Google Sign In Email: ${tokenCredential.id}")
                 Utils.logIt(TAG, "Google Sign In image: ${tokenCredential.profilePictureUri}")
+                sharedPreferences.edit().putString("user_name",tokenCredential.displayName)
                 val authCredential = GoogleAuthProvider.getCredential(tokenCredential.idToken,null)
                 val authResult = auth.signInWithCredential(authCredential).await()
                 return authResult.user!=null

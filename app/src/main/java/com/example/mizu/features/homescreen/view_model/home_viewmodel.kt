@@ -16,6 +16,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mizu.R
 import com.example.mizu.alarm_schedular.AlarmScheduler
 import com.example.mizu.model.OnboardingRepository
+import com.example.mizu.utils.Utils
 import com.example.mizu.utils.home_screen_utils.StreakClass
 import com.example.mizu.utils.home_screen_utils.StreakMonthClass
 import com.example.mizu.utils.home_screen_utils.WaterAmount
@@ -138,25 +139,27 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository, context: C
         val date: LocalDate = LocalDate.now()
         println("currentTime ${date}")
 
-
-        if (currentTime.minute != waterTime) {
-            canAddWater = true
-        } else {
-            canAddWater = false
-        }
+//
+//        if (currentTime.minute != waterTime) {
+//            canAddWater = true
+//        } else {
+//            canAddWater = false
+//        }
         println("streakScore Onboarding date.dayOfMonth ${calendar.get(Calendar.DAY_OF_MONTH)}")
 
         Log.e("WATER PERCENT", waterPercent.toString());
-        if (waterPercent < 100 && canAddWater) {
-            waterTime = currentTime.minute
+//        if (canAddWater) {
 
-            usedWaterAmount += waterUpdate
-            if (usedWaterAmount * 100 / totalWaterAmount <= 100) {
+            if (waterPercent < 100) {
+                Utils.logIt("REWARD","Water Percent less than 100")
+
+                waterTime = currentTime.minute
+                usedWaterAmount += waterUpdate
                 waterPercent = usedWaterAmount * 100 / totalWaterAmount
 
-            } else {
-                waterPercent = 100
+            } else if (waterPercent>=100) {
                 rewardDialog = true
+                Utils.logIt("REWARD","Water Percent 100")
                 if (date.toString() != streakDay) {
                     streakScore++
                     streakDays.addAll(streakDays)
@@ -167,6 +170,9 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository, context: C
                     }
                 }
                 streakDay = date.toString()
+            }else{
+                Utils.logIt("REWARD","Water Percent equal to 100")
+                waterPercent = 100
             }
 
             viewModelScope.launch {
@@ -180,7 +186,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository, context: C
             println("streakScore Onboarding waterAmount ${usedWaterAmount}")
             println("streakScore Onboarding rewardDialog ${rewardDialog}")
             println("streakScore Onboarding streakDay ${streakDay}")
-        }
+//        }
         waterStreak()
 
     }

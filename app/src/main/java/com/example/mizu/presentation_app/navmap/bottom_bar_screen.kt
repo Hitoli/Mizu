@@ -117,7 +117,7 @@ fun BottomBarHostingScreen(
     getSelected: (Int) -> Unit,
     getProfileClick: () -> Unit,
     imgModifier: Modifier,
-    onAvgIntake: String, onHeight: String, onBestStreak: String, onWeight: String
+    onAvgIntake: String, onHeight: String, onBestStreak: String, onWeight: String,getLogout:()-> Unit
 ) {
     var onAdd by remember {
         mutableStateOf(false)
@@ -140,7 +140,7 @@ fun BottomBarHostingScreen(
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true);
     val navItems = mutableListOf(
         BottomNavScreens.HomeScreen,
-        BottomNavScreens.CalendarScreen,
+//        BottomNavScreens.CalendarScreen,
         BottomNavScreens.ProfileScreen
     )
     val listState = rememberLazyListState()
@@ -311,35 +311,35 @@ fun BottomBarHostingScreen(
                         )
                 )
             }
-            composable(route = BottomNavScreens.CalendarScreen.route) {
-                CalendarScreen(
-                    onMonth = onMonth,
-                    listOfTodos = onWaterGoals,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(
-                            Brush.linearGradient(
-                                start = Offset(Float.POSITIVE_INFINITY, 0f),
-                                end = Offset(0f, Float.POSITIVE_INFINITY),
-                                colors = mutableListOf(backgroundColor1, backgroundColor2)
-                            )
-                        ),
-                    onPad = padding,
-                    caledarList = calendarList,
-                    getSelected = {
-                        getSelected(it)
-                    },
-                    onHeight = onHeight,
-                    onBestStreak = onBestStreak,
-                    onWeight = onWeight,
-                    onAvgIntake = onAvgIntake,
-                    intakeAmount = if (onWaterTrackingResourceAmount >= onTotalWaterTrackingResourceAmount) {
-                        onTotalWaterTrackingResourceAmount.toString()
-                    } else {
-                        onWaterTrackingResourceAmount.toString()
-                    }
-                )
-            }
+//            composable(route = BottomNavScreens.CalendarScreen.route) {
+//                CalendarScreen(
+//                    onMonth = onMonth,
+//                    listOfTodos = onWaterGoals,
+//                    modifier = Modifier
+//                        .fillMaxSize()
+//                        .background(
+//                            Brush.linearGradient(
+//                                start = Offset(Float.POSITIVE_INFINITY, 0f),
+//                                end = Offset(0f, Float.POSITIVE_INFINITY),
+//                                colors = mutableListOf(backgroundColor1, backgroundColor2)
+//                            )
+//                        ),
+//                    onPad = padding,
+//                    caledarList = calendarList,
+//                    getSelected = {
+//                        getSelected(it)
+//                    },
+//                    onHeight = onHeight,
+//                    onBestStreak = onBestStreak,
+//                    onWeight = onWeight,
+//                    onAvgIntake = onAvgIntake,
+//                    intakeAmount = if (onWaterTrackingResourceAmount >= onTotalWaterTrackingResourceAmount) {
+//                        onTotalWaterTrackingResourceAmount.toString()
+//                    } else {
+//                        onWaterTrackingResourceAmount.toString()
+//                    }
+//                )
+//            }
             composable(route = BottomNavScreens.ProfileScreen.route) {
                 ProfileScreen(
                     getBack = { /*TODO*/ },
@@ -356,7 +356,9 @@ fun BottomBarHostingScreen(
                     getNavigate = { /*TODO*/ },
                     getEmailChange = {},
                     getNotificationChange = {},
-                    getNotificationIntervals = { /*TODO*/ }, getBugReport = {}, modifier = Modifier
+                    getNotificationIntervals = { /*TODO*/ }, getBugReport = {}, getLogout = {
+                        getLogout()
+                    },modifier = Modifier
                         .fillMaxSize()
                         .background(
                             Brush.linearGradient(
@@ -752,6 +754,6 @@ fun PreviewBottomBarHostingScreen() {
         onAvgIntake = "1700ml",
         onWeight = "72",
         onHeight = "172",
-        onBestStreak = "10"
+        onBestStreak = "10", getLogout = {}
     )
 }

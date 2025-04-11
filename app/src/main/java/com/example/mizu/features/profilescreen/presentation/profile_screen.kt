@@ -39,10 +39,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mizu.R
+import com.example.mizu.features.onboarding.utils.SingleButton
 import com.example.mizu.features.onboarding.utils.TextFieldCustom
 import com.example.mizu.features.profilescreen.utils.ProfileData
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.fontFamily
+import com.example.mizu.ui.theme.fontFamilyBold
 import com.example.mizu.ui.theme.mizuBlack
 import com.example.mizu.ui.theme.waterColorMeter
 
@@ -57,7 +59,8 @@ fun ProfileScreen(
     getEmailChange: (String) -> Unit,
     getNotificationChange: (Boolean) -> Unit,
     getNotificationIntervals: () -> Unit,
-    getBugReport: () -> Unit
+    getBugReport: () -> Unit,
+    getLogout:()->Unit
 ) {
     Column(
         modifier = modifier.padding(horizontal = 16.dp),
@@ -84,25 +87,54 @@ fun ProfileScreen(
 
         Spacer(modifier = Modifier.height(25.dp))
 
-        TextFieldCustom(
-            onTextChange = profileData.onNameChange,
-            checkError = profileData.onNameCheck,
-            onErrorText = "Error",
-            onPlaceHolderText = "Enter Name",
-            getTextChange = getNameChange,
-            onLabelText = "Name",
-            onImeAction = ImeAction.Next
+        Text(
+            text = "Name:",
+            style = TextStyle(
+                fontSize = 16.sp,
+                fontFamily = fontFamilyBold,
+                fontWeight = FontWeight(400),
+                color = mizuBlack,
+                textAlign = TextAlign.Start,
+            ), modifier = Modifier.fillMaxWidth()
         )
-        Spacer(modifier = Modifier.height(5.dp))
 
-        TextFieldCustom(
-            onTextChange = profileData.onEmailChange,
-            checkError = profileData.onEmailCheck,
-            onErrorText = profileData.onEmailError,
-            onPlaceHolderText = "Enter Email",
-            getTextChange = getEmailChange,
-            onLabelText = "Email",
-            onImeAction = ImeAction.Done
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            text = "Hitesh Kohli",
+            style = TextStyle(
+                fontSize = 16.sp,
+                fontFamily = fontFamily,
+                fontWeight = FontWeight(400),
+                color = mizuBlack,
+                textAlign = TextAlign.Start,
+            ), modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "Email:",
+            style = TextStyle(
+                fontSize = 16.sp,
+                fontFamily = fontFamilyBold,
+                fontWeight = FontWeight(400),
+                color = mizuBlack,
+                textAlign = TextAlign.Start,
+            ), modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            text = "hiteshkohli@gmail.com",
+            style = TextStyle(
+                fontSize = 16.sp,
+                fontFamily = fontFamily,
+                fontWeight = FontWeight(400),
+                color = mizuBlack,
+                textAlign = TextAlign.Start,
+            ), modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(25.dp))
 
@@ -116,7 +148,7 @@ fun ProfileScreen(
                 text = "Notifications",
                 style = TextStyle(
                     fontSize = 16.sp,
-                    fontFamily = fontFamily,
+                    fontFamily = fontFamilyBold,
                     fontWeight = FontWeight(400),
                     color = mizuBlack,
                     textAlign = TextAlign.Center,
@@ -177,7 +209,7 @@ fun ProfileScreen(
                 text = "History",
                 style = TextStyle(
                     fontSize = 16.sp,
-                    fontFamily = fontFamily,
+                    fontFamily = fontFamilyBold,
                     fontWeight = FontWeight(400),
                     color = mizuBlack,
                     textAlign = TextAlign.Center,
@@ -242,6 +274,11 @@ fun ProfileScreen(
             )
         }
 
+        Spacer(modifier = Modifier.height(25.dp))
+        SingleButton(getNavigate = {
+            getLogout()
+        }, buttonName = "Logout")
+
 
 
     }
@@ -257,7 +294,7 @@ fun PreviewProfileScreen() {
                 Brush.linearGradient(
                     start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY),
-                    colors = mutableStateListOf(waterColorMeter.copy(alpha = 0.1f), backgroundColor2)
+                    colors = mutableListOf(waterColorMeter.copy(alpha = 0.1f), backgroundColor2)
                 )
             ),
         getBack = {},
@@ -271,6 +308,6 @@ fun PreviewProfileScreen() {
             onEmailCheck = false,
             onNameCheck = false,
             onNameError = "", onNotificationChange = false
-        ), getBugReport = {}, getNotificationChange = {}, getNotificationIntervals = {}
+        ), getBugReport = {}, getNotificationChange = {}, getNotificationIntervals = {}, getLogout = {}
     )
 }

@@ -40,6 +40,8 @@ class LoginViewModel(private val dispatcherIO:CoroutineDispatcher,private val lo
 
     val authIsUserSignedIn:StateFlow<Result<Boolean>> get() = authRepositoryCommon.authIsUserSignedIn
 
+    val authSignOut:StateFlow<Result<Boolean>> get() = authRepositoryCommon.authGoogleSignOut
+
     fun getEmail(email:String){
         onEmail = email
     }
@@ -54,6 +56,12 @@ class LoginViewModel(private val dispatcherIO:CoroutineDispatcher,private val lo
     fun authSignInWithEmailAndPassword(){
         viewModelScope.launch(dispatcherIO) {
                loginRepository.authSignInWithEmailAndPassword(onEmail,onPassword)
+        }
+    }
+
+    fun authSignOut(){
+        viewModelScope.launch {
+            authRepositoryCommon.authSignOut()
         }
     }
 

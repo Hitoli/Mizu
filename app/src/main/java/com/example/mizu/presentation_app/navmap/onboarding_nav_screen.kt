@@ -191,20 +191,20 @@ fun OnboardingNavHostingScreen(
             )
         }
 
-        composable(route = OnboardingNavScreens.ReminderPermissionScreen.route) {
-            OnboardingReminder(modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.linearGradient(
-                        start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
-                        end = Offset(0f, Float.POSITIVE_INFINITY),
-                        colors = mutableListOf(waterColorBackground, backgroundColor2)
-                    )
-                ), getAllow = {
-                navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
-            }, onPermissionDenied = false
-            )
-        }
+//        composable(route = OnboardingNavScreens.ReminderPermissionScreen.route) {
+//            OnboardingReminder(modifier = Modifier
+//                .fillMaxSize()
+//                .background(
+//                    Brush.linearGradient(
+//                        start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+//                        end = Offset(0f, Float.POSITIVE_INFINITY),
+//                        colors = mutableListOf(waterColorBackground, backgroundColor2)
+//                    )
+//                ), getAllow = {
+//                navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
+//            }, onPermissionDenied = false
+//            )
+//        }
 
         composable(route = OnboardingNavScreens.PremiumScreen.route) {
             PremiumScreen(modifier = Modifier
@@ -218,9 +218,9 @@ fun OnboardingNavHostingScreen(
                 ), getBack = {
                 navController.navigateUp()
             }, getSubscribe = {
-                navController.navigate(OnboardingNavScreens.ReminderPermissionScreen.route)
+                navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
             }, getSkip = {
-                navController.navigate(OnboardingNavScreens.ReminderPermissionScreen.route)
+                navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
             }, onPremiumData = PremiumData(
                 onMonthlyPrice = "29.9", onLifeTimePrice = "99.9", onListOfPremiumBenefits =
                 mutableListOf(

@@ -61,7 +61,7 @@ fun RewardScreen(getNavigate: () -> Unit, modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.size(10.dp))
 
             Text(
-                text = "You are doing great",
+                text = "You have achieved today's target",
                 style = TextStyle(
                     fontSize = 24.sp,
                     fontFamily = fontFamily,
@@ -83,7 +83,7 @@ fun RewardScreen(getNavigate: () -> Unit, modifier: Modifier = Modifier) {
                 shape = RoundedCornerShape(10.dp)
             ) {
                 Text(
-                    text = "Thank You",
+                    text = "Okay",
                     style = TextStyle(
                         fontSize = 20.sp,
                         fontFamily = fontFamily,

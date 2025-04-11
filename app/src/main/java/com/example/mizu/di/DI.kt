@@ -1,5 +1,7 @@
 package com.example.mizu.di
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.example.mizu.features.authscreen.utils.AuthManager
 import com.example.mizu.features.authscreen.presentation.login.LoginRepository
 import com.example.mizu.features.authscreen.presentation.login.LoginViewModel
@@ -13,6 +15,7 @@ import com.example.mizu.model.OnboardingRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -25,11 +28,15 @@ val DIModule = module {
     // Provide Default Dispatcher
     single<CoroutineDispatcher>(named("defaultDispatcher")) { Dispatchers.Default }
 
+    single<SharedPreferences>{
+        androidContext().getSharedPreferences("prefs", Context.MODE_PRIVATE)
+    }
+
     single<OnboardingRepository> {
         OnboardingRepository(get())
     }
     single<AuthManager>{
-        AuthManager(get(named("ioDispatcher")))
+        AuthManager(get(named("ioDispatcher")),get())
     }
 
     single<AuthRepositoryCommon>{
