@@ -1,5 +1,6 @@
 package com.example.mizu.features.onboarding.viewModel
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -17,8 +18,6 @@ import kotlin.math.sqrt
 class OnboardingViewModel(private val onboardingRepo: OnboardingRepository) : ViewModel() {
 
     var onNameValue by mutableStateOf("")
-        private set
-    var onBoardingScreensRoutes by mutableStateOf(NavScreens.SplashNavHostingScreen.route)
         private set
     var onWeightValue by mutableStateOf("")
         private set
@@ -194,14 +193,6 @@ class OnboardingViewModel(private val onboardingRepo: OnboardingRepository) : Vi
             }
 
             TWI = it.userWaterIntake.toDouble()
-
-            onBoardingScreensRoutes = if (!_userSettings.registrationCompleted) {
-                NavScreens.OnboardingNavHostingScreen.route
-            } else {
-                NavScreens.AuthNavHostingScreen.route
-
-            }
-            // Add check for Auth screens and Bottom Screens
             println("streakScore Onboarding getUserSettings ${it}")
         }
 

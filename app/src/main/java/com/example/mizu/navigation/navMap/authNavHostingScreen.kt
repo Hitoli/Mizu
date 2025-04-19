@@ -35,7 +35,6 @@ import org.koin.androidx.compose.koinViewModel
 fun AuthNavHostingScreen(
     modifier: Modifier = Modifier,
     getNavigate: () -> Unit,
-    getLoginNavigate:()-> Unit,
     navHostController: NavHostController = rememberNavController(),
     loginViewModel: loginViewModel = koinViewModel(),
     signUpViewModel: signUpViewModel = koinViewModel(),
@@ -73,34 +72,8 @@ fun AuthNavHostingScreen(
     ) {
         composable(route = AuthNavScreens.LoginScreen.route) {
 
-            loginViewModel.updateAuthManagerContext(LocalContext.current)
-//            loginViewModel.getIsUserSignedIn()
-//            loginViewModel.authSignInWithEmailAndPassword()
-//            loginViewModel.getLoginWithGoogle()
-//
-//            val isUserSignedIn by loginViewModel.authIsUserSignedIn.collectAsStateWithLifecycle()
             val authSignIn by loginViewModel.authSignIn.collectAsStateWithLifecycle()
             val authGoogleSignIn by loginViewModel.authGoogleSignIn.collectAsStateWithLifecycle()
-//
-//
-//            LaunchedEffect(isUserSignedIn) {
-//                when (isUserSignedIn) {
-//                    is result.Failure -> {
-//                        utils.logIt(TAG, "Failure Sign In")
-//                    }
-//                    is Result.Loading -> {
-//                        utils.logIt(TAG, "Loading Sign In")
-//                    }
-//                    is result.Success -> {
-//                        val isSignedIn = (isUserSignedIn as Result.Success<Boolean>).data
-//                        utils.logIt(TAG, "Success Sign In ${isSignedIn}")
-//                        if (isSignedIn) {
-//                            getNavigate()
-//                        }
-//                    }
-//                }
-//            }
-//
             LaunchedEffect(authSignIn) {
                 when (authSignIn) {
                     is Result.Failure -> {

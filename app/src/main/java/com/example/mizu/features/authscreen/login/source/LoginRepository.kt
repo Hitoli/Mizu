@@ -19,7 +19,5 @@ class LoginRepository(
     override suspend fun authSignInWithEmailAndPassword(email: String, password: String) {
         authManager.authSignIn(email, password)
     }
-    fun updateAuthManagerContext(context: Context){
-        authManager.updateContext(context = context)
-    }
+
 }

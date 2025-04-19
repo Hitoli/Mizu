@@ -1,5 +1,6 @@
 package com.example.mizu.features.authscreen.common
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mizu.utils.Result
@@ -22,5 +23,9 @@ class authViewModelCommon( private val dispatcherIO:CoroutineDispatcher, private
         viewModelScope.launch {
             authRepositoryCommon.authSignOut()
         }
+    }
+
+    fun updateAuthManagerContext(context: Context){
+        authRepositoryCommon.updateAuthManagerContext(context)
     }
 }

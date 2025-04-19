@@ -1,5 +1,6 @@
 package com.example.mizu.features.authscreen.common
 
+import android.content.Context
 import com.example.mizu.features.authscreen.utils.authInterface
 import com.example.mizu.features.authscreen.utils.authManager
 import com.example.mizu.utils.Result
@@ -28,6 +29,10 @@ class authRepositoryCommon(
 
     override suspend fun authIsUserSignedIn() {
         authManager.isUserSignedIn()
+    }
+
+    fun updateAuthManagerContext(context: Context){
+        authManager.updateContext(context = context)
     }
 
 

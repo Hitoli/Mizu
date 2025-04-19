@@ -1,14 +1,21 @@
 package com.example.mizu.navigation.navMap
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,29 +31,35 @@ import com.example.mizu.navigation.navUtils.NavScreens
 import com.example.mizu.utils.Result
 import com.example.mizu.utils.utils
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
+import javax.inject.Inject
 
 @Composable
 fun NavScreen(
+    authViewModelCommon: authViewModelCommon = koinViewModel(),
     OnboardingViewModel: OnboardingViewModel = koinViewModel(),
     homeViewModel: HomeViewModel = koinViewModel(),
     caledarViewModel: CalendarViewModel = koinViewModel(),
-    authViewModelCommon: authViewModelCommon = koinViewModel()
+    sharedPreferences: SharedPreferences = koinInject()
 ) {
     val TAG = "NavScreen"
     val navController = rememberNavController()
-    authViewModelCommon.getIsUserSignedIn()
+    authViewModelCommon.updateAuthManagerContext(LocalContext.current)
+    var startDestination by remember{
+        mutableStateOf(NavScreens.SplashNavHostingScreen.route)
+    }
     val isUserSignedIn by authViewModelCommon.authIsUserSignedIn.collectAsStateWithLifecycle()
     val isUserLoggedOut by authViewModelCommon.authSignOut.collectAsStateWithLifecycle()
+
+    SideEffect{
+            authViewModelCommon.getIsUserSignedIn()
+    }
 
     LaunchedEffect(isUserSignedIn) {
         when (isUserSignedIn) {
             is Result.Failure -> {
                 utils.logIt(TAG, "Failure User Signed In")
-                navController.navigate(NavScreens.AuthNavHostingScreen.route) {
-                    popUpTo(NavScreens.BottomNavHostingScreen.route) {
-                        inclusive = true
-                    }
-                }
+                startDestination = NavScreens.AuthNavHostingScreen.route
             }
 
             is Result.Loading -> {
@@ -54,14 +67,12 @@ fun NavScreen(
             }
 
             is Result.Success -> {
-                utils.logIt(TAG, "Success User is Signed In")
                 val isSignedIn = (isUserSignedIn as Result.Success<Boolean>).data
+                utils.logIt(TAG, "User is Signed In ${isSignedIn}")
                 if (isSignedIn) {
-                    navController.navigate(NavScreens.BottomNavHostingScreen.route) {
-                        popUpTo(NavScreens.AuthNavHostingScreen.route) {
-                            inclusive = true
-                        }
-                    }
+                    startDestination = NavScreens.BottomNavHostingScreen.route
+                }else{
+                    startDestination = NavScreens.AuthNavHostingScreen.route
                 }
             }
         }
@@ -70,22 +81,18 @@ fun NavScreen(
     LaunchedEffect(isUserLoggedOut) {
         when (isUserLoggedOut) {
             is Result.Failure -> {
-                utils.logIt(TAG, "Failure User Signed In")
+                utils.logIt(TAG, "Failure User Logged Out")
             }
 
             is Result.Loading -> {
-                utils.logIt(TAG, "Loading User Signed In")
+                utils.logIt(TAG, "Loading User Logged Out")
             }
 
             is Result.Success -> {
                 val signedOut = (isUserLoggedOut as Result.Success<Boolean>).data
                 utils.logIt(TAG, "Is Signed out or not -> ${signedOut}")
                 if (signedOut) {
-                    navController.navigate(NavScreens.AuthNavHostingScreen.route) {
-                        popUpTo(NavScreens.BottomNavHostingScreen.route) {
-                            inclusive = true
-                        }
-                    }
+                    startDestination = NavScreens.AuthNavHostingScreen.route
                 }
             }
         }
@@ -95,18 +102,9 @@ fun NavScreen(
 
     NavHost(
         navController = navController,
-        startDestination = OnboardingViewModel.onBoardingScreensRoutes
+        startDestination = startDestination
     ) {
-        composable(route = NavScreens.AuthNavHostingScreen.route) {
-            AuthNavHostingScreen(getNavigate = {
-                navController.navigate(NavScreens.BottomNavHostingScreen.route) {
-                    popUpTo(NavScreens.AuthNavHostingScreen.route) {
-                        inclusive = true
-                    }
-                }
-            }, getLoginNavigate = {
-            })
-        }
+
         composable(route = NavScreens.BottomNavHostingScreen.route) {
             BottomBarHostingScreen(
                 getUpdateTotalWaterTrackingAmount = {
@@ -160,6 +158,15 @@ fun NavScreen(
                     authViewModelCommon.authSignOut()
                 }
             )
+        }
+        composable(route = NavScreens.AuthNavHostingScreen.route) {
+            AuthNavHostingScreen(getNavigate = {
+                navController.navigate(NavScreens.BottomNavHostingScreen.route) {
+                    popUpTo(NavScreens.AuthNavHostingScreen.route) {
+                        inclusive = true
+                    }
+                }
+            })
         }
         composable(route = NavScreens.OnboardingNavHostingScreen.route) {
             OnboardingNavHostingScreen(getNavigate = {

@@ -46,9 +46,7 @@ class loginViewModel(private val dispatcherIO:CoroutineDispatcher, private val l
         onPassword = password
     }
 
-    fun updateAuthManagerContext(context: Context){
-        loginRepository.updateAuthManagerContext(context)
-    }
+
 
     fun authSignInWithEmailAndPassword(){
         viewModelScope.launch(dispatcherIO) {

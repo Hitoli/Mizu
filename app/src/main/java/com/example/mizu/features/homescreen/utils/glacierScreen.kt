@@ -50,7 +50,7 @@ fun GlacierScreen(
 ) {
 
     val waterPercentageFilled = animateFloatAsState(
-        targetValue = onWaterTrackingResourceAmount.toFloat() / onTotalWaterTrackingResourceAmount.toFloat(),
+        targetValue = onWaterTrackingResourceAmount.toFloat() / onTotalWaterTrackingResourceAmount.toFloat().coerceAtLeast(1f),
         label = "water",
         animationSpec = tween(durationMillis = 1000)
     )

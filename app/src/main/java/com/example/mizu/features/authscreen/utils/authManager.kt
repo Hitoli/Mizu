@@ -233,11 +233,12 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
         _authUserSignedIn.emit(Result.Loading)
         try {
             val result = authGoogleIsSignedIn()
-            utils.logIt(TAG, "Current User ${result}}")
-            if (!result){
-                _authUserSignedIn.emit(Result.Failure(result))
+            utils.logIt(TAG, "Current User ${result}")
+            val isLoggedIn =  sharedPreferences.getBoolean("isUserLoggedIn",false)
+            if (result || isLoggedIn){
+                _authUserSignedIn.emit(Result.Success(true))
             }else{
-                _authUserSignedIn.emit(Result.Success(result))
+                _authUserSignedIn.emit(Result.Failure(false))
             }
         }catch (e:Exception){
             e.printStackTrace()
