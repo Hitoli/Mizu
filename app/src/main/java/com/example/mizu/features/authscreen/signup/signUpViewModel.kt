@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mizu.features.authscreen.signup.source.SignUpRepository
 import com.example.mizu.features.authscreen.common.authRepositoryCommon
 import com.example.mizu.utils.Result
-import com.example.mizu.utils.utils
+import com.example.mizu.utils.Utils
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -115,7 +115,7 @@ class signUpViewModel(private val dispatcherIO: CoroutineDispatcher, private val
     }
 
     fun getSignUpWithGoogle(){
-        utils.logIt("getSignUpWithGoogle", "Clicked")
+        Utils.logIt("getSignUpWithGoogle", "Clicked")
         viewModelScope.launch(dispatcherIO) {
             authRepositoryCommon.authGoogleSignIn()
         }

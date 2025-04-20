@@ -1,6 +1,5 @@
 package com.example.mizu.navigation.navMap
 
-import android.content.SharedPreferences
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
@@ -12,7 +11,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -28,7 +26,7 @@ import com.example.mizu.navigation.navUtils.AuthNavScreens
 import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.waterColorBackground
 import com.example.mizu.utils.Result
-import com.example.mizu.utils.utils
+import com.example.mizu.utils.Utils
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -78,15 +76,15 @@ fun AuthNavHostingScreen(
                 when (authSignIn) {
                     is Result.Failure -> {
                         val  authSignInException = (authSignIn as Result.Failure<String>).exception
-                        utils.logIt(TAG, "Failure Auth Sign In ${authSignInException}")
+                        Utils.logIt(TAG, "Failure Auth Sign In ${authSignInException}")
                         loginViewModel.checkOnAuthException(authSignInException)
                     }
                     is Result.Loading -> {
-                        utils.logIt(TAG, "Loading Auth Sign In")
+                        Utils.logIt(TAG, "Loading Auth Sign In")
                     }
                     is Result.Success -> {
                         val authResultsignIn = (authSignIn as Result.Success<String>).data
-                        utils.logIt(TAG, " Success Auth Sign In ${authResultsignIn}")
+                        Utils.logIt(TAG, " Success Auth Sign In ${authResultsignIn}")
                         loginViewModel.checkOnAuthException("")
                         if (authResultsignIn == "Success"){
                             getNavigate()
@@ -98,14 +96,14 @@ fun AuthNavHostingScreen(
             LaunchedEffect(authGoogleSignIn) {
                 when(authGoogleSignIn){
                     is Result.Failure ->{
-                        utils.logIt(TAG, "Failure Google Sign In")
+                        Utils.logIt(TAG, "Failure Google Sign In")
                     }
                     is Result.Loading ->{
-                        utils.logIt(TAG, "Loading Google Sign In")
+                        Utils.logIt(TAG, "Loading Google Sign In")
                     }
                     is Result.Success -> {
                         val signIn = (authGoogleSignIn as Result.Success<Boolean>).data
-                        utils.logIt(TAG, "Success Google Sign In ${signIn}")
+                        Utils.logIt(TAG, "Success Google Sign In ${signIn}")
                         if (signIn) {
                             getNavigate()
                         }
@@ -156,17 +154,17 @@ fun AuthNavHostingScreen(
             val authSignUp by signUpViewModel.authSignUp.collectAsStateWithLifecycle()
             when (authSignUp) {
                 is Result.Failure -> {
-                    utils.logIt("Failure Sign UP", "Failure")
+                    Utils.logIt("Failure Sign UP", "Failure")
                     val authSignUpException = (authSignUp as Result.Failure<String>).exception
                     signUpViewModel.checkOnAuthException(authSignUpException)
                 }
                 is Result.Loading -> {
-                    utils.logIt("Loading Sign UP", "Loading")
+                    Utils.logIt("Loading Sign UP", "Loading")
                 }
                 is Result.Success -> {
                     val authSignUpResult = (authSignUp as Result.Success<String>).data
                     signUpViewModel.checkOnAuthException("")
-                    utils.logIt("Success authSignUp", " Success ${authSignUpResult}")
+                    Utils.logIt("Success authSignUp", " Success ${authSignUpResult}")
                     getNavigate()
                 }
             }
@@ -174,14 +172,14 @@ fun AuthNavHostingScreen(
             val authGoogleSignUp by signUpViewModel.authGoogleSignUp.collectAsStateWithLifecycle()
             when(authGoogleSignUp){
                 is Result.Failure ->{
-                    utils.logIt("Failure Sign UP", "Failure")
+                    Utils.logIt("Failure Sign UP", "Failure")
                 }
                 is Result.Loading ->{
-                    utils.logIt("Loading Sign UP", "Loading")
+                    Utils.logIt("Loading Sign UP", "Loading")
                 }
                 is Result.Success -> {
                     val authGoogleSignUpResult = (authGoogleSignUp as Result.Success<Boolean>).data
-                    utils.logIt("Success authGoogleSignUp", " Success ${authGoogleSignUpResult}")
+                    Utils.logIt("Success authGoogleSignUp", " Success ${authGoogleSignUpResult}")
                     if(authGoogleSignUpResult){
                         getNavigate()
                     }

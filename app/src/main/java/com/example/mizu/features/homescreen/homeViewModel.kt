@@ -12,7 +12,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mizu.R
 import com.example.mizu.alarmSchedular.AlarmScheduler
 import com.example.mizu.features.onboarding.source.OnboardingRepository
-import com.example.mizu.utils.utils
+import com.example.mizu.utils.Utils
 import com.example.mizu.features.homescreen.utils.StreakClass
 import com.example.mizu.features.homescreen.utils.WaterAmount
 import com.example.mizu.model.water_reminder.WaterReminder
@@ -143,7 +143,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository, context: C
 //        if (canAddWater) {
 
             if (waterPercent < 100) {
-                utils.logIt("REWARD","Water Percent less than 100")
+                Utils.logIt("REWARD","Water Percent less than 100")
 
                 waterTime = currentTime.minute
                 usedWaterAmount += waterUpdate
@@ -151,7 +151,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository, context: C
 
             } else if (waterPercent>=100) {
                 rewardDialog = true
-                utils.logIt("REWARD","Water Percent 100")
+                Utils.logIt("REWARD","Water Percent 100")
                 if (date.toString() != streakDay) {
                     streakScore++
                     streakDays.addAll(streakDays)
@@ -163,7 +163,7 @@ class HomeViewModel(private val onboardingRepo: OnboardingRepository, context: C
                 }
                 streakDay = date.toString()
             }else{
-                utils.logIt("REWARD","Water Percent equal to 100")
+                Utils.logIt("REWARD","Water Percent equal to 100")
                 waterPercent = 100
             }
 

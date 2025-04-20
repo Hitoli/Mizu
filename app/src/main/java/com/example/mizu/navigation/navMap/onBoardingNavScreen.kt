@@ -127,7 +127,7 @@ fun OnboardingNavHostingScreen(
                 ),
                 getNavigate = {
                     onboardingViewModel.updateUserSettings(false)
-                    navController.navigate(OnboardingNavScreens.PremiumScreen.route)
+                    navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
                 },
                 onWaterIntake = "${onboardingViewModel.onWaterAmount} ml",
                 getBack = {
@@ -204,32 +204,32 @@ fun OnboardingNavHostingScreen(
 //            )
 //        }
 
-        composable(route = OnboardingNavScreens.PremiumScreen.route) {
-            PremiumScreen(modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.linearGradient(
-                        start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
-                        end = Offset(0f, Float.POSITIVE_INFINITY),
-                        colors = mutableListOf(waterColorMeter.copy(alpha = 0.2f), backgroundColor2)
-                    )
-                ), getBack = {
-                navController.navigateUp()
-            }, getSubscribe = {
-                navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
-            }, getSkip = {
-                navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
-            }, onPremiumData = premiumData(
-                onMonthlyPrice = "29.9", onLifeTimePrice = "99.9", onListOfPremiumBenefits =
-                mutableListOf(
-                    "Get Access to Home Screen Widget",
-                    "Set Custom Daily Reminders",
-                    "Advanced Tracking and Analytics",
-                    "Ad-Free Experience"
-                )
-            )
-            )
-        }
+//        composable(route = OnboardingNavScreens.PremiumScreen.route) {
+//            PremiumScreen(modifier = Modifier
+//                .fillMaxSize()
+//                .background(
+//                    Brush.linearGradient(
+//                        start = Offset(Float.POSITIVE_INFINITY * 0.4f, 0f),
+//                        end = Offset(0f, Float.POSITIVE_INFINITY),
+//                        colors = mutableListOf(waterColorMeter.copy(alpha = 0.2f), backgroundColor2)
+//                    )
+//                ), getBack = {
+//                navController.navigateUp()
+//            }, getSubscribe = {
+//                navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
+//            }, getSkip = {
+//                navController.navigate(OnboardingNavScreens.NotificationPermissionScreen.route)
+//            }, onPremiumData = premiumData(
+//                onMonthlyPrice = "29.9", onLifeTimePrice = "99.9", onListOfPremiumBenefits =
+//                mutableListOf(
+//                    "Get Access to Home Screen Widget",
+//                    "Set Custom Daily Reminders",
+//                    "Advanced Tracking and Analytics",
+//                    "Ad-Free Experience"
+//                )
+//            )
+//            )
+//        }
     }
 
 

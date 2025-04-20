@@ -2,7 +2,7 @@ package com.example.mizu.utils
 
 import android.util.Log
 
-class utils {
+class Utils {
 
     companion object{
         @JvmField

@@ -1,6 +1,5 @@
 package com.example.mizu.features.authscreen.login
 
-import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -9,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mizu.features.authscreen.login.source.LoginRepository
 import com.example.mizu.features.authscreen.common.authRepositoryCommon
 import com.example.mizu.utils.Result
-import com.example.mizu.utils.utils
+import com.example.mizu.utils.Utils
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -81,7 +80,7 @@ class loginViewModel(private val dispatcherIO:CoroutineDispatcher, private val l
     }
 
     fun getLoginWithGoogle(){
-        utils.logIt("getSignUpWithGoogle", "Clicked")
+        Utils.logIt("getSignUpWithGoogle", "Clicked")
         viewModelScope.launch(dispatcherIO) {
             authRepositoryCommon.authGoogleSignIn()
         }

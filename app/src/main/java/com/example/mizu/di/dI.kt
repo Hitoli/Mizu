@@ -51,7 +51,7 @@ val DIModule = module {
     single<SignUpRepository>{
         SignUpRepository(get(),get(named("ioDispatcher")))
     }
-    viewModel { OnboardingViewModel(get()) }
+    viewModel { OnboardingViewModel(get(),get()) }
     viewModel { HomeViewModel(get(), androidApplication()) }
     viewModel { CalendarViewModel(get()) }
     viewModel{ authViewModelCommon(get(named("ioDispatcher")), get()) }

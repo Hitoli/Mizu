@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.util.unpackInt1
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -29,10 +29,9 @@ import com.example.mizu.ui.theme.backgroundColor2
 import com.example.mizu.ui.theme.waterColorBackground
 import com.example.mizu.navigation.navUtils.NavScreens
 import com.example.mizu.utils.Result
-import com.example.mizu.utils.utils
+import com.example.mizu.utils.Utils
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
-import javax.inject.Inject
 
 @Composable
 fun NavScreen(
@@ -44,34 +43,40 @@ fun NavScreen(
 ) {
     val TAG = "NavScreen"
     val navController = rememberNavController()
-    authViewModelCommon.updateAuthManagerContext(LocalContext.current)
-    var startDestination by remember{
+    var startDestination by remember {
         mutableStateOf(NavScreens.SplashNavHostingScreen.route)
     }
+    authViewModelCommon.updateAuthManagerContext(LocalContext.current)
     val isUserSignedIn by authViewModelCommon.authIsUserSignedIn.collectAsStateWithLifecycle()
     val isUserLoggedOut by authViewModelCommon.authSignOut.collectAsStateWithLifecycle()
+    val isOnboardingCompleted = sharedPreferences.getBoolean("onBoardingCompleted", false)
 
-    SideEffect{
+    LaunchedEffect(Unit) {
+        if (!isOnboardingCompleted) {
+            startDestination = NavScreens.OnboardingNavHostingScreen.route
+        } else {
             authViewModelCommon.getIsUserSignedIn()
+        }
+        Utils.logIt(TAG, "onboarding Completed ${startDestination}")
     }
 
     LaunchedEffect(isUserSignedIn) {
         when (isUserSignedIn) {
             is Result.Failure -> {
-                utils.logIt(TAG, "Failure User Signed In")
+                Utils.logIt(TAG, "Failure User Signed In")
                 startDestination = NavScreens.AuthNavHostingScreen.route
             }
 
             is Result.Loading -> {
-                utils.logIt(TAG, "Loading User Signed In")
+                Utils.logIt(TAG, "Loading User Signed In")
             }
 
             is Result.Success -> {
                 val isSignedIn = (isUserSignedIn as Result.Success<Boolean>).data
-                utils.logIt(TAG, "User is Signed In ${isSignedIn}")
+                Utils.logIt(TAG, "User is Signed In ${isSignedIn}")
                 if (isSignedIn) {
                     startDestination = NavScreens.BottomNavHostingScreen.route
-                }else{
+                } else {
                     startDestination = NavScreens.AuthNavHostingScreen.route
                 }
             }
@@ -81,16 +86,16 @@ fun NavScreen(
     LaunchedEffect(isUserLoggedOut) {
         when (isUserLoggedOut) {
             is Result.Failure -> {
-                utils.logIt(TAG, "Failure User Logged Out")
+                Utils.logIt(TAG, "Failure User Logged Out")
             }
 
             is Result.Loading -> {
-                utils.logIt(TAG, "Loading User Logged Out")
+                Utils.logIt(TAG, "Loading User Logged Out")
             }
 
             is Result.Success -> {
                 val signedOut = (isUserLoggedOut as Result.Success<Boolean>).data
-                utils.logIt(TAG, "Is Signed out or not -> ${signedOut}")
+                Utils.logIt(TAG, "Is Signed out or not -> ${signedOut}")
                 if (signedOut) {
                     startDestination = NavScreens.AuthNavHostingScreen.route
                 }
@@ -99,6 +104,8 @@ fun NavScreen(
     }
 
 
+
+    Utils.logIt(TAG, "onboarding Completed ${startDestination}")
 
     NavHost(
         navController = navController,

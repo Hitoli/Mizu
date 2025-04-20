@@ -9,7 +9,7 @@ import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
 import com.example.mizu.BuildConfig
 import com.example.mizu.utils.Result
-import com.example.mizu.utils.utils
+import com.example.mizu.utils.Utils
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.firebase.auth.FirebaseAuth
@@ -57,7 +57,7 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
     fun updateContext(context: Context) {
         activityContext = context
         credentialManager = CredentialManager.create(context)
-        utils.logIt(TAG, "ACTIVITY CONTEXT $activityContext")
+        Utils.logIt(TAG, "ACTIVITY CONTEXT $activityContext")
     }
 
     suspend fun authSignUp(email: String, password: String) {
@@ -80,15 +80,15 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
             try {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnSuccessListener { authResult ->
-                        utils.logIt(TAG, "Success authSignUpWithEmailAndPassword")
+                        Utils.logIt(TAG, "Success authSignUpWithEmailAndPassword")
                         continuation.resume(Result.Success(authResult.user?.uid ?: "No UID"))
                     }
                     .addOnFailureListener { exception ->
-                        utils.logIt(TAG, "Failed authSignUpWithEmailAndPassword ${exception}")
+                        Utils.logIt(TAG, "Failed authSignUpWithEmailAndPassword ${exception}")
                         continuation.resumeWithException(exception)
                     }
             }catch (e: Exception){
-                utils.logIt(TAG, "Failed authSignUpWithEmailAndPassword ${e.message.toString()}")
+                Utils.logIt(TAG, "Failed authSignUpWithEmailAndPassword ${e.message.toString()}")
                 continuation.resumeWithException(exception = e)
             }
 
@@ -116,18 +116,18 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
         try {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener { authResult ->
-                    utils.logIt(TAG, "Success authSignInWithEmailAndPassword")
+                    Utils.logIt(TAG, "Success authSignInWithEmailAndPassword")
                     sharedPreferences.edit() { putString("UID", authResult.user?.uid) }
                     sharedPreferences.edit { putBoolean("isUserLoggedIn", true) }
                     continuation.resume(Result.Success("Success"))
                 }
                 .addOnFailureListener { exception ->
                     sharedPreferences.edit { putBoolean("isUserLoggedIn", false) }
-                    utils.logIt(TAG, "Failed authSignInWithEmailAndPassword: $exception")
+                    Utils.logIt(TAG, "Failed authSignInWithEmailAndPassword: $exception")
                     continuation.resumeWithException(exception)
                 }
         } catch (e: Exception) {
-            utils.logIt(TAG, "Failed authSignInWithEmailAndPassword ${e.message.toString()}")
+            Utils.logIt(TAG, "Failed authSignInWithEmailAndPassword ${e.message.toString()}")
             continuation.resumeWithException(exception = e)
         }
     }
@@ -135,17 +135,17 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
     suspend fun googleSignIn(){
         authScope.launch {
             _authGoogleSignIn.emit(Result.Loading)
-            utils.logIt("googleSignIn", "Clicked googleSignIn")
+            Utils.logIt("googleSignIn", "Clicked googleSignIn")
             try {
                 val result = authGoogleSignIn()
-                utils.logIt("googleSignIn", "Clicked result")
+                Utils.logIt("googleSignIn", "Clicked result")
 
                 _authGoogleSignIn.emit(Result.Success(result))
             }catch (e:Exception){
                 e.printStackTrace()
-                utils.logIt("googleSignIn", "Clicked Exception")
+                Utils.logIt("googleSignIn", "Clicked Exception")
 
-                utils.logIt(TAG, "Failed Auth Google Sign In${e.message}")
+                Utils.logIt(TAG, "Failed Auth Google Sign In${e.message}")
                 _authGoogleSignIn.emit(Result.Failure(false))
             }
         }
@@ -154,11 +154,11 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
         if (authGoogleIsSignedIn()) {
             return true
         }
-        utils.logIt("authGoogleSignIn", "Clicked authGoogleSignIn")
+        Utils.logIt("authGoogleSignIn", "Clicked authGoogleSignIn")
 
         try {
             val credentialResponse = getCredentialResponse()
-            utils.logIt("authGoogleSignIn", "Result getCredentialResponse ${credentialResponse}")
+            Utils.logIt("authGoogleSignIn", "Result getCredentialResponse ${credentialResponse}")
             return if (credentialResponse!=null){
                 handleSignInWithGoogle(credentialResponse)
             }else{
@@ -166,10 +166,10 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            utils.logIt("authGoogleSignIn", "Exception getCredentialResponse ${e.message}")
+            Utils.logIt("authGoogleSignIn", "Exception getCredentialResponse ${e.message}")
 
             if (e is CancellationException) throw e
-            utils.logIt(TAG, "Failed authGoogleSignIn ${e.message}")
+            Utils.logIt(TAG, "Failed authGoogleSignIn ${e.message}")
             return false
         }
     }
@@ -179,21 +179,21 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
         if (credential is  CustomCredential && credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL){
             try {
                 val tokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
-                utils.logIt(TAG, "Google Sign In Name: ${tokenCredential.displayName}")
-                utils.logIt(TAG, "Google Sign In Email: ${tokenCredential.id}")
-                utils.logIt(TAG, "Google Sign In image: ${tokenCredential.profilePictureUri}")
+                Utils.logIt(TAG, "Google Sign In Name: ${tokenCredential.displayName}")
+                Utils.logIt(TAG, "Google Sign In Email: ${tokenCredential.id}")
+                Utils.logIt(TAG, "Google Sign In image: ${tokenCredential.profilePictureUri}")
                 sharedPreferences.edit() { putString("user_name", tokenCredential.displayName) }
                 val authCredential = GoogleAuthProvider.getCredential(tokenCredential.idToken,null)
                 val authResult = auth.signInWithCredential(authCredential).await()
                 return authResult.user!=null
             }catch (e:Exception){
                 e.printStackTrace()
-                utils.logIt(TAG, "googleIdCredentialError ${e.message}")
+                Utils.logIt(TAG, "googleIdCredentialError ${e.message}")
                 return false
             }
 
         }else{
-            utils.logIt(TAG, "Not the Google Credential handleSignInWithGoogle")
+            Utils.logIt(TAG, "Not the Google Credential handleSignInWithGoogle")
             return false
         }
     }
@@ -217,7 +217,7 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
             _authGoogleSignOut.emit(Result.Success(result))
         }catch (e:Exception){
             e.printStackTrace()
-            utils.logIt(TAG, "Google Sign Out Error${e.message}")
+            Utils.logIt(TAG, "Google Sign Out Error${e.message}")
             _authGoogleSignOut.emit(Result.Failure(false))
         }
     }
@@ -233,7 +233,7 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
         _authUserSignedIn.emit(Result.Loading)
         try {
             val result = authGoogleIsSignedIn()
-            utils.logIt(TAG, "Current User ${result}")
+            Utils.logIt(TAG, "Current User ${result}")
             val isLoggedIn =  sharedPreferences.getBoolean("isUserLoggedIn",false)
             if (result || isLoggedIn){
                 _authUserSignedIn.emit(Result.Success(true))
@@ -242,7 +242,7 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
             }
         }catch (e:Exception){
             e.printStackTrace()
-            utils.logIt(TAG,"User Signed In Error: ${e.message}")
+            Utils.logIt(TAG,"User Signed In Error: ${e.message}")
             _authUserSignedIn.emit(Result.Failure(false))
         }
     }
@@ -255,7 +255,7 @@ class authManager(private val dispatchersIO: CoroutineDispatcher, private val sh
         _authGoogleSignOut.emit(Result.Loading)
     }
     private fun authGoogleIsSignedIn(): Boolean {
-        utils.logIt(TAG, "Current User ${auth.currentUser!=null}")
+        Utils.logIt(TAG, "Current User ${auth.currentUser!=null}")
         return auth.currentUser!=null
     }
 

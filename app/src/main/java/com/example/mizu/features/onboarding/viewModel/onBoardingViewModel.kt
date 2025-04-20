@@ -9,13 +9,13 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mizu.features.onboarding.source.OnboardingRepository
-import com.example.mizu.navigation.navUtils.NavScreens
 import com.example.mizu.features.homescreen.utils.UserSettings
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import kotlin.math.sqrt
+import androidx.core.content.edit
 
-class OnboardingViewModel(private val onboardingRepo: OnboardingRepository) : ViewModel() {
+class OnboardingViewModel(private val onboardingRepo: OnboardingRepository, private val sharedPreferences: SharedPreferences) : ViewModel() {
 
     var onNameValue by mutableStateOf("")
         private set
@@ -173,8 +173,10 @@ class OnboardingViewModel(private val onboardingRepo: OnboardingRepository) : Vi
                 userHeight = onHeightValue.toInt(),
                 onBoardingCompleted = onBoardingCompleted
             )
-
         }
+
+        sharedPreferences.edit{ putBoolean("onBoardingCompleted", onBoardingCompleted) }
+
         println("streakScore Onboarding UpdateUserSettings ")
 
     }
@@ -191,7 +193,6 @@ class OnboardingViewModel(private val onboardingRepo: OnboardingRepository) : Vi
                 onWeightValue = ""
                 onHeightValue = ""
             }
-
             TWI = it.userWaterIntake.toDouble()
             println("streakScore Onboarding getUserSettings ${it}")
         }
